@@ -3,3 +3,5 @@ flask
 redis
 ujson
 plac
+jupyter
+numpy

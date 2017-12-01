@@ -2,12 +2,19 @@ version: '3'
 
 services:
 
+  notebook:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan/work
+
   web:
     build: .
     ports:
-     - "5000:5000"
+      - "5000:5000"
     volumes:
-     - .:/code
+      - .:/code
 
   redis:
     image: "redis:alpine"
