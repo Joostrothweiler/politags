@@ -2,3 +2,4 @@ wheel
 flask
 redis
 ujson
+plac

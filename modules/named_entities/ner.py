@@ -1,16 +1,42 @@
 from builtins import str
 import json
 import nl_core_news_sm
+from spacy.matcher import PhraseMatcher
+
+politicians = [
+    'Alexander Pechtold',
+    'Mark Rutte',
+    'Joost Rothweiler',
+    'Max van Zoest',
+]
 
 nlp = nl_core_news_sm.load()
+matcher = PhraseMatcher(nlp.vocab)
+patterns = [nlp(text) for text in politicians]
+matcher.add('TerminologyList', None, *patterns)
+
+
+def extract_linked_entities(sentence):
+    entity_mentions = extract_named_entities(sentence)
+
+    result = []
+
+    # TODO: Implement actual function.
+    for ent in entity_mentions:
+        if True:
+            result.append(ent)
+
+    return json.dumps(result)
+
 
 def extract_named_entities(sentence):
     doc = nlp(str(sentence))
-    return json_entities(doc)
+    return entities_dict(doc)
 
-def json_entities(doc):
+
+def entities_dict(doc):
     res = []
     for ent in doc.ents:
-        res.append({'entity' : ent.text, 'label' : ent.label_ })
+        res.append({'text': ent.text, 'label': ent.label_})
 
-    return json.dumps(res)
+    return res
