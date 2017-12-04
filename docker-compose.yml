@@ -2,19 +2,21 @@ version: '3'
 
 services:
 
-  notebook:
-    build: .
-    ports:
-      - "8888:8888"
-    volumes:
-      - .:/home/jovyan/work
-
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "5555:5000"
     volumes:
-      - .:/code
+      - .:/usr/src/app
 
-  redis:
-    image: "redis:alpine"
+  db:
+    image: mysql:8.0.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: politags
+
+  adminer:
+    image: adminer:4.3.1-standalone
+    restart: always
+    ports:
+      - 9999:8080

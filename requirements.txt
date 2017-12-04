@@ -3,5 +3,7 @@ flask
 redis
 ujson
 plac
-jupyter
 numpy
+spacy
+yoyo-migrations
+SQLAlchemy
