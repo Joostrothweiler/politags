@@ -18,10 +18,10 @@ Current work is for Alpha version (Jan 15th)
 
 Use Docker.
 
-docker-compose build
-docker-compose up
+    docker-compose build
+    docker-compose up
 
-# Configuring SMTP
+# Configuration
 
 Copy the `local_settings_example.py` file to `local_settings.py`.
 
@@ -42,8 +42,9 @@ Edit the `local_settings.py` file.
 Point your web browser to http://localhost:5555/ for the app
 and http://localhost:9999/ for adminer
 
-To access the bash in docker:
-docker exec -it _service_ bash
+
+    # To access the bash in docker:
+    docker exec -it _service_ bash
 
 ## Running the automated tests
 

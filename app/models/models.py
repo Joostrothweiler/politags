@@ -8,7 +8,7 @@ import datetime
 
 class Article(db.Model):
     __tablename__ = 'articles'
-    id = db.Column(db.String(100), primary_key=True)
+    id = db.Column(db.String(200), primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
@@ -41,5 +41,5 @@ class Party(db.Model):
 class ArticlesEntities(db.Model):
     __tablename__ = 'articles_entities'
     id = db.Column(db.Integer(), primary_key=True)
-    article_id = db.Column(db.String(100), db.ForeignKey('articles.id', ondelete='CASCADE'))
+    article_id = db.Column(db.String(200), db.ForeignKey('articles.id', ondelete='CASCADE'))
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id', ondelete='CASCADE'))
