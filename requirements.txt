@@ -1,9 +1,15 @@
-wheel
-flask
-redis
-ujson
-plac
-numpy
+# Flask/App specific
+Flask
+Flask-Migrate
+Flask-Script
+Flask-SQLAlchemy
+
+# Spacy
 spacy
-yoyo-migrations
-SQLAlchemy
+
+# Postgres connector
+PyGreSQL
+
+# Automated tests
+pytest
+pytest-cov

@@ -8,12 +8,17 @@ services:
       - "5555:5000"
     volumes:
       - .:/usr/src/app
-
-  db:
-    image: mysql:8.0.3
+    depends_on:
+      - postgres
     restart: always
+
+  postgres:
+    image: postgres:10.1
     environment:
-      MYSQL_ROOT_PASSWORD: politags
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: politagsadmin
+      POSTGRES_DB: politags
+    restart: always
 
   adminer:
     image: adminer:4.3.1-standalone

@@ -1,2 +1,24 @@
-.idea/
+# Standard Python .gitignore
+# --------------------------
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 *.pyc
+
+
+# Other standards .gitignore
+# --------------------------
+
+# Mac files
+.DS_Store
+
+# IDEs
+.idea/
+
+
+# Application-specific .gitignores
+# --------------------------------
+
+app/local_settings.py
