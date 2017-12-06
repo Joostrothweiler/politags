@@ -3,7 +3,6 @@ import datetime
 
 # This file defines all the different models we use.
 # Migrations are automatically generated based on these classes.
-
 # After changes, use python manage.py db revision --autogenerate -m "Present tense message"
 
 class Article(db.Model):
@@ -19,8 +18,8 @@ class Article(db.Model):
 class Entity(db.Model):
     __tablename__ = 'entities'
     id = db.Column(db.Integer(), primary_key=True)
-    text = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)  # for @roles_accepted()
-    label = db.Column(db.String(50), server_default=u'')  # for display purposes
+    text = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)
+    label = db.Column(db.String(50), server_default=u'')
 
 
 class Politician(db.Model):

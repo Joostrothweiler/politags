@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 
-from flask import Flask
+from flask import Flask, request
 from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
 
@@ -37,10 +37,10 @@ def create_app(extra_config_settings={}):
 
     @app.route('/api/articles/<string:article_id>/questions', methods=['POST'])
     def articles_questions(article_id):
-        return post_article_question(article_id)
+        return post_article_question(article_id, request.form)
 
     @app.route('/api/questions/<string:question_id>', methods=['POST'])
     def questions_response(question_id):
-        return post_question_response(question_id, 'RESPONSE = JA') # TODO Fix body. Probably in endpoint controller.
+        return post_question_response(question_id, request.form) # TODO Fix body. Probably in endpoint controller.
 
     return app
