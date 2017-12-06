@@ -54,6 +54,6 @@ class Question(db.Model):
 
 class Response(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    response = db.Column(db.String(100))
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
+    response = db.Column(db.String(100))
     question = db.relationship("Question", back_populates="responses")

@@ -1,10 +1,11 @@
 import datetime
 import csv
+
 from flask import current_app
 from flask_script import Command
 
 from app import db
-from app.models.models import Article, Entity, Politician, Party
+from app.models.models import Article, Entity, Politician, Party, Question, Response
 
 
 class InitDbCommand(Command):
@@ -21,6 +22,22 @@ def init_db():
     # Initialize with parties en politicians
     init_politicians()
     init_parties()
+    init_questions_responses()
+
+
+
+def init_questions_responses():
+    question = Question(possible_answers = ['Yes', 'No'])
+    db.session.add(question)
+    question = Question(possible_answers = ['Maybe', 'Nah'])
+    db.session.add(question)
+    db.session.commit()
+
+    response = Response(question_id = 1, response='Yes')
+    db.session.add(response)
+    response = Response(question_id = 1, response='No')
+    db.session.add(response)
+    db.session.commit()
 
 
 def init_politicians():
