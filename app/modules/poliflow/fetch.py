@@ -9,6 +9,7 @@ def fetch_data(size = 10):
     # Return the array of article items
     return json_response['item']
 
+
 def fetch_latest_article_identifiers(size = 10):
     # Fetch article array
     articles = fetch_data(size)

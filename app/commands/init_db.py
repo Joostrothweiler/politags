@@ -1,11 +1,11 @@
 import datetime
 import csv
+
 from flask import current_app
 from flask_script import Command
 
 from app import db
-from app.modules.poliflow.fetch import fetch_latest_article_identifiers
-from app.models.models import Article, Entity, Politician, Party
+from app.models.models import Article, Entity, Politician, Party, Question, Response
 
 
 class InitDbCommand(Command):
@@ -13,7 +13,6 @@ class InitDbCommand(Command):
 
     def run(self):
         init_db()
-
 
 def init_db():
     """ Initialize the database."""
@@ -23,7 +22,22 @@ def init_db():
     # Initialize with parties en politicians
     init_politicians()
     init_parties()
-    init_latest_articles(20)
+    init_questions_responses()
+
+
+
+def init_questions_responses():
+    question = Question(possible_answers = ['Yes', 'No'])
+    db.session.add(question)
+    question = Question(possible_answers = ['Maybe', 'Nah'])
+    db.session.add(question)
+    db.session.commit()
+
+    response = Response(question_id = 1, response='Yes')
+    db.session.add(response)
+    response = Response(question_id = 1, response='No')
+    db.session.add(response)
+    db.session.commit()
 
 
 def init_politicians():
@@ -42,22 +56,6 @@ def init_parties():
             name = row[0]
             p = find_or_create_party(name)
     db.session.commit()
-
-
-def init_latest_articles(size):
-    identifiers = fetch_latest_article_identifiers(size)
-    for i in identifiers:
-        article = find_or_create_article(i)
-    db.session.commit()
-
-
-def find_or_create_article(identifier):
-    """ Find existing articles or create new one """
-    article = Article.query.filter(Article.id == identifier).first()
-    if not article:
-        article = Article(id=identifier)
-        db.session.add(article)
-    return article
 
 
 def find_or_create_politician(name):
@@ -85,12 +83,12 @@ def find_or_create_party(name):
 #         db.session.add(entity)
 #     return entity#
 #
-# def find_or_create_article(identifier, entity=None):
-#     """ Find existing article or create new article """
-#     article = Article.query.filter(Article.id == identifier).first()
-#     if not article:
-#         article = Article(id=identifier)
-#         if entity:
-#             article.entities.append(entity)
-#         db.session.add(article)
-#     return article
+def find_or_create_article(identifier, entity=None):
+    """ Find existing article or create new article """
+    article = Article.query.filter(Article.id == identifier).first()
+    if not article:
+        article = Article(id=identifier)
+        if entity:
+            article.entities.append(entity)
+        db.session.add(article)
+    return article
