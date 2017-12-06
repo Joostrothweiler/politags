@@ -1,5 +1,6 @@
 from app import db
 import datetime
+from sqlalchemy.dialects import postgresql
 
 # This file defines all the different models we use.
 # Migrations are automatically generated based on these classes.
@@ -42,3 +43,17 @@ class ArticlesEntities(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id', ondelete='CASCADE'))
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id', ondelete='CASCADE'))
+
+
+class Question(db.Model):
+    __tablename__ = 'questions'
+    id = db.Column(db.Integer(), primary_key=True)
+    possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
+    responses = db.relationship("Response")
+
+
+class Response(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    response = db.Column(db.String(100))
+    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
+    question = db.relationship("Question", back_populates="responses")
