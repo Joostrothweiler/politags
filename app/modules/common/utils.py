@@ -1,3 +1,4 @@
+from difflib import SequenceMatcher
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']
@@ -16,3 +17,12 @@ def translate_doc(document):
     simple_doc['type'] = document['type']
 
     return simple_doc
+
+def collection_as_dict(collection):
+    dict_array = []
+    for model in collection:
+        dict_array.append(model.as_dict())
+    return dict_array
+
+def string_similarity(a, b):
+    return SequenceMatcher(None, a, b).ratio()

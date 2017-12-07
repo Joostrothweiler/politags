@@ -1,11 +1,14 @@
 import datetime
 import csv
+import json
 
 from flask import current_app
 from flask_script import Command
 
 from app import db
 from app.models.models import Article, Entity, Politician, Party, Question, Response
+from app.modules.entities.extract import extract_entities
+from app.modules.common.utils import translate_doc
 
 
 class InitDbCommand(Command):
@@ -23,6 +26,16 @@ def init_db():
     init_politicians()
     init_parties()
     init_questions_responses()
+
+    init_sample_articles()
+
+
+def init_sample_articles():
+    samples = json.load(open('data_resources/poliflow_sample.json'))
+    items = samples['item']
+
+    for doc in items:
+        extract_entities(translate_doc(doc))
 
 
 def init_questions_responses():
@@ -73,4 +86,3 @@ def find_or_create_party(name):
         party = Party(name=name)
         db.session.add(party)
     return party
-
