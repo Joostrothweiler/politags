@@ -16,6 +16,6 @@ def fetch_latest_article_identifiers(size = 10):
     # Fetch the identifiers from these articles
     identifiers = []
     for doc in articles:
-        identifiers.append(doc['meta']['original_object_id'])
+        identifiers.append(doc['meta']['pfl_url'])
 
     return identifiers

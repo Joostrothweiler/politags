@@ -4,13 +4,11 @@ import os
 from flask import Flask, request
 from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
-
-# Import api route endpoints.
-from .endpoints import post_article_ner, post_article_question, post_question_response
-
 # Instantiate Flask extensions
 db = SQLAlchemy()
 migrate = Migrate()
+# Import rest of the app# Import api route endpoints.
+from .endpoints import post_article_ner, post_article_question, post_question_response
 
 # Create the actual application
 def create_app(extra_config_settings={}):
@@ -31,13 +29,13 @@ def create_app(extra_config_settings={}):
     # Setup Flask-Migrate
     migrate.init_app(app, db)
     # Register routes
-    @app.route('/api/articles/<string:article_id>/entities', methods=['GET'])
-    def articles_entities(article_id):
-        return post_article_ner(article_id)
+    @app.route('/api/articles/entities', methods=['POST'])
+    def articles_entities():
+        return post_article_ner(request.data)
 
-    @app.route('/api/articles/<string:article_id>/questions', methods=['POST'])
-    def articles_questions(article_id):
-        return post_article_question(article_id, request.form)
+    @app.route('/api/articles/questions', methods=['POST'])
+    def articles_questions():
+        return post_article_question(request.data)
 
     @app.route('/api/questions/<string:question_id>', methods=['POST'])
     def questions_response(question_id):

@@ -1,18 +1,15 @@
 import nl_core_news_sm
 from spacy.matcher import PhraseMatcher
 
+from app import db
+
 nlp = nl_core_news_sm.load()
 
-def extract_entities(article_id, doc = None):
-
-    sentence = """Alexander Pechtold (Delft, 16 december 1965) is een
-    Nederlandse politicus voor Democraten 66 (D66). Sinds 2006 is hij
-    namens die partij fractievoorzitter in de Tweede Kamer."""
-
+def extract_entities(document):
+    sentence = document['description']
     doc = nlp(str(sentence))
 
     return {
-        '_id': article_id,
         'ner': ner_response(doc),
         'disambiguid' : disambiguid_entities(ner_response(doc))
     }
