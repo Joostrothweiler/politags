@@ -25,7 +25,6 @@ def init_db():
     init_questions_responses()
 
 
-
 def init_questions_responses():
     question = Question(possible_answers = ['Yes', 'No'])
     db.session.add(question)
@@ -75,20 +74,3 @@ def find_or_create_party(name):
         db.session.add(party)
     return party
 
-# def find_or_create_entity(identifier, text, label):
-#     """ Find existing entity or create new entity """
-#     entity = Entity.query.filter(Entity.text == text).first()
-#     if not entity:
-#         entity = Entity(text=text, label=label)
-#         db.session.add(entity)
-#     return entity#
-#
-# def find_or_create_article(identifier, entity=None):
-#     """ Find existing article or create new article """
-#     article = Article.query.filter(Article.id == identifier).first()
-#     if not article:
-#         article = Article(id=identifier)
-#         if entity:
-#             article.entities.append(entity)
-#         db.session.add(article)
-#     return article
