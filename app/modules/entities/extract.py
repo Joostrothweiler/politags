@@ -1,11 +1,12 @@
 import nl_core_news_sm
+
 from spacy.matcher import PhraseMatcher
-
 from app import db
-from app.models.models import Article
-
+from app.models.models import Article, Entity, Politician, Party, EntitiesPoliticians
+from app.modules.common.utils import collection_as_dict, string_similarity
 
 nlp = nl_core_news_sm.load()
+
 
 def extract_entities(document):
     # Check article is in db
@@ -15,7 +16,11 @@ def extract_entities(document):
         return process_new_document(document)
     # Otherwise, return what we already know.
     else:
-        return fetch_existing_knowledge(article)
+        return get_existing_knowledge(article)
+
+
+def get_existing_knowledge(article):
+    return {'ner' : collection_as_dict(article.entities)}
 
 
 def process_new_document(document):
@@ -23,36 +28,52 @@ def process_new_document(document):
     new_article = Article(id = document['id'])
     db.session.add(new_article)
 
+    # Then process the NER and save entities + disambiguation certainties
     doc = nlp(str(document['description']))
-
     for ent in doc.ents:
-        entity = Entity(text = ent.text, label = ent.label_)
-        article.entities.append(entity)
+        entity = Entity(text = ent.text,
+                        label = ent.label_,
+                        start_pos = ent.start_char,
+                        end_pos = ent.end_char)
+        new_article.entities.append(entity)
         db.session.add(entity)
+        # Store disambiguation certainties
+        store_disambiguation(entity)
 
+    # Commit to db
     db.session.commit()
 
-
-    return {
-        'id': document['id'],
-        'ner': ner_response(doc),
-        'disambiguid' : disambiguid_entities(ner_response(doc))
-    }
-
-def fetch_existing_knowledge(article):
-    return 'a'
+    # Return what we know.
+    return get_existing_knowledge(new_article)
 
 
+def store_disambiguation(entity):
+    if(entity.label == 'PER'):
+        store_politician_disambiguation(entity)
 
-def disambiguid_entities(entity_array):
-    return [entity_array[0], entity_array[1]]
+    if(entity.label == 'ORG'):
+        store_party_disambiguation(entity)
 
-def process_or_get_entities(article_id):
-    return 'entities'
 
-def ner_response(doc):
-    res = []
-    for ent in doc.ents:
-        res.append({'text': ent.text, 'label': ent.label_})
+def store_politician_disambiguation(entity):
+    possible_politicians = Politician.query.all()
 
-    return res
+    for politician in possible_politicians:
+        sim = string_similarity(politician.full_name, entity.text)
+        if sim > 0.9:
+            a = EntitiesPoliticians(certainty = sim)
+            a.politician = politician
+            entity.politicians.append(a)
+            db.session.add(entity)
+
+
+def store_party_disambiguation(entity):
+    possible_parties = Party.query.all()
+
+    for party in possible_parties:
+        sim = string_similarity(party.name, entity.text)
+        if sim > 0.9:
+            a = EntitiesPoliticians(certainty = sim)
+            a.politician = politician
+            entity.politicians.append(a)
+            db.session.add(entity)
