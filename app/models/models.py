@@ -13,15 +13,20 @@ class Article(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    entities = db.relationship('Entity', secondary='articles_entities',
-                               backref=db.backref('articles', lazy='dynamic'))
-
+    entities = db.relationship("Entity")
 
 class Entity(db.Model):
     __tablename__ = 'entities'
     id = db.Column(db.Integer(), primary_key=True)
+    article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     text = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)
     label = db.Column(db.String(50), server_default=u'')
+    start_pos = db.Column(db.Integer())
+    end_pos = db.Column(db.Integer())
+
+    parties = db.relationship("EntitiesParties", back_populates="entity")
+    politicians = db.relationship("EntitiesPoliticians", back_populates="entity")
+    article = db.relationship("Article", back_populates="entities")
 
 
 class Politician(db.Model):
@@ -30,6 +35,8 @@ class Politician(db.Model):
     full_name = db.Column(db.String(100), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+    entities = db.relationship("EntitiesPoliticians", back_populates="politician")
+
 
 class Party(db.Model):
     __tablename__ = 'parties'
@@ -37,13 +44,17 @@ class Party(db.Model):
     name = db.Column(db.String(100), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+    entities = db.relationship("EntitiesParties", back_populates="party")
+
+
 
 class Question(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer(), primary_key=True)
-    questionable_type = db.Column(db.String(20))
     questionable_id = db.Column(db.Integer())
+    questionable_type = db.Column(db.String(20))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
+
     responses = db.relationship("Response")
 
 
@@ -51,6 +62,7 @@ class Response(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
     response = db.Column(db.String(100))
+
     question = db.relationship("Question", back_populates="responses")
 
 
@@ -63,6 +75,10 @@ class EntitiesParties(db.Model):
     party_id = db.Column(db.Integer(), db.ForeignKey('parties.id'))
     certainty = db.Column(db.Float(), default=0.0)
 
+    party = db.relationship("Party", back_populates="entities")
+    entity = db.relationship("Entity", back_populates="parties")
+
+
 
 class EntitiesPoliticians(db.Model):
     __tablename__ = 'entities_politicians'
@@ -71,11 +87,6 @@ class EntitiesPoliticians(db.Model):
     politician_id = db.Column(db.Integer(), db.ForeignKey('politicians.id'))
     certainty = db.Column(db.Float(), default=0.0)
 
+    politician = db.relationship("Politician", back_populates="entities")
+    entity = db.relationship("Entity", back_populates="politicians")
 
-class ArticlesEntities(db.Model):
-    __tablename__ = 'articles_entities'
-    id = db.Column(db.Integer(), primary_key=True)
-    article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
-    entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
-    start_pos = db.Column(db.Integer())
-    end_pos = db.Column(db.Integer())
