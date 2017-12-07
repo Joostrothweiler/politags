@@ -15,6 +15,7 @@ class Article(db.Model):
 
     # Relationships
     entities = db.relationship("Entity")
+    questions = db.relationship("Question")
 
 class Entity(db.Model):
     __tablename__ = 'entities'
@@ -62,12 +63,14 @@ class Party(db.Model):
 class Question(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer(), primary_key=True)
+    article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     questionable_id = db.Column(db.Integer())
     questionable_type = db.Column(db.String(20))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
 
     # Relationships
     responses = db.relationship("Response")
+    article = db.relationship("Article", back_populates="questions")
 
     # API Representation
     def as_dict(self):

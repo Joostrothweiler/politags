@@ -46,6 +46,7 @@ and http://localhost:9999/ for adminer
     # To access the bash in docker:
     docker exec -it _service_ bash
 
+
 ## Running the automated tests
 
     # Start the Flask development web server
