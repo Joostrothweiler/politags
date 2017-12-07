@@ -1,4 +1,5 @@
 from difflib import SequenceMatcher
+import html2text
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']
@@ -9,12 +10,8 @@ def get_document_identifier(document):
 def translate_doc(document):
     simple_doc = {}
     simple_doc['id'] = get_document_identifier(document)
-    simple_doc['url'] = 'https://api.poliflw.nl/v0/combined_index/' + get_document_identifier(document)
-    simple_doc['description'] = document['description']
-    simple_doc['parties'] = document['parties']
-    simple_doc['source'] = document['source']
-    simple_doc['title'] = document['title']
-    simple_doc['type'] = document['type']
+    simple_doc['html_description'] = document['description']
+    simple_doc['text_description'] = html2text.html2text(document['description'])
 
     return simple_doc
 

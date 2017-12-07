@@ -29,7 +29,7 @@ def process_new_document(document):
     db.session.add(new_article)
 
     # Then process the NER and save entities + disambiguation certainties
-    doc = nlp(str(document['description']))
+    doc = nlp(str(document['text_description']))
     for ent in doc.ents:
         if len(ent.text) > 1 and len(ent.text) < 50:
             entity = Entity(text = ent.text,
