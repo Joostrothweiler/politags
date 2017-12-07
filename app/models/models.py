@@ -9,6 +9,7 @@ from sqlalchemy.dialects import postgresql
 
 class Article(db.Model):
     __tablename__ = 'articles'
+    # Attributes
     id = db.Column(db.String(200), primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
@@ -17,16 +18,26 @@ class Article(db.Model):
 
 class Entity(db.Model):
     __tablename__ = 'entities'
+    # Attributes
     id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
-    text = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)
+    text = db.Column(db.String(50), nullable=False, server_default=u'')
     label = db.Column(db.String(50), server_default=u'')
     start_pos = db.Column(db.Integer())
     end_pos = db.Column(db.Integer())
 
+    # Relationships
     parties = db.relationship("EntitiesParties", back_populates="entity")
     politicians = db.relationship("EntitiesPoliticians", back_populates="entity")
     article = db.relationship("Article", back_populates="entities")
+
+    # API Representation
+    def as_dict(self):
+        return {'text' : self.text,
+                'label': self.label,
+                'start_pos': self.start_pos,
+                'end_pos': self.end_pos
+        }
 
 
 class Politician(db.Model):
@@ -55,7 +66,16 @@ class Question(db.Model):
     questionable_type = db.Column(db.String(20))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
 
+    # Relationships
     responses = db.relationship("Response")
+
+    # API Representation
+    def as_dict(self):
+        return {'id' : self.id,
+                'questionable_id': self.questionable_id,
+                'questionable_type': self.questionable_type,
+                'possible_answers': self.possible_answers
+        }
 
 
 class Response(db.Model):
@@ -89,4 +109,3 @@ class EntitiesPoliticians(db.Model):
 
     politician = db.relationship("Politician", back_populates="entities")
     entity = db.relationship("Entity", back_populates="politicians")
-
