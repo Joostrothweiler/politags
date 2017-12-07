@@ -1,5 +1,6 @@
 from app.modules.entities.extract import extract_entities
-from app.modules.computation.questioning import ask_question, process_question
+from app.modules.common.utils import translate_doc
+from app.modules.computation.questioning import ask_first_question, process_question
 from flask import jsonify
 import json
 
@@ -9,17 +10,20 @@ import json
 # Route endpoint
 def post_article_ner(document):
     doc = json.loads(document)
-    res = extract_entities(doc)
+    simple_doc = translate_doc(doc)
+    res = extract_entities(simple_doc)
     return jsonify(res)
 
 # Handling the question generation/querying when poliflw asks for a question.
 def post_article_question(document):
     doc = json.loads(document)
-    res = extract_entities(doc)
+    simple_doc = translate_doc(doc)
+    res = ask_first_question(simple_doc)
     return jsonify(res)
 
 # Handling the response of a question using a post request from poliflw.
 def post_question_response(document):
     doc = json.loads(document)
-    res = extract_entities(doc)
+    simple_doc = translate_doc(doc)
+    res = process_question(simple_doc)
     return jsonify(res)

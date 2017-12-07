@@ -6,10 +6,10 @@ from app import db
 nlp = nl_core_news_sm.load()
 
 def extract_entities(document):
-    sentence = document['description']
-    doc = nlp(str(sentence))
+    doc = nlp(str(document['description']))
 
     return {
+        'id': document['id'],
         'ner': ner_response(doc),
         'disambiguid' : disambiguid_entities(ner_response(doc))
     }
