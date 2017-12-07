@@ -58,7 +58,7 @@ class Response(db.Model):
 
 class EntitiesParties(db.Model):
     __tablename__ = 'entities_parties'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
     party_id = db.Column(db.Integer(), db.ForeignKey('parties.id'))
     certainty = db.Column(db.Float(), default=0.0)
@@ -66,7 +66,7 @@ class EntitiesParties(db.Model):
 
 class EntitiesPoliticians(db.Model):
     __tablename__ = 'entities_politicians'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
     politician_id = db.Column(db.Integer(), db.ForeignKey('politicians.id'))
     certainty = db.Column(db.Float(), default=0.0)
@@ -74,7 +74,7 @@ class EntitiesPoliticians(db.Model):
 
 class ArticlesEntities(db.Model):
     __tablename__ = 'articles_entities'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
     start_pos = db.Column(db.Integer())

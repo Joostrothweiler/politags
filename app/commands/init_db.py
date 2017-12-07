@@ -83,12 +83,12 @@ def find_or_create_party(name):
 #         db.session.add(entity)
 #     return entity#
 #
-def find_or_create_article(identifier, entity=None):
-    """ Find existing article or create new article """
-    article = Article.query.filter(Article.id == identifier).first()
-    if not article:
-        article = Article(id=identifier)
-        if entity:
-            article.entities.append(entity)
-        db.session.add(article)
-    return article
+# def find_or_create_article(identifier, entity=None):
+#     """ Find existing article or create new article """
+#     article = Article.query.filter(Article.id == identifier).first()
+#     if not article:
+#         article = Article(id=identifier)
+#         if entity:
+#             article.entities.append(entity)
+#         db.session.add(article)
+#     return article
