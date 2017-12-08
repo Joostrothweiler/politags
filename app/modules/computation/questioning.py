@@ -27,30 +27,17 @@ def ask_first_question(document):
 
     # return collection_as_dict(linked_entities)
 
-    lowest_certainty = 1
-    final_index = None
+    [least_certain_entity_index, lowest_certainty] = find_least_certain_entity_index(linked_entities)
 
-    for index, entity in enumerate(linked_entities):
-        for entityparty in entity.parties:
-            if entityparty.certainty <= lowest_certainty:
-                lowest_certainty = entityparty.certainty
-                final_index = index
-        for entitypolitician in entity.politicians:
-            if entitypolitician.certainty <= lowest_certainty:
-                lowest_certainty = entitypolitician.certainty
-                final_index = index
+    least_certain_entity = linked_entities[least_certain_entity_index]
 
-    if linked_entities[final_index].politicians:
-        question_string = linked_entities[final_index].politicians[0].politician.name
-    else:
-        question_string = linked_entities[final_index].parties[0].party.name
+    yesnoquestion = generate_yesno_question(least_certain_entity)
 
-
-    start_pos = linked_entities[index].start_pos
-    end_pos = linked_entities[index].end_pos
+    start_pos = least_certain_entity.start_pos
+    end_pos = least_certain_entity.end_pos
 
     return {
-        'question': "Is {} mentioned here?".format(question_string),
+        'question': yesnoquestion,
         'start_pos': start_pos,
         'end_pos': end_pos,
         'certainty' : lowest_certainty
@@ -76,6 +63,32 @@ def find_linked_entities(entities):
 
     return linked_entities
 
+#this function finds the least certain entity in a list of linked entities
+def find_least_certain_entity_index(linked_entities):
+    lowest_certainty = 2
+    least_certain_entity_index = None
 
+    for index, entity in enumerate(linked_entities):
+        for entityparty in entity.parties:
+            if entityparty.certainty <= lowest_certainty:
+                lowest_certainty = entityparty.certainty
+                least_certain_entity_index = index
+        for entitypolitician in entity.politicians:
+            if entitypolitician.certainty <= lowest_certainty:
+                lowest_certainty = entitypolitician.certainty
+                least_certain_entity_index = index
+
+    return [least_certain_entity_index, lowest_certainty]
+
+#this function generates a yes/no question string from an entity
+def generate_yesno_question(linked_entity):
+    if linked_entity.politicians:
+        question_string = linked_entity.politicians[0].politician.name
+    else:
+        question_string = linked_entity.parties[0].party.name
+
+    question = 'Is {} mentioned here?'.format(question_string)
+
+    return question
 
 
