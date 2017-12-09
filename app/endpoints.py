@@ -4,6 +4,7 @@ from app.modules.computation.questioning import ask_first_question, process_ques
 from flask import jsonify
 import json
 
+
 # This file simply handles the API route request and calls the right function.
 # Should contain no further logic.
 
@@ -14,12 +15,14 @@ def post_article_ner(document):
     res = extract_entities(simple_doc)
     return jsonify(res)
 
+
 # Handling the question generation/querying when poliflw asks for a question.
 def post_article_question(document):
     doc = json.loads(document)
     simple_doc = translate_doc(doc)
     res = ask_first_question(simple_doc)
     return jsonify(res)
+
 
 # Handling the response of a question using a post request from poliflw.
 def post_question_response(document):
