@@ -12,10 +12,11 @@ class ConstructKbCommand(Command):
     def run(self):
         download_archive()
         politicians = get_politicians()
-        parties = get_parties_from_politicians(politicians)
-
         write_objects_array_to_file('archive_politicians', ['id', 'name', 'party', 'contact_city'], politicians)
-        write_objects_array_to_file('archive_parties', ['name'], parties)
+
+        # We should probably not use this, but instead make our own list of parties or find better source.
+        # parties = get_parties_from_politicians(politicians)
+        # write_objects_array_to_file('archive_parties', ['name'], parties)
 
 def full_branch_name(branch):
     return '{http://almanak.overheid.nl/schema/export/2.0}' + branch
