@@ -1,6 +1,7 @@
 import xml.etree.ElementTree
 import csv
 import urllib.request
+import numpy as np
 
 from flask_script import Command
 
@@ -11,8 +12,10 @@ class ConstructKbCommand(Command):
     def run(self):
         download_archive()
         politicians = get_politicians()
-        write_objects_array_to_file('archive_politicians', politicians)
+        parties = get_parties_from_politicians(politicians)
 
+        write_objects_array_to_file('archive_politicians', ['id', 'name', 'party', 'contact_city'], politicians)
+        write_objects_array_to_file('archive_parties', ['name'], parties)
 
 def full_branch_name(branch):
     return '{http://almanak.overheid.nl/schema/export/2.0}' + branch
@@ -22,10 +25,9 @@ def download_archive():
     urllib.request.urlretrieve('https://almanak.overheid.nl/archive/exportOO.xml', 'data_resources/archive_export00.xml')
 
 
-def write_objects_array_to_file(filename, array):
+def write_objects_array_to_file(filename, header, array):
     with open('data_resources/{}.csv'.format(filename), 'w') as file:
-        fieldnames = ['id', 'name', 'party', 'contact_city']
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer = csv.DictWriter(file, fieldnames=header)
         writer.writeheader()
 
         for obj in array:
@@ -56,19 +58,14 @@ def get_politicians():
 
     return politicians
 
-# def construct_kb():
-#     root = xml.etree.ElementTree.parse('data_resources/archive.xml').getroot()
-#
-#     # Loop over all organisations
-#     for org in root.iter(tag=full_branch_name('organisatie')):
-#         for item in org:
-#             if item.attrib and \
-#                     item.attrib[full_branch_name('naam')] and \
-#                     item.attrib[full_branch_name('naam')] == 'Staten-Generaal':
-#                 party = org
-#
-#                 name = getattr(party.find(full_branch_name('naam')), 'text', '--')
-#                 abbr = getattr(party.find(full_branch_name('afkorting')), 'text', '--')
-#                 desc = getattr(party.find(full_branch_name('beschrijving')), 'text', '--')
-#
-#                 print('naam: {}, afkorting: {}, beschrijving: {}'.format(name, abbr, desc))
+def get_parties_from_politicians(politicians):
+    parties = []
+
+    for politician in politicians:
+        party = {
+            'name': politician['party']
+        }
+        if party not in parties:
+            parties.append(party)
+
+    return parties
