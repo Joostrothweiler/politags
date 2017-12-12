@@ -44,9 +44,11 @@ class Politician(db.Model):
     __tablename__ = 'politicians'
     id = db.Column(db.Integer(), primary_key=True)
     system_id = db.Column(db.Integer(), unique=True)
-    full_name = db.Column(db.String(100), nullable=False, server_default=u'')
-    party = db.Column(db.String(100), nullable=True)
-    city = db.Column(db.String(100), nullable=True)
+    first_name = db.Column(db.String(50), nullable=False, server_default=u'')
+    last_name = db.Column(db.String(100), nullable=False, server_default=u'')
+    party = db.Column(db.String(100), nullable=False, server_default=u'')
+    city = db.Column(db.String(100), nullable=False, server_default=u'')
+    level_of_ambiguity = db.Column(db.Float(), default=0.0) # Possibly link to other politicians with ambiguity score
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     entities = db.relationship("EntitiesPoliticians", back_populates="politician")
@@ -56,7 +58,7 @@ class Party(db.Model):
     __tablename__ = 'parties'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(100), nullable=False, server_default=u'')
-    abbreviation = db.Column(db.String(20), nullable=True)
+    abbreviation = db.Column(db.String(20), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     entities = db.relationship("EntitiesParties", back_populates="party")

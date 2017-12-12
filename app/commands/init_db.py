@@ -21,10 +21,14 @@ def init_db():
     db.drop_all()
     db.create_all()
     # Initialize with parties en politicians
+    print('Ready to initialize')
+    print('Initializing politicians')
     init_politicians()
+    print('Initializing parties')
     init_parties()
+    print('Initializing questions/responses')
     init_questions_responses()
-
+    print('Initializing sample articles with NER')
     init_sample_articles()
 
 
@@ -56,10 +60,11 @@ def init_politicians():
         for row in politicians:
             # id,name,party,contact_city
             system_id = row['id']
-            name = row['name']
+            first_name = row['first_name']
+            last_name = row['last_name']
             party = row['party']
             city = row['contact_city']
-            p = find_or_create_politician(system_id, name, party, city)
+            p = find_or_create_politician(system_id, first_name, last_name, party, city)
     db.session.commit()
 
 
@@ -73,11 +78,14 @@ def init_parties():
     db.session.commit()
 
 
-def find_or_create_politician(system_id, full_name, party, city):
+def find_or_create_politician(system_id, first_name, last_name, party, city):
     """ Find existing politicians or create new one """
-    politician = Politician.query.filter(Politician.system_id == system_id).first()
+    politician = Politician.query.filter(Politician.last_name == last_name)\
+        .filter(Politician.first_name == first_name)\
+        .filter(Politician.party == party).first()
+
     if not politician:
-        politician = Politician(system_id=system_id, full_name=full_name, party=party, city=city)
+        politician = Politician(system_id=system_id, first_name=first_name, last_name=last_name, party=party, city=city)
         db.session.add(politician)
     return politician
 

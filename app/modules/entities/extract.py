@@ -1,6 +1,5 @@
 import nl_core_news_sm
 
-from spacy.matcher import PhraseMatcher
 from app import db
 from app.models.models import Article, Entity, Politician, Party, EntitiesPoliticians, EntitiesParties
 from app.modules.common.utils import collection_as_dict, string_similarity
@@ -59,7 +58,7 @@ def store_politician_disambiguation(entity):
     possible_politicians = Politician.query.all()
 
     for politician in possible_politicians:
-        sim = string_similarity(politician.full_name, entity.text)
+        sim = string_similarity(politician.last_name, entity.text)
         if sim > 0.4:
             a = EntitiesPoliticians(certainty = sim)
             a.politician = politician
