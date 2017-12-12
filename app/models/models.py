@@ -48,6 +48,7 @@ class Politician(db.Model):
     last_name = db.Column(db.String(100), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
     city = db.Column(db.String(100), nullable=False, server_default=u'')
+    role = db.Column(db.String(100), nullable=False, server_default=u'')
     level_of_ambiguity = db.Column(db.Float(), default=0.0) # Possibly link to other politicians with ambiguity score
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 

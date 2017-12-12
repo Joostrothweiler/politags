@@ -1,21 +1,46 @@
 import xml.etree.ElementTree
 import csv
 import urllib.request
-import wikipedia
+from app.modules.common.utils import html2text
 
 from flask_script import Command
-
 
 class ConstructKbCommand(Command):
     """ Construct the database."""
 
     def run(self):
-        download_archive()
-        politicians = get_politicians()
-        write_objects_array_to_file('archive_politicians', ['id', 'first_name', 'last_name', 'party', 'contact_city'], politicians)
+        # download_archive()
+        # politicians = get_politicians_from_archive_export()
+        politicians = get_politicians_from_archive_scraper()
+        write_objects_array_to_file('archive_politicians', ['id', 'first_name', 'last_name', 'party', 'contact_city', 'role'], politicians)
 
 
-def get_politicians():
+def get_politicians_from_archive_scraper():
+    politicians = []
+
+    with open('data_resources/archive_scraped.csv') as csv_file:
+        data_rows = csv.DictReader(csv_file, delimiter=',')
+        for row in data_rows:
+            first_name, last_name = split_name(row['Naam'])
+            identifier = get_identifier_from_url(row['Address'])
+
+            person = {
+                'id': identifier,
+                'first_name': first_name,
+                'last_name': last_name,
+                'party': row['partij-abbr 1'],
+                'contact_city': row['gemeente 1'],
+                'role': row['functie 1']
+            }
+            politicians.append(person)
+
+    return politicians
+
+#
+# This function is no longer necessary as we now read from Arjan's files.
+# TODO: Strip methods from file after arjan his data is confirmed to work better.
+#
+def get_politicians_from_archive_export():
     root = xml.etree.ElementTree.parse('data_resources/archive_export00.xml').getroot()
     politicians = []
 
@@ -30,7 +55,6 @@ def get_politicians():
                        .find(full_branch_name('plaats')), 'text', '')
 
         first_name, last_name = split_name(name)
-
         person = {
             'id': identifier,
             'first_name': first_name,
@@ -38,10 +62,8 @@ def get_politicians():
             'party': party,
             'contact_city': city
         }
-
         if not person in politicians and not person['first_name'] == '' and len(person['last_name']) > 1:
             politicians.append(person)
-
 
     return politicians
 
@@ -63,8 +85,13 @@ def write_objects_array_to_file(filename, header, array):
             writer.writerow(obj)
 
 def split_name(name):
-    splitted = name.split('.')
-    first_name = ' '.join(splitted[:-1])
-    last_name = splitted[-1].lstrip()
-
+    clean_name = html2text(name)
+    arr = clean_name.split('.')
+    first_name = ' '.join(arr[:-1])
+    last_name = arr[-1].lstrip()
     return first_name, last_name
+
+def get_identifier_from_url(url):
+    arr = url.split('/') # ['https:', '', 'almanak.overheid.nl', '126360', 'Mw_D_Dekker-Mulder', '']
+    system_id = arr[-3] # '126360'
+    return system_id

@@ -64,7 +64,8 @@ def init_politicians():
             last_name = row['last_name']
             party = row['party']
             city = row['contact_city']
-            p = find_or_create_politician(system_id, first_name, last_name, party, city)
+            role = row['role']
+            p = find_or_create_politician(system_id, first_name, last_name, party, city, role)
     db.session.commit()
 
 
@@ -78,14 +79,15 @@ def init_parties():
     db.session.commit()
 
 
-def find_or_create_politician(system_id, first_name, last_name, party, city):
+def find_or_create_politician(system_id, first_name, last_name, party, city, role):
     """ Find existing politicians or create new one """
     politician = Politician.query.filter(Politician.last_name == last_name)\
         .filter(Politician.first_name == first_name)\
         .filter(Politician.party == party).first()
 
     if not politician:
-        politician = Politician(system_id=system_id, first_name=first_name, last_name=last_name, party=party, city=city)
+        politician = Politician(system_id=system_id, first_name=first_name, last_name=last_name,
+                                party=party, city=city, role=role)
         db.session.add(politician)
     return politician
 
