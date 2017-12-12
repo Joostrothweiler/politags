@@ -17,7 +17,7 @@ class InitDbCommand(Command):
 
 def init_db():
     """ Initialize the database."""
-    # Recreate the database
+    # # Recreate the database
     # db.drop_all()
     # db.create_all()
     # # Initialize with parties en politicians
@@ -28,16 +28,6 @@ def init_db():
     # init_parties()
     # print('Initializing questions/responses')
     # init_questions_responses()
-    print('Initializing sample articles with NER')
-    init_sample_articles()
-
-
-def init_sample_articles():
-    samples = json.load(open('data_resources/poliflow_sample.json'))
-    items = samples['item']
-
-    for doc in items:
-        extract_entities(translate_doc(doc))
 
 
 def init_questions_responses():

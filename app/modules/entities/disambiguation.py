@@ -9,16 +9,20 @@ from app.modules.common.utils import string_similarity, collection_as_dict
 def politician_disambiguation(document, entities, entity):
     # Get candidates
     candidates = get_candidate_politicians(entity.text)
-    # For each candidate, compute mention_name_similarity
-    name_sim = politician_mention_name_similarity(entity.text, candidates)
-    # For each candidate, compute context_similarity
-    context_sim = politician_context_similarity(entity.text, document, entities, candidates)
-    # Return the average of the two
-    scored_candidates = average_sim(candidates, name_sim, context_sim)
-    result = politician_optimal_candidate(scored_candidates)
+    if candidates:
+        # For each candidate, compute mention_name_similarity
+        name_sim = politician_mention_name_similarity(entity.text, candidates)
+        # For each candidate, compute context_similarity
+        context_sim = politician_context_similarity(entity.text, document, entities, candidates)
+        # Return the average of the two
+        scored_candidates = average_sim(candidates, name_sim, context_sim)
+        result = politician_optimal_candidate(scored_candidates)
 
-    print(entity.text)
-    print(result.as_dict())
+        print(entity.text)
+        print(result.as_dict())
+    else:
+        print('No candidates found for {}'.format(entity.text))
+
 
 def politician_context_similarity(mention, document, entities, candidates):
     result = {}
@@ -34,12 +38,11 @@ def politician_context_similarity(mention, document, entities, candidates):
 
     for candidate_politician in candidates:
         # Fill candidate data for comparison
-        candidate_politician_string = ''
-        candidate_politician_string += candidate_politician.first_name
-        candidate_politician_string += candidate_politician.last_name
-        candidate_politician_string += candidate_politician.party
-        candidate_politician_string += candidate_politician.role
-        candidate_politician_string += candidate_politician.city
+        candidate_politician_string = ' '.join([candidate_politician.first_name,
+                                                candidate_politician.last_name,
+                                                candidate_politician.party,
+                                                candidate_politician.role,
+                                                candidate_politician.city])
 
         result[candidate_politician.id] = string_similarity(document_string, candidate_politician_string)
     return result
@@ -48,9 +51,7 @@ def politician_context_similarity(mention, document, entities, candidates):
 def politician_mention_name_similarity(mention, candidates):
     result = {}
     for candidate_politician in candidates:
-        mention_arr = mention.split(' ')
-        sim = string_similarity(candidate_politician.last_name, mention_arr[-1])
-        result[candidate_politician.id] = sim
+        result[candidate_politician.id] = string_similarity(candidate_politician.last_name, mention)
 
     return result
 
@@ -71,6 +72,8 @@ def get_candidate_politicians(mention):
 def average_sim(candidates, name_sim, context_sim):
     result = []
     for candidate in candidates:
+        # TODO: We could improve the weight distribution based on the level of ambiguity stored in the database.
+        # High ambiguity -> focus on context, low ambiguity, focus on name.
         result.append({
             'id': candidate.id,
             'score': 0.7 * name_sim[candidate.id] + 0.3 * context_sim[candidate.id]
