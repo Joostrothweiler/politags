@@ -3743,7 +3743,7 @@ id,first_name,last_name,party,contact_city,role
 122924,Dhr  R L A,Albersnagel,Kernachtig Wijchen,Gemeente Wijchen,Raadslid
 131279,Dhr  IJ,Baks,Progressief Altena,Gemeente Woudrichem,Raadslid
 132673,Dhr  M,van Dijk,Gemeentebelangen,Gemeente Woudrichem,Raadslid
-122421,Dhr  P  Geleijnse sr,,D66,Gemeente Capelle aan den IJssel,Raadslid
+122421,Dhr  P,Geleijnse sr,D66,Gemeente Capelle aan den IJssel,Raadslid
 121672,Dhr  J S,Vissers,VVD,Gemeente West Maas en Waal,Raadslid
 129038,Mw  C W M M,van Coolwijk-Sonsbeek,Federatie Dorpslijsten West Maas en Waal,Gemeente West Maas en Waal,Raadslid
 120112,Dhr,W Kurpershoek,Voor Neerijnen,Gemeente Neerijnen,Raadslid
@@ -8901,7 +8901,7 @@ id,first_name,last_name,party,contact_city,role
 131211,Mw  Y H G M,Habets-Ingenhut,Ons Voerendaal,Gemeente Voerendaal,Raadslid
 83751,Dhr  H E,Daggert,D66,Gemeente Hellendoorn,Raadslid
 120520,Dhr  M J C,Lathouwers,SP,Gemeente Eindhoven,Raadslid
-125537,Mw  T E C  Geelen MSc,,CDA,Gemeente Weert,Raadslid
+125537,Mw  T E C,Geelen MSc,CDA,Gemeente Weert,Raadslid
 86085,Mw  I H,Hentenaar-Messcher,Larens Behoud,Gemeente Laren,Raadslid
 119903,Mw  M W,van Aller,Seyst.Nu,Gemeente Zeist,Raadslid
 80366,Mw  T C,Hoogeveen,D66,Gemeente Emmen,Raadslid
@@ -9341,7 +9341,7 @@ id,first_name,last_name,party,contact_city,role
 77614,Dhr  R,Veen,ChristenUnie,Gemeente Apeldoorn,Raadslid
 120188,Dhr  H,Skalonjic,D66,Gemeente Apeldoorn,Raadslid
 77619,Mw  P W J H,Donswijk-Bot,D66,Gemeente Apeldoorn,Raadslid
-122420,Dhr  P  Geleijnse jr,,D66,Gemeente Capelle aan den IJssel,Raadslid
+122420,Dhr  P,Geleijnse jr,D66,Gemeente Capelle aan den IJssel,Raadslid
 124987,Dhr  H F,Gomis,D66,Gemeente Smallingerland,Raadslid
 114695,Mw  R M,Roggeveen,PvdA,Gemeente Westvoorne,Raadslid
 122819,Dhr  H J M,van de Laar,Burger Belangen Nuth,Gemeente Nuth,Raadslid
@@ -10386,7 +10386,7 @@ id,first_name,last_name,party,contact_city,role
 120994,Mw  A H J,Konings-Penterman,Onafhankelijken Oost Gelre (OOG),Gemeente Oost Gelre,Raadslid
 72946,Mw  E M,Kist,VVD,Gemeente Giessenlanden,Raadslid
 120859,Dhr  C,Roem,VVD,Gemeente Bergen NH,Raadslid
-126386,Dhr  V  Koerse BEd,,GroenLinks,Gemeente Waterland,Raadslid
+126386,Dhr  V,Koerse BEd,GroenLinks,Gemeente Waterland,Raadslid
 116618,Dhr  H,Sijtsma,CDA,Gemeente Harlingen,Raadslid
 81383,Dhr  A H M,Menke,PvdA,Gemeente Oude IJsselstreek,Raadslid
 132140,Mw  S,Aksoy,Lokaal Apeldoorn,Gemeente Apeldoorn,Raadslid
@@ -11678,7 +11678,7 @@ id,first_name,last_name,party,contact_city,role
 126897,Mw  M M B,Uitdewilligen,CDA,Gemeente Hof van Twente,Raadslid
 131065,Mw  P A M,Ankersmid,CDA,Gemeente Hof van Twente,Raadslid
 119732,Dhr  J C H,Kalter,SP,Gemeente Hof van Twente,Raadslid
-132087,Dhr  A H  Mulder MSc,,CDA,Gemeente Hof van Twente,Raadslid
+132087,Dhr  A H,Mulder MSc,CDA,Gemeente Hof van Twente,Raadslid
 72829,Mw  E,te Riele-Ottenschot,VVD,Gemeente Hof van Twente,Raadslid
 131084,Dhr  A R,de Visser,D66,Gemeente Hof van Twente,Raadslid
 24694,Dhr  B J,Nijenhuis,Gemeentebelangen,Gemeente Hof van Twente,Raadslid
@@ -13444,7 +13444,7 @@ id,first_name,last_name,party,contact_city,role
 123609,Dhr  H,van Wanrooij,INbox,Gemeente Boxtel,Wethouder
 133671,Dhr  F,Brouwer,ChristenUnie,Gemeente Urk,Wethouder
 123610,Dhr  A G A,van den Broek,SP,Gemeente Boxtel,Wethouder
-118192,Dhr  G  Post jr,,Hart voor Urk,Gemeente Urk,Wethouder
+118192,Dhr  G,Post jr,Hart voor Urk,Gemeente Urk,Wethouder
 36384,Mw  M A A,de Goeij-van der Klugt,CDA,Gemeente Westland,Wethouder
 126261,Dhr  H,van der Sleen,Gemeente Belangen,Gemeente Voorst,Wethouder
 133143,Dhr  A L,Langius,ChristenUnie,Gemeente Almelo,Wethouder

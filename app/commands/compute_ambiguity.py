@@ -3,8 +3,7 @@ import numpy as np
 from flask_script import Command
 
 from app import db
-from app.models.models import Politician, Party
-from app.modules.common.utils import string_similarity
+from app.models.models import Politician
 
 
 class ComputeAmbiguity(Command):

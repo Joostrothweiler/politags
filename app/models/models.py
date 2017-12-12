@@ -52,6 +52,16 @@ class Politician(db.Model):
     level_of_ambiguity = db.Column(db.Float(), default=0.0) # Possibly link to other politicians with ambiguity score
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+    # API Representation
+    def as_dict(self):
+        return {'id' : self.id,
+                'first_name': self.first_name,
+                'last_name': self.last_name,
+                'party': self.party,
+                'city': self.city,
+                'role': self.role,
+        }
+
     entities = db.relationship("EntitiesPoliticians", back_populates="politician")
 
 
@@ -63,6 +73,13 @@ class Party(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     entities = db.relationship("EntitiesParties", back_populates="party")
+
+    # API Representation
+    def as_dict(self):
+        return {'id' : self.id,
+                'name': self.name,
+                'abbreviation': self.abbreviation
+        }
 
 
 

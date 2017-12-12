@@ -18,16 +18,16 @@ class InitDbCommand(Command):
 def init_db():
     """ Initialize the database."""
     # Recreate the database
-    db.drop_all()
-    db.create_all()
-    # Initialize with parties en politicians
-    print('Ready to initialize')
-    print('Initializing politicians')
-    init_politicians()
-    print('Initializing parties')
-    init_parties()
-    print('Initializing questions/responses')
-    init_questions_responses()
+    # db.drop_all()
+    # db.create_all()
+    # # Initialize with parties en politicians
+    # print('Ready to initialize')
+    # print('Initializing politicians')
+    # init_politicians()
+    # print('Initializing parties')
+    # init_parties()
+    # print('Initializing questions/responses')
+    # init_questions_responses()
     print('Initializing sample articles with NER')
     init_sample_articles()
 

@@ -12,7 +12,10 @@ def translate_doc(document):
     simple_doc = {
         'id': get_document_identifier(document),
         'html_description': document['description'],
-        'text_description': html2text(document['description'])
+        'text_description': html2text(document['description']),
+        'parties' : document['parties'],
+        'location': document['location'],
+        'collection': document['meta']['collection']
     }
     return simple_doc
 
