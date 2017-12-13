@@ -49,7 +49,7 @@ class Politician(db.Model):
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
     last_name = db.Column(db.String(100), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
-    city = db.Column(db.String(100), nullable=False, server_default=u'')
+    municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
     level_of_ambiguity = db.Column(db.Float(), default=0.0) # TODO: We should probably remove this attribute.
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -64,7 +64,7 @@ class Politician(db.Model):
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'party': self.party,
-                'city': self.city,
+                'municipality': self.municipality,
                 'role': self.role,
         }
 

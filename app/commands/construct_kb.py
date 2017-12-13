@@ -11,7 +11,7 @@ class ConstructKbCommand(Command):
         # download_archive()
         # politicians = get_politicians_from_archive_export()
         politicians = get_politicians_from_archive_scraper()
-        write_objects_array_to_file('archive_politicians', ['id', 'first_name', 'last_name', 'party', 'contact_city', 'role'], politicians)
+        write_objects_array_to_file('archive_politicians', ['id', 'first_name', 'last_name', 'party', 'municipality', 'role'], politicians)
 
 
 def get_politicians_from_archive_scraper():
@@ -28,7 +28,7 @@ def get_politicians_from_archive_scraper():
                 'first_name': first_name,
                 'last_name': last_name,
                 'party': row['partij-abbr 1'],
-                'contact_city': row['gemeente 1'],
+                'municipality': row['gemeente 1'],
                 'role': row['functie 1']
             }
             politicians.append(person)

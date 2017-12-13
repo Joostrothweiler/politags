@@ -27,8 +27,8 @@ def politician_ambiguity(politician):
     # Start with 3 categories of ambiguity.
     # 0.25: There is someone with the same last name.
     # 0.50: There is someone with the same last name in the same party
-    # 0.75: There is someone with the same last name in the same party and city.
-    # +0.1 (max 1.0) for the number of people with same name, party and city.
+    # 0.75: There is someone with the same last name in the same party and municipality.
+    # +0.1 (max 1.0) for the number of people with same name, party and municipality.
     ambiguity = 0.0
     same_name = Politician.query.filter(Politician.id!= politician.id)\
         .filter(Politician.last_name == politician.last_name).count()
@@ -46,12 +46,12 @@ def politician_ambiguity(politician):
     else:
         return ambiguity
 
-    same_name_party_city = Politician.query.filter(Politician.id!= politician.id) \
+    same_name_party_municipality = Politician.query.filter(Politician.id!= politician.id) \
             .filter(Politician.party != '') \
             .filter(Politician.last_name == politician.last_name) \
             .filter(Politician.party == politician.party) \
-            .filter(Politician.city == politician.city).count()
+            .filter(Politician.municipality == politician.municipality).count()
 
-    increased_ambiguity = ambiguity + (0.1*same_name_party_city)
+    increased_ambiguity = ambiguity + (0.1*same_name_party_municipality)
     ambiguity = np.minimum(1.0, increased_ambiguity)
     return ambiguity

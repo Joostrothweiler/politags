@@ -41,7 +41,7 @@ def politician_context_similarity(mention, document, entities, candidates):
                                                 candidate_politician.last_name,
                                                 candidate_politician.party,
                                                 candidate_politician.role,
-                                                candidate_politician.city])
+                                                candidate_politician.municipality])
 
         result[candidate_politician.id] = string_similarity(document_string, candidate_politician_string)
     return result

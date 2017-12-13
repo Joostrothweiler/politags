@@ -48,14 +48,14 @@ def init_politicians():
     with open('data_resources/archive_politicians.csv') as csv_file:
         politicians = csv.DictReader(csv_file, delimiter=',')
         for row in politicians:
-            # id,name,party,contact_city
+            # id,name,party,municipality
             system_id = row['id']
             first_name = row['first_name']
             last_name = row['last_name']
             party = row['party']
-            city = row['contact_city']
+            municipality = row['municipality']
             role = row['role']
-            p = find_or_create_politician(system_id, first_name, last_name, party, city, role)
+            p = find_or_create_politician(system_id, first_name, last_name, party, municipality, role)
     db.session.commit()
 
 
@@ -69,7 +69,7 @@ def init_parties():
     db.session.commit()
 
 
-def find_or_create_politician(system_id, first_name, last_name, party, city, role):
+def find_or_create_politician(system_id, first_name, last_name, party, municipality, role):
     """ Find existing politicians or create new one """
     politician = Politician.query.filter(Politician.last_name == last_name)\
         .filter(Politician.first_name == first_name)\
@@ -77,7 +77,7 @@ def find_or_create_politician(system_id, first_name, last_name, party, city, rol
 
     if not politician:
         politician = Politician(system_id=system_id, first_name=first_name, last_name=last_name,
-                                party=party, city=city, role=role)
+                                party=party, municipality=municipality, role=role)
         db.session.add(politician)
     return politician
 
