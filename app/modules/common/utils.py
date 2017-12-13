@@ -1,4 +1,6 @@
 from difflib import SequenceMatcher
+from bs4 import BeautifulSoup
+
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']
@@ -7,16 +9,21 @@ def get_document_identifier(document):
 
 
 def translate_doc(document):
-    simple_doc = {}
-    simple_doc['id'] = get_document_identifier(document)
-    simple_doc['url'] = 'https://api.poliflw.nl/v0/combined_index/' + get_document_identifier(document)
-    simple_doc['description'] = document['description']
-    simple_doc['parties'] = document['parties']
-    simple_doc['source'] = document['source']
-    simple_doc['title'] = document['title']
-    simple_doc['type'] = document['type']
-
+    simple_doc = {
+        'id': get_document_identifier(document),
+        'html_description': document['description'],
+        'text_description': html2text(document['description']),
+        'parties' : document['parties'],
+        'location': document['location'],
+        'collection': document['meta']['collection']
+    }
     return simple_doc
+
+def html2text(html):
+    # TODO: Does not yet successfully handle all html input like &amp;
+    soup = BeautifulSoup(html, 'html.parser')
+    text = soup.get_text().strip().replace('\n', ' ')
+    return text
 
 def collection_as_dict(collection):
     dict_array = []

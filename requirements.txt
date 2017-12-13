@@ -6,6 +6,8 @@ Flask-SQLAlchemy
 
 # Spacy
 spacy
+html2text
+bs4
 
 # Postgres connector
 PyGreSQL
