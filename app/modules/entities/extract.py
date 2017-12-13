@@ -1,9 +1,9 @@
 import nl_core_news_sm
 
-from spacy.matcher import PhraseMatcher
 from app import db
-from app.models.models import Article, Entity, Politician, Party, EntitiesPoliticians, EntitiesParties
-from app.modules.common.utils import collection_as_dict, string_similarity
+from app.models.models import Article, Entity
+from app.modules.common.utils import collection_as_dict
+from app.modules.entities.disambiguation import politician_disambiguation, party_disambiguation
 
 nlp = nl_core_news_sm.load()
 
@@ -38,42 +38,21 @@ def process_new_document(document):
                             end_pos = ent.end_char)
             new_article.entities.append(entity)
             db.session.add(entity)
-            # Store disambiguation certainties
-            store_disambiguation(entity)
 
-    # Commit to db
+    # Separate loop for disambiguation as we want to use all entities extracted.
+    for entity in new_article.entities:
+        # Store disambiguation certainties
+        named_entity_disambiguation(document, new_article.entities, entity)
     db.session.commit()
+    # Commit changes to db
+    # db.session.commit() FIXME: Do not commit so that we can experiment but not save in our database.
     # Return what we know.
     return get_existing_knowledge(new_article)
 
 
-def store_disambiguation(entity):
+def named_entity_disambiguation(document, entities, entity):
     if entity.label == 'PER':
-        store_politician_disambiguation(entity)
+        politician_disambiguation(document, entities, entity)
 
     if entity.label == 'ORG':
-        store_party_disambiguation(entity)
-
-
-def store_politician_disambiguation(entity):
-    possible_politicians = Politician.query.all()
-
-    for politician in possible_politicians:
-        sim = string_similarity(politician.full_name, entity.text)
-        if sim > 0.4:
-            a = EntitiesPoliticians(certainty = sim)
-            a.politician = politician
-            entity.politicians.append(a)
-            db.session.add(entity)
-
-
-def store_party_disambiguation(entity):
-    possible_parties = Party.query.all()
-
-    for party in possible_parties:
-        sim = string_similarity(party.name, entity.text)
-        if sim > 0.7:
-            a = EntitiesParties(certainty = sim)
-            a.party = party
-            entity.parties.append(a)
-            db.session.add(entity)
+        party_disambiguation(document, entities, entity)
