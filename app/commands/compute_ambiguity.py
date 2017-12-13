@@ -22,7 +22,7 @@ def compute_politician_ambiguity():
         db.session.add(politician)
     db.session.commit()
 
-
+# TODO: Probably not necessary. Base decision on candidates found in matching.
 def politician_ambiguity(politician):
     # Start with 3 categories of ambiguity.
     # 0.25: There is someone with the same last name.

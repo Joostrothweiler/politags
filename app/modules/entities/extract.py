@@ -43,7 +43,7 @@ def process_new_document(document):
     for entity in new_article.entities:
         # Store disambiguation certainties
         named_entity_disambiguation(document, new_article.entities, entity)
-
+    db.session.commit()
     # Commit changes to db
     # db.session.commit() FIXME: Do not commit so that we can experiment but not save in our database.
     # Return what we know.
@@ -55,5 +55,4 @@ def named_entity_disambiguation(document, entities, entity):
         politician_disambiguation(document, entities, entity)
 
     if entity.label == 'ORG':
-        pass
-        # party_disambiguation(document, entities, entity)
+        party_disambiguation(document, entities, entity)

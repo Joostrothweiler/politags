@@ -1,3 +1,5 @@
+from sqlalchemy.ext.hybrid import hybrid_property
+
 from app import db
 import datetime
 from sqlalchemy.dialects import postgresql
@@ -49,8 +51,12 @@ class Politician(db.Model):
     party = db.Column(db.String(100), nullable=False, server_default=u'')
     city = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
-    level_of_ambiguity = db.Column(db.Float(), default=0.0) # Possibly link to other politicians with ambiguity score
+    level_of_ambiguity = db.Column(db.Float(), default=0.0) # TODO: We should probably remove this attribute.
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    @hybrid_property
+    def full_name(self):
+        return self.first_name + ' ' + self.last_name
 
     # API Representation
     def as_dict(self):
@@ -71,7 +77,6 @@ class Party(db.Model):
     name = db.Column(db.String(100), nullable=False, server_default=u'')
     abbreviation = db.Column(db.String(20), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-
     entities = db.relationship("EntitiesParties", back_populates="party")
 
     # API Representation

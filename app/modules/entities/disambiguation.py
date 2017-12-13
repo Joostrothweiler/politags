@@ -16,10 +16,9 @@ def politician_disambiguation(document, entities, entity):
         context_sim = politician_context_similarity(entity.text, document, entities, candidates)
         # Return the average of the two
         scored_candidates = average_sim(candidates, name_sim, context_sim)
-        result = politician_optimal_candidate(scored_candidates)
-
-        print(entity.text)
-        print(result.as_dict())
+        politician, certainty = politician_optimal_candidate(scored_candidates)
+        # Store in database
+        store_entity_politician_linking(entity, politician, certainty)
     else:
         print('No candidates found for {}'.format(entity.text))
 
@@ -60,12 +59,7 @@ def politician_mention_name_similarity(mention, candidates):
 def get_candidate_politicians(mention):
     mention_arr = mention.split(' ')
     # Get based on last name match
-    match = Politician.query.filter(or_(*[Politician.last_name.like(name) for name in mention_arr]))
-    # Get based on first letter match on first name
-    first_letter = mention_arr[0][0]
-    letter_match = Politician.query.filter(Politician.first_name.contains(first_letter))
-    # Return the union of the two.
-    candidates = match.union(letter_match)
+    candidates = Politician.query.filter(or_(*[Politician.last_name.like(name) for name in mention_arr])).all()
     return candidates
 
 
@@ -76,7 +70,7 @@ def average_sim(candidates, name_sim, context_sim):
         # High ambiguity -> focus on context, low ambiguity, focus on name.
         result.append({
             'id': candidate.id,
-            'score': 0.7 * name_sim[candidate.id] + 0.3 * context_sim[candidate.id]
+            'score': 0.9 * name_sim[candidate.id] + 0.1 * context_sim[candidate.id]
         })
     return result
 
@@ -90,45 +84,40 @@ def politician_optimal_candidate(scored_candidates):
             max = candidate['score']
             max_id = candidate['id']
 
-    return Politician.query.filter(Politician.id == max_id).first()
+    return Politician.query.filter(Politician.id == max_id).first(), max
+
+def store_entity_politician_linking(entity, politician, certainty):
+    print('Linking {} to {}'.format(entity.text, (politician.full_name)))
+    a = EntitiesPoliticians(certainty = certainty)
+    a.politician = politician
+    entity.politicians.append(a)
+    db.session.add(entity)
 
 #########
 # PARTIES
 #########
 def party_disambiguation(document, entities, entity):
-    candidate_parties = party_mention_name_similarity(entity.text, 1)
-    # print(entity.text)
-    # print(collection_as_dict(candidate_parties))
+    candidates = Party.query.filter(or_(func.lower(Party.abbreviation) == func.lower(entity.text),
+                                        func.lower(Party.name) == func.lower(entity.text))).all()
 
+    if len(candidates) > 0:
+        max_sim = 0
+        max_party = None
 
-def party_mention_name_similarity(mention, k):
-    candidate_parties = Party.query.all()
-    candidates = [{'id': 0, 'sim': 0}] * k
-    min_sim = 0
+        for candidate_party in candidates:
+            candidate_sim = np.maximum(string_similarity(candidate_party.abbreviation, entity.text),
+                                       string_similarity(candidate_party.name, entity.text))
+            if candidate_sim > max_sim:
+                max_sim = candidate_sim
+                max_party = candidate_party
 
-    for candidate_party in candidate_parties:
-        sim1 = string_similarity(candidate_party.name, mention)
-        sim2 = string_similarity(candidate_party.abbreviation, mention)
-        sim = np.maximum(sim1, sim2)
+        store_entity_party_linking(entity, max_party, max_sim)
+    else:
+        print('No candidate parties found for {}'.format(entity.text))
 
-        if sim == 1.0:
-            return [candidate_party]
-        if sim > min_sim:
-            remove_can = next((item for item in candidates if item['sim'] == min_sim))
-            candidates.remove(remove_can)
-            candidates.append({'id': candidate_party.id, 'sim': sim})
-
-            min_sim = 1
-            for item in candidates:
-                if item['sim'] < min_sim:
-                    min_sim = item['sim']
-
-    result = []
-    for item in candidates:
-        result.append(Party.query.filter(Party.id == item['id']).first())
-    return result
-
-
-
-
-
+def store_entity_party_linking(entity, party, certainty):
+    print('Linking {} to {}'.format(entity.text, party.abbreviation))
+    a = EntitiesParties(certainty = certainty)
+    a.party = party
+    entity.parties.append(a)
+    db.session.add(entity)
