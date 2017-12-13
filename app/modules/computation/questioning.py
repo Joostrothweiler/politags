@@ -1,5 +1,7 @@
 from app import db
 from app.models.models import Article
+from app import db
+from app.models.models import Question
 from app.modules.common.utils import collection_as_dict
 
 
@@ -27,30 +29,24 @@ def ask_first_question(document):
 
     # return collection_as_dict(linked_entities)
 
-    [least_certain_entity_index, lowest_certainty] = find_least_certain_entity_index(linked_entities)
+    [question_entity, certainty] = find_least_certain_entity(linked_entities)
 
-    least_certain_entity = linked_entities[least_certain_entity_index]
+    # [question_entity, certainty] = find_most_certain_entity(linked_entities)
 
-    yesnoquestion = generate_yesno_question(least_certain_entity)
-
-    start_pos = least_certain_entity.start_pos
-    end_pos = least_certain_entity.end_pos
+    question = generate_yesno_question(question_entity)
 
     return {
-        'question': yesnoquestion,
-        'start_pos': start_pos,
-        'end_pos': end_pos,
-        'certainty' : lowest_certainty
+        'question': question.question_string,
+        'text' : question_entity.text,
+        'label' : question_entity.label,
+        'start_pos': question_entity.start_pos,
+        'end_pos': question_entity.end_pos,
+        'certainty' : certainty
     }
 
 
 def process_question(question_id, data):
     return response
-
-
-#This function gets the string to ask a question
-def get_question_string(question):
-    return 'klopt dit?'
 
 #Find all linked entities of the entities the NER found in the document
 def find_linked_entities(entities):
@@ -64,7 +60,7 @@ def find_linked_entities(entities):
     return linked_entities
 
 #this function finds the least certain entity in a list of linked entities
-def find_least_certain_entity_index(linked_entities):
+def find_least_certain_entity(linked_entities):
     lowest_certainty = 2
     least_certain_entity_index = None
 
@@ -78,17 +74,41 @@ def find_least_certain_entity_index(linked_entities):
                 lowest_certainty = entitypolitician.certainty
                 least_certain_entity_index = index
 
-    return [least_certain_entity_index, lowest_certainty]
+    least_certain_entity = linked_entities[least_certain_entity_index]
+
+    return [least_certain_entity, lowest_certainty]
+
+
+def find_most_certain_entity(linked_entities):
+    highest_certainty = 0
+    least_certain_entity_index = None
+
+    for index, entity in enumerate(linked_entities):
+        for entityparty in entity.parties:
+            if entityparty.certainty >= highest_certainty:
+                highest_certainty = entityparty.certainty
+                most_certain_entity_index = index
+        for entitypolitician in entity.politicians:
+            if entitypolitician.certainty >= highest_certainty:
+                highest_certainty = entitypolitician.certainty
+                most_certain_entity_index = index
+
+    most_certain_entity = linked_entities[most_certain_entity_index]
+
+    return [most_certain_entity, highest_certainty]
 
 #this function generates a yes/no question string from an entity
 def generate_yesno_question(linked_entity):
     if linked_entity.politicians:
-        question_string = linked_entity.politicians[0].politician.name
+        politician = linked_entity.politicians[0].politician
+        question_string = 'Wordt "{}" van "{}" in "{}" genoemd in dit artikel?'.format(politician.full_name, politician.party, politician.municipality)
+        question = Question(possible_answers=['Ja', 'Nee'], questionable_type='politician', questionable_id=politician.id, question_string=question_string, article_id=linked_entity.article.id)
     else:
-        question_string = linked_entity.parties[0].party.name
+        party = linked_entity.parties[0].party
+        question_string = 'Wordt "{}/{}" genoemd in dit artikel?'.format(party.name, party.abbreviation)
+        question = Question(possible_answers=['Ja', 'Nee'], questionable_type='party', questionable_id=party.id, question_string=question_string, article_id=linked_entity.article.id)
 
-    question = 'Is {} mentioned here?'.format(question_string)
+    db.session.add(question)
+    db.session.commit()
 
     return question
-
-

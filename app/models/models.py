@@ -95,11 +95,13 @@ class Question(db.Model):
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     questionable_id = db.Column(db.Integer())
     questionable_type = db.Column(db.String(20))
+    question_string = db.Column(db.String(200))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
 
     # Relationships
     responses = db.relationship("Response")
     article = db.relationship("Article", back_populates="questions")
+
 
     # API Representation
     def as_dict(self):
