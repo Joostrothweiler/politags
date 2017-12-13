@@ -1,12 +1,10 @@
 import csv
-import json
 
 from flask_script import Command
 
 from app import db
 from app.models.models import Politician, Party, Question, Response
-from app.modules.entities.extract import extract_entities
-from app.modules.common.utils import translate_doc
+
 
 
 class InitDbCommand(Command):

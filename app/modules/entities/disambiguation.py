@@ -86,12 +86,14 @@ def politician_optimal_candidate(scored_candidates):
 
     return Politician.query.filter(Politician.id == max_id).first(), max
 
+
 def store_entity_politician_linking(entity, politician, certainty):
     print('Linking {} to {}'.format(entity.text, (politician.full_name)))
-    a = EntitiesPoliticians(certainty = certainty)
+    a = EntitiesPoliticians(certainty=certainty)
     a.politician = politician
     entity.politicians.append(a)
     db.session.add(entity)
+
 
 #########
 # PARTIES
@@ -115,9 +117,10 @@ def party_disambiguation(document, entities, entity):
     else:
         print('No candidate parties found for {}'.format(entity.text))
 
+
 def store_entity_party_linking(entity, party, certainty):
     print('Linking {} to {}'.format(entity.text, party.abbreviation))
-    a = EntitiesParties(certainty = certainty)
+    a = EntitiesParties(certainty=certainty)
     a.party = party
     entity.parties.append(a)
     db.session.add(entity)

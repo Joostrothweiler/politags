@@ -1,12 +1,14 @@
-import nl_core_news_sm
+from spacy.matcher import PhraseMatcher
+import spacy
+
+nlp = spacy.load('app/modules/entities/nlp_model/nlp_model_politags')
+matcher = PhraseMatcher(nlp.vocab)
+
 
 from app import db
-from app.models.models import Article, Entity
+from app.models.models import Article, Entity, Politician
 from app.modules.common.utils import collection_as_dict
 from app.modules.entities.disambiguation import politician_disambiguation, party_disambiguation
-
-nlp = nl_core_news_sm.load()
-
 
 def extract_entities(document):
     # Check article is in db
@@ -18,9 +20,22 @@ def extract_entities(document):
     else:
         return get_existing_knowledge(article)
 
-
 def get_existing_knowledge(article):
     return {'ner' : collection_as_dict(article.entities)}
+
+
+def named_entity_recognition(text_description):
+    PER = nlp.vocab.strings['PER']
+    doc = nlp(text_description)
+    matches = matcher(doc)
+
+    print(matches)
+
+    for m in matches:
+        match_id, start, end = m
+        doc.ents += ((PER, start, end),)
+
+    return doc.ents
 
 
 def process_new_document(document):
@@ -29,8 +44,8 @@ def process_new_document(document):
     db.session.add(new_article)
 
     # Then process the NER and save entities + disambiguation certainties
-    doc = nlp(str(document['text_description']))
-    for ent in doc.ents:
+    entities = named_entity_recognition(str(document['text_description']))
+    for ent in entities:
         if len(ent.text) > 1 and len(ent.text) < 50:
             entity = Entity(text = ent.text,
                             label = ent.label_,
