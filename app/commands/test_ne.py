@@ -4,7 +4,7 @@ from flask_script import Command
 
 from app.models.models import EntitiesParties, EntitiesPoliticians, Entity, Article
 from app.modules.common.utils import translate_doc
-from app.modules.entities.named_entity_linking import process_document
+from app.modules.entities.named_entities import process_document
 
 
 class TestNeCommand(Command):

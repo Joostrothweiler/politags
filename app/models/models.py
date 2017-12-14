@@ -62,6 +62,7 @@ class Politician(db.Model):
     # API Representation
     def as_dict(self):
         return {'id' : self.id,
+                'system_id': self.system_id,
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'party': self.party,

@@ -1,4 +1,4 @@
-from app.modules.entities.named_entity_linking import process_document
+from app.modules.entities.named_entities import process_document
 from app.modules.common.utils import translate_doc
 from app.modules.computation.questioning import ask_first_question, process_question
 from flask import jsonify
