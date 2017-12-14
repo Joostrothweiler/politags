@@ -18,7 +18,7 @@ def initialize_nlp():
     print(nlp.pipe_names)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    # nlp.remove_pipe('ner')
+    nlp.remove_pipe('ner')
     return nlp
 
 nlp = initialize_nlp()

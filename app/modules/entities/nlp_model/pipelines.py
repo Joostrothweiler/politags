@@ -15,17 +15,18 @@ PARTIES = load_docs('processed_politician_docs')
 
 class PoliticianRecognizer(object):
     name = 'politicians'
-    def __init__(self, nlp, politicians=tuple(), label='PER'):
+    def __init__(self, nlp, label='PER'):
 
         self.label = nlp.vocab.strings[label]
 
-        patterns = [nlp(org) for org in politicians]
+        patterns = POLITICIANS
+
         self.matcher = PhraseMatcher(nlp.vocab)
         self.matcher.add('POLITICIANS', None, *patterns)
 
     def __call__(self, doc):
-
         matches = self.matcher(doc)
+        print('Number of matches: {}'.format(len(matches)))
         spans = []
 
         for _, start, end in matches:
@@ -40,16 +41,17 @@ class PoliticianRecognizer(object):
 
 class PartyRecognizer(object):
     name = 'parties'
-    def __init__(self, nlp, parties=tuple(), label='ORG'):
+    def __init__(self, nlp, label='ORG'):
 
         self.label = nlp.vocab.strings[label]
 
-        patterns = [nlp(org) for org in parties]
+        patterns = PARTIES
         self.matcher = PhraseMatcher(nlp.vocab)
         self.matcher.add('PARTIES', None, *patterns)
 
     def __call__(self, doc):
         matches = self.matcher(doc)
+        print('Number of matches: {}'.format(len(matches)))
         spans = []
 
         for _, start, end in matches:
