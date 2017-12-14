@@ -39,6 +39,6 @@ def create_app(extra_config_settings={}):
 
     @app.route('/api/questions/<string:question_id>', methods=['POST'])
     def questions_response(question_id):
-        return post_question_response(question_id, request.form) # TODO Fix body. Probably in endpoint controller.
+        return post_question_response(question_id, request.data)
 
     return app
