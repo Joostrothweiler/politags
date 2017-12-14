@@ -8,13 +8,14 @@ from app.modules.entities.disambiguation import politician_disambiguation, party
 from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 
+# Global NLP variable to initialize when necessary
 nlp = None
 
-def initialize_nlp():
+def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.distinct(Politician.last_name).limit(100).all():
+    for politician in Politician.query.distinct(Politician.last_name).limit(100).all(): # FIXME: Remove limit in tests.
         politicians.append(politician.last_name)
 
     parties = []
@@ -30,27 +31,28 @@ def initialize_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    # nlp.remove_pipe('ner')
+    nlp.remove_pipe('ner')
     print('NLP Initialized with PhraseMatchers. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
 def process_document(document):
+    # Initialize only if nlp is not yet loaded.
     if nlp == None:
-        initialize_nlp()
+        init_nlp()
 
     article = Article.query.filter(Article.id == document['id']).first()
     if not article:
-        print(document['id'])
         article = Article(id = document['id'])
         db.session.add(article)
         db.session.commit()
         extract_knowledge(article, document)
+    extract_knowledge(article, document) # FIXME: Just here for testing - always extract information. Remove.
+
     return return_knowledge(article)
 
 
 def extract_knowledge(article, document):
     nlp_doc = nlp(document['text_description'])
-    print(len(nlp_doc.ents))
     entities = named_entity_recognition(article, nlp_doc)
     named_entity_disambiguation(document, entities)
 

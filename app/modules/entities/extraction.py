@@ -12,7 +12,7 @@ def named_entity_recognition(article, nlp_doc):
 
         if entity:
             entity.count = entity.count + 1
-        else:
+        elif has_valid_text_len(entity):
             entity = Entity(text = ent.text,
                             label = ent.label_,
                             start_pos = ent.start_char,
@@ -23,3 +23,7 @@ def named_entity_recognition(article, nlp_doc):
         db.session.commit()
 
     return article.entities
+
+
+def has_valid_text_len(entity):
+    return pure_len(entity.text) > 1 and len(entity.text) < 50
