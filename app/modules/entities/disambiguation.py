@@ -6,6 +6,15 @@ from app.models.models import Politician, Party, EntitiesPoliticians, EntitiesPa
 from app.modules.common.utils import string_similarity, collection_as_dict
 
 
+def named_entity_disambiguation(document, entities):
+    for e in entities:
+        if e.label == 'PER':
+            politician_disambiguation(document, entities, e)
+
+        if e.label == 'ORG':
+            party_disambiguation(document, entities, e)
+
+
 def politician_disambiguation(document, entities, entity):
     # Get candidates
     candidates = get_candidate_politicians(entity.text)
@@ -88,7 +97,7 @@ def politician_optimal_candidate(scored_candidates):
 
 
 def store_entity_politician_linking(entity, politician, certainty):
-    print('Linking {} to {}'.format(entity.text, (politician.full_name)))
+    # print('Linking {} to {}'.format(entity.text, (politician.full_name)))
     a = EntitiesPoliticians(certainty=certainty)
     a.politician = politician
     entity.politicians.append(a)
@@ -119,7 +128,7 @@ def party_disambiguation(document, entities, entity):
 
 
 def store_entity_party_linking(entity, party, certainty):
-    print('Linking {} to {}'.format(entity.text, party.abbreviation))
+    # print('Linking {} to {}'.format(entity.text, party.abbreviation))
     a = EntitiesParties(certainty=certainty)
     a.party = party
     entity.parties.append(a)

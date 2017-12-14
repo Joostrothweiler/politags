@@ -27,6 +27,7 @@ class Entity(db.Model):
     label = db.Column(db.String(50), server_default=u'')
     start_pos = db.Column(db.Integer())
     end_pos = db.Column(db.Integer())
+    count = db.Column(db.Integer(), default=1)
 
     # Relationships
     parties = db.relationship("EntitiesParties", back_populates="entity")

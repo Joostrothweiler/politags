@@ -1,5 +1,5 @@
 import csv
-
+import pickle
 from app.modules.common.utils import html2text
 
 from flask_script import Command

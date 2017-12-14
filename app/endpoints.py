@@ -1,4 +1,4 @@
-from app.modules.entities.extract import extract_entities
+from app.modules.entities.named_entity_linking import process_document
 from app.modules.common.utils import translate_doc
 from app.modules.computation.questioning import ask_first_question, process_question
 from flask import jsonify
@@ -12,7 +12,7 @@ import json
 def post_article_ner(document):
     doc = json.loads(document)
     simple_doc = translate_doc(doc)
-    res = extract_entities(simple_doc)
+    res = process_document(simple_doc)
     return jsonify(res)
 
 

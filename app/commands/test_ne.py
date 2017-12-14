@@ -1,13 +1,10 @@
-import csv
 import json
 
 from flask_script import Command
 
-from app import db
-from app.models.models import Politician, Party, Question, Response, EntitiesParties, EntitiesPoliticians, Entity, \
-    Article
-from app.modules.entities.extract import extract_entities
+from app.models.models import EntitiesParties, EntitiesPoliticians, Entity, Article
 from app.modules.common.utils import translate_doc
+from app.modules.entities.named_entity_linking import process_document
 
 
 class TestNeCommand(Command):
@@ -40,4 +37,4 @@ def init_sample_articles():
     items = samples['item']
 
     for doc in items:
-        extract_entities(translate_doc(doc))
+        process_document(translate_doc(doc))
