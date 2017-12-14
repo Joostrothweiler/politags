@@ -1,5 +1,6 @@
 from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
+import pickle
 
 
 def get_document_identifier(document):
@@ -33,3 +34,6 @@ def collection_as_dict(collection):
 
 def string_similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
+def pure_len(str):
+    return len(str) - str.count(' ')

@@ -27,6 +27,7 @@ class Entity(db.Model):
     label = db.Column(db.String(50), server_default=u'')
     start_pos = db.Column(db.Integer())
     end_pos = db.Column(db.Integer())
+    count = db.Column(db.Integer(), default=1)
 
     # Relationships
     parties = db.relationship("EntitiesParties", back_populates="entity")
@@ -61,6 +62,7 @@ class Politician(db.Model):
     # API Representation
     def as_dict(self):
         return {'id' : self.id,
+                'system_id': self.system_id,
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'party': self.party,
