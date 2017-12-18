@@ -8,7 +8,7 @@ from sqlalchemy_utils import generic_relationship
 
 # This file defines all the different models we use.
 # Migrations are automatically generated based on these classes.
-# After changes, use python manage.py db revision --autogenerate -m "Present tense message"
+# After changes, use python manage.py db revision --autogenerate -m 'Present tense message'
 
 class Article(db.Model):
     __tablename__ = 'articles'
@@ -17,7 +17,7 @@ class Article(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    entities = db.relationship("Entity")
+    entities = db.relationship('Entity')
 
 class Entity(db.Model):
     __tablename__ = 'entities'
@@ -31,14 +31,18 @@ class Entity(db.Model):
     count = db.Column(db.Integer(), default=1)
 
     # Relationships
-    linkings = db.relationship("EntityLinking", back_populates="entity")
+    article = db.relationship('Article', back_populates='entities')
+    linkings = db.relationship('EntityLinking', back_populates='entity')
 
     # API Representation
     def as_dict(self):
-        return {'text' : self.text,
+        return {'id': self.id,
+                'article_id': self.article_id,
+                'text' : self.text,
                 'label': self.label,
                 'start_pos': self.start_pos,
-                'end_pos': self.end_pos
+                'end_pos': self.end_pos,
+                'count': self.count
         }
 
 
@@ -55,7 +59,7 @@ class Politician(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    # linkings = db.relationship("EntityLinking", back_populates="linkable_id")
+    # linkings = db.relationship('EntityLinking', back_populates='linkable_id')
 
     @hybrid_property
     def full_name(self):
@@ -82,7 +86,7 @@ class Party(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    # linkings = db.relationship("EntityLinking", back_populates="linkable_id")
+    # linkings = db.relationship('EntityLinking', back_populates='linkable_id')
 
     # API Representation
     def as_dict(self):
@@ -101,7 +105,7 @@ class Question(db.Model):
     questionable_id = db.Column(db.Integer(), nullable=False)
 
     # Relationships
-    responses = db.relationship("Response")
+    responses = db.relationship('Response')
     questionable_object = generic_relationship(questionable_type, questionable_id)
 
     # API Representation
@@ -118,7 +122,7 @@ class Response(db.Model):
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
     response = db.Column(db.String(100))
 
-    question = db.relationship("Question", back_populates="responses")
+    question = db.relationship('Question', back_populates='responses')
 
 
 # RELATIONS
@@ -130,5 +134,5 @@ class EntityLinking(db.Model):
     linkable_type = db.Column(db.String(50))
     linkable_id = db.Column(db.Integer(), nullable=False)
 
-    entity = db.relationship("Entity", back_populates="linkings")
+    entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)

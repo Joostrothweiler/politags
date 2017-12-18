@@ -3,8 +3,7 @@ import csv
 from flask_script import Command
 
 from app import db
-from app.models.models import Politician, Party, Question, Response, EntityLinking
-
+from app.models.models import Politician, Party, Question, Response, EntityLinking, Entity, Article
 
 
 class InitDbCommand(Command):
@@ -25,14 +24,24 @@ def init_db():
     print('Initializing parties')
     init_parties()
 
+    article = Article(id='someid')
+    db.session.add(article)
     party = Party.query.first()
-    entity = EntityLinking()
+    db.session.add(party)
+    entity = Entity(article = article)
     db.session.add(entity)
+    linking = EntityLinking(entity=entity, linkable_object=party)
+    db.session.add(linking)
 
-    entity.linkable = party
     db.session.add(entity)
     db.session.commit()
 
+    politician = Politician.query.first()
+    entity = Entity(article = article)
+    db.session.add(entity)
+    linking = EntityLinking(entity = entity, linkable_object = politician)
+    db.session.add(linking)
+    db.session.commit()
 
 
 
