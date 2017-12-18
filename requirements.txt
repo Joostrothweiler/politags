@@ -3,6 +3,7 @@ Flask
 Flask-Migrate
 Flask-Script
 Flask-SQLAlchemy
+sqlalchemy-utils
 
 # Spacy
 spacy

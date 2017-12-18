@@ -2,8 +2,8 @@ import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntitiesPoliticians, EntitiesParties
-from app.modules.common.utils import string_similarity, collection_as_dict
+from app.models.models import Politician, Party, EntityLinking
+from app.modules.common.utils import string_similarity
 
 
 def named_entity_disambiguation(document, entities):
@@ -98,9 +98,9 @@ def politician_optimal_candidate(scored_candidates):
 
 def store_entity_politician_linking(entity, politician, certainty):
     # print('Linking {} to {}'.format(entity.text, (politician.full_name)))
-    a = EntitiesPoliticians(certainty=certainty)
-    a.politician = politician
-    entity.politicians.append(a)
+    a = EntityLinking(certainty=certainty)
+    a.linkable_object = politician
+    entity.linkings.append(a)
     db.session.add(entity)
 
 
@@ -129,7 +129,7 @@ def party_disambiguation(document, entities, entity):
 
 def store_entity_party_linking(entity, party, certainty):
     # print('Linking {} to {}'.format(entity.text, party.abbreviation))
-    a = EntitiesParties(certainty=certainty)
-    a.party = party
-    entity.parties.append(a)
+    linking = EntityLinking(certainty=certainty)
+    linking.linkable_object= party
+    entity.linkings.append(linking)
     db.session.add(entity)

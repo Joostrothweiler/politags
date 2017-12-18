@@ -3,8 +3,7 @@ import csv
 from flask_script import Command
 
 from app import db
-from app.models.models import Politician, Party, Question, Response
-
+from app.models.models import Politician, Party, Question, Response, EntityLinking, Entity, Article
 
 
 class InitDbCommand(Command):
@@ -24,14 +23,35 @@ def init_db():
     init_politicians()
     print('Initializing parties')
     init_parties()
+
+    article = Article(id='someid')
+    db.session.add(article)
+    party = Party.query.first()
+    db.session.add(party)
+    entity = Entity(article = article)
+    db.session.add(entity)
+    linking = EntityLinking(entity=entity, linkable_object=party)
+    db.session.add(linking)
+
+    db.session.add(entity)
+    db.session.commit()
+
+    politician = Politician.query.first()
+    entity = Entity(article = article)
+    db.session.add(entity)
+    linking = EntityLinking(entity = entity, linkable_object = politician)
+    db.session.add(linking)
+    db.session.commit()
+
     print('Initializing questions/responses')
     init_questions_responses()
 
 
 def init_questions_responses():
-    question = Question(possible_answers = ['Yes', 'No'])
+    linking = EntityLinking.query.first()
+    question = Question(possible_answers = ['Yes', 'No'], questionable_object = linking)
     db.session.add(question)
-    question = Question(possible_answers = ['Maybe', 'Nah'])
+    question = Question(possible_answers = ['Maybe', 'Nah'], questionable_object = linking)
     db.session.add(question)
     db.session.commit()
 
