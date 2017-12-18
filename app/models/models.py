@@ -16,10 +16,6 @@ class Article(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-<<<<<<< HEAD
-    entities = db.relationship("Entity")
-    questions = db.relationship("Question")
-=======
     entities = db.relationship('Entity')
 
 >>>>>>> master
