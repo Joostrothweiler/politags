@@ -93,7 +93,7 @@ class Party(db.Model):
 
 class Question(db.Model):
     __tablename__ = 'questions'
-    id = db.Column(db.Integer(), primary_key=True))
+    id = db.Column(db.Integer(), primary_key=True)
     question_string = db.Column(db.String(200))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
     questionable_type = db.Column(db.String(50))
