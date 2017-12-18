@@ -44,7 +44,9 @@ and http://localhost:9999/ for adminer
 
 
     # To access the bash in docker:
-    docker exec -it _service_ bash
+    docker exec -it politags_web_1 bash
+    python manage.py init_db
+    python manage.py test_ne
 
 
 ## Running the automated tests

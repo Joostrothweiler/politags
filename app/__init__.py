@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
 # Instantiate Flask extensions
@@ -41,4 +41,10 @@ def create_app(extra_config_settings={}):
     def questions_response(question_id):
         return post_question_response(question_id, request.data)
 
+    @app.route('/article', methods=['GET'])
+    def render_html():
+        return render_template('index.html')
+
     return app
+
+

@@ -36,3 +36,5 @@ def collection_as_dict(collection):
 
 def string_similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
+
