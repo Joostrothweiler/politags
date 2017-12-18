@@ -43,16 +43,15 @@ def init_db():
     db.session.add(linking)
     db.session.commit()
 
-
-
-    # print('Initializing questions/responses')
-    # init_questions_responses()
+    print('Initializing questions/responses')
+    init_questions_responses()
 
 
 def init_questions_responses():
-    question = Question(possible_answers = ['Yes', 'No'])
+    linking = EntityLinking.query.first()
+    question = Question(possible_answers = ['Yes', 'No'], questionable_object = linking)
     db.session.add(question)
-    question = Question(possible_answers = ['Maybe', 'Nah'])
+    question = Question(possible_answers = ['Maybe', 'Nah'], questionable_object = linking)
     db.session.add(question)
     db.session.commit()
 

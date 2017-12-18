@@ -21,8 +21,6 @@ def named_entity_recognition(article, nlp_doc):
             article.entities.append(entity)
             db.session.add(entity)
 
-        db.session.commit()
-
     return article.entities
 
 

@@ -9,7 +9,6 @@ from sqlalchemy_utils import generic_relationship
 # This file defines all the different models we use.
 # Migrations are automatically generated based on these classes.
 # After changes, use python manage.py db revision --autogenerate -m 'Present tense message'
-
 class Article(db.Model):
     __tablename__ = 'articles'
     # Attributes
@@ -18,6 +17,7 @@ class Article(db.Model):
 
     # Relationships
     entities = db.relationship('Entity')
+
 
 class Entity(db.Model):
     __tablename__ = 'entities'
@@ -36,13 +36,14 @@ class Entity(db.Model):
 
     # API Representation
     def as_dict(self):
-        return {'id': self.id,
-                'article_id': self.article_id,
-                'text' : self.text,
-                'label': self.label,
-                'start_pos': self.start_pos,
-                'end_pos': self.end_pos,
-                'count': self.count
+        return {
+            'id': self.id,
+            'article_id': self.article_id,
+            'text': self.text,
+            'label': self.label,
+            'start_pos': self.start_pos,
+            'end_pos': self.end_pos,
+            'count': self.count
         }
 
 
@@ -55,11 +56,8 @@ class Politician(db.Model):
     party = db.Column(db.String(100), nullable=False, server_default=u'')
     municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
-    level_of_ambiguity = db.Column(db.Float(), default=0.0) # TODO: We should probably remove this attribute.
+    level_of_ambiguity = db.Column(db.Float(), default=0.0)  # TODO: We should probably remove this attribute.
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-
-    # Relationships
-    # linkings = db.relationship('EntityLinking', back_populates='linkable_id')
 
     @hybrid_property
     def full_name(self):
@@ -67,15 +65,15 @@ class Politician(db.Model):
 
     # API Representation
     def as_dict(self):
-        return {'id' : self.id,
-                'system_id': self.system_id,
-                'first_name': self.first_name,
-                'last_name': self.last_name,
-                'party': self.party,
-                'municipality': self.municipality,
-                'role': self.role,
-                }
-
+        return {
+            'id': self.id,
+            'system_id': self.system_id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'party': self.party,
+            'municipality': self.municipality,
+            'role': self.role,
+        }
 
 
 class Party(db.Model):
@@ -85,16 +83,13 @@ class Party(db.Model):
     abbreviation = db.Column(db.String(20), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    # Relationships
-    # linkings = db.relationship('EntityLinking', back_populates='linkable_id')
-
     # API Representation
     def as_dict(self):
-        return {'id' : self.id,
-                'name': self.name,
-                'abbreviation': self.abbreviation
+        return {
+            'id': self.id,
+            'name': self.name,
+            'abbreviation': self.abbreviation
         }
-
 
 
 class Question(db.Model):
@@ -105,19 +100,21 @@ class Question(db.Model):
     questionable_id = db.Column(db.Integer(), nullable=False)
 
     # Relationships
-    responses = db.relationship('Response')
+    responses = db.relationship('Response', back_populates='question')
     questionable_object = generic_relationship(questionable_type, questionable_id)
 
     # API Representation
     def as_dict(self):
-        return {'id' : self.id,
-                'questionable_id': self.questionable_id,
-                'questionable_type': self.questionable_type,
-                'possible_answers': self.possible_answers
+        return {
+            'id': self.id,
+            'questionable_id': self.questionable_id,
+            'questionable_type': self.questionable_type,
+            'possible_answers': self.possible_answers
         }
 
 
 class Response(db.Model):
+    __tablename__ = 'responses'
     id = db.Column(db.Integer(), primary_key=True)
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
     response = db.Column(db.String(100))
