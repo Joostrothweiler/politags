@@ -18,8 +18,6 @@ class Article(db.Model):
     # Relationships
     entities = db.relationship('Entity')
 
->>>>>>> master
-
 class Entity(db.Model):
     __tablename__ = 'entities'
     # Attributes
