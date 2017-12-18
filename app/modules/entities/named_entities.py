@@ -1,7 +1,7 @@
 import nl_core_news_sm
 
 from app import db
-from app.models.models import Article, Entity, Politician, Party, EntitiesParties, EntitiesPoliticians
+from app.models.models import Article, Entity, Politician, Party, EntityLinking
 from app.modules.common.utils import collection_as_dict, pure_len
 from app.modules.entities.disambiguation import politician_disambiguation, party_disambiguation, \
     named_entity_disambiguation
@@ -61,25 +61,27 @@ def return_knowledge(article):
     parties = []
     politicians = []
 
-    for entity in article.entities:
-        party_relationships = EntitiesParties.query\
-            .distinct(EntitiesParties.party_id)\
-            .filter(EntitiesParties.entity_id == entity.id)\
-            .filter(EntitiesParties.certainty == 1.0).all()
+    return {'message': 'implement'}
 
-        for pr in party_relationships:
-            parties.append(pr.party.as_dict())
-
-        politician_relationships = EntitiesPoliticians.query \
-            .distinct(EntitiesPoliticians.politician_id)\
-            .filter(EntitiesPoliticians.entity_id == entity.id)\
-            .filter(EntitiesPoliticians.certainty == 1.0).all()
-
-        for pr in politician_relationships:
-            politicians.append(pr.politician.as_dict())
-
-    return {
-        'article_id': article.id,
-        'parties': parties,
-        'politicians': politicians
-    }
+    # for entity in article.entities:
+    #     party_relationships = EntitiesParties.query\
+    #         .distinct(EntitiesParties.party_id)\
+    #         .filter(EntitiesParties.entity_id == entity.id)\
+    #         .filter(EntitiesParties.certainty == 1.0).all()
+    #
+    #     for pr in party_relationships:
+    #         parties.append(pr.party.as_dict())
+    #
+    #     politician_relationships = EntitiesPoliticians.query \
+    #         .distinct(EntitiesPoliticians.politician_id)\
+    #         .filter(EntitiesPoliticians.entity_id == entity.id)\
+    #         .filter(EntitiesPoliticians.certainty == 1.0).all()
+    #
+    #     for pr in politician_relationships:
+    #         politicians.append(pr.politician.as_dict())
+    #
+    # return {
+    #     'article_id': article.id,
+    #     'parties': parties,
+    #     'politicians': politicians
+    # }

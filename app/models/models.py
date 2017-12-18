@@ -3,6 +3,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from app import db
 import datetime
 from sqlalchemy.dialects import postgresql
+from sqlalchemy_utils import generic_relationship
 
 
 # This file defines all the different models we use.
@@ -30,9 +31,7 @@ class Entity(db.Model):
     count = db.Column(db.Integer(), default=1)
 
     # Relationships
-    parties = db.relationship("EntitiesParties", back_populates="entity")
-    politicians = db.relationship("EntitiesPoliticians", back_populates="entity")
-    article = db.relationship("Article", back_populates="entities")
+    linkings = db.relationship("EntityLinking", back_populates="entity")
 
     # API Representation
     def as_dict(self):
@@ -55,6 +54,9 @@ class Politician(db.Model):
     level_of_ambiguity = db.Column(db.Float(), default=0.0) # TODO: We should probably remove this attribute.
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+    # Relationships
+    # linkings = db.relationship("EntityLinking", back_populates="linkable_id")
+
     @hybrid_property
     def full_name(self):
         return self.first_name + ' ' + self.last_name
@@ -68,9 +70,8 @@ class Politician(db.Model):
                 'party': self.party,
                 'municipality': self.municipality,
                 'role': self.role,
-        }
+                }
 
-    entities = db.relationship("EntitiesPoliticians", back_populates="politician")
 
 
 class Party(db.Model):
@@ -79,7 +80,9 @@ class Party(db.Model):
     name = db.Column(db.String(100), nullable=False, server_default=u'')
     abbreviation = db.Column(db.String(20), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    entities = db.relationship("EntitiesParties", back_populates="party")
+
+    # Relationships
+    # linkings = db.relationship("EntityLinking", back_populates="linkable_id")
 
     # API Representation
     def as_dict(self):
@@ -93,12 +96,13 @@ class Party(db.Model):
 class Question(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer(), primary_key=True)
-    questionable_id = db.Column(db.Integer())
-    questionable_type = db.Column(db.String(20))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
+    questionable_type = db.Column(db.String(50))
+    questionable_id = db.Column(db.Integer(), nullable=False)
 
     # Relationships
     responses = db.relationship("Response")
+    questionable_object = generic_relationship(questionable_type, questionable_id)
 
     # API Representation
     def as_dict(self):
@@ -118,25 +122,13 @@ class Response(db.Model):
 
 
 # RELATIONS
-
-class EntitiesParties(db.Model):
-    __tablename__ = 'entities_parties'
+class EntityLinking(db.Model):
+    __tablename__ = 'entity_linkings'
     id = db.Column(db.Integer(), primary_key=True)
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
-    party_id = db.Column(db.Integer(), db.ForeignKey('parties.id'))
     certainty = db.Column(db.Float(), default=0.0)
+    linkable_type = db.Column(db.String(50))
+    linkable_id = db.Column(db.Integer(), nullable=False)
 
-    party = db.relationship("Party", back_populates="entities")
-    entity = db.relationship("Entity", back_populates="parties")
-
-
-
-class EntitiesPoliticians(db.Model):
-    __tablename__ = 'entities_politicians'
-    id = db.Column(db.Integer(), primary_key=True)
-    entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
-    politician_id = db.Column(db.Integer(), db.ForeignKey('politicians.id'))
-    certainty = db.Column(db.Float(), default=0.0)
-
-    politician = db.relationship("Politician", back_populates="entities")
-    entity = db.relationship("Entity", back_populates="politicians")
+    entity = db.relationship("Entity", back_populates="linkings")
+    linkable_object = generic_relationship(linkable_type, linkable_id)
