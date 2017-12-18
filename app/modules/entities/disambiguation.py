@@ -2,8 +2,17 @@ import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntitiesPoliticians, EntitiesParties
-from app.modules.common.utils import string_similarity, collection_as_dict
+from app.models.models import Politician, Party, EntityLinking
+from app.modules.common.utils import string_similarity
+
+
+def named_entity_disambiguation(document, entities):
+    for e in entities:
+        if e.label == 'PER':
+            politician_disambiguation(document, entities, e)
+
+        if e.label == 'ORG':
+            party_disambiguation(document, entities, e)
 
 
 def politician_disambiguation(document, entities, entity):
@@ -86,12 +95,14 @@ def politician_optimal_candidate(scored_candidates):
 
     return Politician.query.filter(Politician.id == max_id).first(), max
 
+
 def store_entity_politician_linking(entity, politician, certainty):
-    print('Linking {} to {}'.format(entity.text, (politician.full_name)))
-    a = EntitiesPoliticians(certainty = certainty)
-    a.politician = politician
-    entity.politicians.append(a)
+    # print('Linking {} to {}'.format(entity.text, (politician.full_name)))
+    a = EntityLinking(certainty=certainty)
+    a.linkable_object = politician
+    entity.linkings.append(a)
     db.session.add(entity)
+
 
 #########
 # PARTIES
@@ -115,9 +126,10 @@ def party_disambiguation(document, entities, entity):
     else:
         print('No candidate parties found for {}'.format(entity.text))
 
+
 def store_entity_party_linking(entity, party, certainty):
-    print('Linking {} to {}'.format(entity.text, party.abbreviation))
-    a = EntitiesParties(certainty = certainty)
-    a.party = party
-    entity.parties.append(a)
+    # print('Linking {} to {}'.format(entity.text, party.abbreviation))
+    linking = EntityLinking(certainty=certainty)
+    linking.linkable_object= party
+    entity.linkings.append(linking)
     db.session.add(entity)
