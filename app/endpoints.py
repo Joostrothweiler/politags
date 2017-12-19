@@ -25,8 +25,7 @@ def post_article_question(document):
 
 
 # Handling the response of a question using a post request from poliflw.
-def post_question_response(document):
+def post_question_response(question_id, document):
     doc = json.loads(document)
-    simple_doc = translate_doc(doc)
-    res = process_question(simple_doc)
+    res = process_question(question_id, doc)
     return jsonify(res)

@@ -17,7 +17,7 @@ class Article(db.Model):
 
     # Relationships
     entities = db.relationship('Entity')
-
+    questions = db.relationship('Question')
 
 class Entity(db.Model):
     __tablename__ = 'entities'
@@ -95,11 +95,15 @@ class Party(db.Model):
 class Question(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer(), primary_key=True)
+    article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
+    question_string = db.Column(db.String(200))
     possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
     questionable_type = db.Column(db.String(50))
     questionable_id = db.Column(db.Integer(), nullable=False)
 
     # Relationships
+
+    article = db.relationship('Article', back_populates='questions')
     responses = db.relationship('Response', back_populates='question')
     questionable_object = generic_relationship(questionable_type, questionable_id)
 
@@ -133,3 +137,12 @@ class EntityLinking(db.Model):
 
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'entity_id': self.entity_id,
+            'certainty': self.certainty,
+            'linkable_type': self.linkable_type,
+            'linkable_id': self.linkable_id,
+        }
