@@ -28,7 +28,7 @@ def ask_first_question(document):
         }
 
     # select least certain linking (first in the ascending list).
-    question_linking = entity_linkings[0]
+    question_linking = entity_linkings[1]
 
     # generate a yes/no question for this entity linking
     question = generate_yesno_question(question_linking, article)
@@ -74,7 +74,7 @@ def generate_yesno_question(entity_linking, article):
                                                                                        politician.party,
                                                                                        politician.municipality)
         question = Question(possible_answers=['Ja', 'Nee'], questionable_object=politician,
-                            question_string=question_string)#, article=article)
+                            question_string=question_string, article=article)
 
     elif entity_linking.linkable_type == 'Party':
         party = entity_linking.linkable_object
@@ -82,7 +82,7 @@ def generate_yesno_question(entity_linking, article):
         question_string = 'Wordt "{}/{}" genoemd in dit artikel?'.format(party.name, party.abbreviation)
 
         question = Question(possible_answers=['Ja', 'Nee'], questionable_object=party,
-                            question_string=question_string)#, article=article)
+                            question_string=question_string, article=article)
 
     db.session.add(question)
     db.session.commit()
