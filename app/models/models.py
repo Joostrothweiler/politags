@@ -134,3 +134,12 @@ class EntityLinking(db.Model):
 
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'entity_id': self.entity_id,
+            'certainty': self.certainty,
+            'linkable_type': self.linkable_type,
+            'linkable_id': self.linkable_id,
+        }

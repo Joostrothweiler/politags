@@ -1,9 +1,7 @@
 from app import db
 from app.models.models import Article
 from app import db
-from app.models.models import Question, Response
-from app.modules.common.utils import collection_as_dict
-
+from app.models.models import Question, Response, EntityLinking
 
 def ask_first_question(document):
     # PSEUDOCODE
@@ -20,28 +18,28 @@ def ask_first_question(document):
     if not article:
         return {'error': 'article not found'}
 
-    linked_entities = find_linked_entities(article.entities)
+    # find all entity linkings for the entities in this article in ascending order of certainty
+    entity_linkings = find_entity_linkings(article.entities)
 
-    if not linked_entities:
+    # check if there are any, if not, stop
+    if not entity_linkings:
         return {
-            'no questions for this article'
+            'no linkings found for entities in this article'
         }
 
-    # return collection_as_dict(linked_entities)
+    # select least certain linking (first in the ascending list).
+    question_linking = entity_linkings[0]
 
-    [question_entity, certainty] = find_least_certain_entity(linked_entities)
-
-    # [question_entity, certainty] = find_most_certain_entity(linked_entities)
-
-    question = generate_yesno_question(question_entity)
+    # generate a yes/no question for this entity linking
+    question = generate_yesno_question(question_linking, article)
 
     return {
         'question': question.question_string,
-        'text': question_entity.text,
-        'label': question_entity.label,
-        'start_pos': question_entity.start_pos,
-        'end_pos': question_entity.end_pos,
-        'certainty': certainty
+        'text': question_linking.entity.text,
+        'label': question_linking.entity.label,
+        'start_pos': question_linking.entity.start_pos,
+        'end_pos': question_linking.entity.end_pos,
+        'certainty': question_linking.certainty
     }
 
 
@@ -60,74 +58,35 @@ def process_question(question_id, doc):
     }
 
 
-# Find all linked entities of the entities the NER found in the document
-def find_linked_entities(entities):
-    linked_entities = []
-    for entity in entities:
-        if entity.politicians:
-            linked_entities.append(entity)
-        elif entity.parties:
-            linked_entities.append(entity)
+# Find all entity linkings found by Joost's module and sort them by ascending order
+def find_entity_linkings(entities):
+    entity_ids = [e.id for e in entities]
+    entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(EntityLinking.certainty.asc()).all()
 
-    return linked_entities
-
-
-# this function finds the least certain entity in a list of linked entities
-def find_least_certain_entity(linked_entities):
-    lowest_certainty = 2
-    least_certain_entity_index = None
-
-    for index, entity in enumerate(linked_entities):
-        for entityparty in entity.parties:
-            if entityparty.certainty <= lowest_certainty:
-                lowest_certainty = entityparty.certainty
-                least_certain_entity_index = index
-        for entitypolitician in entity.politicians:
-            if entitypolitician.certainty <= lowest_certainty:
-                lowest_certainty = entitypolitician.certainty
-                least_certain_entity_index = index
-
-    least_certain_entity = linked_entities[least_certain_entity_index]
-
-    return [least_certain_entity, lowest_certainty]
-
-
-def find_most_certain_entity(linked_entities):
-    highest_certainty = 0
-    least_certain_entity_index = None
-
-    for index, entity in enumerate(linked_entities):
-        for entityparty in entity.parties:
-            if entityparty.certainty >= highest_certainty:
-                highest_certainty = entityparty.certainty
-                most_certain_entity_index = index
-        for entitypolitician in entity.politicians:
-            if entitypolitician.certainty >= highest_certainty:
-                highest_certainty = entitypolitician.certainty
-                most_certain_entity_index = index
-
-    most_certain_entity = linked_entities[most_certain_entity_index]
-
-    return [most_certain_entity, highest_certainty]
+    return entity_linkings
 
 
 # this function generates a yes/no question string from an entity
-def generate_yesno_question(linked_entity):
-    if linked_entity.politicians:
-        politician = linked_entity.politicians[0].politician
+def generate_yesno_question(entity_linking, article):
+    if entity_linking.linkable_type == 'Politician':
+        politician = entity_linking.linkable_object
         question_string = 'Wordt "{}" van "{}" in "{}" genoemd in dit artikel?'.format(politician.full_name,
                                                                                        politician.party,
                                                                                        politician.municipality)
-        question = Question(possible_answers=['Ja', 'Nee'], questionable_type='politician',
-                            questionable_id=politician.id, question_string=question_string,
-                            article_id=linked_entity.article.id)
-    else:
-        party = linked_entity.parties[0].party
+        question = Question(possible_answers=['Ja', 'Nee'], questionable_object=politician,
+                            question_string=question_string)#, article=article)
+
+    elif entity_linking.linkable_type == 'Party':
+        party = entity_linking.linkable_object
+
         question_string = 'Wordt "{}/{}" genoemd in dit artikel?'.format(party.name, party.abbreviation)
-        question = Question(possible_answers=['Ja', 'Nee'], questionable_type='party', questionable_id=party.id,
-                            question_string=question_string, article_id=linked_entity.article.id)
+
+        question = Question(possible_answers=['Ja', 'Nee'], questionable_object=party,
+                            question_string=question_string)#, article=article)
 
     db.session.add(question)
     db.session.commit()
 
     return question
+
+
