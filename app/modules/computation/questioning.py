@@ -28,18 +28,23 @@ def ask_first_question(document):
         }
 
     # select least certain linking (first in the ascending list).
-    question_linking = entity_linkings[1]
+    question_linking = entity_linkings[-1]
 
-    # generate a yes/no question for this entity linking
-    question = generate_yesno_question(question_linking, article)
+    if article.questions:
+        question = article.questions[0]
+    else:
+        # generate a yes/no question for this entity linking
+        question = generate_yesno_question(question_linking, article)
 
     return {
         'question': question.question_string,
+        'question_id' : question.id,
         'text': question_linking.entity.text,
         'label': question_linking.entity.label,
         'start_pos': question_linking.entity.start_pos,
         'end_pos': question_linking.entity.end_pos,
-        'certainty': question_linking.certainty
+        'certainty': question_linking.certainty,
+        'possible_answers': question.possible_answers
     }
 
 

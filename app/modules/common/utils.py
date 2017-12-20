@@ -2,6 +2,8 @@ from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
 import pickle
 
+from flask import json
+
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']
@@ -42,3 +44,8 @@ def string_similarity(a, b):
 def pure_len(str):
     return len(str) - str.count(' ')
 
+
+def convert_to_json(data):
+    json.dumps(data.decode("utf-8"))
+
+    return json.loads(data)
