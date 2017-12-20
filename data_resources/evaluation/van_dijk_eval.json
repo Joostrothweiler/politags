@@ -4,16 +4,17 @@
       "article_id": "0ccfc69dba4a64e3cf3a5fd1ca1faa0446a24843",
       "parties": [
         {
+          "system_id": "999",
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
-        // Politicians mentioned are not in KB.
         {
           "system_id": "000",
           "full_name": "van Dijk",
@@ -32,16 +33,17 @@
       "article_id": "523a8da03b9a2aaf8c58151bbb865454a7ae5f3c",
       "parties": [
         {
+          "system_id": "999",
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
-        // Politicians mentioned are not in KB.
         {
           "system_id": "000",
           "full_name": "van Dijk",
@@ -56,17 +58,16 @@
         }
       ]
     },
-    },
     {
       "article_id": "3649112bd1931a737a1cd1d45aeb9473a83f6728",
       "parties": [
         {
+          "system_id": "999",
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
       ],
       "politicians": [
-        // Same politician van Dijk not mentioned.
         {
           "system_id": "000",
           "full_name": "van Dijk",
@@ -78,16 +79,15 @@
     {
       "article_id": "24c3a7adb18413f4947d383ef29abce41fdc51e5",
       "parties": [
-        // It is from the source Groenlinks but no parties mentioned.
       ],
       "politicians": [
-        // It is on the "Discussiebijeenkomst rapport Van Dijk" but not on the actual person.
       ]
     },
     {
       "article_id": "965188dceb406ef1172fb4ed9b797352cec61789",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -95,7 +95,7 @@
       "politicians": [
         {
           "system_id": "130017",
-          "full_name": "Dhr  J W M	Coerwinkel",
+          "full_name": "Dhr J W M Coerwinkel",
           "party": "GroenLinks",
           "municipality": "Gemeente Berg en Dal"
         }
@@ -105,6 +105,7 @@
       "article_id": "88a1894644110aa55fbe349e4e184d15926ba404",
       "parties": [
         {
+          "system_id": "999",
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
@@ -128,6 +129,7 @@
       "article_id": "5eb12077d5cf7aae822216c6d31dadbfde16024c",
       "parties": [
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
@@ -153,7 +155,7 @@
         },
         {
           "system_id": "126822",
-          "full_name": "Mw  J A	van Hulsteijn",
+          "full_name": "Mw J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
@@ -169,6 +171,7 @@
       "article_id": "54e6f0a8fab3bf89798b9aeea4362ed5805cf870",
       "parties": [
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
@@ -194,7 +197,7 @@
         },
         {
           "system_id": "126822",
-          "full_name": "Mw  J A	van Hulsteijn",
+          "full_name": "Mw  J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
@@ -210,6 +213,7 @@
       "article_id": "1c68eedd605427a73ceab520c2b3956bd4502c21",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -217,13 +221,13 @@
       "politicians": [
         {
           "system_id": "20265751",
-          "full_name": "Dhr  D	Luyckx",
+          "full_name": "Dhr  D Luyckx",
           "party": "PvdA",
           "municipality": "Gemeente Enkhuizen"
         },
         {
           "system_id": "133260",
-          "full_name": "Dhr  dr  N M	van  Straalen",
+          "full_name": "Dhr  dr  N M van  Straalen",
           "party": "GroenLinks",
           "municipality": "Gemeente Edam-Volendam"
         }
@@ -233,6 +237,7 @@
       "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
       "parties": [
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
@@ -240,7 +245,7 @@
       "politicians": [
         {
           "system_id": "126822",
-          "full_name": "Mw  J A	van Hulsteijn",
+          "full_name": "Mw  J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
@@ -258,44 +263,49 @@
         }
       ]
     },
-    // NIEUWE BERICHTEN
     {
       "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
+          "system_id": "999",
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
       ],
       "politicians": [
-        // No mentions
       ]
     },
     {
       "article_id": "cf952d067b71bf6d8d4601f6b5b917fb0bdc9f15",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
+          "system_id": "999",
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
+          "system_id": "999",
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
+          "system_id": "999",
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "name": "000 Hart voor Langedijk",
+          "system_id": "000",
+          "name": "Hart voor Langedijk",
           "abbreviation": "000"
         }
       ],
@@ -314,7 +324,7 @@
         },
         {
           "system_id": "121340",
-          "full_name": "Mw  M	Swager",
+          "full_name": "Mw  M Swager",
           "party": "",
           "municipality": "Langedijk"
         },
@@ -330,10 +340,12 @@
       "article_id": "e9bf9cac6b4b5efd28e99eb4342c0dda00ab29f1",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
+          "system_id": "999",
           "name": "ChristenUnie",
           "abbreviation": "CU"
         }
@@ -347,13 +359,13 @@
         },
         {
           "system_id": "77947",
-          "full_name": "Dhr  H	de Graaf",
+          "full_name": "Dhr  H de Graaf",
           "party": "VVD",
           "municipality": "Langedijk"
         },
         {
           "system_id": "121340",
-          "full_name": "Mw  M	Swager",
+          "full_name": "Mw  M Swager",
           "party": "",
           "municipality": "Langedijk"
         }
@@ -363,26 +375,29 @@
       "article_id": "89d9eac9d7af7be069ea39f3b919921da415e34d",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
+          "system_id": "999",
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         },
         {
+          "system_id": "999",
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         }
       ],
       "politicians": [
-        // None mentioned
       ]
     },
     {
       "article_id": "dea1bf18f602ec83e85960000993cb05002a3563",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -400,6 +415,7 @@
       "article_id": "5cdd23be1a0e46a1fa0e1cd692b6afb739420065",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -417,6 +433,7 @@
       "article_id": "606f476f9347c3c6a41d8fa12cf654e62484f882",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -446,6 +463,7 @@
       "article_id": "da9f16c8605c9e02858d0508f0c9e73d440ff32f",
       "parties": [
         {
+          "system_id": "999",
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -453,7 +471,7 @@
       "politicians": [
         {
           "system_id": "120012",
-          "full_name": "Dhr  B	Vastenhoud",
+          "full_name": "Dhr  B Vastenhoud",
           "party": "GroenLinks",
           "municipality": ""
         },
@@ -465,13 +483,13 @@
         },
         {
           "system_id": "120005",
-          "full_name": "Mw  J	Hofman-Zuter",
+          "full_name": "Mw  J Hofman-Zuter",
           "party": "GroenLinks",
           "municipality": "Gemeente Leiderdorp"
         },
         {
           "system_id": "74682",
-          "full_name": "Mw  F	Joester",
+          "full_name": "Mw  F Joester",
           "party": "GroenLinks",
           "municipality": "Gemeente Leiderdorp"
         },
@@ -483,7 +501,7 @@
         },
         {
           "system_id": "125993",
-          "full_name": "Dhr  L	Maat",
+          "full_name": "Dhr  L Maat",
           "party": "GroenLinks",
           "municipality": "Gemeente Wassenaar"
         },
@@ -571,18 +589,19 @@
       "article_id": "f8327f1166f31eac018981e25375cb45281378a4",
       "parties": [
         {
+          "system_id": "999",
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
       ],
       "politicians": [
-        // None
       ]
     },
     {
       "article_id": "de10b3524cfd214c0bfcc35d9a0892da6f611ed9",
       "parties": [
         {
+          "system_id": "999",
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
