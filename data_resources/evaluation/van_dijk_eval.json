@@ -304,6 +304,11 @@
           "abbreviation": "CU"
         },
         {
+          "system_id": "999",
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        },
+        {
           "system_id": "000",
           "name": "Hart voor Langedijk",
           "abbreviation": "000"
@@ -369,28 +374,6 @@
           "party": "",
           "municipality": "Langedijk"
         }
-      ]
-    },
-    {
-      "article_id": "89d9eac9d7af7be069ea39f3b919921da415e34d",
-      "parties": [
-        {
-          "system_id": "999",
-          "name": "GroenLinks",
-          "abbreviation": "GL"
-        },
-        {
-          "system_id": "999",
-          "name": "Partij van de Arbeid",
-          "abbreviation": "PvdA"
-        },
-        {
-          "system_id": "999",
-          "name": "Socialistische Partij",
-          "abbreviation": "SP"
-        }
-      ],
-      "politicians": [
       ]
     },
     {

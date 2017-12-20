@@ -484,35 +484,6 @@
       "type": "Partij"
     },
     {
-      "date": "2014-02-25T00:00:00",
-      "date_granularity": 12,
-      "description": "<div class=\"intro\"><p>Van links naar rechts zittend</p>\n<ul><li><a href=\"//hofvantwente.groenlinks.nl/mensen/jos-mol\" target=\"_blank\">Jos Mol</a></li>\n<li><a href=\"//hofvantwente.groenlinks.nl/even-voorstellen-janet-duursma\" target=\"_blank\">Janet Duursma</a>, lijstaanvoerder</li>\n<li><a href=\"//hofvantwente.groenlinks.nl/mensen/jan-benner\" target=\"_blank\">Jan Benner</a></li>\n</ul></div>      <div class=\"content\">\n               <p>Van links naar rechts staand:</p>\n<ul><li><a href=\"//hofvantwente.groenlinks.nl/mensen/wim-petersen\" target=\"_blank\">Wim&#160;Petersen</a></li>\n<li><a href=\"//hofvantwente.groenlinks.nl/mensen/mignon-sanchez-gerritsjans\" target=\"_blank\">Mignon Sanchez-GerritJans</a></li>\n<li><a href=\"//hofvantwente.groenlinks.nl/mensen/leo-mees-ten-oever\" target=\"_blank\">Leo Mees ten Oever</a></li>\n<li><a href=\"//hofvantwente.groenlinks.nl/mensen/barbara-vischedijk\" target=\"_blank\">Barbara Visschedijk</a></li>\n<li><a href=\"//hofvantwente.groenlinks.nl/mensen/gerben-kappert\" target=\"_blank\">Gerben Kappert</a></li>\n</ul>&#13;\n              </div>\n    ",
-      "enrichments": {},
-      "location": "Hof van Twente",
-      "meta": {
-        "_id": "89d9eac9d7af7be069ea39f3b919921da415e34d",
-        "_index": "pfl_combined_index",
-        "_score": 1.0,
-        "_type": "item",
-        "collection": "GroenLinks",
-        "original_object_id": "http://hofvantwente.groenlinks.nl/nieuws/groenlinks-kandidaten",
-        "original_object_urls": {
-          "html": "http://hofvantwente.groenlinks.nl/nieuws/groenlinks-kandidaten"
-        },
-        "pfl_url": "https://api.poliflw.nl/v0/groenlinks_archives_hofvantwente/89d9eac9d7af7be069ea39f3b919921da415e34d",
-        "processing_finished": "2017-11-28T15:27:27.831508",
-        "processing_started": "2017-11-23T02:38:56.178709",
-        "rights": "Undefined",
-        "source_id": "groenlinks_archives_hofvantwente"
-      },
-      "parties": [
-        "GroenLinks"
-      ],
-      "source": "Partij nieuws",
-      "title": "GroenLinks kandidaten | Hof van Twente",
-      "type": "Partij"
-    },
-    {
       "date": "2006-09-07T00:00:00",
       "date_granularity": 12,
       "description": "<div class=\"intro\"><p>Aanstaande zaterdag 25 februari om 13 uur zullen twee vrouwen, een met een minimum inkomen en een met een modaal inkomen hun weekboodschappen doen in Cityplaza.</p>\n</div>      <div class=\"content\">\n               <p>Zij zullen daarbij worden vergezeld door Kees Vendrik ( tweede kamer fractie GroenLinks) en leden van GroenLinks Nieuwegein.Na afloop zullen de boodschappen worden bekeken en is er discussie over de verschillen in kwaliteit van leven.Afgelopen jaren is, onder het kabinet Balkenende, het netto besteedbaar inkomen van minima er flink op achteruit gegaan.Bekeken zal worden wat daar landelijk ( Kees Vendrik) en plaatselijk ( GroenLinks Nieuwegein) aan te doen is.</p>\n<p>U bent van harte welkom om het boodschappen doen mee te maken en de discussie achterafDe start is om 13 uur bij de hoofdingang van winkelcentrum Cityplaza vanaf de markt.</p>\n<p>Voor meer informatie kunt u contact opnemen met Bert EgginkT 030 6022812M 06 12042174E <a href=\"mailto:b.eggink@hccnet.nl\">b.eggink@hccnet.nl</a></p>\n&#13;\n              </div>\n    ",

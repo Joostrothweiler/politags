@@ -13,7 +13,7 @@ def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.distinct(Politician.last_name).limit(100).all():
+    for politician in Politician.query.distinct(Politician.last_name).all():
         politicians.append(politician.last_name)
 
     parties = []
@@ -44,7 +44,7 @@ def process_document(document):
         db.session.add(article)
         db.session.commit()
         extract_information(article, document)
-    extract_information(article, document) # TODO: Remove line when not necessary for testing.
+    # extract_information(article, document) # TODO: Remove line when not necessary for testing.
 
     return return_extracted_information(article)
 
@@ -64,9 +64,11 @@ def return_extracted_information(article):
         for linking in entity.linkings:
             if linking.certainty > 0.95:
                 if linking.linkable_type == 'Party':
-                    parties.append(linking.linkable_object.as_dict())
+                    if not linking.linkable_object.as_dict() in parties:
+                        parties.append(linking.linkable_object.as_dict())
                 elif linking.linkable_type == 'Politician':
-                    politicians.append(linking.linkable_object.as_dict())
+                    if not linking.linkable_object.as_dict() in politicians:
+                        politicians.append(linking.linkable_object.as_dict())
 
     return {
         'article_id': article.id,

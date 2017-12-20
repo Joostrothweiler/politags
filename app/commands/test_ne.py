@@ -59,35 +59,90 @@ def evaluate_ned(output, eval_output):
 
             if output_obj['article_id'] == eval_obj['article_id']:
 
+                print(output_obj['article_id'])
                 # Loop over parties
-                precision_parties_score = precision_parties(output_obj['parties'], eval_obj['parties'])
-                print(precision_parties_score)
+                parties_score = party_scorer(output_obj['parties'], eval_obj['parties'])
+                politician_score = politician_scorer(output_obj['politicians'], eval_obj['politicians'])
 
-                # Loop over people
+                print('Parties')
+                print(parties_score)
+                print('Politicians')
+                print(politician_score)
 
 
-# How many in the output should actually be in there
-def precision_parties(output_item_parties, eval_item_parties):
-    eval_count = len(eval_item_parties)
+def party_scorer(output_item_parties, eval_item_parties):
     eval_count_simple = 0
-    output_score = 0
-
-    for op in output_item_parties:
-        for ep in eval_item_parties:
-            if op['abbreviation'] == ep['abbreviation']:
-                output_score += 1
+    precision_count = 0
+    recall_count = 0
 
     for ep in eval_item_parties:
         if ep['system_id'] != "000":
             eval_count_simple += 1
 
+    # Hoe veel die die heeft gevonden zijn correct (PRECISION)
+    if len(output_item_parties) > 0:
+        for op in output_item_parties:
+            for ep in eval_item_parties:
+                if op['abbreviation'] == ep['abbreviation']:
+                    precision_count += 1
+        precision_ratio = precision_count / len(output_item_parties)
+    else:
+        precision_ratio = 1.0
+
+    # How veel die die moest vinden heeft die daadwerkelijk gevonden (RECALL)
+    if eval_count_simple > 0:
+        for ep in eval_item_parties:
+            for op in output_item_parties:
+                if op['abbreviation'] == ep['abbreviation']:
+                    recall_count += 1
+        recall_ratio = recall_count / eval_count_simple
+    else:
+        recall_ratio = 1.0
+
     return {
-        'eval_count': eval_count,
+        'output_count': len(output_item_parties),
         'eval_count_simple': eval_count_simple,
-        'output_score': output_score
+        'precision_count': precision_count,
+        'precision_ratio': precision_ratio,
+        'recall_count': recall_count,
+        'recall_ratio': recall_ratio
     }
 
 
-# How many of the eval are actually in the output
-def recall_parties(output, eval):
-    return 0
+def politician_scorer(output_item_politicians, eval_item_politicians):
+    eval_count_simple = 0
+    precision_count = 0
+    recall_count = 0
+
+    for ep in eval_item_politicians:
+        if ep['system_id'] != "000":
+            eval_count_simple += 1
+
+    # Hoe veel die die heeft gevonden zijn correct (PRECISION)
+    if len(output_item_politicians) > 0:
+        for op in output_item_politicians:
+            for ep in eval_item_politicians:
+                if op['system_id'] == ep['system_id']:
+                    precision_count += 1
+        precision_ratio = precision_count / len(output_item_politicians)
+    else:
+        precision_ratio = 1.0
+
+    # How veel die die moest vinden heeft die daadwerkelijk gevonden (RECALL)
+    if eval_count_simple > 0:
+        for ep in eval_item_politicians:
+            for op in output_item_politicians:
+                if op['system_id'] == ep['system_id']:
+                    recall_count += 1
+        recall_ratio = recall_count / eval_count_simple
+    else:
+        recall_ratio = 1.0
+
+    return {
+        'output_count': len(output_item_politicians),
+        'eval_count_simple': eval_count_simple,
+        'precision_count': precision_count,
+        'precision_ratio': precision_ratio,
+        'recall_count': recall_count,
+        'recall_ratio': recall_ratio
+    }
