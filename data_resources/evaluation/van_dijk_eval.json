@@ -1,0 +1,485 @@
+{
+  "items": [
+    {
+      "article_id": "0ccfc69dba4a64e3cf3a5fd1ca1faa0446a24843",
+      "parties": [
+        {
+          "name": "Christen-Democratisch Appèl",
+          "abbreviation": "CDA"
+        },
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        // Politicians mentioned are not in KB.
+        {
+          "system_id": "000",
+          "full_name": "van Dijk",
+          "party": "",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Mooldijk",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "523a8da03b9a2aaf8c58151bbb865454a7ae5f3c",
+      "parties": [
+        {
+          "name": "Christen-Democratisch Appèl",
+          "abbreviation": "CDA"
+        },
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        // Politicians mentioned are not in KB.
+        {
+          "system_id": "000",
+          "full_name": "van Dijk",
+          "party": "",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Mooldijk",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    },
+    {
+      "article_id": "3649112bd1931a737a1cd1d45aeb9473a83f6728",
+      "parties": [
+        {
+          "name": "Christen-Democratisch Appèl",
+          "abbreviation": "CDA"
+        }
+      ],
+      "politicians": [
+        // Same politician van Dijk not mentioned.
+        {
+          "system_id": "000",
+          "full_name": "van Dijk",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "24c3a7adb18413f4947d383ef29abce41fdc51e5",
+      "parties": [
+        // It is from the source Groenlinks but no parties mentioned.
+      ],
+      "politicians": [
+        // It is on the "Discussiebijeenkomst rapport Van Dijk" but not on the actual person.
+      ]
+    },
+    {
+      "article_id": "965188dceb406ef1172fb4ed9b797352cec61789",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "130017",
+          "full_name": "Dhr  J W M	Coerwinkel",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Berg en Dal"
+        }
+      ]
+    },
+    {
+      "article_id": "88a1894644110aa55fbe349e4e184d15926ba404",
+      "parties": [
+        {
+          "name": "Christen-Democratisch Appèl",
+          "abbreviation": "CDA"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "000",
+          "full_name": "Kees van Dijk (overleden)",
+          "party": "CDA",
+          "municipality": "Rotterdam"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Pieter van Geel",
+          "party": "CDA",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "5eb12077d5cf7aae822216c6d31dadbfde16024c",
+      "parties": [
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "000",
+          "full_name": "Marijke",
+          "party": "VVD",
+          "municipality": "Boxmeer"
+        },
+        {
+          "system_id": "117899",
+          "full_name": "Mw  J M Logtens-Hermsen",
+          "party": "VVD",
+          "municipality": "Boxmeer"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Holger Rodoe",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "126822",
+          "full_name": "Mw  J A	van Hulsteijn",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Arie Kerkman",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        }
+      ]
+    },
+    {
+      "article_id": "54e6f0a8fab3bf89798b9aeea4362ed5805cf870",
+      "parties": [
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "000",
+          "full_name": "Marijke",
+          "party": "VVD",
+          "municipality": "Boxmeer"
+        },
+        {
+          "system_id": "117899",
+          "full_name": "Mw  J M Logtens-Hermsen",
+          "party": "VVD",
+          "municipality": "Boxmeer"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Holger Rodoe",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "126822",
+          "full_name": "Mw  J A	van Hulsteijn",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Arie Kerkman",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        }
+      ]
+    },
+    {
+      "article_id": "1c68eedd605427a73ceab520c2b3956bd4502c21",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "20265751",
+          "full_name": "Dhr  D	Luyckx",
+          "party": "PvdA",
+          "municipality": "Gemeente Enkhuizen"
+        },
+        {
+          "system_id": "133260",
+          "full_name": "Dhr  dr  N M	van  Straalen",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Edam-Volendam"
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "126822",
+          "full_name": "Mw  J A	van Hulsteijn",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Arie Kerkman",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Holger Rodoe",
+          "party": "VVD",
+          "municipality": "Gemeente Gennep"
+        }
+      ]
+    },
+    // NIEUWE BERICHTEN
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        },
+        {
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        }
+      ],
+      "politicians": [
+        // No mentions
+      ]
+    },
+    {
+      "article_id": "cf952d067b71bf6d8d4601f6b5b917fb0bdc9f15",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        },
+        {
+          "name": "Christen-Democratisch Appèl",
+          "abbreviation": "CDA"
+        },
+        {
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "name": "000 Hart voor Langedijk",
+          "abbreviation": "000"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "000",
+          "full_name": "Nancy Kabalt",
+          "party": "VVD",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Hersbach",
+          "party": "CDA",
+          "municipality": "Langedijk"
+        },
+        {
+          "system_id": "121340",
+          "full_name": "Mw  M	Swager",
+          "party": "",
+          "municipality": "Langedijk"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Irma Schrijver",
+          "party": "GroenLinks",
+          "municipality": "Langedijk"
+        }
+      ]
+    },
+    {
+      "article_id": "e9bf9cac6b4b5efd28e99eb4342c0dda00ab29f1",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        },
+        {
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "000",
+          "full_name": "Tiny Zandbergen",
+          "party": "GroenLinks",
+          "municipality": "Langedijk"
+        },
+        {
+          "system_id": "77947",
+          "full_name": "Dhr  H	de Graaf",
+          "party": "VVD",
+          "municipality": "Langedijk"
+        },
+        {
+          "system_id": "121340",
+          "full_name": "Mw  M	Swager",
+          "party": "",
+          "municipality": "Langedijk"
+        }
+      ]
+    },
+    {
+      "article_id": "89d9eac9d7af7be069ea39f3b919921da415e34d",
+      "parties": [
+        {
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        },
+        {
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        },
+        {
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        }
+      ],
+      "politicians": [
+        // None mentioned
+      ]
+    },
+    {
+      "article_id": "dea1bf18f602ec83e85960000993cb05002a3563",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    },
+    {
+      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "parties": [
+        {
+          "name": "",
+          "abbreviation": ""
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": "",
+          "full_name": "",
+          "party": "",
+          "municipality": ""
+        }
+      ]
+    }
+  ]
+}
