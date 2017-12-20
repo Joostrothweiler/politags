@@ -54,20 +54,37 @@ def process_evaluation_input(input):
 def evaluate_ned(output, eval_output):
     res = 0
 
+    party_scores = []
+    politician_scores = []
+
     for output_obj in output['items']:
         for eval_obj in eval_output['items']:
-
             if output_obj['article_id'] == eval_obj['article_id']:
 
-                print(output_obj['article_id'])
-                # Loop over parties
-                parties_score = party_scorer(output_obj['parties'], eval_obj['parties'])
-                politician_score = politician_scorer(output_obj['politicians'], eval_obj['politicians'])
+                party_scores.append(party_scorer(output_obj['parties'], eval_obj['parties']))
+                politician_scores.append(politician_scorer(output_obj['politicians'], eval_obj['politicians']))
 
-                print('Parties')
-                print(parties_score)
-                print('Politicians')
-                print(politician_score)
+    final_scorer(party_scores, politician_scores)
+
+
+def final_scorer(party_scores, politician_scores):
+    party_precision_count = 0
+    party_recall_count = 0
+    party_output_count = 0
+    party_eval_count = 0
+
+    politician_precision_count = 0
+    politician_recall_count = 0
+
+    for i in party_scores:
+        party_precision_count += i['precision_count']
+        party_recall_count += i['recall_count']
+        party_output_count += i['output_count']
+        party_eval_count += i['eval_count_simple']
+
+    print(party_precision_count / party_output_count)
+    print(party_recall_count / party_eval_count)
+
 
 
 def party_scorer(output_item_parties, eval_item_parties):
