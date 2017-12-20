@@ -383,101 +383,222 @@
       "article_id": "dea1bf18f602ec83e85960000993cb05002a3563",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "GroenLinks",
+          "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "",
-          "full_name": "",
-          "party": "",
+          "system_id": "000",
+          "full_name": "Kees Vendrik",
+          "party": "GroenLinks",
           "municipality": ""
         }
       ]
     },
     {
-      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "article_id": "5cdd23be1a0e46a1fa0e1cd692b6afb739420065",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "GroenLinks",
+          "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "",
-          "full_name": "",
-          "party": "",
+          "system_id": "000",
+          "full_name": "Kees Vendrik",
+          "party": "GroenLinks",
           "municipality": ""
         }
       ]
     },
     {
-      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "article_id": "606f476f9347c3c6a41d8fa12cf654e62484f882",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "GroenLinks",
+          "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "",
-          "full_name": "",
-          "party": "",
+          "system_id": "000",
+          "full_name": "Gemma Lago",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Jesse Klaver",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Diederick van de Walle",
+          "party": "GroenLinks",
           "municipality": ""
         }
       ]
     },
     {
-      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "article_id": "da9f16c8605c9e02858d0508f0c9e73d440ff32f",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "GroenLinks",
+          "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "",
-          "full_name": "",
+          "system_id": "120012",
+          "full_name": "Dhr  B	Vastenhoud",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Marlies van Beek",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "120005",
+          "full_name": "Mw  J	Hofman-Zuter",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Leiderdorp"
+        },
+        {
+          "system_id": "74682",
+          "full_name": "Mw  F	Joester",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Leiderdorp"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Ibrahima Bah",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Leiderdorp"
+        },
+        {
+          "system_id": "125993",
+          "full_name": "Dhr  L	Maat",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Wassenaar"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Tim Brouwer de Koning",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Aart Bolluijt",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Cor Zwart",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Sjaak  van Beek",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Kees Bos",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Bettie Heerma van Voss",
           "party": "",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Auke Hofman",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Vincent Kagie",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Marian Kathmann",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Jonathan Truijers",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Gerrit Vons",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Riny Vons",
+          "party": "GroenLinks",
+          "municipality": ""
+        },
+        {
+          "system_id": "000",
+          "full_name": "Bart van Zandwijk",
+          "party": "GroenLinks",
           "municipality": ""
         }
       ]
     },
     {
-      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "article_id": "f8327f1166f31eac018981e25375cb45281378a4",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
         }
       ],
       "politicians": [
-        {
-          "system_id": "",
-          "full_name": "",
-          "party": "",
-          "municipality": ""
-        }
+        // None
       ]
     },
     {
-      "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
+      "article_id": "de10b3524cfd214c0bfcc35d9a0892da6f611ed9",
       "parties": [
         {
-          "name": "",
-          "abbreviation": ""
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
         }
       ],
       "politicians": [
         {
-          "system_id": "",
-          "full_name": "",
-          "party": "",
-          "municipality": ""
+          "system_id": "000",
+          "full_name": "John Kerstens",
+          "party": "PvdA",
+          "municipality": "Aalten"
+        },
+        {
+          "system_id": "000",
+          "full_name": "Anna Lena Hedin",
+          "party": "PvdA",
+          "municipality": "Aalten"
         }
       ]
     }
