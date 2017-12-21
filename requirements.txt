@@ -10,6 +10,9 @@ spacy
 html2text
 bs4
 
+# Names
+nameparser
+
 # Postgres connector
 PyGreSQL
 

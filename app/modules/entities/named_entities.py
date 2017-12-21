@@ -14,7 +14,8 @@ def init_nlp():
     global nlp
     politicians = []
     for politician in Politician.query.distinct(Politician.last_name).limit(100).all():
-        politicians.append(politician.last_name)
+        if not politician.last_name == '':
+            politicians.append(politician.last_name)
 
     parties = []
     for party in Party.query.all():

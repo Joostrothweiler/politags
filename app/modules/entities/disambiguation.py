@@ -3,7 +3,7 @@ from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
-from app.modules.common.utils import string_similarity
+from app.modules.common.utils import string_similarity, parse_human_name
 
 
 def named_entity_disambiguation(document, entities):
@@ -66,9 +66,13 @@ def politician_mention_name_similarity(mention, candidates):
 
 # TODO: Improve method to return a maximum number of candidates
 def get_candidate_politicians(mention):
-    mention_arr = mention.split(' ')
+    human_name = parse_human_name(mention)
     # Get based on last name match
-    candidates = Politician.query.filter(or_(*[Politician.last_name.like(name) for name in mention_arr])).all()
+    candidates = Politician.query.filter(Politician.last_name.like(human_name['last_name'])).all()
+    candidate_count = Politician.query.filter(Politician.last_name.like(human_name['last_name'])).count()
+
+    print('Human Name: {}, #candidates: {}'.format(human_name, candidate_count))
+
     return candidates
 
 
@@ -97,7 +101,6 @@ def politician_optimal_candidate(scored_candidates):
 
 
 def store_entity_politician_linking(entity, politician, certainty):
-    # print('Linking {} to {}'.format(entity.text, (politician.full_name)))
     a = EntityLinking(certainty=certainty)
     a.linkable_object = politician
     entity.linkings.append(a)
@@ -128,7 +131,6 @@ def party_disambiguation(document, entities, entity):
 
 
 def store_entity_party_linking(entity, party, certainty):
-    # print('Linking {} to {}'.format(entity.text, party.abbreviation))
     linking = EntityLinking(certainty=certainty)
     linking.linkable_object= party
     entity.linkings.append(linking)
