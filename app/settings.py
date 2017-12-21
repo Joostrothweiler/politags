@@ -7,3 +7,13 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Flask-User settings
 USER_APP_NAME = APP_NAME
+
+
+# NED settings
+# Weights should add up to 1.0
+NED_STRING_SIM_WEIGHT = 0.9
+NED_CONTEXT_SIM_WEIGHT = 0.1
+# At what threshold do we insert a linking
+NED_CUTOFF_THRESHOLD = 0.8
+# Entities API certainty return threshold
+ENTITIES_API_CERTAINTY_THRESHOLD = 0.5

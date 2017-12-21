@@ -7,13 +7,15 @@ from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 
 # Global NLP variable to initialize when necessary
+from app.settings import ENTITIES_API_CERTAINTY_THRESHOLD
+
 nlp = None
 
 def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.distinct(Politician.last_name).limit(100).all():
+    for politician in Politician.query.filter(Politician.last_name == 'Maat').all():
         if not politician.last_name == '':
             politicians.append(politician.last_name)
 
@@ -30,7 +32,7 @@ def init_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    nlp.remove_pipe('ner')
+    # nlp.remove_pipe('ner')
     print('NLP Initialized with PhraseMatchers. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
@@ -62,13 +64,12 @@ def return_extracted_information(article):
 
     for entity in article.entities:
         for linking in entity.linkings:
-            if linking.certainty > 0.6:
-                if linking.linkable_type == 'Party':
-                    if not linking.linkable_object.as_dict() in parties:
-                        parties.append(linking.linkable_object.as_dict())
-                elif linking.linkable_type == 'Politician':
-                    if not linking.linkable_object.as_dict() in politicians:
-                        politicians.append(linking.linkable_object.as_dict())
+            if linking.linkable_type == 'Party':
+                if not linking.linkable_object.as_dict() in parties:
+                    parties.append(linking.linkable_object.as_dict())
+            elif linking.linkable_type == 'Politician':
+                if not linking.linkable_object.as_dict() in politicians:
+                    politicians.append(linking.linkable_object.as_dict())
 
     return {
         'article_id': article.id,

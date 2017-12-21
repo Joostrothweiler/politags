@@ -4,36 +4,31 @@ from sqlalchemy import or_, func
 from app import db
 from app.models.models import Politician, Party, EntityLinking
 from app.modules.common.utils import string_similarity, parse_human_name
+from app.settings import NED_CUTOFF_THRESHOLD, NED_STRING_SIM_WEIGHT, NED_CONTEXT_SIM_WEIGHT
 
 
 def named_entity_disambiguation(document, entities):
-    for e in entities:
-        if e.label == 'PER':
-            politician_disambiguation(document, entities, e)
+    for entity in entities:
+        if entity.label == 'PER':
+            politician_disambiguation(document, entities, entity)
 
-        if e.label == 'ORG':
-            party_disambiguation(document, entities, e)
+        if entity.label == 'ORG':
+            party_disambiguation(document, entities, entity)
 
 
 def politician_disambiguation(document, entities, entity):
-    # Get candidates
     candidates = get_candidate_politicians(entity.text)
-    if candidates:
-        # For each candidate, compute mention_name_similarity
-        name_sim = politician_mention_name_similarity(entity.text, candidates)
-        # For each candidate, compute context_similarity
-        context_sim = politician_context_similarity(entity.text, document, entities, candidates)
-        # Return the average of the two
-        scored_candidates = average_sim(candidates, name_sim, context_sim)
-        politician, certainty = politician_optimal_candidate(scored_candidates)
-        # Store in database
-        store_entity_politician_linking(entity, politician, certainty)
-    else:
-        print('No candidates found for {}'.format(entity.text))
+
+    for candidate in candidates:
+        name_sim = politician_mention_name_similarity(entity.text, candidate)
+        context_sim = politician_context_similarity(document, entities, candidate)
+        weighted_sim = weighted_similarity_score(name_sim, context_sim)
+
+        if weighted_sim > NED_CUTOFF_THRESHOLD:
+            store_entity_politician_linking(entity, candidate, weighted_sim)
 
 
-def politician_context_similarity(mention, document, entities, candidates):
-    result = {}
+def politician_context_similarity(document, entities, candidate):
     # Fill document entries for comparison
     document_entries = []
     for entity in entities:
@@ -42,62 +37,44 @@ def politician_context_similarity(mention, document, entities, candidates):
         document_entries.append(party)
     document_entries.append(document['collection'])
     document_entries.append(document['location'])
-    document_string = ' '.join(document_entries)
 
-    for candidate_politician in candidates:
-        # Fill candidate data for comparison
-        candidate_politician_string = ' '.join([candidate_politician.first_name,
-                                                candidate_politician.last_name,
-                                                candidate_politician.party,
-                                                candidate_politician.role,
-                                                candidate_politician.municipality])
+    candidate_array = [candidate.title,
+                       candidate.first_name,
+                       candidate.last_name,
+                       candidate.party,
+                       candidate.role,
+                       candidate.municipality]
 
-        result[candidate_politician.id] = string_similarity(document_string, candidate_politician_string)
-    return result
-
-
-def politician_mention_name_similarity(mention, candidates):
-    result = {}
-    for candidate_politician in candidates:
-        result[candidate_politician.id] = string_similarity(candidate_politician.last_name, mention)
-
-    return result
+    sim = jaccard_distance(document_entries, candidate_array)
+    print('Similarity between "{}" and {} is {}'.format(document['parties'], candidate.full_name, sim))
+    return sim
 
 
-# TODO: Improve method to return a maximum number of candidates
+def jaccard_distance(list1, list2):
+    intersection = len(list(set(list1).intersection(list2)))
+    print(list(set(list1).intersection(list2)))
+    union = (len(list1) + len(list2)) - intersection
+    return float(intersection / union)
+
+
+def politician_mention_name_similarity(mention, candidate):
+    sim = string_similarity(candidate.last_name, mention)
+    # print('Similarity between "{}" and {} is {}'.format(mention, candidate.full_name, sim))
+    return sim
+
+
 def get_candidate_politicians(mention):
     human_name = parse_human_name(mention)
-    # Get based on last name match
-    candidates = Politician.query.filter(Politician.last_name.like(human_name['last_name'])).all()
-    candidate_count = Politician.query.filter(Politician.last_name.like(human_name['last_name'])).count()
-
+    candidates = Politician.query.filter(
+        or_(Politician.last_name == human_name['first_name'], Politician.last_name == human_name['last_name'])).all()
+    candidate_count = Politician.query.filter(
+        or_(Politician.last_name == human_name['first_name'], Politician.last_name == human_name['last_name'])).count()
     print('Human Name: {}, #candidates: {}'.format(human_name, candidate_count))
-
     return candidates
 
 
-def average_sim(candidates, name_sim, context_sim):
-    result = []
-    for candidate in candidates:
-        # TODO: We could improve the weight distribution based on the level of ambiguity stored in the database.
-        # High ambiguity -> focus on context, low ambiguity, focus on name.
-        result.append({
-            'id': candidate.id,
-            'score': 0.9 * name_sim[candidate.id] + 0.1 * context_sim[candidate.id]
-        })
-    return result
-
-
-def politician_optimal_candidate(scored_candidates):
-    max = 0
-    max_id = None
-
-    for candidate in scored_candidates:
-        if candidate['score'] > max:
-            max = candidate['score']
-            max_id = candidate['id']
-
-    return Politician.query.filter(Politician.id == max_id).first(), max
+def weighted_similarity_score(name_sim, context_sim):
+    return NED_STRING_SIM_WEIGHT * name_sim + NED_CONTEXT_SIM_WEIGHT * context_sim
 
 
 def store_entity_politician_linking(entity, politician, certainty):
@@ -126,12 +103,10 @@ def party_disambiguation(document, entities, entity):
                 max_party = candidate_party
 
         store_entity_party_linking(entity, max_party, max_sim)
-    else:
-        print('No candidate parties found for {}'.format(entity.text))
 
 
 def store_entity_party_linking(entity, party, certainty):
     linking = EntityLinking(certainty=certainty)
-    linking.linkable_object= party
+    linking.linkable_object = party
     entity.linkings.append(linking)
     db.session.add(entity)

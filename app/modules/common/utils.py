@@ -6,7 +6,7 @@ from nameparser.config import CONSTANTS
 
 CONSTANTS.titles.add('dhr', 'mw', 'drs', 'ing', 'ir', 'jhr', 'jkvr')
 CONSTANTS.suffix_acronyms.remove('bart')
-
+CONSTANTS.first_name_titles.remove('van', 'van der', 'van den')
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']

@@ -4,25 +4,25 @@
       "article_id": "0ccfc69dba4a64e3cf3a5fd1ca1faa0446a24843",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "van Dijk",
           "party": "",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Mooldijk",
           "party": "",
           "municipality": ""
@@ -33,25 +33,25 @@
       "article_id": "523a8da03b9a2aaf8c58151bbb865454a7ae5f3c",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "van Dijk",
           "party": "",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Mooldijk",
           "party": "",
           "municipality": ""
@@ -62,14 +62,14 @@
       "article_id": "3649112bd1931a737a1cd1d45aeb9473a83f6728",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "van Dijk",
           "party": "",
           "municipality": ""
@@ -87,14 +87,14 @@
       "article_id": "965188dceb406ef1172fb4ed9b797352cec61789",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "130017",
+          "system_id": 130017,
           "full_name": "Dhr J W M Coerwinkel",
           "party": "GroenLinks",
           "municipality": "Gemeente Berg en Dal"
@@ -105,20 +105,20 @@
       "article_id": "88a1894644110aa55fbe349e4e184d15926ba404",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Kees van Dijk (overleden)",
           "party": "CDA",
           "municipality": "Rotterdam"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Pieter van Geel",
           "party": "CDA",
           "municipality": ""
@@ -129,38 +129,38 @@
       "article_id": "5eb12077d5cf7aae822216c6d31dadbfde16024c",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Marijke",
           "party": "VVD",
           "municipality": "Boxmeer"
         },
         {
-          "system_id": "117899",
+          "system_id": 117899,
           "full_name": "Mw  J M Logtens-Hermsen",
           "party": "VVD",
           "municipality": "Boxmeer"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Holger Rodoe",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "126822",
+          "system_id": 126822,
           "full_name": "Mw J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Arie Kerkman",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
@@ -171,38 +171,38 @@
       "article_id": "54e6f0a8fab3bf89798b9aeea4362ed5805cf870",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Marijke",
           "party": "VVD",
           "municipality": "Boxmeer"
         },
         {
-          "system_id": "117899",
+          "system_id": 117899,
           "full_name": "Mw  J M Logtens-Hermsen",
           "party": "VVD",
           "municipality": "Boxmeer"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Holger Rodoe",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "126822",
+          "system_id": 126822,
           "full_name": "Mw  J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Arie Kerkman",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
@@ -213,20 +213,20 @@
       "article_id": "1c68eedd605427a73ceab520c2b3956bd4502c21",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "20265751",
+          "system_id": 20265751,
           "full_name": "Dhr  D Luyckx",
           "party": "PvdA",
           "municipality": "Gemeente Enkhuizen"
         },
         {
-          "system_id": "133260",
+          "system_id": 133260,
           "full_name": "Dhr  dr  N M van  Straalen",
           "party": "GroenLinks",
           "municipality": "Gemeente Edam-Volendam"
@@ -237,26 +237,26 @@
       "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
       ],
       "politicians": [
         {
-          "system_id": "126822",
+          "system_id": 126822,
           "full_name": "Mw  J A van Hulsteijn",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Arie Kerkman",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Holger Rodoe",
           "party": "VVD",
           "municipality": "Gemeente Gennep"
@@ -267,12 +267,12 @@
       "article_id": "a06a66edc3f491a67e9c7b35174494fd77374af9",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -284,57 +284,57 @@
       "article_id": "cf952d067b71bf6d8d4601f6b5b917fb0bdc9f15",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "name": "Hart voor Langedijk",
-          "abbreviation": "000"
+          "abbreviation": "999999999"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Nancy Kabalt",
           "party": "VVD",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Hersbach",
           "party": "CDA",
           "municipality": "Langedijk"
         },
         {
-          "system_id": "121340",
+          "system_id": 121340,
           "full_name": "Mw  M Swager",
           "party": "",
           "municipality": "Langedijk"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Irma Schrijver",
           "party": "GroenLinks",
           "municipality": "Langedijk"
@@ -345,31 +345,31 @@
       "article_id": "e9bf9cac6b4b5efd28e99eb4342c0dda00ab29f1",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Tiny Zandbergen",
           "party": "GroenLinks",
           "municipality": "Langedijk"
         },
         {
-          "system_id": "77947",
+          "system_id": 77947,
           "full_name": "Dhr  H de Graaf",
           "party": "VVD",
           "municipality": "Langedijk"
         },
         {
-          "system_id": "121340",
+          "system_id": 121340,
           "full_name": "Mw  M Swager",
           "party": "",
           "municipality": "Langedijk"
@@ -377,17 +377,17 @@
       ]
     },
     {
-      "article_id": "dea1bf18f602ec83e85960000993cb05002a3563",
+      "article_id": "dea1bf18f602ec83e85960`3cb05002a3563",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Kees Vendrik",
           "party": "GroenLinks",
           "municipality": ""
@@ -398,14 +398,14 @@
       "article_id": "5cdd23be1a0e46a1fa0e1cd692b6afb739420065",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Kees Vendrik",
           "party": "GroenLinks",
           "municipality": ""
@@ -416,26 +416,26 @@
       "article_id": "606f476f9347c3c6a41d8fa12cf654e62484f882",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Gemma Lago",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Jesse Klaver",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Diederick van de Walle",
           "party": "GroenLinks",
           "municipality": ""
@@ -446,122 +446,122 @@
       "article_id": "da9f16c8605c9e02858d0508f0c9e73d440ff32f",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
       ],
       "politicians": [
         {
-          "system_id": "120012",
+          "system_id": 120012,
           "full_name": "Dhr  B Vastenhoud",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Marlies van Beek",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "120005",
+          "system_id": 129999999995,
           "full_name": "Mw  J Hofman-Zuter",
           "party": "GroenLinks",
           "municipality": "Gemeente Leiderdorp"
         },
         {
-          "system_id": "74682",
+          "system_id": 74682,
           "full_name": "Mw  F Joester",
           "party": "GroenLinks",
           "municipality": "Gemeente Leiderdorp"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Ibrahima Bah",
           "party": "GroenLinks",
           "municipality": "Gemeente Leiderdorp"
         },
         {
-          "system_id": "125993",
+          "system_id": 125993,
           "full_name": "Dhr  L Maat",
           "party": "GroenLinks",
           "municipality": "Gemeente Wassenaar"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Tim Brouwer de Koning",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Aart Bolluijt",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Cor Zwart",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Sjaak  van Beek",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Kees Bos",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Bettie Heerma van Voss",
           "party": "",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Auke Hofman",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Vincent Kagie",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Marian Kathmann",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Jonathan Truijers",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Gerrit Vons",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Riny Vons",
           "party": "GroenLinks",
           "municipality": ""
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Bart van Zandwijk",
           "party": "GroenLinks",
           "municipality": ""
@@ -572,7 +572,7 @@
       "article_id": "f8327f1166f31eac018981e25375cb45281378a4",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -584,20 +584,20 @@
       "article_id": "de10b3524cfd214c0bfcc35d9a0892da6f611ed9",
       "parties": [
         {
-          "system_id": "999",
+          "system_id": 999,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
       ],
       "politicians": [
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "John Kerstens",
           "party": "PvdA",
           "municipality": "Aalten"
         },
         {
-          "system_id": "000",
+          "system_id": 999999999,
           "full_name": "Anna Lena Hedin",
           "party": "PvdA",
           "municipality": "Aalten"

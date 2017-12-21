@@ -106,7 +106,7 @@ def party_scorer(output_item_parties, eval_item_parties):
     recall_count = 0
 
     for ep in eval_item_parties:
-        if ep['system_id'] != "000":
+        if ep['system_id'] != 999999999:
             eval_count_simple += 1
 
     # Hoe veel die die heeft gevonden zijn correct (PRECISION)
