@@ -52,8 +52,6 @@ def process_evaluation_input(input):
     return output
 
 def evaluate_ned(output, eval_output):
-    res = 0
-
     party_scores = []
     politician_scores = []
 
@@ -75,6 +73,8 @@ def final_scorer(party_scores, politician_scores):
 
     politician_precision_count = 0
     politician_recall_count = 0
+    politician_output_count = 0
+    politician_eval_count = 0
 
     for i in party_scores:
         party_precision_count += i['precision_count']
@@ -82,8 +82,17 @@ def final_scorer(party_scores, politician_scores):
         party_output_count += i['output_count']
         party_eval_count += i['eval_count_simple']
 
-    print(party_precision_count / party_output_count)
-    print(party_recall_count / party_eval_count)
+    for i in politician_scores:
+        politician_precision_count += i['precision_count']
+        politician_recall_count += i['recall_count']
+        politician_output_count += i['output_count']
+        politician_eval_count += i['eval_count_simple']
+
+    print('Party Precision: {}'.format(party_precision_count / party_output_count))
+    print('Party Recall: {}'.format(party_recall_count / party_eval_count))
+
+    print('Politician Precision: {}'.format(politician_precision_count / politician_output_count))
+    print('Politician Recall: {}'.format(politician_recall_count / politician_eval_count))
 
 
 

@@ -61,7 +61,7 @@ def return_extracted_information(article):
 
     for entity in article.entities:
         for linking in entity.linkings:
-            if linking.certainty > 0.7:
+            if linking.certainty > 0.6:
                 if linking.linkable_type == 'Party':
                     if not linking.linkable_object.as_dict() in parties:
                         parties.append(linking.linkable_object.as_dict())
