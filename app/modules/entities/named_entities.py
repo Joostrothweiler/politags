@@ -38,15 +38,14 @@ def process_document(document):
     # Initialize only if nlp is not yet loaded.
     if nlp == None:
         init_nlp()
-
+    # Make sure the article is in the database.
     article = Article.query.filter(Article.id == document['id']).first()
     if not article:
         article = Article(id = document['id'])
         db.session.add(article)
         db.session.commit()
-        extract_information(article, document)
-    extract_information(article, document) # TODO: Remove line when not necessary for testing.
 
+    extract_information(article, document)
     return return_extracted_information(article)
 
 
@@ -63,11 +62,13 @@ def return_extracted_information(article):
 
     for entity in article.entities:
         for linking in entity.linkings:
-            if linking.certainty > 0.95:
+            if linking.certainty > 0.6:
                 if linking.linkable_type == 'Party':
-                    parties.append(linking.linkable_object.as_dict())
+                    if not linking.linkable_object.as_dict() in parties:
+                        parties.append(linking.linkable_object.as_dict())
                 elif linking.linkable_type == 'Politician':
-                    politicians.append(linking.linkable_object.as_dict())
+                    if not linking.linkable_object.as_dict() in politicians:
+                        politicians.append(linking.linkable_object.as_dict())
 
     return {
         'article_id': article.id,

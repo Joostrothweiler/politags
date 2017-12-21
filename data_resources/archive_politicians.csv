@@ -4,7 +4,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 32275,Dhr.,G.J.M.,van Rumund,,PvdA,Gemeente Wageningen,Burgemeester
 117252,Dhr.,H.C.,Wagner,,PvdA,Gemeente Albrandswaard,Burgemeester
 132754,Dhr. mr.,P.,Oskam,,CDA,Gemeente Capelle aan den IJssel,Burgemeester
-117302,Mw.,D.H.,Schmalschl&auml;ger,,GroenLinks,Gemeente Nuth,Burgemeester
+117302,Mw.,D.H.,Schmalschläger,,GroenLinks,Gemeente Nuth,Burgemeester
 94140,Dhr.,H.,Jager,,CDA,Gemeente Westerveld,Burgemeester
 133449,Dhr. drs.,G.G.J.,Rensen,,PvdA,Gemeente Brielle,Burgemeester
 83717,Dhr.,D.,Bijl,,VVD,Gemeente Purmerend,Burgemeester
@@ -36,7 +36,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 117494,Mw. drs.,A.E.H.,Baltus,,CDA,Gemeente Heemskerk,Burgemeester
 116452,Dhr.,V.J.H.,Molkenboer,,PvdA,Gemeente Woerden,Burgemeester
 133980,Mw.,M.H.M.R.,de Hoon-Veelenturf,,CDA,Gemeente Baarle-Nassau,Burgemeester
-97967,Dhr. Jhr.,M.A.,R&ouml;ell,,VVD,Gemeente Baarn,Burgemeester
+97967,Dhr. Jhr.,M.A.,Röell,,VVD,Gemeente Baarn,Burgemeester
 130660,Dhr.,A.J.,van Hedel,,VVD,Gemeente Brummen,Burgemeester
 132098,Dhr. mr.,M.,Slinkman,,CDA,Gemeente Berg en Dal,Burgemeester
 114334,Dhr.,J.R.A.,Nawijn,,VVD,Gemeente Hollands Kroon,Burgemeester
@@ -324,7 +324,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 128517,Dhr.,B.J.,van Bochove,,CDA,Gemeente Weesp,Burgemeester waarnemend
 133008,Dhr.,H.H.,de Vries,,CDA,Gemeente Neerijnen,Burgemeester waarnemend
 22328929,Dhr. mr.,H.C.R.M.,Wijkerslooth de Weerdesteijn,,VVD,Gemeente Cranendonck,Burgemeester waarnemend
-134495,Dhr.,M.A.,Fr&auml;nzel MSc,,D66,Gemeente Meierijstad,Burgemeester waarnemend
+134495,Dhr.,M.A.,Fränzel MSc,,D66,Gemeente Meierijstad,Burgemeester waarnemend
 83770,Dhr.,G.,Krol,,CDA,Gemeente Het Bildt,Burgemeester waarnemend
 115556,Dhr. drs.,P.M.M.,de Jonge,,PvdA,Gemeente Hoogezand-Sappemeer,Burgemeester waarnemend
 135627,Dhr.,A.B.,Blase,,PvdA,Gemeente Heerhugowaard,Burgemeester waarnemend
@@ -485,7 +485,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 127559,Dhr.,C.J.,Mettes,,CDA,Gemeente Zandvoort,Fractievoorzitter
 86058,Dhr.,W.O.,Paap,,Sociaal Zandvoort,Gemeente Zandvoort,Fractievoorzitter
 21585133,Dhr.,F.,Veldwisch,,Partij Veldwisch,Gemeente Zandvoort,Fractievoorzitter
-122255,Mw.,B.J.,G&ouml;ransson-van Kerkwijk,,VVD,Gemeente Zandvoort,Fractievoorzitter
+122255,Mw.,B.J.,Göransson-van Kerkwijk,,VVD,Gemeente Zandvoort,Fractievoorzitter
 21585139,Mw.,U.L.,Rietkerk-Gubbels,,PvdA,Gemeente Zandvoort,Fractievoorzitter
 135193,Mw.,A.M.,van der Veld-de Groot,,Gemeentebelangen Zandvoort,Gemeente Zandvoort,Fractievoorzitter
 131705,Dhr.,E.J.,Poster,,Ouderen Partij Zandvoort,Gemeente Zandvoort,Fractievoorzitter
@@ -656,8 +656,8 @@ id,title,first_name,last_name,suffix,party,municipality,role
 22070641,Dhr.,B.J.,Habers,,CDA,Gemeente Olst-Wijhe,Fractievoorzitter
 133049,Dhr.,B.,de Vries Robles,,D66,Gemeente Ommen,Fractievoorzitter
 22070650,Mw.,A.E.,Boerman,,PvdA,Gemeente Olst-Wijhe,Fractievoorzitter
-133213,Mw.,M.E.A.,R&ouml;del-Ouwens,,CDA,Gemeente Oldenzaal,Fractievoorzitter
-127763,Dhr.,S.J.A.,L&ouml;wik,,GroenLinks,Gemeente Oldenzaal,Fractievoorzitter
+133213,Mw.,M.E.A.,Rödel-Ouwens,,CDA,Gemeente Oldenzaal,Fractievoorzitter
+127763,Dhr.,S.J.A.,Löwik,,GroenLinks,Gemeente Oldenzaal,Fractievoorzitter
 135564,Mw.,S.J.M.,Doorenbos MSc,,GroenLinks,Gemeente Mook en Middelaar,Fractievoorzitter
 135342,Dhr.,E.J.,Ruitenberg,,ChristenUnie,Gemeente Oldebroek,Fractievoorzitter
 133214,Dhr.,L.T.,Lulofs,,PvdA,Gemeente Oldenzaal,Fractievoorzitter
@@ -714,7 +714,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 126410,Mw.,I.D.,Sijbenga-van den Outenaar,,Progressief Hollands Kroon,Gemeente Hollands Kroon,Fractievoorzitter
 89444,Dhr.,M.C.J.,Assink,,Progressief '96,Gemeente Haaren,Fractievoorzitter
 132989,Mw.,H.S.,de Groot,,GroenLinks,Gemeente Houten,Fractievoorzitter
-20268925,Mw.,S.,Journ&eacute;e-Schuiling,,VVD,Gemeente Bedum,Fractievoorzitter
+20268925,Mw.,S.,Journée-Schuiling,,VVD,Gemeente Bedum,Fractievoorzitter
 122799,Dhr.,T.J.M.G,Ummels,,D66,Gemeente Zaltbommel,Fractievoorzitter
 123448,Dhr.,J.W.,Zwagerman,,VVD,Gemeente Koggenland,Fractievoorzitter
 125618,Dhr.,T.,Stam,,ChristenUnie,Gemeente Alblasserdam,Fractievoorzitter
@@ -766,12 +766,12 @@ id,title,first_name,last_name,suffix,party,municipality,role
 128690,Dhr.,H.J.,Hoitink,,De Liberalen,Gemeente Bunnik,Fractievoorzitter
 127651,Dhr.,M.J.J.,Severijns,,VVD,Gemeente Maastricht,Fractievoorzitter
 117236,Dhr.,H.J.M.,Poppelier,,Trots,Gemeente Purmerend,Fractievoorzitter
-126939,Dhr.,S.,Krotj&eacute;,,PvdA,Gemeente Beverwijk,Fractievoorzitter
+126939,Dhr.,S.,Krotjé,,PvdA,Gemeente Beverwijk,Fractievoorzitter
 134348,Dhr.,F.,Demirkan,,Fractie Demirkan,Gemeente Hilversum,Fractievoorzitter
 131697,Dhr.,J.M.,van Baardwijk,,Lokaal Belang,Gemeente Waalwijk,Fractievoorzitter
 126441,Dhr. drs.,T.B.,Juk,,CDA,Gemeente Hattem,Fractievoorzitter
 21586114,Mw.,J.A.V.,Heisterkamp,,Team Meierijstad,Gemeente Meierijstad,Fractievoorzitter
-135546,Dhr.,R.,G&ouml;rg&uuml;l&uuml;,,Fractie G&ouml;rg&uuml;l&uuml;,Gemeente Ede,Fractievoorzitter
+135546,Dhr.,R.,Görgülü,,Fractie G&ouml;rg&uuml;l&uuml;,Gemeente Ede,Fractievoorzitter
 135545,Dhr.,A.B.I.M.,Vos de Wael,,Fractie Alexander Vos de Wael,Gemeente Ede,Fractievoorzitter
 21541915,Dhr.,H.,Buikema,,PvdA,Gemeente Ede,Fractievoorzitter
 83036,Dhr.,B.R.,van Druiten,,Burgerbelangen,Gemeente Ede,Fractievoorzitter
@@ -808,7 +808,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 89475,Mw.,M.A.M.,Chukwuemeka-Liefting,,ChristenUnie,Gemeente Harlingen,Fractievoorzitter
 128726,Dhr.,G.J.,de Vries,,VVD,Gemeente Harlingen,Fractievoorzitter
 20273954,Mw.,G.H.,Jolink,,VVD,Gemeente Brummen,Fractievoorzitter
-91607,Dhr.,W.C.,M&uuml;ller,,VVD,Gemeente Hellendoorn,Fractievoorzitter
+91607,Dhr.,W.C.,Müller,,VVD,Gemeente Hellendoorn,Fractievoorzitter
 130018,Dhr.,H.T.J.,Eikholt,,Groesbeekse Volkspartij,Gemeente Berg en Dal,Fractievoorzitter
 130017,Dhr.,J.W.M.,Coerwinkel,,GroenLinks,Gemeente Berg en Dal,Fractievoorzitter
 130021,Mw.,J.M.J.,Brouwer,,VOLG,Gemeente Berg en Dal,Fractievoorzitter
@@ -863,7 +863,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130852,Dhr.,G.,Zagt,,De Lokale Partij (DLP),Gemeente Wijdemeren,Fractievoorzitter
 128444,Dhr.,M.,Wolters,,Gezond verstand Haren,Gemeente Haren,Fractievoorzitter
 124954,Dhr.,G.D.,Hilhorst,,CDA,Gemeente Berkelland,Fractievoorzitter
-75057,Dhr.,R.,Schr&ouml;der,,VVD,Gemeente Waterland,Fractievoorzitter
+75057,Dhr.,R.,Schröder,,VVD,Gemeente Waterland,Fractievoorzitter
 128439,Dhr.,M.M.,de Rijk,,GroenLinks,Gemeente Nuth,Fractievoorzitter
 96387,Dhr.,R.M.,ten Boden,,Trilokaal,Gemeente Teylingen,Fractievoorzitter
 121855,Mw.,E.W.A.,Koek,,PvdA,Gemeente Teylingen,Fractievoorzitter
@@ -1350,9 +1350,9 @@ id,title,first_name,last_name,suffix,party,municipality,role
 127771,Dhr.,R.P.,Hendriks,,Liberaal Wormerland,Gemeente Wormerland,Fractievoorzitter
 127494,Mw.,M.C.,van der Meer,,Z&oacute;! Zoetermeer,Gemeente Zoetermeer,Fractievoorzitter
 20802718,Dhr.,A.H.,van Dorp,,ChristenUnie,Gemeente Krimpenerwaard,Fractievoorzitter
-22108943,Dhr.,R.W.M,B&ouml;hmer,,Progressief Landerd,Gemeente Landerd,Fractievoorzitter
+22108943,Dhr.,R.W.M,Böhmer,,Progressief Landerd,Gemeente Landerd,Fractievoorzitter
 133419,Dhr.,R.A.E.,Tijssen,,Burgerbelangen Bodegraven-Reeuwijk,Gemeente Bodegraven-Reeuwijk,Fractievoorzitter
-134610,Mw.,C.,B&ouml;lger-Schoenmakers,,Hart voor Blaricum,Gemeente Blaricum,Fractievoorzitter
+134610,Mw.,C.,Bölger-Schoenmakers,,Hart voor Blaricum,Gemeente Blaricum,Fractievoorzitter
 106870,Dhr.,R.,Smits,,GroenLinks,Gemeente Bodegraven-Reeuwijk,Fractievoorzitter
 106871,Mw.,L.,Hertogh,,PvdA,Gemeente Bodegraven-Reeuwijk,Fractievoorzitter
 122117,Mw.,H.T.W.,Boender,,VVD,Gemeente Blaricum,Fractievoorzitter
@@ -1521,7 +1521,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135525,Mw.,D.,de Jong,,AOV,Gemeente Vlaardingen,Fractievoorzitter
 116828,Mw.,V.E.M.,Kalf-Muller,,VVD,Gemeente Vlaardingen,Fractievoorzitter
 122732,Dhr.,F.,Hoogendijk,,ONS.Vlaardingen,Gemeente Vlaardingen,Fractievoorzitter
-73792,Dhr.,P.A.,Calj&eacute;,,D66,Gemeente Vlaardingen,Fractievoorzitter
+73792,Dhr.,P.A.,Caljé,,D66,Gemeente Vlaardingen,Fractievoorzitter
 135527,Dhr.,F.,Hoogervorst,,SP,Gemeente Vlaardingen,Fractievoorzitter
 132382,Mw. mr.,C.M.,Ridderbos-Hovingh,,PvdA,Gemeente Slochteren,Fractievoorzitter
 79968,Dhr.,F.,Bos,,CDA,Gemeente Slochteren,Fractievoorzitter
@@ -1537,7 +1537,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121470,Dhr.,H.L.,Witte,,Gemeentebelangen Groen Soest,Gemeente Soest,Fractievoorzitter
 115542,Dhr.,P.F.J.,Vriend,,Vereniging Seniorenpartij Schagen (VSPS),Gemeente Schagen,Fractievoorzitter
 128154,Mw.,Y.C.M.,Gastelaars,,Democraten Soest Natuurlijk,Gemeente Soest,Fractievoorzitter
-115538,Dhr.,J.Th.,Kr&ouml;ger,,Jong en sterker Schagen (JESS),Gemeente Schagen,Fractievoorzitter
+115538,Dhr.,J.Th.,Kröger,,Jong en sterker Schagen (JESS),Gemeente Schagen,Fractievoorzitter
 116518,Dhr.,J.,Boks,,Lokaal Anders Soest,Gemeente Soest,Fractievoorzitter
 128351,Dhr.,S.M.,Lensink,,CDA,Gemeente Schagen,Fractievoorzitter
 127660,Dhr.,J.,Jansen,,ChristenUnie,Gemeente Eindhoven,Fractievoorzitter
@@ -1670,7 +1670,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125716,Dhr.,L.P.D.,Hoek,,WIJ Lansingerland,Gemeente Lansingerland,Fractievoorzitter
 125714,Dhr.,E.J.,Neeleman,,Lijst Neeleman,Gemeente Lansingerland,Fractievoorzitter
 126246,Dhr.,M.,Muis,,D66,Gemeente Lansingerland,Fractievoorzitter
-125712,Mw.,I.,Citterbartov&aacute;,,GroenLinks,Gemeente Lansingerland,Fractievoorzitter
+125712,Mw.,I.,Citterbartová,,GroenLinks,Gemeente Lansingerland,Fractievoorzitter
 21651828,,W.,Tiekstra,,PvdA,Gemeente Delft,Fractievoorzitter
 122727,Dhr.,A.,Stegeman,,Gemeentebelangen,Gemeente Staphorst,Fractievoorzitter
 132886,Mw.,H.A.M.,Haarbosch-Toussaint,,Fractie Haarbosch,Gemeente Landgraaf,Fractievoorzitter
@@ -1721,7 +1721,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135482,Dhr.,J.W.A.M.,Reijers,,Dorpslijst Afferden,Gemeente Druten,Fractievoorzitter
 120939,Dhr.,G.W.J.,de Wildt,,Dorpslijst Horssen,Gemeente Druten,Fractievoorzitter
 131022,Dhr.,W.T.J.,Cornelissen,,Welzijn Druten,Gemeente Druten,Fractievoorzitter
-135483,Dhr.,M.,Enk&uuml;r,,Dorpslijst Puiflijk/Druten-Zuid,Gemeente Druten,Fractievoorzitter
+135483,Dhr.,M.,Enkür,,Dorpslijst Puiflijk/Druten-Zuid,Gemeente Druten,Fractievoorzitter
 132308,Dhr.,G.,Assorgia,,Beter voor Den Helder,Gemeente Den Helder,Fractievoorzitter
 131666,Dhr.,J.,Mellies,,Fractie Mellies,Gemeente Stadskanaal,Fractievoorzitter
 122001,Mw.,M.P.H.,de Graaff-Nijssen,,CDA,Gemeente Diemen,Fractievoorzitter
@@ -1742,7 +1742,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 22469681,Dhr.,K.,Kuipers,,GroenLinks,Gemeente Tynaarlo,Fractievoorzitter
 128283,Dhr.,F.A.J.,Smulders,,Trots Liberaal Land van Cuijk,Gemeente Grave,Fractievoorzitter
 93982,Dhr.,H.D.J.,Carrette,,Ons Belang,Gemeente Schiermonnikoog,Fractievoorzitter
-132363,Dhr.,M.G.P.,Oehlenschl&auml;er,,D66,Gemeente Nieuwkoop,Fractievoorzitter
+132363,Dhr.,M.G.P.,Oehlenschläer,,D66,Gemeente Nieuwkoop,Fractievoorzitter
 118678,Mw.,M.J.G.,Eeken-Hermans,,PvdA,Gemeente Grootegast,Fractievoorzitter
 132957,Dhr.,J.A.C.,Pijnen,,CDA,Gemeente Woensdrecht,Fractievoorzitter
 120946,Dhr.,W,van Hunnik,,Gemeentebelangen,Gemeente Opmeer,Fractievoorzitter
@@ -1955,7 +1955,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121704,Dhr.,M,Chahim,,PvdA,Gemeente Helmond,Fractievoorzitter
 121706,Dhr.,FJ,Mol,,Senioren2013,Gemeente Helmond,Fractievoorzitter
 125631,Dhr.,P.,Moens,,SGP,Gemeente Middelburg,Fractievoorzitter
-133721,Mw.,L.W.J.,Mar&aacute;czi,,SP,Gemeente Helmond,Fractievoorzitter
+133721,Mw.,L.W.J.,Maráczi,,SP,Gemeente Helmond,Fractievoorzitter
 129574,Dhr.,C.H.M.,van der Burgt,,VVD,Gemeente Helmond,Fractievoorzitter
 130493,Dhr.,B.J.,Tebrugge,,ChristenUnie/SGP,Gemeente Nissewaard,Fractievoorzitter
 96351,Dhr.,L.A.,van der Pol,,ChristenUnie,Gemeente S&uacute;dwest Frysl&acirc;n,Fractievoorzitter
@@ -2029,7 +2029,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123017,Mw.,J.A.,Ringelberg,,VVD,Gemeente Hillegom,Fractievoorzitter
 83902,Dhr.,F.J.M.,Evers,,B.B.H. (Bevolkingsbelangen Hillegom),Gemeente Hillegom,Fractievoorzitter
 131282,Dhr.,D.,van Egmond,,GroenLinks,Gemeente Hillegom,Fractievoorzitter
-123015,Mw.,A.,Heemskerk-Rekk&eacute;,,Bloeiend Hillegom,Gemeente Hillegom,Fractievoorzitter
+123015,Mw.,A.,Heemskerk-Rekké,,Bloeiend Hillegom,Gemeente Hillegom,Fractievoorzitter
 122995,Dhr.,A.,van der Giessen,,VVD,Gemeente Vlissingen,Fractievoorzitter
 85153,Mw.,M.,Snaas,,GroenLinks,Gemeente Duiven,Fractievoorzitter
 74881,Dhr.,P.W.,Duguesnoy,,SP,Gemeente Zeist,Fractievoorzitter
@@ -2108,7 +2108,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 113597,Dhr.,W.J.M.,Kraanen,,CDA,Gemeente Vught,Fractievoorzitter
 118762,Dhr.,T.A.,Waterlander,,VVD,Gemeente Heerenveen,Fractievoorzitter
 135167,Dhr.,F.J.C.M.,van Aarle,,Lokaal Tilburg,Gemeente Tilburg,Fractievoorzitter
-135168,Dhr.,Y.,&Ccedil;elik,,PvdA,Gemeente Tilburg,Fractievoorzitter
+135168,Dhr.,Y.,Çelik,,PvdA,Gemeente Tilburg,Fractievoorzitter
 119864,Dhr.,J.P.H.,van Beurden,,OPA,Gemeente Tilburg,Fractievoorzitter
 21651042,Dhr.,A.J.M.,van Dijk,,VVD,Gemeente Tilburg,Fractievoorzitter
 94886,Dhr.,M.A.F.H.,van den Hoven,,CDA,Gemeente Tilburg,Fractievoorzitter
@@ -2146,7 +2146,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 127118,Mw.,B.M.,de Reijke,,VVD,Gemeente Ouder-Amstel,Fractievoorzitter
 119691,Mw.,L.D.,Muusses,,GroenLinks,Gemeente Ouder-Amstel,Fractievoorzitter
 119692,Dhr.,A.,Blom,,Natuurlijk Belang,Gemeente Ouder-Amstel,Fractievoorzitter
-126594,Dhr.,L.,de Vr&eacute;,,CDA,Gemeente Ouder-Amstel,Fractievoorzitter
+126594,Dhr.,L.,de Vré,,CDA,Gemeente Ouder-Amstel,Fractievoorzitter
 75936,Mw.,P.D.A.M.,Koek-Baks,,Ouder-Amstel Anders,Gemeente Ouder-Amstel,Fractievoorzitter
 87502,Dhr.,P.H.,Holsappel,,ChristenUnie,Gemeente Marum,Fractievoorzitter
 126821,Dhr.,L.W.L.,Brouwers,,PvdA,Gemeente Gennep,Fractievoorzitter
@@ -2203,9 +2203,9 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123309,Dhr.,R.J.,de Klein,,PvdA,Gemeente Weststellingwerf,Fractievoorzitter
 135526,Mw.,M.,de Groot,,Fractie de Groot,Gemeente Vlaardingen,Fractievoorzitter
 120739,Dhr.,H.,Sijtsma,,CDA,Gemeente Harlingen,Fractievoorzitter
-76068,Mw.,L.,Efd&eacute;-Kleefstra,,VVD,Gemeente Tytsjerksteradiel,Fractievoorzitter
+76068,Mw.,L.,Efdé-Kleefstra,,VVD,Gemeente Tytsjerksteradiel,Fractievoorzitter
 135123,Dhr.,J.P.,Verhoef,,D66,Gemeente Den Helder,Fractievoorzitter
-122805,Dhr.,R.A.K.H.,Kr&auml;mer,,PvdA,Gemeente Zederik,Fractievoorzitter
+122805,Dhr.,R.A.K.H.,Krämer,,PvdA,Gemeente Zederik,Fractievoorzitter
 130464,Dhr. mr.,J.H.T.,van Orsouw,,Beter Oss,Gemeente Oss,Fractievoorzitter
 131347,Dhr.,M.,Ploeger,,Kritisch Menterwolde,Gemeente Menterwolde,Fractievoorzitter
 121842,Mw.,M.E.,Bos-Carabain,,VVD,Gemeente Menterwolde,Fractievoorzitter
@@ -2225,7 +2225,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 129885,Dhr.,C.,Braak,,GroenLinks,Gemeente Alkmaar,Fractievoorzitter
 128100,Dhr.,F.G.A.,Huijink,,PvdA,Gemeente Nuenen c.a.,Fractievoorzitter
 133333,Dhr.,M.,Memis,,SP,Gemeente Eindhoven,Fractievoorzitter
-97360,Mw.,B.,ten Damme-Boev&eacute;,,Progressief Sociaal Apeldoorn,Gemeente Apeldoorn,Fractievoorzitter
+97360,Mw.,B.,ten Damme-Boevé,,Progressief Sociaal Apeldoorn,Gemeente Apeldoorn,Fractievoorzitter
 127681,Mw.,E.A.,Schmahl,,VVD,Gemeente Apeldoorn,Fractievoorzitter
 86419,Dhr.,R.,Veen,,ChristenUnie,Gemeente Apeldoorn,Fractievoorzitter
 86426,Dhr.,H.,van den Berge,,SGP,Gemeente Apeldoorn,Fractievoorzitter
@@ -2269,11 +2269,11 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133946,Mw.,M.,Wessels,,PvdA,Gemeente Almelo,Fractievoorzitter
 132548,Dhr. mr.,J.B.W.,Wiertz,,D66,Gemeente Almelo,Fractievoorzitter
 131935,Dhr. prof. dr. ir.,W.B.,Teeuw,,ChristenUnie,Gemeente Almelo,Fractievoorzitter
-86292,Dhr.,U.,&Ccedil;ete,,Lijst &Ccedil;ete,Gemeente Almelo,Fractievoorzitter
+86292,Dhr.,U.,Çete,,Lijst &Ccedil;ete,Gemeente Almelo,Fractievoorzitter
 86290,Dhr.,H.,Buitenweg,,GroenLinks,Gemeente Almelo,Fractievoorzitter
 131936,Dhr. drs.,J.,Pauwels,,VVD,Gemeente Almelo,Fractievoorzitter
 133944,Mw.,L.,Bolhuis,,Minimapartij,Gemeente Almelo,Fractievoorzitter
-86291,Dhr.,A.G.P.,H&uuml;mmels,,Leefbaar Almelo,Gemeente Almelo,Fractievoorzitter
+86291,Dhr.,A.G.P.,Hümmels,,Leefbaar Almelo,Gemeente Almelo,Fractievoorzitter
 133942,Dhr.,F.J.,Gerritsen,,Democraten.Nu,Gemeente Almelo,Fractievoorzitter
 134437,Mw.,C.J.,Blom-de Ruiter,,ChristenUnie,Gemeente Alphen aan den Rijn,Fractievoorzitter
 133078,Dhr.,A.A.L.,Eversteijn,,ONS Voorschoten,Gemeente Voorschoten,Fractievoorzitter
@@ -2290,7 +2290,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 126429,Dhr.,G.H.,Nobel,,PvdA-GroenLinks,Gemeente Voorst,Fractievoorzitter
 21585711,Mw.,K.J.,Walters-Vos,,Hart voor Hilversum,Gemeente Hilversum,Fractievoorzitter
 127665,Dhr.,A.J.A.,Rennenberg,,OuderenApp&egrave;l,Gemeente Eindhoven,Fractievoorzitter
-134092,Dhr.,P.L.M.,Manni&euml;n,,Combinatie95,Gemeente Boxtel,Fractievoorzitter
+134092,Dhr.,P.L.M.,Manniën,,Combinatie95,Gemeente Boxtel,Fractievoorzitter
 133644,Dhr.,M.C.,Buising,,GBA,Gemeente Achtkarspelen,Fractievoorzitter
 122208,Dhr.,A.G.P.,Heijstek,,HAC,Gemeente Aalsmeer,Fractievoorzitter
 124905,Dhr.,B.,Leemhuis,,GroenLinks,Gemeente Groningen,Fractievoorzitter
@@ -2348,7 +2348,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 21293489,Dhr.,J.C.,Veltkamp,,Fractie Veldkamp,Gemeente Doetinchem,Fractievoorzitter
 22421022,Dhr.,J.T.,Westerdiep,,GroenLinks,Gemeente Doetinchem,Fractievoorzitter
 132568,Dhr.,A.J.,Verhoeven,,VVD,Gemeente Doetinchem,Fractievoorzitter
-22421028,Dhr.,H.L.G.,Mo&iuml;ze de Chateleux,,Lokaal Belang Doetinchem,Gemeente Doetinchem,Fractievoorzitter
+22421028,Dhr.,H.L.G.,Moïze de Chateleux,,Lokaal Belang Doetinchem,Gemeente Doetinchem,Fractievoorzitter
 132356,Dhr.,E.,Venema,,Duurzaam Doetinchem,Gemeente Doetinchem,Fractievoorzitter
 132177,Dhr.,M.E.,de Jong,,SGP,Gemeente Doetinchem,Fractievoorzitter
 130738,Mw.,P.,Rijsdijk-Mudde,,Strijens Belang,Gemeente Strijen,Fractievoorzitter
@@ -2392,7 +2392,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125564,Mw.,S.A.,Andeweg,,D66,Gemeente Arnhem,Fractievoorzitter
 120649,Dhr. dr.,K.,Bal,,Verenigd Arnhem,Gemeente Arnhem,Fractievoorzitter
 134116,Dhr.,J.,Elfrink,,SP,Gemeente Arnhem,Fractievoorzitter
-84706,Dhr.,L.J.J.H.,Comb&eacute;e,,VVD,Gemeente Arnhem,Fractievoorzitter
+84706,Dhr.,L.J.J.H.,Combée,,VVD,Gemeente Arnhem,Fractievoorzitter
 120646,Mw.,C.C.,Bouwkamp,,GroenLinks,Gemeente Arnhem,Fractievoorzitter
 84705,Mw.,M.,Louwers,,PvdA,Gemeente Arnhem,Fractievoorzitter
 134270,Mw.,L.R.,Manders,,Arnhem Centraal,Gemeente Arnhem,Fractievoorzitter
@@ -2480,7 +2480,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 134143,Mw.,L.,Sonneveldt,,Sociaal Tiel,Gemeente Tiel,Fractievoorzitter
 112764,Mw.,J.D.,Stoeten-Flach,,ChristenUnie,Gemeente Tiel,Fractievoorzitter
 133273,Mw.,I.,Joustra,,Pro Tiel,Gemeente Tiel,Fractievoorzitter
-122181,Mw.,A,&Ouml;nder,,GroenLinks,Gemeente Tiel,Fractievoorzitter
+122181,Mw.,A,Önder,,GroenLinks,Gemeente Tiel,Fractievoorzitter
 92739,Dhr.,T.,Zuidema,,D66,Gemeente Tiel,Fractievoorzitter
 128120,Dhr.,N.E.,Gradisen,,PvdA,Gemeente Tiel,Fractievoorzitter
 134142,Mw.,E,Rooders-van Geldermalsen,,Onafhankelijke Democraten 16,Gemeente Tiel,Fractievoorzitter
@@ -2678,7 +2678,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 82669,Dhr.,J.C.L.M.,van der Lubbe,,PvdA,Gemeente Menameradiel,Fractievoorzitter
 82668,Dhr.,J,Harms,,GroenLinks,Gemeente Menameradiel,Fractievoorzitter
 132878,Dhr.,P.,Drost,,Gemeentebelangen,Gemeente Menameradiel,Fractievoorzitter
-125997,Dhr.,A,Magr&eacute;,,VVD,Gemeente Menameradiel,Fractievoorzitter
+125997,Dhr.,A,Magré,,VVD,Gemeente Menameradiel,Fractievoorzitter
 83128,Dhr.,E.J.M.,Bolders,,VVD,Gemeente Woensdrecht,Fractievoorzitter
 126163,Dhr.,H.W.G.M.,Vreman,,GBO,Gemeente Overbetuwe,Fractievoorzitter
 128094,Mw.,R.,Herder,,Leefbaar Diemen,Gemeente Diemen,Fractievoorzitter
@@ -2709,7 +2709,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123362,Mw.,E.M.,van Esch,,Partij voor de Dieren,Gemeente Utrecht,Fractievoorzitter
 20910717,Dhr.,A.M.,Hopman,,D66,Gemeente Heiloo,Fractievoorzitter
 124338,Mw.,E.L.S.,van Wetten,,D66,Gemeente Korendijk,Fractievoorzitter
-122876,Dhr. drs.,L.,de la Comb&eacute;,,PvdA,Gemeente Amersfoort,Fractievoorzitter
+122876,Dhr. drs.,L.,de la Combé,,PvdA,Gemeente Amersfoort,Fractievoorzitter
 125346,Dhr.,R.,Bouwman,,D66,Gemeente Sint-Michielsgestel,Fractievoorzitter
 131573,Dhr.,G.J.,Boels,,CDA,Gemeente Stadskanaal,Fractievoorzitter
 21650671,Dhr. dr.,H.,Luitjes,,Wij Putten,Gemeente Putten,Fractievoorzitter
@@ -2851,7 +2851,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 128025,Dhr.,C.W.A.,Achten,,D66,Gemeente Roermond,Fractievoorzitter
 133640,Mw.,H.W.A.,Vos,,D66,Gemeente Rucphen,Fractievoorzitter
 128029,Dhr.,L.W.M.,Coenen,,Stadspartij Roermond,Gemeente Roermond,Fractievoorzitter
-111270,Mw.,F.,Fr&auml;ser,,D66/GroenLinks,Gemeente Ridderkerk,Fractievoorzitter
+111270,Mw.,F.,Fräser,,D66/GroenLinks,Gemeente Ridderkerk,Fractievoorzitter
 20664991,Dhr.,J.,Ipskamp,,Groep Ipskamp,Gemeente Ridderkerk,Fractievoorzitter
 130359,Dhr.,R.M.,Kooijman,,ChristenUnie,Gemeente Ridderkerk,Fractievoorzitter
 83123,Dhr.,L.,van der Spoel,,VVD,Gemeente Ridderkerk,Fractievoorzitter
@@ -3011,8 +3011,8 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130533,Mw.,Y.T.,Nijhof-Sander,,CDA,Gemeente Hof van Twente,Fractievoorzitter
 20958720,Dhr. drs.,R.,Post,,PvdA,Gemeente Utrecht,Fractievoorzitter
 132961,Dhr.,S.W.,van Lierop,,plan!,Gemeente Helmond,Fractievoorzitter
-130087,Mw.,E.H.H.,Gremm&eacute;e,,VVD,Gemeente Waalre,Fractievoorzitter
-73311,Dhr.,R.,Par&eacute;,,GroenLinks,Gemeente Waalre,Fractievoorzitter
+130087,Mw.,E.H.H.,Gremmée,,VVD,Gemeente Waalre,Fractievoorzitter
+73311,Dhr.,R.,Paré,,GroenLinks,Gemeente Waalre,Fractievoorzitter
 127081,Dhr.,F.,Hartmeijer,,Zwijndrechtse Plus Partij,Gemeente Zwijndrecht,Fractievoorzitter
 118310,Mw.,B.M.,Rijnen-Faber,,PvdA,Gemeente Etten-Leur,Fractievoorzitter
 122423,Dhr.,A.,Doelwijt,,PvdA,Gemeente Veenendaal,Fractievoorzitter
@@ -3022,7 +3022,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130789,Mw.,C.A.J.,de Regt-Taks,,Fractie de Regt,Gemeente Etten-Leur,Fractievoorzitter
 98697,Dhr.,L.A.G.,Roks,,Leefbaar Etten-Leur,Gemeente Etten-Leur,Fractievoorzitter
 93054,Dhr.,C.S.,Oskam,,GroenLinks,Gemeente Veenendaal,Fractievoorzitter
-134884,Dhr.,G.,&Ccedil;oban,,DENK,Gemeente Veenendaal,Fractievoorzitter
+134884,Dhr.,G.,Çoban,,DENK,Gemeente Veenendaal,Fractievoorzitter
 88585,Mw.,C.C.A.M.,Boeren-Tak,,Ons Etten-Leur,Gemeente Etten-Leur,Fractievoorzitter
 122422,Dhr.,M.,Beek,,ProVeenendaal,Gemeente Veenendaal,Fractievoorzitter
 135190,Mw.,M.,Jansen,,Lokaal Veenendaal,Gemeente Veenendaal,Fractievoorzitter
@@ -3126,7 +3126,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130435,Dhr.,M.,Okcuoglu,,Groep Okcuoglu,Gemeente Den Haag,Fractievoorzitter
 120466,Dhr.,P.A.,Grinwis,,ChristenUnie/SGP,Gemeente Den Haag,Fractievoorzitter
 22021114,Mw.,H.,Drost,,SP,Gemeente Den Haag,Fractievoorzitter
-83147,Dhr.,H.,K&uuml;&ccedil;&uuml;k,,Islam Democraten,Gemeente Den Haag,Fractievoorzitter
+83147,Dhr.,H.,Küçük,,Islam Democraten,Gemeente Den Haag,Fractievoorzitter
 128056,Mw.,D.A.,Koster,,CDA,Gemeente Den Haag,Fractievoorzitter
 20650600,,F.,de Graaf,,VVD,Gemeente Den Haag,Fractievoorzitter
 120469,Dhr.,J.C.,van der Helm,,Groep Van der Helm,Gemeente Den Haag,Fractievoorzitter
@@ -3191,7 +3191,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135578,Dhr.,A.F.E.,Pieko,,VenLokaal,Gemeente Venlo,Fractievoorzitter
 125081,Dhr.,A.H.J.,Heerschop,,SP,Gemeente Venlo,Fractievoorzitter
 128178,Dhr.,R.,Vogelzang,,PvdA,Gemeente Opsterland,Fractievoorzitter
-125079,Dhr.,F.P.M.,Schatorj&eacute;,,Lokale Democraten,Gemeente Venlo,Fractievoorzitter
+125079,Dhr.,F.P.M.,Schatorjé,,Lokale Democraten,Gemeente Venlo,Fractievoorzitter
 132107,Dhr.,E.,Boom,,PvdA,Gemeente Venlo,Fractievoorzitter
 20263639,Dhr.,J.,van der Werf,,Plaatselijke Partij,Gemeente Opsterland,Fractievoorzitter
 128176,Dhr.,J.J.,Sieswerda,,OpsterLanders,Gemeente Opsterland,Fractievoorzitter
@@ -3270,7 +3270,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133135,Mw.,C.,Teunissen,,Partij voor de Dieren,Gemeente Den Haag,Fractievoorzitter
 124445,Mw.,A.P.,van der Have,,Heemsteeds Burger Belang,Gemeente Heemstede,Fractievoorzitter
 123419,Dhr.,A.,Visser,,VVD,Gemeente Giessenlanden,Fractievoorzitter
-133306,Mw. mr.,A.C.,Spekl&eacute;-Hooghart,,VVD,Gemeente Oisterwijk,Fractievoorzitter
+133306,Mw. mr.,A.C.,Speklé-Hooghart,,VVD,Gemeente Oisterwijk,Fractievoorzitter
 82746,Dhr.,G.H.M.,Heijne,,Gemeentebelangen,Gemeente Vlagtwedde,Fractievoorzitter
 133512,Mw.,J.,van Borrendam,,GroenLinks,Gemeente Lochem,Fractievoorzitter
 118291,Dhr.,D.F.W.,van Impe,,GroenLinks,Gemeente Loppersum,Fractievoorzitter
@@ -3694,7 +3694,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130162,Dhr.,W.,Struijk,,PvdA,Gemeente Nissewaard,Raadslid
 75392,Dhr.,G.J.D.,van Zetten,,Gemeentebelangen,Gemeente Buren,Raadslid
 80659,Mw.,M.,Jeronimus-Kok,,PvdA,Gemeente Brummen,Raadslid
-80656,Dhr.,I.,Tun&ccedil;,,PvdA,Gemeente Brummen,Raadslid
+80656,Dhr.,I.,Tunç,,PvdA,Gemeente Brummen,Raadslid
 133515,Dhr.,R.,Zagers,,VVD,Gemeente Breda,Raadslid
 80502,Dhr.,J.J.,Tap,,Kernachtig Wijchen,Gemeente Wijchen,Raadslid
 122478,Dhr.,J.J.H.,Bruijns,,CDA,Gemeente Breda,Raadslid
@@ -3898,7 +3898,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 32306,Mw.,M.,Maijer,,PvdA,Gemeente Wageningen,Raadslid
 119988,Dhr.,J.G.M.,Verbrugge,,OPA,Gemeente Borsele,Raadslid
 123493,Dhr.,M.,Miner,,GroenLinks,Gemeente Weesp,Raadslid
-79608,Dhr.,H.,Boev&eacute;,,Gemeentebelangen,Gemeente Woudrichem,Raadslid
+79608,Dhr.,H.,Boevé,,Gemeentebelangen,Gemeente Woudrichem,Raadslid
 123270,Dhr.,M.,Douma,,Lokaal Belang,Gemeente Brummen,Raadslid
 123804,Mw.,A.,Koc,,CDA,Gemeente Enschede,Raadslid
 120111,Dhr. drs.,E.J.,van Tellingen,,Voor Neerijnen,Gemeente Neerijnen,Raadslid
@@ -3958,7 +3958,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121227,Dhr.,K.,Kolk,,SGP,Gemeente Zwartewaterland,Raadslid
 91593,Dhr.,M.,Slingerland,,SGP,Gemeente Zwartewaterland,Raadslid
 122261,Mw.,A.M.,van der Veld-de Groot,,Gemeentebelangen Zandvoort,Gemeente Zandvoort,Raadslid
-122268,Mw.,B.J.,G&ouml;ransson-van Kerkwijk,,VVD,Gemeente Zandvoort,Raadslid
+122268,Mw.,B.J.,Göransson-van Kerkwijk,,VVD,Gemeente Zandvoort,Raadslid
 112231,Mw.,M.J.C.,Bosma-van Wieren,,CDA,Gemeente Zwartewaterland,Raadslid
 129170,Mw.,N.P.L.,van der Plas,,D66,Gemeente Zandvoort,Raadslid
 131954,Dhr.,L,Steegman,,Ouderen Partij Zandvoort,Gemeente Zandvoort,Raadslid
@@ -4066,12 +4066,12 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135536,Dhr. ing.,R.L.A.T.,Zincken,,Juist495,Gemeente Weert,Raadslid
 122613,Dhr.,P.J.H.,Sijben,,CDA,Gemeente Weert,Raadslid
 122616,Dhr.,J.H.F.,Vossen,,D66,Gemeente Weert,Raadslid
-122628,Dhr.,F.,Y&uuml;cel,,Weert Lokaal,Gemeente Weert,Raadslid
+122628,Dhr.,F.,Yücel,,Weert Lokaal,Gemeente Weert,Raadslid
 85968,Dhr. drs.,W.J.,Manders,,VVD,Gemeente Boekel,Raadslid
 21713209,Dhr.,H.,Wever,,D66,Gemeente Pijnacker-Nootdorp,Raadslid
 127500,Mw.,B.M.,van Wegen,,Lijst Hilbrand Nawijn,Gemeente Zoetermeer,Raadslid
 120362,Dhr.,A.,van der Vlies,,ChristenUnie,Gemeente Best,Raadslid
-122632,Dhr.,P.A.M.,K&uuml;sters,,Weert Lokaal,Gemeente Weert,Raadslid
+122632,Dhr.,P.A.M.,Küsters,,Weert Lokaal,Gemeente Weert,Raadslid
 128104,Dhr.,J.B.M.,Pijs,,Lijst Pijs,Gemeente Nuenen c.a.,Raadslid
 75390,Mw.,A.,van Zijl-Hoek,,D66,Gemeente Buren,Raadslid
 119769,Mw. drs.,J.C.H.,Zwart-van Kessel,,VVD,Gemeente Buren,Raadslid
@@ -4209,7 +4209,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 98066,Dhr.,P.W.,Mosch,,GemeenteBelangen,Gemeente Medemblik,Raadslid
 124698,Dhr.,G.,Mos,,D66,Gemeente Medemblik,Raadslid
 23328,Dhr.,M.A.,Raat,,VVD,Gemeente Medemblik,Raadslid
-134997,Mw.,&Uuml;.,&Ouml;g&uuml;t,,Team Meierijstad,Gemeente Meierijstad,Raadslid
+134997,Mw.,&Uuml;.,Ögüt,,Team Meierijstad,Gemeente Meierijstad,Raadslid
 123300,Mw.,G.J.M.,Esselink-Mijnen,,D66,Gemeente Montferland,Raadslid
 123297,Dhr.,J.W.G.,Menting,,CDA,Gemeente Montferland,Raadslid
 98071,Dhr.,B.H.,de Jong,,PvdA,Gemeente Medemblik,Raadslid
@@ -4238,7 +4238,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 132526,Dhr.,J.,Sundaram,,D66,Gemeente Enschede,Raadslid
 125900,Dhr.,C.J.,Takken,,EVB,Gemeente Barendrecht,Raadslid
 121035,Dhr.,P.,Groot,,BAMM,Gemeente Medemblik,Raadslid
-122618,Mw.,M.,Za&acirc;boul,,PvdA,Gemeente Weert,Raadslid
+122618,Mw.,M.,Zaâboul,,PvdA,Gemeente Weert,Raadslid
 76414,Mw.,M.J.,Bras,,GroenLinks,Gemeente Beverwijk,Raadslid
 73105,Dhr.,P.M.,Wiersinga,,Nieuwe Lijn,Gemeente Epe,Raadslid
 133211,Dhr.,S.G.,Ferraro,,VVD,Gemeente Beverwijk,Raadslid
@@ -4356,7 +4356,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133707,Dhr.,A.,van Lune,,PvdA,Gemeente Maastricht,Raadslid
 85289,Dhr.,H.W.M.,Jongen,,D66,Gemeente Maastricht,Raadslid
 123862,Dhr.,H.,Passenier,,GroenLinks,Gemeente Maastricht,Raadslid
-21970171,Dhr.,P.M.H.,Br&uuml;ll,,CDA,Gemeente Maastricht,Raadslid
+21970171,Dhr.,P.M.H.,Brüll,,CDA,Gemeente Maastricht,Raadslid
 122403,Mw.,L.A.H.,van Ham,,PvdA,Gemeente Maastricht,Raadslid
 86027,Dhr.,E.A.,Sabel,,Senioren Partij Maastricht,Gemeente Maastricht,Raadslid
 122058,Mw. drs.,M.,Korsten,,GroenLinks,Gemeente Maastricht,Raadslid
@@ -4384,7 +4384,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135260,Mw.,C.,Zaal - van der Steen,,CDA,Gemeente Woudrichem,Raadslid
 81392,Dhr. drs.,E.,Jongstra,,FNP,Gemeente Ferwerderadiel,Raadslid
 84144,Dhr.,M.,van der Plaat,,D66,Gemeente Alblasserdam,Raadslid
-82055,Dhr.,A.M.J.,Koll&eacute;e,,CDA,Gemeente Nuth,Raadslid
+82055,Dhr.,A.M.J.,Kollée,,CDA,Gemeente Nuth,Raadslid
 120359,Mw.,V.J.H.M.,Zeeman,,Best Open,Gemeente Best,Raadslid
 20895412,Dhr.,M.J.H.,Wouters,,D66,Gemeente Wijdemeren,Raadslid
 21004003,Dhr.,M.,Gnodde,,D66,Gemeente Wijk bij Duurstede,Raadslid
@@ -4400,13 +4400,13 @@ id,title,first_name,last_name,suffix,party,municipality,role
 32393,Dhr.,M.,Yildirim,,Werknemers Groepering,Gemeente Oldenzaal,Raadslid
 133231,Dhr.,H.J.M.,Maartens,,CDA,Gemeente Oldenzaal,Raadslid
 63128,Dhr.,A.H.M.,Schukking,,VVD,Gemeente Oldenzaal,Raadslid
-112638,Mw.,M.E.A.,R&ouml;del-Ouwens,,CDA,Gemeente Oldenzaal,Raadslid
+112638,Mw.,M.E.A.,Rödel-Ouwens,,CDA,Gemeente Oldenzaal,Raadslid
 124570,Mw.,J.J.,van der Woning,,CDA,Gemeente Oldenzaal,Raadslid
 72942,Dhr.,M.J.E.,Oude Remmerink,,Werknemers Groepering,Gemeente Oldenzaal,Raadslid
 80306,Mw.,E.G.L.M.,Lugtenberg,,CDA,Gemeente Olst-Wijhe,Raadslid
 32392,Dhr.,J.H.P.,Lempsink,,Werknemers Groepering,Gemeente Oldenzaal,Raadslid
-119857,Dhr.,S.J.A.,L&ouml;wik,,GroenLinks,Gemeente Oldenzaal,Raadslid
-123617,Dhr.,G.J.P.,L&ouml;wik,,CDA,Gemeente Ommen,Raadslid
+119857,Dhr.,S.J.A.,Löwik,,GroenLinks,Gemeente Oldenzaal,Raadslid
+123617,Dhr.,G.J.P.,Löwik,,CDA,Gemeente Ommen,Raadslid
 74176,Dhr.,E.J.,Ruitenberg,,ChristenUnie,Gemeente Oldebroek,Raadslid
 73755,Dhr.,D.E.,Doornwaard,,SGP,Gemeente Oldebroek,Raadslid
 131461,Dhr.,W.,Zoer,,ABO,Gemeente Oldebroek,Raadslid
@@ -4416,7 +4416,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 21864643,Dhr.,A.A.J.,Nijland,,VVD,Gemeente Olst-Wijhe,Raadslid
 124572,Dhr.,A.A.,de Boer,,Werknemers Groepering,Gemeente Oldenzaal,Raadslid
 74182,Dhr.,H.G.P.,Kemp,,VVD,Gemeente Oldebroek,Raadslid
-120500,Dhr.,H.P.C.,Mars&eacute;,,Algemeen Belang,Gemeente Oisterwijk,Raadslid
+120500,Dhr.,H.P.C.,Marsé,,Algemeen Belang,Gemeente Oisterwijk,Raadslid
 120501,Dhr.,D.,Dankers,,Partij Gemeente Belangen,Gemeente Oisterwijk,Raadslid
 73774,Mw. mr.,E,Roborgh-Jansen,,Algemeen Belang,Gemeente Oisterwijk,Raadslid
 73772,Dhr.,M.F.J.M.,Mathijssen,,Algemeen Belang,Gemeente Oisterwijk,Raadslid
@@ -4584,7 +4584,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121453,Dhr.,B.J.,Spijkerboer,,ChristenUnie,Gemeente Oldebroek,Raadslid
 120276,Mw.,K.,Rutgers-Swartjes,,CDA,Gemeente Bedum,Raadslid
 95865,Dhr.,A.,van Bart,,Leefbaar Capelle,Gemeente Capelle aan den IJssel,Raadslid
-20268959,Mw.,S.,Journ&eacute;e-Schuiling,,VVD,Gemeente Bedum,Raadslid
+20268959,Mw.,S.,Journée-Schuiling,,VVD,Gemeente Bedum,Raadslid
 131375,Dhr.,R.F.,Schorel,,VVD,Gemeente Halderberge,Raadslid
 75395,Dhr.,C.,van de Bijl,,PCG,Gemeente Buren,Raadslid
 20251720,Dhr. drs.,F.T.H.,Koelemeijer,,GroenLinks,Gemeente Wormerland,Raadslid
@@ -4627,7 +4627,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 122802,Dhr.,L.L.,van den Dool,,ChristenUnie,Gemeente Zaltbommel,Raadslid
 118532,Dhr.,W.J.,Heijltjes,,Burgerbelangen,Gemeente Kerkrade,Raadslid
 134067,Dhr.,S.J.,Vriendjes,,PvdA,Gemeente Enkhuizen,Raadslid
-122496,Mw.,F.D.,Bilgen-K&uuml;&ccedil;&uuml;ksant&uuml;rk,,PvdA,Gemeente Hoorn,Raadslid
+122496,Mw.,F.D.,Bilgen-Küçüksantürk,,PvdA,Gemeente Hoorn,Raadslid
 130008,Dhr.,J.C.,de Keuning,,VGBK,Gemeente Krimpenerwaard,Raadslid
 21870140,Dhr.,G.P.,Zuijderwijk,,VVD,Gemeente Krimpenerwaard,Raadslid
 130066,Dhr.,D.C.,Koelewijn,,SGP,Gemeente Krimpenerwaard,Raadslid
@@ -4659,7 +4659,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 131303,Dhr.,J.H.M.,van Halteren,,Lokaal Belang Montferland,Gemeente Montferland,Raadslid
 132110,Dhr. mr.,G.W.,de Ruiter,,CDA,Gemeente Berkelland,Raadslid
 73204,Dhr.,M.A.,Sahinturk,,CDA,Gemeente Cuijk,Raadslid
-134176,Dhr.,S.G.G.M.,M&uuml;skens,,ABC,Gemeente Cuijk,Raadslid
+134176,Dhr.,S.G.G.M.,Müskens,,ABC,Gemeente Cuijk,Raadslid
 120152,Dhr.,E.A.,Baudet,,D66,Gemeente Cuijk,Raadslid
 133750,Dhr.,P.E.,Grevelt,,SP,Gemeente Cuijk,Raadslid
 135214,Mw.,E.A.P.,van Heeswijk,,Liberaal LvC,Gemeente Cuijk,Raadslid
@@ -4720,7 +4720,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121194,Mw.,J.C.,Komejan-Rochat,,Ideaalburg,Gemeente Aalburg,Raadslid
 131176,Dhr.,M.,van Hunnik,,SP,Gemeente Nijmegen,Raadslid
 86151,Mw.,S.,Werkman,,ONS,Gemeente Noordoostpolder,Raadslid
-135115,Dhr.,A.H.,J&auml;gers,,PvdA,Gemeente Nieuwegein,Raadslid
+135115,Dhr.,A.H.,Jägers,,PvdA,Gemeente Nieuwegein,Raadslid
 118165,Dhr.,E.,Boscher,,VVD,Gemeente Haarlemmermeer,Raadslid
 126306,Mw.,C.G.,Jong,,PvdA,Gemeente Weesp,Raadslid
 73875,Dhr.,J.,Buzepol,,De Liberalen,Gemeente Bunnik,Raadslid
@@ -4850,7 +4850,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 131665,Dhr.,H.J.M.,Schothuis,,CDA,Gemeente Borne,Raadslid
 79743,Dhr.,D.,Remmelzwaal,,SGP,Gemeente Katwijk,Raadslid
 131617,Mw.,J.M.,Rotink,,CDA,Gemeente Nijmegen,Raadslid
-113927,Dhr.,M.F.,Beli&euml;n,,ELAN,Gemeente Cranendonck,Raadslid
+113927,Dhr.,M.F.,Beliën,,ELAN,Gemeente Cranendonck,Raadslid
 75863,Dhr.,B.,Kooiker,,Borsele,Gemeente Borsele,Raadslid
 123454,Dhr.,F.P.,Schuitemaker,,PvdA,Gemeente Koggenland,Raadslid
 129787,Dhr.,W.P.M.,Kersten,,Sociaal Groesbeek,Gemeente Berg en Dal,Raadslid
@@ -4930,7 +4930,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 119953,Mw.,A.P.,van der Beek-Platschorre,,ChristenUnie,Gemeente Zaanstad,Raadslid
 77165,Dhr.,R.,Pauw,,Rooie Saen (ROSA),Gemeente Zaanstad,Raadslid
 20257747,Dhr.,J.,Kerkhoven,,Democratisch Zaanstad,Gemeente Zaanstad,Raadslid
-119964,Mw.,E.,K&ouml;seoglu,,PvdA,Gemeente Zaanstad,Raadslid
+119964,Mw.,E.,Köseoglu,,PvdA,Gemeente Zaanstad,Raadslid
 119968,Dhr.,R.,van Braam,,SP,Gemeente Zaanstad,Raadslid
 95353,Mw.,C.E.,Kalteren,,CDA,Gemeente Zaanstad,Raadslid
 119961,Dhr.,H.,van der Laan,,POV,Gemeente Zaanstad,Raadslid
@@ -4974,7 +4974,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135708,Mw.,M.P.C.,Beemsterboer,,Heiloo Lokaal,Gemeente Heiloo,Raadslid
 135709,Dhr.,J.,Valkering,,Heiloo-2000,Gemeente Heiloo,Raadslid
 77441,Mw.,E.,Las van Bennekom,,VVD,Gemeente Heiloo,Raadslid
-122750,Dhr.,M,&Ccedil;i&ccedil;ek,,CDA,Gemeente Maassluis,Raadslid
+122750,Dhr.,M,Çiçek,,CDA,Gemeente Maassluis,Raadslid
 130725,Dhr.,I.T.,Hemminga,,PvdA,Gemeente Heiloo,Raadslid
 79132,Dhr.,J.,Veneman,,GemeenteBelangen,Gemeente Hellendoorn,Raadslid
 122491,Mw.,M.C.A.,Wiegeraad,,SP,Gemeente Breda,Raadslid
@@ -4985,7 +4985,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120700,Mw.,B.A.M.,de Bruin-van Vught,,CDA,Gemeente Boxmeer,Raadslid
 74615,Dhr.,J.H.J.,Wessels,,CDA,Gemeente Aalten,Raadslid
 130677,Dhr.,L.A.,van den Hoogen,,Gemeenschapsbelang Venhorst Boekel,Gemeente Boekel,Raadslid
-78199,Mw.,B.A.C.,B&uuml;ttner,,PvdA,Gemeente Montferland,Raadslid
+78199,Mw.,B.A.C.,Büttner,,PvdA,Gemeente Montferland,Raadslid
 113765,Dhr.,J.,Iedema,,VVD,Gemeente Zoetermeer,Raadslid
 85342,Dhr.,G.,Dijkstra,,CDA,Gemeente Kollumerland c.a.,Raadslid
 119767,Dhr.,P.A.,Molleman,,CDA,Gemeente Buren,Raadslid
@@ -5055,7 +5055,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124553,Dhr.,J.P.,Meegdes,,D66,Gemeente Haarlemmermeer,Raadslid
 126134,Dhr.,G.,Martini,,Gemeentebelangen,Gemeente Eemsmond,Raadslid
 85267,Dhr.,G.J.,van de Wal,,CDA,Gemeente Eemsmond,Raadslid
-120455,Mw.,E.,M&uuml;ller,,SP,Gemeente Zutphen,Raadslid
+120455,Mw.,E.,Müller,,SP,Gemeente Zutphen,Raadslid
 132360,Dhr.,M.J.A.M.,Meurkens,,Burger Belangen Beek - Nieuwe Democraten Beek,Gemeente Beek,Raadslid
 78745,Mw.,M.J.,van Reenen,,Burger Belangen Beek - Nieuwe Democraten Beek,Gemeente Beek,Raadslid
 83689,Dhr.,C.G.M.H.,Wilems,,Progressief Beek,Gemeente Beek,Raadslid
@@ -5073,7 +5073,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 78287,Mw.,E.M.H.,Noteborn-Hendriks,,D66,Gemeente Houten,Raadslid
 133424,Dhr.,H,Hoftijzer,,SP,Gemeente Brielle,Raadslid
 73502,Dhr.,A.N.,Commandeur,,CDA,Gemeente Beemster,Raadslid
-22108966,Dhr.,R.W.M,B&ouml;hmer,,Progressief Landerd,Gemeente Landerd,Raadslid
+22108966,Dhr.,R.W.M,Böhmer,,Progressief Landerd,Gemeente Landerd,Raadslid
 133118,Mw.,C.D.M.,Henst,,DS97,Gemeente Landerd,Raadslid
 126543,Dhr.,J.J.M.,Brouwers,,ABL,Gemeente Laarbeek,Raadslid
 117983,Dhr.,L.G.M.A.,Esch,,GroenLinks,Gemeente Loppersum,Raadslid
@@ -5191,7 +5191,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121202,Mw.,J.T.,Sweerts,,De Liberalen,Gemeente Bunnik,Raadslid
 124005,Dhr.,B.,Dors,,Natuurlijk Nieuwkoop,Gemeente Nieuwkoop,Raadslid
 85036,Dhr.,C.J.P.,van Belzen,,ChristenUnie/SGP,Gemeente Nieuwkoop,Raadslid
-132364,Dhr.,M.G.P.,Oehlenschl&auml;er,,D66,Gemeente Nieuwkoop,Raadslid
+132364,Dhr.,M.G.P.,Oehlenschläer,,D66,Gemeente Nieuwkoop,Raadslid
 77295,Dhr.,W.K.,Knol,,De Onafhankelijken,Gemeente Oudewater,Raadslid
 115743,Dhr.,J.,Broere,,ChristenUnie/SGP,Gemeente Oudewater,Raadslid
 85032,Dhr.,A.A.,van Wijk,,CDA,Gemeente Nieuwkoop,Raadslid
@@ -5258,7 +5258,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 87196,Dhr.,O.,Karaaslan,,Stadspartij Harderwijk Anders,Gemeente Harderwijk,Raadslid
 123350,Dhr.,D.,van der Duin,,HOP,Gemeente Hoorn,Raadslid
 124247,Dhr.,S.,Brouwer,,CDA,Gemeente Leeuwarderadeel,Raadslid
-131366,Dhr.,F.J.M.,S&uuml;nnen,,FOCUS,Gemeente Meerssen,Raadslid
+131366,Dhr.,F.J.M.,Sünnen,,FOCUS,Gemeente Meerssen,Raadslid
 123514,Mw.,C.B.,van Tunen-Fatels,,Liberaal Heemskerk,Gemeente Heemskerk,Raadslid
 135164,Mw.,E.C.,van Kernkamp,,D66,Gemeente Wassenaar,Raadslid
 121870,Dhr.,M.,Es Sadki,,CDA,Gemeente Maastricht,Raadslid
@@ -5352,7 +5352,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135496,Dhr.,F.,Postma,,D66,Gemeente Eemnes,Raadslid
 122338,Dhr.,J.G.,van Halderen,,D66,Gemeente Leusden,Raadslid
 122339,Dhr.,J.W.,Spijkerman,,D66,Gemeente Leusden,Raadslid
-127112,Dhr.,J.,M&uuml;lder,,D66,Gemeente Leusden,Raadslid
+127112,Dhr.,J.,Mülder,,D66,Gemeente Leusden,Raadslid
 85982,Mw.,S.A.,den Herder,,D66,Gemeente Leusden,Raadslid
 122335,Mw.,M.G.,van Eijden-Smits,,CDA,Gemeente Leusden,Raadslid
 85974,Dhr.,G.J.,Kroeze,,CDA,Gemeente Leusden,Raadslid
@@ -5504,7 +5504,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 122540,Mw.,M.P.,Bijvoet,,SP,Gemeente Nieuwegein,Raadslid
 85981,Dhr.,J.R.,Madiol,,D66,Gemeente Leusden,Raadslid
 128462,Dhr.,J.,Kampherbeek,,CDA,Gemeente Heerde,Raadslid
-21004017,Dhr.,H.,H&iquest;nneman,,SP,Gemeente Wijk bij Duurstede,Raadslid
+21004017,Dhr.,H.,H¿nneman,,SP,Gemeente Wijk bij Duurstede,Raadslid
 85577,Dhr.,A.,Jongenelen,,Burgerbelang,Gemeente Heerhugowaard,Raadslid
 119398,Dhr.,B.,Brouwer,,GB Heerenveen,Gemeente Heerenveen,Raadslid
 118919,Mw.,H.T.,Rinkes,,CDA,Gemeente Heerenveen,Raadslid
@@ -5660,7 +5660,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 113102,Dhr.,H.B.,van den Berg,,Borne-Nu,Gemeente Borne,Raadslid
 120459,Mw.,D.,Bogerd,,Stadspartij,Gemeente Zutphen,Raadslid
 121268,Mw.,G.J.,Siks,,SP,Gemeente Oldambt,Raadslid
-124412,Dhr.,E.,&Ccedil;elikkaya,,Baarnse Onafhankelijke Partij,Gemeente Baarn,Raadslid
+124412,Dhr.,E.,Çelikkaya,,Baarnse Onafhankelijke Partij,Gemeente Baarn,Raadslid
 129726,Mw.,M.P.,Jansen-Vullers,,Kernachtig Wijchen,Gemeente Wijchen,Raadslid
 76163,Dhr.,M.P.,Buskermolen,,CDA,Gemeente Aalsmeer,Raadslid
 134173,Dhr.,T.F.M.,Verlaan,,CDA,Gemeente Aalsmeer,Raadslid
@@ -5732,7 +5732,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 111345,Dhr. drs.,R.T.H.,Gertsen,,VVD,Gemeente Cuijk,Raadslid
 120807,Dhr.,J.W.,Lammers,,Gemeentebelangen,Gemeente Buren,Raadslid
 131722,Dhr.,E.,Swaagman,,Loppersum Vooruit,Gemeente Loppersum,Raadslid
-126940,Dhr.,S.,Krotj&eacute;,,PvdA,Gemeente Beverwijk,Raadslid
+126940,Dhr.,S.,Krotjé,,PvdA,Gemeente Beverwijk,Raadslid
 126315,Dhr.,R.,Lachman,,PvdA/GroenLinks,Gemeente Wijdemeren,Raadslid
 76953,Dhr.,B.,Isik,,PvdA,Gemeente Utrecht,Raadslid
 120350,Mw.,G.,Ris,,PvdA,Gemeente Heiloo,Raadslid
@@ -5773,7 +5773,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120173,Dhr.,R.,de Graaf,,CDA,Gemeente Heumen,Raadslid
 118164,Dhr.,A.J.H.,Janssen,,PvdA/GroenLinks,Gemeente Heumen,Raadslid
 127677,Dhr.,J.,Witsiers,,PvdA/GroenLinks,Gemeente Heumen,Raadslid
-110858,Mw.,L.C.,Landr&eacute;,,GroenLinks,Gemeente Huizen,Raadslid
+110858,Mw.,L.C.,Landré,,GroenLinks,Gemeente Huizen,Raadslid
 134493,Dhr.,G.G.,van Delft,,SGP,Gemeente Katwijk,Raadslid
 83165,Dhr.,W.S.H.M.,Rombouts,,PvdA,Gemeente Bergeijk,Raadslid
 131884,Dhr.,P.,Sprey,,Fractie Van den Berg,Gemeente Eemnes,Raadslid
@@ -5965,7 +5965,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124799,Dhr.,J.P.,Lodder,,CDA,Gemeente Terschelling,Raadslid
 84894,Dhr.,W.H.M.,van Deelen,,PvdA,Gemeente Terschelling,Raadslid
 135357,Dhr.,D.,Ruige,,VVD,Gemeente Terschelling,Raadslid
-106600,Dhr.,P.J.,Vlendr&eacute;,,Verenigde Senioren Partij,Gemeente Maassluis,Raadslid
+106600,Dhr.,P.J.,Vlendré,,Verenigde Senioren Partij,Gemeente Maassluis,Raadslid
 134647,Dhr.,J.,Heesakkers,,CDA,Gemeente Weert,Raadslid
 80379,Dhr.,J.C.,Scheltens,,VVD,Gemeente Emmen,Raadslid
 76385,Dhr.,T.N.,Soeters,,VVD,Gemeente Schouwen-Duiveland,Raadslid
@@ -6011,7 +6011,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 80118,Dhr.,M.,Timmermans,,CDA,Gemeente Oirschot,Raadslid
 123785,Mw.,S.,Staffeleu,,SP,Gemeente Oirschot,Raadslid
 128393,Dhr.,M.,Schoenmakers,,CDA,Gemeente Oirschot,Raadslid
-129317,Mw. mr.,A.C.,Spekl&eacute;-Hooghart,,VVD,Gemeente Oisterwijk,Raadslid
+129317,Mw. mr.,A.C.,Speklé-Hooghart,,VVD,Gemeente Oisterwijk,Raadslid
 123783,Dhr.,P.,van den Biggelaar,,De Gewone Man,Gemeente Oirschot,Raadslid
 121857,Mw.,S.C.,de Vries - van den Beukel,,CDA,Gemeente Teylingen,Raadslid
 76208,Dhr. ir. drs.,B.,Wienbelt,,VVD,Gemeente Alphen aan den Rijn,Raadslid
@@ -6057,7 +6057,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120132,Mw.,K.M.,van Tol,,GemeenteBelang Westland,Gemeente Westland,Raadslid
 120125,Mw.,J.,Vermeer-de Smit,,CDA,Gemeente Westland,Raadslid
 120121,Dhr.,C.,van der Mark,,CDA,Gemeente Westland,Raadslid
-124815,Dhr.,D.,Chafi&acirc;,,CDA,Gemeente Westland,Raadslid
+124815,Dhr.,D.,Chafiâ,,CDA,Gemeente Westland,Raadslid
 120139,Dhr.,L.G.,Boekestijn,,Westland Verstandig,Gemeente Westland,Raadslid
 76122,Dhr.,J.J.,van Rossum,,CDA,Gemeente Westland,Raadslid
 135467,Dhr.,D.,Otto,,GemeenteBelang Westland,Gemeente Westland,Raadslid
@@ -6078,7 +6078,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 96334,Dhr.,W.H.,van Vugt,,SP,Gemeente Diemen,Raadslid
 87494,Mw.,J.J.S.M,Gaal,,Onafhankelijk Delft,Gemeente Delft,Raadslid
 75310,Mw.,B.H.M.,Wielage,,VVD,Gemeente Diemen,Raadslid
-135370,Dhr.,S.,&Ouml;zkaya,,GroenLinks,Gemeente Delft,Raadslid
+135370,Dhr.,S.,Özkaya,,GroenLinks,Gemeente Delft,Raadslid
 122002,Mw.,M.P.H.,de Graaff-Nijssen,,CDA,Gemeente Diemen,Raadslid
 120087,Dhr.,T.C.M.,Zonneveld,,SP,Gemeente Delft,Raadslid
 75309,Dhr.,F.J.,Mulder,,VVD,Gemeente Diemen,Raadslid
@@ -6094,7 +6094,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 87493,Dhr.,M.H.J.M.,Stoelinga,,Onafhankelijk Delft,Gemeente Delft,Raadslid
 125764,Dhr.,N.,de Dood,,CDA,Gemeente De Ronde Venen,Raadslid
 73714,Mw.,J.K.,Gooijer-Medema,,ChristenUnie,Gemeente Delft,Raadslid
-111080,Mw.,B.M.,B&ouml;cker,,VVD,Gemeente Delft,Raadslid
+111080,Mw.,B.M.,Böcker,,VVD,Gemeente Delft,Raadslid
 125766,Mw.,S.,Borgstede,,CDA,Gemeente De Ronde Venen,Raadslid
 120088,Dhr.,A.J.,Stoop,,Stadsbelangen,Gemeente Delft,Raadslid
 129422,Dhr.,M.P.,Turksma,,PvdA,Gemeente De Wolden,Raadslid
@@ -6240,9 +6240,9 @@ id,title,first_name,last_name,suffix,party,municipality,role
 126761,Dhr.,A.,Valkenburg,,CDA,Gemeente Oud-Beijerland,Raadslid
 126079,Dhr.,M.,IJpelaar,,PvdA,Gemeente Dongen,Raadslid
 80793,Dhr.,I.K.,Mahadew,,PvdA,Gemeente Oud-Beijerland,Raadslid
-134801,Dhr.,M.,Kilin&ccedil;arslan,,CDA,Gemeente Dongen,Raadslid
+134801,Dhr.,M.,Kilinçarslan,,CDA,Gemeente Dongen,Raadslid
 80783,Dhr.,R.J.M.,Veelenturf,,BINT,Gemeente Oud-Beijerland,Raadslid
-122807,Dhr.,R.A.K.H.,Kr&auml;mer,,PvdA,Gemeente Zederik,Raadslid
+122807,Dhr.,R.A.K.H.,Krämer,,PvdA,Gemeente Zederik,Raadslid
 120530,Dhr.,C.T.,Vermaat,,SGP,Gemeente Zederik,Raadslid
 126768,Mw. drs.,C.A.,Verbaas,,VVD,Gemeente Oud-Beijerland,Raadslid
 126895,Dhr.,P.,Mourits,,ChristenUnie/SGP,Gemeente Oud-Beijerland,Raadslid
@@ -6438,7 +6438,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133745,Dhr.,J.M.,Goedegebuure,,SGP,Gemeente Alphen aan den Rijn,Raadslid
 134149,Dhr.,R.,van den Bosch,,D66,Gemeente Breda,Raadslid
 73894,Dhr.,H.,Pelle,,PvdA,Gemeente Berkelland,Raadslid
-134150,Dhr.,E.,F&ouml;rster,,VVD,Gemeente Breda,Raadslid
+134150,Dhr.,E.,Förster,,VVD,Gemeente Breda,Raadslid
 20470655,Dhr.,A.M.H.,van Beek,,SP,Gemeente Kerkrade,Raadslid
 132596,Dhr.,H.,van de Beek,,SGP,Gemeente Oldebroek,Raadslid
 135567,Dhr. drs.,F.M.M.,Jongen,,CDA,Gemeente Mook en Middelaar,Raadslid
@@ -6490,7 +6490,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124096,Dhr.,M.L.A.,Hollemans,,CDA,Gemeente Woerden,Raadslid
 120330,Mw.,J.,Goedkoop,,Heemsteeds Burger Belang,Gemeente Heemstede,Raadslid
 125413,Dhr.,R.A.J.,Wijnen,,CDA,Gemeente Bergen (L),Raadslid
-127531,Dhr.,H.G.F.,H&uuml;bbers,,ChristenUnie,Gemeente Zeewolde,Raadslid
+127531,Dhr.,H.G.F.,Hübbers,,ChristenUnie,Gemeente Zeewolde,Raadslid
 128080,Dhr.,B.F.J.,Jacobs,,CDA,Gemeente Oosterhout,Raadslid
 72811,Dhr.,H.L.,Hermans,,Leefbaar Zeewolde,Gemeente Zeewolde,Raadslid
 35875,Dhr.,E.S.W.,Bron,,ChristenUnie,Gemeente Zeewolde,Raadslid
@@ -6535,7 +6535,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123736,Dhr.,R.,Mulder,,OPA,Gemeente Amersfoort,Raadslid
 114617,Mw.,S,van Bruggen,,PvdA,Gemeente Amersfoort,Raadslid
 95553,Dhr.,A.M.,Meijer,,SP,Gemeente Amersfoort,Raadslid
-122880,Dhr. drs.,L.,de la Comb&eacute;,,PvdA,Gemeente Amersfoort,Raadslid
+122880,Dhr. drs.,L.,de la Combé,,PvdA,Gemeente Amersfoort,Raadslid
 123730,Mw.,F.,van de Kolk,,ChristenUnie,Gemeente Amersfoort,Raadslid
 123580,Mw.,A.J.,Haveman,,D66,Gemeente Enschede,Raadslid
 80856,Dhr.,N.J.J.M.,Bosch,,CDA,Gemeente Opmeer,Raadslid
@@ -6554,7 +6554,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 80953,Mw.,E.J.,Snippe-Schleipfenbauer,,GBBL,Gemeente Landgraaf,Raadslid
 133551,Dhr.,A.,Evers,,CDA,Gemeente Someren,Raadslid
 112607,Dhr.,H.P.,Spijker,,EEN Haarlemmermeer,Gemeente Haarlemmermeer,Raadslid
-120976,Mw.,A.E.J.,Govers-Gabri&euml;ls,,VVD,Gemeente Bergen op Zoom,Raadslid
+120976,Mw.,A.E.J.,Govers-Gabriëls,,VVD,Gemeente Bergen op Zoom,Raadslid
 134280,Dhr.,D.R.,de Meer,,CDA,Gemeente Stichtse Vecht,Raadslid
 20272778,Dhr.,R.F.W.,Bijl,,VVD,Gemeente Zwijndrecht,Raadslid
 66643,Dhr.,G.C.P.,van Emmerik,,Samen voor Kaag en Braassem,Gemeente Kaag en Braassem,Raadslid
@@ -6579,7 +6579,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 129459,Mw.,A.,van Asten-Brendel,,Hart voor Blaricum,Gemeente Blaricum,Raadslid
 122118,Dhr.,G.C.,Knoop,,CDA,Gemeente Blaricum,Raadslid
 133543,Mw.,C.H.J.M.,van Herpen-Bus,,Burgerbelangen Bodegraven-Reeuwijk,Gemeente Bodegraven-Reeuwijk,Raadslid
-133473,Mw.,C.,B&ouml;lger-Schoenmakers,,Hart voor Blaricum,Gemeente Blaricum,Raadslid
+133473,Mw.,C.,Bölger-Schoenmakers,,Hart voor Blaricum,Gemeente Blaricum,Raadslid
 121492,Dhr.,R.A.E.,Tijssen,,Burgerbelangen Bodegraven-Reeuwijk,Gemeente Bodegraven-Reeuwijk,Raadslid
 115420,Mw.,C.,Francken,,D66,Gemeente Blaricum,Raadslid
 78834,Dhr.,M.P.G.M.,Peters,,CDA,Gemeente Heerlen,Raadslid
@@ -6827,7 +6827,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 83809,Dhr.,C.,van Dalen,,ChristenUnie,Gemeente Vlissingen,Raadslid
 73069,Dhr.,G.C.W.M.P.,Slegers,,CDA,Gemeente Veldhoven,Raadslid
 131377,Mw.,N.,Hopman,,VVD,Gemeente Vlieland,Raadslid
-131472,Dhr.,H.J.P.M.,Kl&ouml;sters,,D66,Gemeente Vught,Raadslid
+131472,Dhr.,H.J.P.M.,Klösters,,D66,Gemeente Vught,Raadslid
 117108,Mw.,J.,de Waal,,Gemeentebelangen,Gemeente Vught,Raadslid
 124139,Mw.,E.A.,de Ruijter,,GroenWit,Gemeente Vlieland,Raadslid
 123011,Mw.,O.P.,Penraat,,SP,Gemeente Vlissingen,Raadslid
@@ -6877,7 +6877,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125940,Dhr.,C.,van Hattum,,ChristenUnie,Gemeente Neder-Betuwe,Raadslid
 127882,Mw.,M.E.,Elzing- Platzer,,PvdA,Gemeente Neder-Betuwe,Raadslid
 85975,Dhr.,W.R.,Vos,,CDA,Gemeente Leusden,Raadslid
-74493,Mw.,L.,Efd&eacute;-Kleefstra,,VVD,Gemeente Tytsjerksteradiel,Raadslid
+74493,Mw.,L.,Efdé-Kleefstra,,VVD,Gemeente Tytsjerksteradiel,Raadslid
 121333,Dhr.,K.M.,van Bronswijk,,CDA,Gemeente Nunspeet,Raadslid
 119909,Dhr.,H.A.,Schraa,,Senioren Partij Drechterland,Gemeente Drechterland,Raadslid
 73102,Dhr.,F.P.W.J.,Surink,,Gemeentebelangen Epe,Gemeente Epe,Raadslid
@@ -6980,7 +6980,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123757,Dhr.,M.J.M.,De Loo,,GroenLinks,Gemeente Sittard-Geleen,Raadslid
 80924,Dhr.,M.H.G.,Huijveneers,,GOB,Gemeente Sittard-Geleen,Raadslid
 123753,Mw.,A.J.C.,Fredrix-Pilon,,DNA,Gemeente Sittard-Geleen,Raadslid
-80918,Dhr.,J.H.W.,K&ouml;hlen,,CDA,Gemeente Sittard-Geleen,Raadslid
+80918,Dhr.,J.H.W.,Köhlen,,CDA,Gemeente Sittard-Geleen,Raadslid
 21859715,Mw.,M.C.M.H.,Zuiverloon-Schumans,,CDA,Gemeente Sittard-Geleen,Raadslid
 81138,Dhr.,J.A.G.,Peeters,,PvdA,Gemeente Sittard-Geleen,Raadslid
 123751,Dhr.,P.T.H.M.,Henssen,,CDA,Gemeente Sittard-Geleen,Raadslid
@@ -7043,7 +7043,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 122744,Dhr.,A.,ter Veer,,PvdA,Gemeente Vlaardingen,Raadslid
 122742,Dhr.,R.,Boers,,ONS.Vlaardingen,Gemeente Vlaardingen,Raadslid
 75519,Mw.,I.M.,Somers - Gardenier,,VV2000/Leefbaar Vlaardingen,Gemeente Vlaardingen,Raadslid
-135531,Mw.,J.C.,L&ouml;ke,,SP,Gemeente Vlaardingen,Raadslid
+135531,Mw.,J.C.,Löke,,SP,Gemeente Vlaardingen,Raadslid
 128201,Dhr.,M.,Hoogenboom,,ChristenUnie/SGP,Gemeente Vlaardingen,Raadslid
 113346,Dhr.,M.J.A.W.,Stolwijk,,Lijst Someren-Heide,Gemeente Someren,Raadslid
 135529,Mw.,M.,de Groot,,Fractie de Groot,Gemeente Vlaardingen,Raadslid
@@ -7100,7 +7100,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 114956,Mw.,J.W.,Janssen-de Koning,,PvdA,Gemeente Schagen,Raadslid
 76842,Dhr.,J.A.,Paauw,,Gemeentebelangen Groen Soest,Gemeente Soest,Raadslid
 129338,Dhr.,R.A.J.,Takes,,VVD,Gemeente Schagen,Raadslid
-114951,Dhr.,J.Th.,Kr&ouml;ger,,Jong en sterker Schagen (JESS),Gemeente Schagen,Raadslid
+114951,Dhr.,J.Th.,Kröger,,Jong en sterker Schagen (JESS),Gemeente Schagen,Raadslid
 114964,Dhr.,P.F.J.,Vriend,,Vereniging Seniorenpartij Schagen (VSPS),Gemeente Schagen,Raadslid
 121480,Dhr.,T.J.B.,Reijinga,,D66,Gemeente Soest,Raadslid
 121485,Mw.,R.T.,Coppes,,GroenLinks,Gemeente Soest,Raadslid
@@ -7469,7 +7469,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 115083,Mw.,M.P.A.,Mol-Sturkenboom,,DorpsGoed,Gemeente Sint-Michielsgestel,Raadslid
 130102,Dhr.,G.A.,Sips,,Lokale Partij Vlissingen,Gemeente Vlissingen,Raadslid
 121474,Dhr.,R.P.O.,Kramer,,CDA,Gemeente Soest,Raadslid
-73323,Dhr.,R.,Par&eacute;,,GroenLinks,Gemeente Waalre,Raadslid
+73323,Dhr.,R.,Paré,,GroenLinks,Gemeente Waalre,Raadslid
 122646,Dhr.,E.W.B.,Loeff,,VVD,Gemeente Geldermalsen,Raadslid
 38072,Dhr.,J.,Mulder,,SGP,Gemeente Scherpenzeel,Raadslid
 124394,Dhr.,J.T.H.,van Rossum,,VVD,Gemeente Hardinxveld-Giessendam,Raadslid
@@ -7547,7 +7547,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125246,Dhr.,L.P.D.,Hoek,,WIJ Lansingerland,Gemeente Lansingerland,Raadslid
 132153,Dhr.,E.,Kampinga,,VVD,Gemeente Lansingerland,Raadslid
 22419374,Dhr.,V.J.,van den Bosch,,D66,Gemeente Steenbergen,Raadslid
-85711,Mw.,I.,Citterbartov&aacute;,,GroenLinks,Gemeente Lansingerland,Raadslid
+85711,Mw.,I.,Citterbartová,,GroenLinks,Gemeente Lansingerland,Raadslid
 75746,Mw.,C.J.,Goossens-Junier,,Dorpsbelang Son en Breugel,Gemeente Son en Breugel,Raadslid
 134278,Dhr.,S.M.,Reusken,,PvdA,Gemeente Twenterand,Raadslid
 134604,Dhr.,J.J.C.,van Beek,,Lokale Partij Bergeijk,Gemeente Bergeijk,Raadslid
@@ -7683,7 +7683,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123482,Dhr.,P.W.A.J.,Mastenbroek,,PvdA,Gemeente Gemert-Bakel,Raadslid
 133726,Dhr.,J.L.T.J.M.,Bovens,,Progressief Akkoord,Gemeente Montfoort,Raadslid
 131695,Dhr.,L.M.,Bolders,,Alle Kernen Troef,Gemeente Woensdrecht,Raadslid
-122745,Dhr.,I.,Altunda&iquest;,,PvdA,Gemeente Vlaardingen,Raadslid
+122745,Dhr.,I.,Altunda¿,,PvdA,Gemeente Vlaardingen,Raadslid
 106877,Dhr.,N.A.V.C.,de Heij,,CDA,Gemeente Bodegraven-Reeuwijk,Raadslid
 126073,Dhr.,A.R.J.,Vonk,,CDA,Gemeente Dongen,Raadslid
 135750,Dhr.,B.C.,Timmerarends,,SGP,Gemeente Montfoort,Raadslid
@@ -7695,7 +7695,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 118047,Dhr.,W.T.H.,van den Dobbelsteen,,SeniorenPartij Druten,Gemeente Druten,Raadslid
 135484,Dhr.,G.M.,van Elk,,Dorpslijst Afferden,Gemeente Druten,Raadslid
 134085,Mw.,D.C.M.,Uitdehaag,,Sociaal Maas en Waal,Gemeente Druten,Raadslid
-83234,Dhr.,M.,Enk&uuml;r,,Dorpslijst Puiflijk/Druten-Zuid,Gemeente Druten,Raadslid
+83234,Dhr.,M.,Enkür,,Dorpslijst Puiflijk/Druten-Zuid,Gemeente Druten,Raadslid
 120944,Dhr.,M.,Aslan,,Welzijn Druten,Gemeente Druten,Raadslid
 134081,Dhr.,G.S.B.,Worm,,Kernachtig Druten,Gemeente Druten,Raadslid
 120943,Dhr.,G.W.J.,de Wildt,,Dorpslijst Horssen,Gemeente Druten,Raadslid
@@ -7747,7 +7747,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 77023,Dhr.,R.W.J.G.,van Hal,,SP,Gemeente Venray,Raadslid
 122233,Mw.,A.H.M.,Thielen,,CDA,Gemeente Venray,Raadslid
 122242,Dhr.,W.J.J.,Schellen,,SP,Gemeente Venray,Raadslid
-122234,Mw.,K.,Ert&uuml;rk,,CDA,Gemeente Venray,Raadslid
+122234,Mw.,K.,Ertürk,,CDA,Gemeente Venray,Raadslid
 77668,Dhr.,A.P.J.,Vullings,,CDA,Gemeente Venray,Raadslid
 122230,Dhr.,H.P.M.,Vullings,,CDA,Gemeente Venray,Raadslid
 77010,Dhr.,A.G.M.,Loonen,,CDA,Gemeente Venray,Raadslid
@@ -8050,7 +8050,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121739,Mw.,M.,Roza-de Pijper,,VVD,Gemeente Hellevoetsluis,Raadslid
 123567,Mw.,M.E.N.T.W.,Doremalen-van Berkel,,PvdA,Gemeente Gilze en Rijen,Raadslid
 84608,Dhr.,A.J.,Spoon,,VVD,Gemeente Hellevoetsluis,Raadslid
-121736,Dhr.,M.,K&ouml;se,,PvdA,Gemeente Hellevoetsluis,Raadslid
+121736,Dhr.,M.,Köse,,PvdA,Gemeente Hellevoetsluis,Raadslid
 121729,Mw.,N.M.A.,Schnocks-Kriek,,GroenLinks,Gemeente Hellevoetsluis,Raadslid
 83271,Dhr.,C.G.D.,van Leeuwen,,VVD,Gemeente Hellevoetsluis,Raadslid
 83260,Mw.,C.M.,Meerman-van Benthem,,CDA,Gemeente Hellevoetsluis,Raadslid
@@ -8212,14 +8212,14 @@ id,title,first_name,last_name,suffix,party,municipality,role
 132196,Dhr.,H.P.R.,Poels,,SP,Gemeente Eindhoven,Raadslid
 73401,Mw.,A.A.,van der Stijl,,P21,Gemeente Bunnik,Raadslid
 131816,Dhr.,C.P.,van der Voort,,BBL,Gemeente Eindhoven,Raadslid
-127521,Dhr.,Z.,G&uuml;ler,,D66,Gemeente Schiedam,Raadslid
+127521,Dhr.,Z.,Güler,,D66,Gemeente Schiedam,Raadslid
 127520,Dhr.,A.,Hekman,,CDA,Gemeente Schiedam,Raadslid
 122018,Mw.,K.H.E.,de Rover,,GroenLinks,Gemeente Schiedam,Raadslid
 76777,Dhr.,T.,Wijmans,,SP,Gemeente Schiedam,Raadslid
 92501,Mw.,G.Th.,de Bel-van Touw,,Leefbaar Schiedam/Schiedam Actief,Gemeente Schiedam,Raadslid
 130848,Dhr.,C.T.G.,van der Tuijn,,Fractie Janssen,Gemeente Schiedam,Raadslid
 134423,Dhr.,A.J.,Villerius,,Leefbaar Schiedam/Schiedam Actief,Gemeente Schiedam,Raadslid
-117442,Mw.,I.,van der Donk-Urb&aacute;nkov&aacute;,,SP,Gemeente Schiedam,Raadslid
+117442,Mw.,I.,van der Donk-Urbánková,,SP,Gemeente Schiedam,Raadslid
 122015,Dhr.,J.,van Sliedregt,,D66,Gemeente Schiedam,Raadslid
 134422,Dhr.,A.W.,van Wingerden,,Fractie Janssen,Gemeente Schiedam,Raadslid
 127524,Dhr.,O.P.,Spek,,VVD,Gemeente Schiedam,Raadslid
@@ -8284,7 +8284,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121354,Dhr.,B.T.,Weverink,,CDA,Gemeente Bronckhorst,Raadslid
 129279,Mw.,J.I.M.,Steffens,,GBB,Gemeente Bronckhorst,Raadslid
 134651,Mw.,J.W.,Knake,,D66,Gemeente Bronckhorst,Raadslid
-122753,Dhr.,M,&Ccedil;ift&ccedil;i,,PvdA,Gemeente Maassluis,Raadslid
+122753,Dhr.,M,Çiftçi,,PvdA,Gemeente Maassluis,Raadslid
 121416,Mw.,L.A.,Roelofs,,SP,Gemeente Gouda,Raadslid
 21671296,Dhr.,A.,van der Schaaf,,50Plus,Gemeente Gooise Meren,Raadslid
 122102,Dhr.,B.J.C.I.M.,Kerklaan,,Gemeentebelangen,Gemeente Pijnacker-Nootdorp,Raadslid
@@ -8336,7 +8336,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124993,Dhr.,TH.,de Boer,,PvdA,Gemeente Smallingerland,Raadslid
 126167,Dhr.,F.C.M.,Evers,,CDA,Gemeente Overbetuwe,Raadslid
 114875,Dhr.,F.,Jongsma,,ChristenUnie,Gemeente Marum,Raadslid
-133622,Mw.,P.M.,Baarslag-de M&ouml;nnink,,VVD,Gemeente Hardenberg,Raadslid
+133622,Mw.,P.M.,Baarslag-de Mönnink,,VVD,Gemeente Hardenberg,Raadslid
 74815,Dhr.,G.J.P.J.,van Dooremaal,,VVD,Gemeente Midden-Delfland,Raadslid
 87376,Dhr.,J.K.,Meijer,,VVD,Gemeente Schiedam,Raadslid
 127676,Mw.,D.,Gorp-Zwiers,,Democraten Gemeente Heumen,Gemeente Heumen,Raadslid
@@ -8377,7 +8377,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130427,Mw.,D.,Timman,,D66,Gemeente Amsterdam,Raadslid
 119930,Mw.,A.M.,Bosman,,D66,Gemeente Amsterdam,Raadslid
 128228,Dhr.,H.,Mertens,,Lokaal!,Gemeente Vaals,Raadslid
-74320,Dhr.,E.,&Uuml;nver,,PvdA,Gemeente Amsterdam,Raadslid
+74320,Dhr.,E.,Ünver,,PvdA,Gemeente Amsterdam,Raadslid
 119938,Dhr.,S.R.H.,Blom,,GroenLinks,Gemeente Amsterdam,Raadslid
 119947,Mw.,P.J.M.,van den Berg,,PvdA,Gemeente Amsterdam,Raadslid
 133686,Dhr.,H.H.,Kleikers,,Fractie Kleikers,Gemeente Vaals,Raadslid
@@ -8499,7 +8499,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133182,Dhr.,M.J.L.W.M.,van Nistelrooij,,CDA,Gemeente 's-Hertogenbosch,Raadslid
 129924,Mw.,C.K.J.,Visscher,,SP,Gemeente 's-Hertogenbosch,Raadslid
 129920,Mw.,E.A.H.P.,van der Swaluw,,PvdA,Gemeente 's-Hertogenbosch,Raadslid
-129741,Dhr.,O.,&Ccedil;if&ccedil;i,,PvdA,Gemeente 's-Hertogenbosch,Raadslid
+129741,Dhr.,O.,Çifçi,,PvdA,Gemeente 's-Hertogenbosch,Raadslid
 129736,Mw. mr. drs.,I.E.C.,Visschedijk,,D66,Gemeente 's-Hertogenbosch,Raadslid
 129910,Mw.,K.F.A.W.C.,Mandemaker,,Bosch Belang,Gemeente 's-Hertogenbosch,Raadslid
 129740,Dhr. mr.,F.,Kabbouti,,PvdA,Gemeente 's-Hertogenbosch,Raadslid
@@ -8537,7 +8537,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 122170,Mw.,I.E.,Mous,,CDA,Gemeente Dordrecht,Raadslid
 22075797,Dhr.,A.,Gundogdu,,BETER VOOR DORDT,Gemeente Dordrecht,Raadslid
 122169,Dhr.,C.J,Rovers,,CDA,Gemeente Dordrecht,Raadslid
-122173,Dhr.,B.,G&uuml;ler,,PvdA,Gemeente Dordrecht,Raadslid
+122173,Dhr.,B.,Güler,,PvdA,Gemeente Dordrecht,Raadslid
 86361,Dhr.,C.A.,van Verk,,PvdA,Gemeente Dordrecht,Raadslid
 133887,Mw.,J.,Edenburg,,GroenLinks,Gemeente Dordrecht,Raadslid
 74837,Mw.,N.,de Smoker-van Andel,,D66,Gemeente Dordrecht,Raadslid
@@ -8563,7 +8563,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 75667,Mw.,A.,Smit-de Ridder,,Liberaal Wormerland,Gemeente Wormerland,Raadslid
 119967,Dhr.,E.J.,Hartog,,SP,Gemeente Zaanstad,Raadslid
 20257759,Mw.,J.E.,Rot,,Democratisch Zaanstad,Gemeente Zaanstad,Raadslid
-73796,Dhr.,P.A.,Calj&eacute;,,D66,Gemeente Vlaardingen,Raadslid
+73796,Dhr.,P.A.,Caljé,,D66,Gemeente Vlaardingen,Raadslid
 120391,Dhr.,J.R.,Honkoop,,VVD,Gemeente Groningen,Raadslid
 121073,Mw.,H.,Roorda,,FNP,Gemeente Littenseradiel,Raadslid
 120374,Dhr.,E.B.,Koopmans,,ChristenUnie,Gemeente Groningen,Raadslid
@@ -8571,7 +8571,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123830,Dhr.,A.C.M.,Buijsen,,ABZ,Gemeente Woensdrecht,Raadslid
 75993,Dhr.,A.H.E.,Versteeg,,SGP,Gemeente Gouda,Raadslid
 125370,Dhr.,F.,Haisma,,CDA,Gemeente Tynaarlo,Raadslid
-133133,Dhr.,G.J.N.,M&uuml;ller,,SP,Gemeente Zutphen,Raadslid
+133133,Dhr.,G.J.N.,Müller,,SP,Gemeente Zutphen,Raadslid
 133099,Mw.,H.B.,Boudewijnse,,GroenLinks,Gemeente Gooise Meren,Raadslid
 96955,Mw.,G.,Hilberink,,ChristenUnie,Gemeente Twenterand,Raadslid
 122566,Dhr.,B.,Veen,,PvdA,Gemeente Staphorst,Raadslid
@@ -8611,7 +8611,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121462,Dhr.,B.,Bosman,,ChristenUnie,Gemeente Elburg,Raadslid
 106879,Dhr.,R.,Smits,,GroenLinks,Gemeente Bodegraven-Reeuwijk,Raadslid
 76707,Dhr. drs.,P.F.,de Doelder,,PvdA,Gemeente Middelburg,Raadslid
-75073,Dhr.,R.,Schr&ouml;der,,VVD,Gemeente Waterland,Raadslid
+75073,Dhr.,R.,Schröder,,VVD,Gemeente Waterland,Raadslid
 122192,Mw.,J.,Streur,,BBC 2014,Gemeente Coevorden,Raadslid
 22024046,Dhr.,H.G.L.,Hoogervorst,,VVD,Gemeente Noordwijk,Raadslid
 85717,Dhr.,J.P.,Blonk,,Leefbaar 3B,Gemeente Lansingerland,Raadslid
@@ -8626,7 +8626,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123952,Dhr.,S.J.G.W.,Willems,,Jong Uden,Gemeente Uden,Raadslid
 123833,Dhr.,H.S.,Kielman,,VVD,Gemeente Woensdrecht,Raadslid
 135198,Dhr.,P.R.M.,Sanders,,D66,Gemeente Nijmegen,Raadslid
-128425,Mw.,L.W.J.,Mar&aacute;czi,,SP,Gemeente Helmond,Raadslid
+128425,Mw.,L.W.J.,Maráczi,,SP,Gemeente Helmond,Raadslid
 125685,Dhr.,N.,Kevek,,CDA,Gemeente Heerhugowaard,Raadslid
 80984,Mw.,C.E.,Aarts-Averink,,DGG,Gemeente Geldrop-Mierlo,Raadslid
 22528486,Dhr. drs.,H.,de Jong Schouwenburg,,VVD,Gemeente De Bilt,Raadslid
@@ -8661,7 +8661,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 76464,Mw.,A.,van Dijk,,PvdA,Gemeente Hillegom,Raadslid
 76450,Dhr.,F.J.M.,Evers,,B.B.H. (Bevolkingsbelangen Hillegom),Gemeente Hillegom,Raadslid
 133621,Mw.,C.J.,Hoekstra,,CDA,Gemeente Hillegom,Raadslid
-123025,Mw.,A.,Heemskerk-Rekk&eacute;,,Bloeiend Hillegom,Gemeente Hillegom,Raadslid
+123025,Mw.,A.,Heemskerk-Rekké,,Bloeiend Hillegom,Gemeente Hillegom,Raadslid
 125325,Dhr.,T.P.,Adamse,,D66,Gemeente Hillegom,Raadslid
 131283,Dhr.,D.,van Egmond,,GroenLinks,Gemeente Hillegom,Raadslid
 125769,Dhr.,T.,Klinkhamer,,D66,Gemeente De Ronde Venen,Raadslid
@@ -8739,7 +8739,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 80753,Mw.,I.M.H.,van Laarhoven,,DeurneNU,Gemeente Deurne,Raadslid
 85872,Mw.,A.W.A.M.P.,Wijnands - van Daal,,CDA,Gemeente Hilversum,Raadslid
 132559,Mw.,N.J.,Maris-van Exel,,CDA,Gemeente Gorinchem,Raadslid
-85617,Dhr.,A.,Ko&ccedil;ak,,PvdA,Gemeente Gorinchem,Raadslid
+85617,Dhr.,A.,Koçak,,PvdA,Gemeente Gorinchem,Raadslid
 21644098,Mw.,L.,van Aelst,,SP,Gemeente Gorinchem,Raadslid
 128775,Dhr. mr.,D.,Van Zanten,,Stadsbelang,Gemeente Gorinchem,Raadslid
 128773,Dhr. ing.,F.A.,Alba Heijdenrijk,,D66,Gemeente Gorinchem,Raadslid
@@ -8754,7 +8754,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 86339,Mw. mr.,A.,Mager,,VVD,Gemeente Gorinchem,Raadslid
 91574,Mw.,M.J.,Molengraaf-Vullers,,ChristenUnie/SGP,Gemeente Gorinchem,Raadslid
 91573,Dhr. ing.,F.,Barth,,ChristenUnie/SGP,Gemeente Gorinchem,Raadslid
-128296,Dhr.,E.,G&uuml;ng&ouml;r,,SP,Gemeente Gorinchem,Raadslid
+128296,Dhr.,E.,Güngör,,SP,Gemeente Gorinchem,Raadslid
 131955,Dhr.,H.J.,van Mourik,,Stadsbelang,Gemeente Gorinchem,Raadslid
 135493,Dhr.,H.,Leverington,,Stadsbelang,Gemeente Gorinchem,Raadslid
 121574,Dhr.,L.A.,Onvlee,,CDA,Gemeente Gorinchem,Raadslid
@@ -9179,10 +9179,10 @@ id,title,first_name,last_name,suffix,party,municipality,role
 129361,Dhr.,V.E.,Prins,,CDA,Gemeente Sliedrecht,Raadslid
 78168,Dhr.,L.,Schreuders,,ChristenUnie,Gemeente Moerdijk,Raadslid
 78248,Dhr.,S.P.A.M.,Janssens,,SP,Gemeente Vught,Raadslid
-80630,Dhr.,R.,G&ouml;rg&uuml;l&uuml;,,Fractie G&ouml;rg&uuml;l&uuml;,Gemeente Ede,Raadslid
+80630,Dhr.,R.,Görgülü,,Fractie G&ouml;rg&uuml;l&uuml;,Gemeente Ede,Raadslid
 133004,Dhr.,D.,Wolffensperger-Laugs,,VVD,Gemeente Uithoorn,Raadslid
 73998,Mw.,M.J.,Eggink-Meuleman,,Gemeentebelangen,Gemeente Lochem,Raadslid
-121328,Dhr.,B.,&Ccedil;i&ccedil;ek,,PvdA,Gemeente Moerdijk,Raadslid
+121328,Dhr.,B.,Çiçek,,PvdA,Gemeente Moerdijk,Raadslid
 82110,Dhr.,G.,Knegt,,Pro Hengelo,Gemeente Hengelo Ov.,Raadslid
 135392,Dhr.,M.,Pulles,,VVD,Gemeente Son en Breugel,Raadslid
 98554,Dhr.,W.,van Dijk,,VKG,Gemeente Zederik,Raadslid
@@ -9206,7 +9206,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 131025,Dhr. ir.,H.,Knoester,,GroenLinks,Gemeente Leidschendam-Voorburg,Raadslid
 129212,Dhr.,R.T.M.,Guleij,,GBLV,Gemeente Leidschendam-Voorburg,Raadslid
 124014,Dhr.,J.,Geurts,,CDA,Gemeente Leidschendam-Voorburg,Raadslid
-129215,Mw.,M.,Vel&ugrave;,,GBLV,Gemeente Leidschendam-Voorburg,Raadslid
+129215,Mw.,M.,Velù,,GBLV,Gemeente Leidschendam-Voorburg,Raadslid
 129210,Dhr.,N.F.J.,Hooijmans,,GBLV,Gemeente Leidschendam-Voorburg,Raadslid
 131026,Dhr.,C.C.,Altay,,PvdA,Gemeente Leidschendam-Voorburg,Raadslid
 72782,Dhr.,P.J.,van Dolen,,D66,Gemeente Leidschendam-Voorburg,Raadslid
@@ -9288,7 +9288,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 127335,Dhr.,J.K.,Ruiter,,Menterwolde Gewoon,Gemeente Menterwolde,Raadslid
 131048,Dhr.,T.P.,van der Hulst,,CDA,Gemeente Haaksbergen,Raadslid
 135450,Dhr.,B.,Jacobs MSc,,VVD,Gemeente Bergen op Zoom,Raadslid
-79727,Dhr.,J.J.A.J.J.,M&ouml;llmann,,VVD,Gemeente Helmond,Raadslid
+79727,Dhr.,J.J.A.J.J.,Möllmann,,VVD,Gemeente Helmond,Raadslid
 132570,Mw. mr.,G.L.C.C.,van den Waardenburg,,D66,Gemeente Helmond,Raadslid
 20947082,Dhr.,P.J.M.,Schouten,,GroenLinks,Gemeente Haarlemmermeer,Raadslid
 120548,Dhr.,A.,Oosterlee,,Hart Voor Katwijk,Gemeente Katwijk,Raadslid
@@ -9336,7 +9336,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 117563,Dhr.,J.C.G.,Wegman,,CDA,Gemeente Apeldoorn,Raadslid
 127686,Dhr.,C.,Schouten,,PvdA,Gemeente Apeldoorn,Raadslid
 127683,Dhr.,B.,Bloem,,ChristenUnie,Gemeente Apeldoorn,Raadslid
-97363,Mw.,B.,ten Damme-Boev&eacute;,,Progressief Sociaal Apeldoorn,Gemeente Apeldoorn,Raadslid
+97363,Mw.,B.,ten Damme-Boevé,,Progressief Sociaal Apeldoorn,Gemeente Apeldoorn,Raadslid
 132138,Dhr.,W.,Willems,,Lokaal Apeldoorn,Gemeente Apeldoorn,Raadslid
 77614,Dhr.,R.,Veen,,ChristenUnie,Gemeente Apeldoorn,Raadslid
 120188,Dhr.,H.,Skalonjic,,D66,Gemeente Apeldoorn,Raadslid
@@ -9391,7 +9391,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 84935,Dhr.,W.,Foppen,,CDA,Gemeente Urk,Raadslid
 84941,Dhr.,J.,Jonkers,,Hart voor Urk,Gemeente Urk,Raadslid
 125842,Mw.,K.,Atalay,,CDA,Gemeente Boxtel,Raadslid
-134095,Dhr.,P.L.M.,Manni&euml;n,,Combinatie95,Gemeente Boxtel,Raadslid
+134095,Dhr.,P.L.M.,Manniën,,Combinatie95,Gemeente Boxtel,Raadslid
 129458,Mw.,D.W.J.A.M.,van de Vries-Pennings,,VVD,Gemeente Boxtel,Raadslid
 134094,Dhr.,C.J.L.M.,Voets,,Combinatie95,Gemeente Boxtel,Raadslid
 134096,Dhr.,S.,de Nijs,,Combinatie95,Gemeente Boxtel,Raadslid
@@ -9441,7 +9441,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133957,Mw.,L.,Bolhuis,,Minimapartij,Gemeente Almelo,Raadslid
 127274,Dhr.,R.H.,Gelici,,CDA,Gemeente Almelo,Raadslid
 133958,Dhr.,G.,Stam,,D66,Gemeente Almelo,Raadslid
-76586,Dhr.,U.,&Ccedil;ete,,Lijst &Ccedil;ete,Gemeente Almelo,Raadslid
+76586,Dhr.,U.,Çete,,Lijst &Ccedil;ete,Gemeente Almelo,Raadslid
 76594,Dhr.,F.,Akse,,SP,Gemeente Almelo,Raadslid
 133952,Dhr.,J.J.G.,van Loon,,Lokaal Almelo Samen,Gemeente Almelo,Raadslid
 20257080,Mw.,I.,Abdullatif,,Almelo Centraal,Gemeente Almelo,Raadslid
@@ -9580,7 +9580,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 84563,Dhr.,J.M.G.H.,Hendriks,,CDA,Gemeente Gulpen-Wittem,Raadslid
 20268136,Dhr.,L.M.,Heezen,,Stem Lokaal,Gemeente Albrandswaard,Raadslid
 75009,Mw.,C.,Verschuur-Geraets,,Progressief Halderberge,Gemeente Halderberge,Raadslid
-121274,Dhr.,F.H.,W&uuml;nker,,VVD,Gemeente Oldambt,Raadslid
+121274,Dhr.,F.H.,Wünker,,VVD,Gemeente Oldambt,Raadslid
 120928,Mw.,N.E.,Hut,,D66,Gemeente Purmerend,Raadslid
 121654,Dhr.,W.H.,Schonewille,,ChristenUnie,Gemeente Gouda,Raadslid
 128206,Dhr.,L.F.,Greven,,PvdA,Gemeente Steenwijkerland,Raadslid
@@ -9657,7 +9657,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124208,Mw.,J.D.,Bakkers,,D66,Gemeente Zoetermeer,Raadslid
 125037,Dhr.,J.,Berends,,CDA,Gemeente Doetinchem,Raadslid
 20269798,Mw.,J.H.A.,Putman,,Partij voor Lokaal Maatwerk,Gemeente Doetinchem,Raadslid
-120806,Mw.,M.E.G.,R&uuml;tten-Kemperman,,SP,Gemeente Doetinchem,Raadslid
+120806,Mw.,M.E.G.,Rütten-Kemperman,,SP,Gemeente Doetinchem,Raadslid
 120804,Dhr.,H.J.C.,te Hennepe,,SP,Gemeente Doetinchem,Raadslid
 132179,Dhr.,M.E.,de Jong,,SGP,Gemeente Doetinchem,Raadslid
 132357,Dhr.,E.,Venema,,Duurzaam Doetinchem,Gemeente Doetinchem,Raadslid
@@ -9670,10 +9670,10 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125380,Mw.,S.M.,Koster,,VVD,Gemeente Doetinchem,Raadslid
 120797,Dhr.,P.J.M.,Gerritsen,,CDA,Gemeente Doetinchem,Raadslid
 20269817,Dhr.,H.M.,Mourik,,VVD,Gemeente Doetinchem,Raadslid
-73633,Dhr.,E.,Ko&ccedil;yigit,,PvdA,Gemeente Doetinchem,Raadslid
+73633,Dhr.,E.,Koçyigit,,PvdA,Gemeente Doetinchem,Raadslid
 125376,Dhr.,J.T.,Westerdiep,,GroenLinks,Gemeente Doetinchem,Raadslid
 120805,Dhr.,H.M.M.,Bosman,,SP,Gemeente Doetinchem,Raadslid
-97775,Dhr.,H.L.G.,Mo&iuml;ze de Chateleux,,Lokaal Belang Doetinchem,Gemeente Doetinchem,Raadslid
+97775,Dhr.,H.L.G.,Moïze de Chateleux,,Lokaal Belang Doetinchem,Gemeente Doetinchem,Raadslid
 120800,Dhr.,P.J.A.O.M.,Moors,,GemeenteBelangen Doetinchem,Gemeente Doetinchem,Raadslid
 120803,Dhr.,E.M.J.,Boerwinkel,,SP,Gemeente Doetinchem,Raadslid
 120802,Dhr.,G.P.,Pontier,,PvdA,Gemeente Doetinchem,Raadslid
@@ -9727,12 +9727,12 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135324,,D.J.,Landman,,D66/GROENLINKS,Gemeente Heerde,Raadslid
 113767,Dhr. drs.,N.J.,Pijnacker Hordijk,,D66,Gemeente Nuenen c.a.,Raadslid
 126413,Dhr.,J.W.,van der Klugt,,CDA,Gemeente Hollands Kroon,Raadslid
-120218,Mw.,E.H.H.,Gremm&eacute;e,,VVD,Gemeente Waalre,Raadslid
+120218,Mw.,E.H.H.,Gremmée,,VVD,Gemeente Waalre,Raadslid
 135137,Dhr.,D.J.,van der Hek,,ChristenUnie,Gemeente Leerdam,Raadslid
 120532,Dhr.,J.,van Belle,,VKG,Gemeente Zederik,Raadslid
 113715,Mw.,A.,Zandstra-Keijl,,Gemeentebelang,Gemeente Deventer,Raadslid
 124523,Dhr.,P.A.,Prins,,PvdO,Gemeente Diemen,Raadslid
-119898,Dhr.,F.,Andr&eacute; de la Porte,,D66,Gemeente Zeist,Raadslid
+119898,Dhr.,F.,André de la Porte,,D66,Gemeente Zeist,Raadslid
 74830,Mw.,S.M.,Wemmers-Wanrooy,,BETER VOOR DORDT,Gemeente Dordrecht,Raadslid
 86112,Dhr.,J.M.,de Jong,,CDA,Gemeente Ameland,Raadslid
 75744,Dhr.,M.P.C.,van der Looij,,Dorpsbelang Son en Breugel,Gemeente Son en Breugel,Raadslid
@@ -9826,7 +9826,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 75618,Mw.,A.P.,Plieger-Bos,,ChristenUnie,Gemeente Arnhem,Raadslid
 122154,Dhr.,M.P.,Venhoek,,D66,Gemeente Arnhem,Raadslid
 120665,Mw.,C.J.M.,Kalthoff,,VVD,Gemeente Arnhem,Raadslid
-74285,Dhr.,L.J.J.H.,Comb&eacute;e,,VVD,Gemeente Arnhem,Raadslid
+74285,Dhr.,L.J.J.H.,Combée,,VVD,Gemeente Arnhem,Raadslid
 120663,Dhr.,L.L.A.,van Geffen,,SP,Gemeente Arnhem,Raadslid
 131836,Mw.,C.K.,Van Dillen - Koorn,,CDA,Gemeente Arnhem,Raadslid
 75625,Dhr.,C.A.M.J.,Lenting,,SP,Gemeente Arnhem,Raadslid
@@ -9837,13 +9837,13 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120664,Dhr. dr.,K.,Bal,,Verenigd Arnhem,Gemeente Arnhem,Raadslid
 120657,Mw.,C.C.,Bouwkamp,,GroenLinks,Gemeente Arnhem,Raadslid
 122152,Dhr. mr.,G.A.,Karssenberg,,CDA,Gemeente Arnhem,Raadslid
-120652,Dhr.,I.,G&uuml;ven,,D66,Gemeente Arnhem,Raadslid
+120652,Dhr.,I.,Güven,,D66,Gemeente Arnhem,Raadslid
 129643,Dhr.,J.P.,Kusters,,SP,Gemeente Arnhem,Raadslid
 134272,Mw.,L.R.,Manders,,Arnhem Centraal,Gemeente Arnhem,Raadslid
 78106,Dhr.,U.S.,Kelderman,,VVD,Gemeente Arnhem,Raadslid
 78105,Dhr.,R.C.M.,van der Zee,,VVD,Gemeente Arnhem,Raadslid
 122153,Dhr.,D.,Becker,,ChristenUnie,Gemeente Arnhem,Raadslid
-74284,Dhr.,A.,&Ccedil;etintas,,SP,Gemeente Arnhem,Raadslid
+74284,Dhr.,A.,Çetintas,,SP,Gemeente Arnhem,Raadslid
 130687,Mw.,M.L.,de Vries,,PvdA,Gemeente Arnhem,Raadslid
 74905,Dhr.,R.,Teuben,,Ameland '82,Gemeente Ameland,Raadslid
 120658,Dhr.,L.C.M.,de Groot,,Partij voor de Dieren,Gemeente Arnhem,Raadslid
@@ -9856,7 +9856,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123438,Mw.,A.E.A.M.,Janssen,,SP,Gemeente Gennep,Raadslid
 89202,Dhr.,F.D.,Zeiler,,Gemeentebelangen BES,Gemeente Bergen NH,Raadslid
 120848,Mw.,W.A.T.,Grooteman,,CDA,Gemeente Bergen NH,Raadslid
-130771,Mw.,F.M.,Ou&euml;ndag,,GroenLinks,Gemeente Bergen NH,Raadslid
+130771,Mw.,F.M.,Ouëndag,,GroenLinks,Gemeente Bergen NH,Raadslid
 129389,Mw.,S.C.,Groen-Bruschke,,GroenLinks,Gemeente Bergen NH,Raadslid
 120856,Dhr.,R.J.,Karels,,KIES Lokaal,Gemeente Bergen NH,Raadslid
 120850,Dhr.,M.S.,Wals,,D66,Gemeente Bergen NH,Raadslid
@@ -9918,7 +9918,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 129854,Mw.,J.C.,de Bont,,OPA,Gemeente Alkmaar,Raadslid
 78415,Mw.,D.A.,Kloosterman,,CDA,Gemeente Overbetuwe,Raadslid
 131661,Dhr.,P.J.M.,van Kleef,,GroenLinks,Gemeente Langedijk,Raadslid
-127059,Dhr.,A.C.A.,B&uuml;chner,,CDA,Gemeente Oude IJsselstreek,Raadslid
+127059,Dhr.,A.C.A.,Büchner,,CDA,Gemeente Oude IJsselstreek,Raadslid
 126316,Dhr.,S.,Poels,,PvdA/GroenLinks,Gemeente Wijdemeren,Raadslid
 81376,Dhr.,G.,Vossers,,Lokaal Belang GVS,Gemeente Oude IJsselstreek,Raadslid
 122548,Mw.,J.M.,Elstak,,CDA,Gemeente Oude IJsselstreek,Raadslid
@@ -9975,7 +9975,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121524,Mw.,N.E.H.W.,Zwart-Hendrikx,,VVD,Gemeente Oegstgeest,Raadslid
 123392,Mw. mr.,H.,Aslander,,Stadspartij,Gemeente Purmerend,Raadslid
 75964,Dhr.,A.,Elfferich,,D66,Gemeente Landsmeer,Raadslid
-121955,Dhr.,B.,Schr&ouml;der,,D66,Gemeente Huizen,Raadslid
+121955,Dhr.,B.,Schröder,,D66,Gemeente Huizen,Raadslid
 81607,Dhr. drs.,O.,van Dijk,,CDA,Gemeente Putten,Raadslid
 124656,Dhr.,A.M.M.,van Boekel,,ABC,Gemeente Cuijk,Raadslid
 113657,Dhr.,G.,Bos,,Plaatselijk Belang,Gemeente Terschelling,Raadslid
@@ -10031,7 +10031,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 97847,Dhr.,F.,den Hartog,,PAB (Papendrechts Algemeen Belang),Gemeente Papendrecht,Raadslid
 81235,Dhr. drs.,E.B.A.,Lichtenberg,,CDA,Gemeente Papendrecht,Raadslid
 123216,Mw.,S.H.,de Keizer,,VVD,Gemeente Papendrecht,Raadslid
-131321,Mw.,J.,Sch&ouml;r-de Lange,,CDA,Gemeente Stadskanaal,Raadslid
+131321,Mw.,J.,Schör-de Lange,,CDA,Gemeente Stadskanaal,Raadslid
 122870,Mw.,J.M.,Beuger,,GroenLinks,Gemeente Waalre,Raadslid
 121166,Mw.,I.,den Haring-Snikkers,,PvdA,Gemeente Marum,Raadslid
 120380,Mw.,W.,Paulusma,,D66,Gemeente Groningen,Raadslid
@@ -10051,7 +10051,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133783,Dhr.,A.C.P.M,Wagenaars,,VVD,Gemeente Vught,Raadslid
 125351,Dhr.,H.W.A.,Schouten,,CDA,Gemeente Sint-Michielsgestel,Raadslid
 120335,Dhr.,P.,Wisgerhof,,CDA,Gemeente Veldhoven,Raadslid
-20626297,Dhr.,A.J.W.,Wild&ouml;er,,CDA,Gemeente Stede Broec,Raadslid
+20626297,Dhr.,A.J.W.,Wildöer,,CDA,Gemeente Stede Broec,Raadslid
 119906,Dhr.,J.A.C.,van der Putten,,CDA,Gemeente Drechterland,Raadslid
 125901,Dhr.,D.,Heijboer,,EVB,Gemeente Barendrecht,Raadslid
 120504,Dhr.,J.,Coumans,,PrO,Gemeente Oisterwijk,Raadslid
@@ -10087,7 +10087,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121888,Mw.,N.A.N.,Barnhoorn,,CDA,Gemeente Noordwijk,Raadslid
 121450,Dhr.,C.,Spijkerboer,,CDA,Gemeente Oldebroek,Raadslid
 23142,Dhr.,C.M.M.,Musters,,Gemeentebelangen,Gemeente Heusden,Raadslid
-123528,Dhr.,M,Y&uuml;ce,,D66,Gemeente Tiel,Raadslid
+123528,Dhr.,M,Yüce,,D66,Gemeente Tiel,Raadslid
 123532,Mw.,A.F.E.,Verhoeks-Dekker,,Partij van de Burger,Gemeente Tiel,Raadslid
 123536,Dhr.,A.,Saddiki,,PvdA,Gemeente Tiel,Raadslid
 98660,Mw.,J.D.,Stoeten-Flach,,ChristenUnie,Gemeente Tiel,Raadslid
@@ -10097,7 +10097,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 80195,Mw.,N.,Budak,,PvdA,Gemeente Tiel,Raadslid
 80194,Mw.,L.H.K.,Metiary,,PvdA,Gemeente Tiel,Raadslid
 82806,Dhr.,B.,van Gurp,,VVD,Gemeente Tiel,Raadslid
-122182,Mw.,A,&Ouml;nder,,GroenLinks,Gemeente Tiel,Raadslid
+122182,Mw.,A,Önder,,GroenLinks,Gemeente Tiel,Raadslid
 123539,Dhr.,M,Smits,,VVD,Gemeente Tiel,Raadslid
 123527,Dhr.,A.D.,Sijpkes,,CDA,Gemeente Tiel,Raadslid
 133274,Mw.,I.,Joustra,,Pro Tiel,Gemeente Tiel,Raadslid
@@ -10114,7 +10114,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 114059,Mw.,A.,Lubbers,,PvdA,Gemeente Tynaarlo,Raadslid
 112615,Mw.,J.,Rouwenhorst,,VVD,Gemeente Overbetuwe,Raadslid
 130860,Mw.,C.R.J.,Smeets,,GroenLinks,Gemeente Strijen,Raadslid
-76009,Dhr.,J.A.,J&auml;gers,,VVD,Gemeente Diemen,Raadslid
+76009,Dhr.,J.A.,Jägers,,VVD,Gemeente Diemen,Raadslid
 133523,Dhr.,R.J.,Lammers,,Student en Stad,Gemeente Groningen,Raadslid
 111243,Dhr. mr.,J.C.,de Looff,,VVD,Gemeente Zaltbommel,Raadslid
 130576,Dhr.,M.P.C.,Huige,,CDA,Gemeente Borsele,Raadslid
@@ -10143,7 +10143,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 76123,Dhr.,J.W.,van den Beukel,,CDA,Gemeente Westland,Raadslid
 134617,Dhr.,A.,van de Groep,,CDA,Gemeente Bunschoten,Raadslid
 121426,Dhr.,K.C.,Aksoy,,GroenLinks,Gemeente Lelystad,Raadslid
-119694,Dhr.,L.,de Vr&eacute;,,CDA,Gemeente Ouder-Amstel,Raadslid
+119694,Dhr.,L.,de Vré,,CDA,Gemeente Ouder-Amstel,Raadslid
 124600,Dhr.,N.G.,Staal,,VVD,Gemeente Nijkerk,Raadslid
 119372,Dhr.,M.,Sikkes,,GroenLinks,Gemeente De Fryske Marren,Raadslid
 76477,Dhr.,M.A.F.H.,van den Hoven,,CDA,Gemeente Tilburg,Raadslid
@@ -10236,7 +10236,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 85386,Dhr.,J.E.J.,Blom,,CDA,Gemeente Valkenburg aan de Geul,Raadslid
 85384,Dhr.,W.H.M.E.,Weerts,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
 85387,Dhr.,M.M.N.,Knubben,,CDA,Gemeente Valkenburg aan de Geul,Raadslid
-85381,Dhr.,J.H.,R&ouml;mling,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
+85381,Dhr.,J.H.,Römling,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
 134678,Mw.,M.A.C,Dexters-Mijnes,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
 85379,Dhr.,H.M.J.G.,Cobben,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
 126785,Dhr.,N.J.M.M.,Dauven,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
@@ -10248,9 +10248,9 @@ id,title,first_name,last_name,suffix,party,municipality,role
 20273208,Mw.,C.M.J.,Fulmer-Bouwens,,PGP,Gemeente Valkenburg aan de Geul,Raadslid
 85380,Dhr.,H.W.P.,Bemelmans,,Algemeen Belang,Gemeente Valkenburg aan de Geul,Raadslid
 120962,Mw. drs.,A.J.A.M.,Stinenbosch-Kools,,CDA,Gemeente Bergen op Zoom,Raadslid
-126578,Mw.,A.F.,Vreugdenhil - de Bl&eacute;court,,ChristenUnie,Gemeente Hilversum,Raadslid
+126578,Mw.,A.F.,Vreugdenhil - de Blécourt,,ChristenUnie,Gemeente Hilversum,Raadslid
 75554,Dhr. drs.,M.K.A.,Grauss,,ChristenUnie,Gemeente Capelle aan den IJssel,Raadslid
-20261026,Dhr.,A.J.W.,Wildo&euml;r,,CDA,Gemeente Stede Broec,Raadslid
+20261026,Dhr.,A.J.W.,Wildoër,,CDA,Gemeente Stede Broec,Raadslid
 134098,Mw.,K.,van Thiel-Klein,,Combinatie95,Gemeente Boxtel,Raadslid
 80711,Dhr.,A.,Sijbolts,,Stadspartij,Gemeente Groningen,Raadslid
 124482,Dhr.,A.A.M.,van Zelst,,Nieuw Lisse,Gemeente Lisse,Raadslid
@@ -10369,7 +10369,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 126013,Dhr.,M.,van den Elzen,,Algemeen Belang '90,Gemeente Mill en St. Hubert,Raadslid
 126018,Dhr.,F.,Janssen,,Vier Kernen Partij,Gemeente Mill en St. Hubert,Raadslid
 129917,Dhr.,M.J.J.,van der Geld MSc,,D66,Gemeente 's-Hertogenbosch,Raadslid
-80110,Dhr.,S.,&Ouml;zkan,,PvdA,Gemeente Emmen,Raadslid
+80110,Dhr.,S.,Özkan,,PvdA,Gemeente Emmen,Raadslid
 134685,Mw.,M.C.G.,Munneke-Smeets,,Hart voor Bussum Naarden Muiden/Muiderberg,Gemeente Gooise Meren,Raadslid
 119924,Dhr.,J.P.D.,van Osselaer,,D66,Gemeente Amsterdam,Raadslid
 127777,Dhr.,E.,Wessels,,Platform Progressief Wierden (PPW),Gemeente Wierden,Raadslid
@@ -10410,7 +10410,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130063,Mw.,G.J.,Goudriaan-de Vries,,PvdA,Gemeente Krimpenerwaard,Raadslid
 119989,Dhr.,G.G.T.,Verkuil,,SGP,Gemeente Borsele,Raadslid
 75504,Dhr.,K.,Terpstra,,PvdA,Gemeente Vlaardingen,Raadslid
-132732,Dhr.,Y.,&Ccedil;elik,,PvdA,Gemeente Tilburg,Raadslid
+132732,Dhr.,Y.,Çelik,,PvdA,Gemeente Tilburg,Raadslid
 20257770,Dhr.,A.,Molenaar,,Fractie Molenaar,Gemeente Zaanstad,Raadslid
 20256095,Mw.,K.,Bouman,,D66,Gemeente Haarlemmermeer,Raadslid
 72485,Mw.,T.,Valckx,,Lokaal Peel en Maas,Gemeente Peel en Maas,Raadslid
@@ -10440,7 +10440,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125171,Mw.,A.W.,Pastoor,,CDA,Gemeente Zeist,Raadslid
 130028,Mw.,J.M.J.,Brouwer,,VOLG,Gemeente Berg en Dal,Raadslid
 128053,Dhr.,L.A.,van Oort MSc,,Dorpspartij,Gemeente Gemert-Bakel,Raadslid
-78588,Dhr.,V.,K&ouml;roglu,,D66,Gemeente Leiden,Raadslid
+78588,Dhr.,V.,Köroglu,,D66,Gemeente Leiden,Raadslid
 71669,Mw.,J.L.M.,Craenmehr-Hesen,,CDA,Gemeente Horst aan de Maas,Raadslid
 130315,Dhr.,F.L.G.M.,Spreeuwenberg,,SP,Gemeente Horst aan de Maas,Raadslid
 123184,Mw.,M.H.,Roelofs-Huijs,,SP,Gemeente Horst aan de Maas,Raadslid
@@ -10503,7 +10503,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 81518,Dhr.,D.L.,Polderdijk,,Cromstrijen '98,Gemeente Cromstrijen,Raadslid
 120278,Mw.,T.G.,Doesburg-Kugel,,ChristenUnie,Gemeente Bedum,Raadslid
 20253497,Dhr. drs.,A.H.G.,Pohle,,KIJK!!! (PvdA GroenLinks D66),Gemeente Meerssen,Raadslid
-79136,Dhr.,W.C.,M&uuml;ller,,VVD,Gemeente Hellendoorn,Raadslid
+79136,Dhr.,W.C.,Müller,,VVD,Gemeente Hellendoorn,Raadslid
 122127,Dhr.,F.J.E.,Derksen,,Fractie Balans,Gemeente Gulpen-Wittem,Raadslid
 128378,Dhr.,K.,van Harten,,ChristenUnie,Gemeente Nunspeet,Raadslid
 127319,Dhr.,J.,van Olffen,,Verenigd Links,Gemeente Leeuwarden,Raadslid
@@ -10581,11 +10581,11 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123997,Mw.,J.,van Ketel,,SP,Gemeente Haarlem,Raadslid
 129970,Mw.,L.C.,van Zetten,,Hart voor Haarlem,Gemeente Haarlem,Raadslid
 123993,Mw.,D.,van Loenen,,PvdA,Gemeente Haarlem,Raadslid
-123984,Dhr.,B.,G&uuml;n,MBA,D66,Gemeente Haarlem,Raadslid
+123984,Dhr.,B.,Gün,MBA,D66,Gemeente Haarlem,Raadslid
 123983,Dhr.,F.C.,Visser,,ChristenUnie,Gemeente Haarlem,Raadslid
 117093,Dhr.,J.,Boer,,VVD,Gemeente Haarlem,Raadslid
 85009,Dhr.,G.B.,van Driel,,CDA,Gemeente Haarlem,Raadslid
-83356,Mw.,S.,&Ouml;zogul-&Ouml;zen,,SP,Gemeente Haarlem,Raadslid
+83356,Mw.,S.,Özogul-Özen,,SP,Gemeente Haarlem,Raadslid
 123992,Dhr. drs.,M.H.,Brander,,PvdA,Gemeente Haarlem,Raadslid
 123995,Dhr.,A.F.,Bloem,,SP,Gemeente Haarlem,Raadslid
 129969,Mw.,F.G.,Cannegieter,,D66,Gemeente Haarlem,Raadslid
@@ -10621,7 +10621,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 119993,Dhr.,J.C.A.,van Ginneken,,CDA,Gemeente Terneuzen,Raadslid
 130715,Mw.,E.D.,de Neef,,Provinciaal Belang Zeeland,Gemeente Terneuzen,Raadslid
 120002,Dhr.,J.L.A.,Sips,,VVD,Gemeente Terneuzen,Raadslid
-123174,Dhr.,M.,Barb&eacute;,,CDA,Gemeente Terneuzen,Raadslid
+123174,Dhr.,M.,Barbé,,CDA,Gemeente Terneuzen,Raadslid
 78362,Dhr.,R.B.,Lippens,,CDA,Gemeente Terneuzen,Raadslid
 92459,Mw.,M.I.R.,Hemelsoet - de Jaeger,,TOP/Gemeentebelangen,Gemeente Terneuzen,Raadslid
 121070,Mw.,M.R.L.,Steenbakker,,55 terneuzen,Gemeente Terneuzen,Raadslid
@@ -10784,7 +10784,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 75252,Mw.,L.E.,Punt,,GroenLinks,Gemeente Assen,Raadslid
 111699,Dhr.,T.,Poelman,,CDA,Gemeente Assen,Raadslid
 121195,Dhr.,C.,de Waal,,Progressief Altena,Gemeente Aalburg,Raadslid
-121988,Mw.,M.J.,Kuip&eacute;ri-Meesters,,VVD,Gemeente Geldrop-Mierlo,Raadslid
+121988,Mw.,M.J.,Kuipéri-Meesters,,VVD,Gemeente Geldrop-Mierlo,Raadslid
 134498,Mw.,G.K.,van Loo-Habets,,CDA,Gemeente Maastricht,Raadslid
 83744,Dhr.,C.A.,Hendriks,,CDA,Gemeente Meierijstad,Raadslid
 90768,Dhr.,M.,van der Valk,,VVD,Gemeente Papendrecht,Raadslid
@@ -10932,7 +10932,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 76913,Dhr. ir.,G.J.T.J.,van den Dries,,CDA,Gemeente Loon op Zand,Raadslid
 120215,Mw.,C.P.A.M.,Eeken-van Hoof,,CDA,Gemeente Waalre,Raadslid
 120373,Dhr.,R.,Bolle,,CDA,Gemeente Groningen,Raadslid
-76585,Dhr.,A.G.P.,H&uuml;mmels,,Leefbaar Almelo,Gemeente Almelo,Raadslid
+76585,Dhr.,A.G.P.,Hümmels,,Leefbaar Almelo,Gemeente Almelo,Raadslid
 125567,Dhr.,W.,Kaatee,,D66,Gemeente Arnhem,Raadslid
 135749,Dhr.,C.L.,Jonkers,,Lokaal Montfoort,Gemeente Montfoort,Raadslid
 76915,Dhr.,A.J.M.,van Laarhoven,,GemeenteBelangen,Gemeente Loon op Zand,Raadslid
@@ -10961,7 +10961,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133153,Dhr.,J.J.M.,de Jong,,VVD,Gemeente Eindhoven,Raadslid
 81720,Dhr.,T.M.,de Vries,,ChristenUnie,Gemeente De Marne,Raadslid
 123356,Dhr.,M.A.,van Stralen,,SP,Gemeente Hoorn,Raadslid
-116590,Dhr.,A,Magr&eacute;,,VVD,Gemeente Menameradiel,Raadslid
+116590,Dhr.,A,Magré,,VVD,Gemeente Menameradiel,Raadslid
 76023,Mw.,C.,de Groot,,AOV,Gemeente Schiedam,Raadslid
 73625,Dhr.,B.H.M.,Ernst,,CDA,Gemeente Doetinchem,Raadslid
 23318,Dhr.,R.,Braaksma,,GemeenteBelangen,Gemeente Medemblik,Raadslid
@@ -11076,7 +11076,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 130646,Mw. mr.,H.B.E.,Dreijer,,Beryl Dreijer,Gemeente Velsen,Raadslid
 121700,Dhr.,B.,Hageman,,VVD,Gemeente Velsen,Raadslid
 133666,Dhr.,I.,Sitompul,,GroenLinks,Gemeente Velsen,Raadslid
-121698,Dhr.,S.,&Ccedil;elik,,Velsen Lokaal,Gemeente Velsen,Raadslid
+121698,Dhr.,S.,Çelik,,Velsen Lokaal,Gemeente Velsen,Raadslid
 121692,Mw.,J.M.,Poen,,PvdA,Gemeente Velsen,Raadslid
 121689,Dhr.,S.,Bart,,LGV,Gemeente Velsen,Raadslid
 121686,Dhr.,S.,Scholts,,Forza! IJmond,Gemeente Velsen,Raadslid
@@ -11307,7 +11307,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120067,Mw.,K.K.M.,van der Geest,,Leefbaar Ridderkerk,Gemeente Ridderkerk,Raadslid
 134673,Dhr.,D.,Breeman,,CDA,Gemeente Ridderkerk,Raadslid
 120071,Dhr.,A.J.,Rottier,,SGP,Gemeente Ridderkerk,Raadslid
-76784,Mw.,F.,Fr&auml;ser,,D66/GroenLinks,Gemeente Ridderkerk,Raadslid
+76784,Mw.,F.,Fräser,,D66/GroenLinks,Gemeente Ridderkerk,Raadslid
 120782,Dhr.,C.G.M.,Janssen,,RoosendaalseLijst,Gemeente Roosendaal,Raadslid
 81432,Mw.,C.,de Roo,,GroenLinks,Gemeente Renkum,Raadslid
 126751,Dhr.,T.A.,de Boer,,VVD,Gemeente Renkum,Raadslid
@@ -11322,7 +11322,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 79455,Dhr.,G.,Kreijkes,,SGP,Gemeente Rijssen-Holten,Raadslid
 81491,Dhr.,J.A.,Rottier,,SGP,Gemeente Reimerswaal,Raadslid
 76902,Dhr.,A.H.J.M.,Sterk,,VVD,Gemeente Rijswijk,Raadslid
-76654,Dhr.,M.,Ayg&uuml;n,,CDA,Gemeente Roosendaal,Raadslid
+76654,Dhr.,M.,Aygün,,CDA,Gemeente Roosendaal,Raadslid
 120061,Dhr.,A.,Los,,Echt Voor Ridderkerk,Gemeente Ridderkerk,Raadslid
 73535,Mw.,E.C.P.M.,van Steen,,CDA,Gemeente Raalte,Raadslid
 121057,Mw.,A.Y.,van Loon,,Belangen Gelders Eiland,Gemeente Rijnwaarden,Raadslid
@@ -11407,7 +11407,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124301,Mw.,L.I.,Bentvelzen,,Beter voor Rijswijk,Gemeente Rijswijk,Raadslid
 119982,Dhr.,E.M.,Gerner,,VVD,Gemeente Raalte,Raadslid
 124298,Dhr.,G.A.,Kruger,,Beter voor Rijswijk,Gemeente Rijswijk,Raadslid
-120783,Dhr.,C.J.,Gabri&euml;ls,,RoosendaalseLijst,Gemeente Roosendaal,Raadslid
+120783,Dhr.,C.J.,Gabriëls,,RoosendaalseLijst,Gemeente Roosendaal,Raadslid
 122325,Dhr.,D.W.H.,Franssen,,LVR,Gemeente Roermond,Raadslid
 81427,Mw.,D.A.,Bondt,,D66,Gemeente Renkum,Raadslid
 127961,Mw.,M.S.,Albricht,,Rosendael'74,Gemeente Rozendaal,Raadslid
@@ -11762,7 +11762,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 133052,Dhr.,J.,Pottjewijd,,Lokaal Veenendaal,Gemeente Veenendaal,Raadslid
 135191,Dhr.,J.G.,van den Berg,,ChristenUnie,Gemeente Veenendaal,Raadslid
 75465,Dhr.,R.P.A.F.,Buiks,,CDA,Gemeente Etten-Leur,Raadslid
-122428,Dhr.,H.,Sa&iuml;di,,D66,Gemeente Veenendaal,Raadslid
+122428,Dhr.,H.,Saïdi,,D66,Gemeente Veenendaal,Raadslid
 122431,Dhr.,A.,Doelwijt,,PvdA,Gemeente Veenendaal,Raadslid
 130790,Mw.,C.A.J.,de Regt-Taks,,Fractie de Regt,Gemeente Etten-Leur,Raadslid
 125058,Dhr.,P.A.M.J.,Mul,,D66,Gemeente Etten-Leur,Raadslid
@@ -11790,7 +11790,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 75460,Dhr.,P.J.H.,van der Wulp,,Algemeen Plaatselijk Belang,Gemeente Etten-Leur,Raadslid
 135192,Mw.,M.,Jansen,,Lokaal Veenendaal,Gemeente Veenendaal,Raadslid
 134634,Dhr.,J.,Snoei,,SGP,Gemeente Veenendaal,Raadslid
-134885,Dhr.,G.,&Ccedil;oban,,DENK,Gemeente Veenendaal,Raadslid
+134885,Dhr.,G.,Çoban,,DENK,Gemeente Veenendaal,Raadslid
 122435,Dhr.,T.J.,van Iperen,,SGP,Gemeente Veenendaal,Raadslid
 79756,Dhr.,E.,Bunte,,SP,Gemeente Brielle,Raadslid
 80813,Dhr.,L.J.,Harmsen,,Gemeentebelangen Twenterand,Gemeente Twenterand,Raadslid
@@ -12014,7 +12014,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125756,Mw.,T.,Haseloop-Amsing,,VVD,Gemeente Leek,Raadslid
 83169,Mw.,C.,Bronsveld-Snoep,,CDA,Gemeente Maassluis,Raadslid
 124552,Dhr.,J.J.J.,Jhinnoe,,D66,Gemeente Haarlemmermeer,Raadslid
-124947,Dhr.,J.A.F.,K&uuml;sters,,SP,Gemeente Heerlen,Raadslid
+124947,Dhr.,J.A.F.,Küsters,,SP,Gemeente Heerlen,Raadslid
 81362,Dhr.,W.,Groot,,VVD,Gemeente Hollands Kroon,Raadslid
 120396,Dhr.,D.E.,de Vries,,Wakker Emmen,Gemeente Emmen,Raadslid
 127876,Dhr.,R.,Slager,,SGP,Gemeente Staphorst,Raadslid
@@ -12026,10 +12026,10 @@ id,title,first_name,last_name,suffix,party,municipality,role
 80894,Dhr.,P.H.M.,Baks,,PvdA,Gemeente Oost Gelre,Raadslid
 73836,Dhr.,P.B.H.,Geurtz,,B06,Gemeente Lingewaard,Raadslid
 111962,Mw.,M.,Brink-Veerman,,Gemeentebelangen,Gemeente Noordenveld,Raadslid
-120487,Dhr.,T,&Ccedil;etinkaya,,Islam Democraten,Gemeente Den Haag,Raadslid
-76226,Dhr.,H.,K&uuml;&ccedil;&uuml;k,,Islam Democraten,Gemeente Den Haag,Raadslid
+120487,Dhr.,T,Çetinkaya,,Islam Democraten,Gemeente Den Haag,Raadslid
+76226,Dhr.,H.,Küçük,,Islam Democraten,Gemeente Den Haag,Raadslid
 133138,Mw.,C.,Teunissen,,Partij voor de Dieren,Gemeente Den Haag,Raadslid
-120486,Mw.,F.,Fa&iuml;d,,Haagse Stadspartij,Gemeente Den Haag,Raadslid
+120486,Mw.,F.,Faïd,,Haagse Stadspartij,Gemeente Den Haag,Raadslid
 120476,Dhr.,M.,Eser,,D66,Gemeente Den Haag,Raadslid
 20428406,Mw.,K.,Gerbrands,,Partij voor de Vrijheid,Gemeente Den Haag,Raadslid
 133435,Dhr.,D.,Scheper,,D66,Gemeente Den Haag,Raadslid
@@ -12044,7 +12044,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 120488,Dhr.,A.,Elissen,,Partij voor de Vrijheid,Gemeente Den Haag,Raadslid
 20359795,Mw.,I.N.,Michels-Spee,,VVD,Gemeente Den Haag,Raadslid
 130817,Mw.,J.W.,Toeters,,D66,Gemeente Den Haag,Raadslid
-120814,Mw.,B.,&Ouml;zmen,,D66,Gemeente Den Haag,Raadslid
+120814,Mw.,B.,Özmen,,D66,Gemeente Den Haag,Raadslid
 22021167,Mw.,H.,Drost,,SP,Gemeente Den Haag,Raadslid
 20650655,,F.,de Graaf,,VVD,Gemeente Den Haag,Raadslid
 128912,Dhr.,M.A.,Kraft van Ermel,,Groep De Mos/Ouderen Partij Den Haag,Gemeente Den Haag,Raadslid
@@ -12205,7 +12205,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 85466,Dhr.,H.A.M.,Plegt,,GB/VVD,Gemeente Tubbergen,Raadslid
 126803,Dhr.,W.J.G.,Weerink,,CDA,Gemeente Tubbergen,Raadslid
 78879,Dhr.,P.H.G.M.,Hannink,,GB/VVD,Gemeente Tubbergen,Raadslid
-126805,Mw.,J.,Aalderink-B&uuml;ter,,CDA,Gemeente Tubbergen,Raadslid
+126805,Mw.,J.,Aalderink-Büter,,CDA,Gemeente Tubbergen,Raadslid
 78877,Dhr.,H.B.J.,Oude Luttikhuis,,GB/VVD,Gemeente Tubbergen,Raadslid
 126800,Dhr.,H.J.,Stevelink,,CDA,Gemeente Tubbergen,Raadslid
 126809,Mw.,J.C.,Detert Oude Weme-Oude Rengerink,,GB/VVD,Gemeente Tubbergen,Raadslid
@@ -12215,7 +12215,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125088,Dhr.,P.G.M.,van Crooij,,Lokale Democraten,Gemeente Venlo,Raadslid
 71165,Dhr.,A.P.M.A.,Vervoort,,SP,Gemeente Venlo,Raadslid
 135581,Dhr.,A.,Meziani,,CDA,Gemeente Venlo,Raadslid
-115678,Dhr.,F.P.M.,Schatorj&eacute;,,Lokale Democraten,Gemeente Venlo,Raadslid
+115678,Dhr.,F.P.M.,Schatorjé,,Lokale Democraten,Gemeente Venlo,Raadslid
 123841,Dhr.,K.,de Boer,,"Betrokken, Anders en Samen",Gemeente Opsterland,Raadslid
 128182,Dhr.,R.H.,de Jong,,D66,Gemeente Opsterland,Raadslid
 131608,Dhr.,R.J.,Hermans,,CDA,Gemeente Venlo,Raadslid
@@ -12228,7 +12228,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 25332,Dhr.,J.M.E.,Heuvelings,,VVD,Gemeente Venlo,Raadslid
 131985,Dhr.,M.,van Opzeeland,,Opsterlands Belang,Gemeente Opsterland,Raadslid
 133411,Dhr.,G.A.J.,Vervoort,,PvdA,Gemeente Venlo,Raadslid
-127967,Dhr.,A.,Oru&ccedil;,,Lokale Democraten,Gemeente Venlo,Raadslid
+127967,Dhr.,A.,Oruç,,Lokale Democraten,Gemeente Venlo,Raadslid
 125091,Dhr.,E.,Boom,,PvdA,Gemeente Venlo,Raadslid
 89434,Mw.,D.S.J.,Thissen,,CDA,Gemeente Venlo,Raadslid
 71164,Dhr.,A.H.J.,Heerschop,,SP,Gemeente Venlo,Raadslid
@@ -12243,11 +12243,11 @@ id,title,first_name,last_name,suffix,party,municipality,role
 73178,Dhr.,G.,Weening,,ChristenUnie,Gemeente Opsterland,Raadslid
 128180,Dhr.,S.,Veenstra,,CDA,Gemeente Opsterland,Raadslid
 71160,Dhr.,F.H.T.M.,Aerts,,D66,Gemeente Venlo,Raadslid
-131609,Mw.,D.,Oru&ccedil;,,CDA,Gemeente Venlo,Raadslid
+131609,Mw.,D.,Oruç,,CDA,Gemeente Venlo,Raadslid
 115579,Dhr.,A.F.E.,Pieko,,VenLokaal,Gemeente Venlo,Raadslid
 125098,Dhr.,L.M.C.,van den Beucken,,VenLokaal,Gemeente Venlo,Raadslid
 125087,Dhr.,G.,Yurt,,Lokale Democraten,Gemeente Venlo,Raadslid
-125094,Dhr.,W.S.,H&uuml;gues,,SP,Gemeente Venlo,Raadslid
+125094,Dhr.,W.S.,Hügues,,SP,Gemeente Venlo,Raadslid
 133075,Mw.,W.H.,Bruining,,Opsterlands Belang,Gemeente Opsterland,Raadslid
 20263673,Dhr.,J.,van der Werf,,Plaatselijke Partij,Gemeente Opsterland,Raadslid
 25323,Dhr.,H.A.M.H.,Janssen,,PvdA,Gemeente Venlo,Raadslid
@@ -12377,12 +12377,12 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125109,Dhr.,G.J.M.,Vreugdenhil,,Leefbaar Rotterdam,Gemeente Rotterdam,Raadslid
 75099,Mw.,J.,Bokhove,,GroenLinks,Gemeente Rotterdam,Raadslid
 122674,Mw.,B.C.,Kathmann,,PvdA,Gemeente Rotterdam,Raadslid
-75120,Mw.,J.,Str&ouml;rmann,,SP,Gemeente Rotterdam,Raadslid
+75120,Mw.,J.,Strörmann,,SP,Gemeente Rotterdam,Raadslid
 131412,Dhr.,J.W.,Verheij,,VVD,Gemeente Rotterdam,Raadslid
 20259287,Dhr.,D.W.,Ismangil,,D66,Gemeente Almere,Raadslid
 22423094,Dhr.,P.J.P.,Lansink-Bastemeijer,,VVD,Gemeente Rotterdam,Raadslid
 121816,Dhr.,J.A.,Soetekouw,,PvdA,Gemeente Almere,Raadslid
-122672,Dhr.,J.C.,Gon&ccedil;alves,,PvdA,Gemeente Rotterdam,Raadslid
+122672,Dhr.,J.C.,Gonçalves,,PvdA,Gemeente Rotterdam,Raadslid
 75116,Mw.,F.,Talbi,,PvdA,Gemeente Rotterdam,Raadslid
 132061,Dhr.,R.A.,Eekhuis,,Partij Eekhuis,Gemeente Almere,Raadslid
 121807,Dhr.,R.C.,van de Kamp,,D66,Gemeente Almere,Raadslid
@@ -12419,14 +12419,14 @@ id,title,first_name,last_name,suffix,party,municipality,role
 121814,Mw.,R.J.,Aukes,,Partij voor de Vrijheid,Gemeente Almere,Raadslid
 122659,Dhr.,S.,Schampers,,D66,Gemeente Rotterdam,Raadslid
 20634994,Dhr.,P.R.,Schol,,SP,Gemeente Rotterdam,Raadslid
-75354,Mw.,E.T.M.,M&uuml;ller-Klijn,,VVD,Gemeente Almere,Raadslid
+75354,Mw.,E.T.M.,Müller-Klijn,,VVD,Gemeente Almere,Raadslid
 121817,Dhr.,K.,Iskender,,PvdA,Gemeente Almere,Raadslid
 113356,Dhr.,R.,Dubbelman,,Partij voor de Vrijheid,Gemeente Almere,Raadslid
 122658,Dhr.,R.C.J.,de Roon,,D66,Gemeente Rotterdam,Raadslid
 133241,Dhr.,S.,Kroon,,D66,Gemeente Rotterdam,Raadslid
 75105,Dhr. drs.,A.N.,Molenaar,,Leefbaar Rotterdam,Gemeente Rotterdam,Raadslid
 75328,Dhr.,N.P.,van Duijn,,Leefbaar Almere,Gemeente Almere,Raadslid
-125110,Dhr.,L.,S&ouml;rensen,,Leefbaar Rotterdam,Gemeente Rotterdam,Raadslid
+125110,Dhr.,L.,Sörensen,,Leefbaar Rotterdam,Gemeente Rotterdam,Raadslid
 75337,Mw.,J.D.,Zerfowski,,Partij voor de Vrijheid,Gemeente Almere,Raadslid
 122665,Mw.,I.,Hoogveld,,Leefbaar Rotterdam,Gemeente Rotterdam,Raadslid
 127528,Dhr.,G.,Vegersteen,,D66,Gemeente Almere,Raadslid
@@ -12820,7 +12820,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 92867,Dhr.,I.G.,Mostert,,1945,Gemeente Katwijk,Wethouder
 87633,Dhr.,H.J.,Dijkstra,,CDA,Gemeente Aa en Hunze,Wethouder
 112414,Mw.,M.,Stam-de Nijs,,VVD,Gemeente Heerhugowaard,Wethouder
-126796,Dhr. drs.,G.J.W.,Gabri&euml;ls,,Weert Lokaal,Gemeente Weert,Wethouder
+126796,Dhr. drs.,G.J.W.,Gabriëls,,Weert Lokaal,Gemeente Weert,Wethouder
 124951,Dhr.,M.E.E.,de Beer,,VVD,Gemeente Heerlen,Wethouder
 135716,Dhr.,J.C.M.,Ringens,,GBBL,Gemeente Landgraaf,Wethouder
 127226,Mw.,R.D.,Helmer-Englebert,,SP,Gemeente Nijmegen,Wethouder
@@ -12938,7 +12938,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 134798,Dhr.,A.B.J.,Steggink,,Partij Onafhankelijk,Gemeente Dinkelland,Wethouder
 134140,Dhr.,M.H.,Biemans,,DOE!,Gemeente Deurne,Wethouder
 135079,Dhr.,B.J.,Brand,,VVD,Gemeente Dinkelland,Wethouder
-127158,Dhr.,M.M.,Schl&ouml;sser,,VVD,Gemeente Deurne,Wethouder
+127158,Dhr.,M.M.,Schlösser,,VVD,Gemeente Deurne,Wethouder
 21556,Dhr.,R.P.,Grondel,,GroenLinks,Gemeente Diemen,Wethouder
 21557,Dhr.,A.J.M.,Scholten,,PvdA,Gemeente Diemen,Wethouder
 123333,Dhr.,J.R.,van 't Zand,,Gemeentebelangen,Gemeente De Wolden,Wethouder
@@ -12982,7 +12982,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124528,Mw.,M.E.T.,Bakker,,D66,Gemeente S&uacute;dwest Frysl&acirc;n,Wethouder
 124529,Dhr.,D.,Stoker,,FNP,Gemeente S&uacute;dwest Frysl&acirc;n,Wethouder
 131425,Mw. drs.,S.C.,van Gent,,PvdA,Gemeente S&uacute;dwest Frysl&acirc;n,Wethouder
-127041,Dhr.,F.,F&ouml;rster,,STIP,Gemeente Delft,Wethouder
+127041,Dhr.,F.,Förster,,STIP,Gemeente Delft,Wethouder
 29502,Dhr. drs.,J.,van Groos,,ChristenUnie,Gemeente Waalwijk,Wethouder
 125443,Dhr.,C.,Pleijsier,,CDA,Gemeente Maassluis,Wethouder
 127543,Dhr.,A.,Donker,,SGP,Gemeente Zederik,Wethouder
@@ -13321,7 +13321,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 127647,Dhr. mr.,A.L.,van Kempen,,D66,Gemeente Teylingen,Wethouder
 126605,Dhr.,A.H.M.,Albers,,Lokaal Belang,Gemeente Zevenaar,Wethouder
 133175,Mw.,M.,Vos-Kroeze,,D66,Gemeente Steenbergen,Wethouder
-124148,Mw.,M.J.,Sloot-Hoh&eacute;,,Gezond Verstand Haren,Gemeente Haren,Wethouder
+124148,Mw.,M.J.,Sloot-Hohé,,Gezond Verstand Haren,Gemeente Haren,Wethouder
 125327,Dhr.,A.,de Jong,,B.B.H. (Bevolkingsbelangen Hillegom),Gemeente Hillegom,Wethouder
 133577,Dhr.,F.Q.A.,van Trigt,,CDA,Gemeente Hillegom,Wethouder
 133592,Dhr.,J.A.J.,Verheijen,,VVD,Gemeente Hillegom,Wethouder
@@ -13479,7 +13479,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 123686,Mw.,T.K.,Schaafsma-Buijs,,VVD,Gemeente Oostzaan,Wethouder
 123685,Dhr. drs.,J.H.M.,Klinkhamer,,GroenLinks,Gemeente Oostzaan,Wethouder
 134944,Dhr.,J.W.,Keuken,MBA,SGP,Gemeente Neder-Betuwe,Wethouder
-132996,Dhr.,C.A.A.A.,T&ouml;nissen,,PvdA-GroenLinks,Gemeente Eersel,Wethouder
+132996,Dhr.,C.A.A.A.,Tönissen,,PvdA-GroenLinks,Gemeente Eersel,Wethouder
 84168,Dhr.,M.,Willemsen,,CDA,Gemeente Oosterhout,Wethouder
 132592,Dhr.,R.C.M.,Sueters,,Burgerbelang,Gemeente Zutphen,Wethouder
 22585049,Dhr.,A.M.,de Regt,,CDA,Gemeente IJsselstein,Wethouder
@@ -13492,7 +13492,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 36776,Dhr. drs.,P.C.,Drenth,,CDA,Gemeente Doetinchem,Wethouder
 133360,Mw.,M.,Sluiter,,VVD,Gemeente Doetinchem,Wethouder
 133407,Mw.,I.M.,Lambregts-van Nobelen,MA,CDA,Gemeente Doetinchem,Wethouder
-123343,Mw.,S.,Herkstr&ouml;ter,,SP,Gemeente Eemsmond,Wethouder
+123343,Mw.,S.,Herkströter,,SP,Gemeente Eemsmond,Wethouder
 128535,Dhr.,A.R.,Peppelman,,PvdA,Gemeente Bronckhorst,Wethouder
 133134,Mw. drs.,N.J.,Oosthoek,,Elburg Beleid,Gemeente Elburg,Wethouder
 84413,Dhr.,A.T.,Kamsteeg,,ChristenUnie/SGP,Gemeente Zwijndrecht,Wethouder
@@ -13522,7 +13522,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 88228,Dhr.,M.A.R.,Leisink,,D66,Gemeente Arnhem,Wethouder
 134748,Dhr.,G.,Ritsema,,SP,Gemeente Arnhem,Wethouder
 84713,Dhr.,G.E.,Elfrink,,SP,Gemeente Arnhem,Wethouder
-131183,Dhr.,R.,K&ouml;nig,,D66,Gemeente Arnhem,Wethouder
+131183,Dhr.,R.,König,,D66,Gemeente Arnhem,Wethouder
 131434,Dhr.,M.G.J.,van der Putten,,D66,Gemeente Venray,Wethouder
 126355,Dhr.,A.P.,van Huissteden,,PvdA,Gemeente Bergen NH,Wethouder
 135283,Dhr.,H.J.,Snabilie,,KIES Lokaal,Gemeente Bergen NH,Wethouder
@@ -13588,7 +13588,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 129934,Dhr.,J.,Vente,,ChristenUnie,Gemeente Krimpenerwaard,Wethouder
 123608,Mw.,M.,Lestrade,,D66,Gemeente Boxtel,Wethouder
 134444,Mw.,D.J.G.M.,van Damme-Fassaert,,PvdA,Gemeente Hulst,Wethouder
-76688,Dhr.,A.A.V.,Tott&eacute;,,CDA,Gemeente Hulst,Wethouder
+76688,Dhr.,A.A.V.,Totté,,CDA,Gemeente Hulst,Wethouder
 124031,Dhr.,J.P.E.M.,Hageman,,Algemeen Belang Groot Hulst,Gemeente Hulst,Wethouder
 34690,Dhr.,F.A.D.,van Driessche,,Groot Hontenisse,Gemeente Hulst,Wethouder
 115361,Dhr.,M.A.J.,Doodkorte,,VVD,Gemeente Gorinchem,Wethouder
@@ -13618,7 +13618,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 110825,Dhr. drs.,L.C.M.,Frings,,GroenLinks,Gemeente Nijmegen,Wethouder
 113608,Dhr.,P.,Maasbommel,,PvdA,Gemeente Kollumerland c.a.,Wethouder
 134482,Mw.,M.,Verhage-van Kooten,,ChristenUnie/SGP,Gemeente Huizen,Wethouder
-126814,Dhr.,B.H.E.,L&uuml;ken,,CDA,Gemeente Blaricum,Wethouder
+126814,Dhr.,B.H.E.,Lüken,,CDA,Gemeente Blaricum,Wethouder
 70989,Mw.,B.M.T.J.,op de Laak,,PvdA,Gemeente Horst aan de Maas,Wethouder
 125137,Dhr.,B.C.M.,Vostermans,,CDA,Gemeente Horst aan de Maas,Wethouder
 70986,Dhr. drs.,G.J.M.L.,van Rensch,,CDA,Gemeente Horst aan de Maas,Wethouder
@@ -13787,7 +13787,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 125176,Dhr.,A.J.H.,Verschuren,,CDA,Gemeente Zaanstad,Wethouder
 95100,Dhr.,H.A.,Verwoert,,VVD,Gemeente Neerijnen,Wethouder
 124904,Dhr. ir.,J.H.L.M.,de Vreede,,SSM,Gemeente Maasdriel,Wethouder
-20273936,Mw.,A.,S&THORN;rensen,,CDA,Gemeente Maasdriel,Wethouder
+20273936,Mw.,A.,SÞrensen,,CDA,Gemeente Maasdriel,Wethouder
 124902,Dhr.,G.P.,van den Anker,,CDA,Gemeente Maasdriel,Wethouder
 30314,Dhr.,J.C.M.,Huijsmans,,Leefbaar Asten,Gemeente Asten,Wethouder
 30313,Dhr.,T.H.M.,Martens,,CDA,Gemeente Asten,Wethouder
@@ -13828,7 +13828,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 135053,Dhr. dr. ir.,C.M.,Verloop,,SGP,Gemeente Veenendaal,Wethouder
 135050,Mw.,M.A.,Overduin-Biesma,,CDA,Gemeente Veenendaal,Wethouder
 125384,Dhr.,R.L.,Dujardin,,D66,Gemeente Etten-Leur,Wethouder
-135052,Mw.,N.,Kundi&ccedil;,,D66,Gemeente Veenendaal,Wethouder
+135052,Mw.,N.,Kundiç,,D66,Gemeente Veenendaal,Wethouder
 63233,Dhr.,J.P.,van Hal,,CDA,Gemeente Etten-Leur,Wethouder
 135054,Mw.,J.F.M.,Hollander,,VVD,Gemeente Veenendaal,Wethouder
 135051,Dhr. mr. ing.,E.,Stroobosscher,,ChristenUnie,Gemeente Veenendaal,Wethouder
@@ -13961,7 +13961,7 @@ id,title,first_name,last_name,suffix,party,municipality,role
 124920,Dhr.,A.J.C.,Goldhoorn,,RVB (Ronde Venen Belang),Gemeente De Ronde Venen,Wethouder
 127331,Dhr.,M.H.E.,Wilms,,Lokaal Belang,Gemeente Maasgouw,Wethouder
 96936,Dhr.,R.E.,de Heer,,VVD,Gemeente Zwolle,Wethouder
-133284,Dhr.,H.,Sch&uuml;tt,,Zeevangs Belang,Gemeente Edam-Volendam,Wethouder
+133284,Dhr.,H.,Schütt,,Zeevangs Belang,Gemeente Edam-Volendam,Wethouder
 124829,Dhr.,P.L.H.E.,Janssen,,CDA,Gemeente Schinnen,Wethouder
 125177,Mw.,H.A.,Visscher-Noordzij,,ChristenUnie,Gemeente Zaanstad,Wethouder
 125419,Dhr. mr.,A.J.M.,Walraven,,Samen Verder,Gemeente Leudal,Wethouder
