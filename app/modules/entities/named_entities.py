@@ -7,15 +7,13 @@ from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 
 # Global NLP variable to initialize when necessary
-from app.settings import ENTITIES_API_CERTAINTY_THRESHOLD
-
 nlp = None
 
 def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.filter(Politician.last_name == 'Maat').all():
+    for politician in Politician.query.all():
         if not politician.last_name == '':
             politicians.append(politician.last_name)
 
