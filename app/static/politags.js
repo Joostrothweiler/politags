@@ -46,10 +46,9 @@ let articleObject = {
 
 console.log(articleObject)
 
-
 //On click we call the API to receive the question
 
-$(function() {
+$(function () {
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -67,26 +66,17 @@ $(function() {
 
 
 function printQuestionAnswers(response) {
-    let message = "Question is: "
-    message = message.concat(response["question"])
-    message = message.concat(" And possible answers are:")
-    message = message.concat(response["possible_answers"])
-    hiliter(response["text"], article, response["question_id"])
-    article.append(message)
+    let question = response["question"]
+    let questionId = response["question_id"]
+    let possibleAnswers = response["possible_answers"]
+    let entityText = response["text"]
+
+    hiliter(article, entityText, questionId)
+    appendDiv(questionId, question)
 }
 
 
-$('#yes').click(function() {
-    let answer = {"response" : "yes"}
-    postAnswer(answer)
-})
-
-$('#no').click(function() {
-    let answer = {"response" : "no"}
-    postAnswer(answer)
-})
-
-
+// this function posts the answer to a certain question
 function postAnswer(answer, questionId) {
     $.ajax({
         type: "POST",
@@ -103,12 +93,32 @@ function postAnswer(answer, questionId) {
 
 }
 
-//this function highlights a word in the text using bootstrap's mark
-function hiliter(word, element, questionId) {
-    var regexp = new RegExp(word, 'g');
-    var replace = '<mark id="'+ questionId + '">' + word + '</mark>';
+// this function highlights a word in the text using bootstrap's mark
+function hiliter(element, word, questionId) {
+    var regexp = new RegExp(word);
+    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>';
     element.innerHTML = element.innerHTML.replace(regexp, replace);
 }
 
+
+function appendDiv(questionId, question) {
+    $('#' + questionId).append(
+        '<div class="list-group"> <a href="#" class="list-group-item disabled">' + question + '<button id="yes" title = '+ questionId +'  type="button" class="btn btn-success">Ja</button> <button id="no" title = '+ questionId +' type="button" class="btn btn-danger">Nee</button></a> </div>'
+    )
+}
+
+$('body').on('click', '#yes', function () {
+    let answer = {"response": "yes"}
+    let questionId = $('#yes').title
+    postAnswer(answer, questionId)
+})
+
+
+// if you click the no button, we want to record no
+$('body').on('click', '#no', function () {
+    let answer = {"response": "no"}
+    let questionId = $('#no').title
+    postAnswer(answer, questionId)
+})
 
 
