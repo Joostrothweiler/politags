@@ -9,4 +9,4 @@ RUN python -m spacy download nl
 
 COPY . .
 
-CMD ["python", "./manage.py", "runserver", "--host=0.0.0.0:5000"]
+CMD ["python", "./manage.py", "runserver", "--host=0.0.0.0"]
