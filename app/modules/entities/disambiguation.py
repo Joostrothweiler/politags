@@ -1,12 +1,15 @@
 import numpy as np
+import pickle
+from sklearn.svm import SVC
 from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
 from app.modules.entities.disambiguation_features import *
 from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file
-from app.settings import NED_CUTOFF_THRESHOLD, NED_STRING_SIM_WEIGHT, NED_CONTEXT_SIM_WEIGHT
+from app.settings import NED_CUTOFF_THRESHOLD
 
+disambiguation_model = pickle.load(open('app/modules/entities/nlp_model/disambiguation_model.sav', 'rb'))
 
 def named_entity_disambiguation(document, entities):
     for entity in entities:
@@ -26,12 +29,14 @@ def politician_disambiguation(document, entities, entity):
         f_who_name = f_who_name_similarity(entity.text, candidate)
         f_party = f_party_similarity(document, candidate)
         f_context = f_context_similarity(document, entities, candidate)
+        feature_vector = [f_name, f_first_name, f_who_name, f_party, f_context]
+        # Write to file for training
+        write_classifier_training_file(document, feature_vector, candidate)
+        # Classify
+        prediction_prob = classifier_probability(feature_vector)
 
-        write_classifier_training_file(document, [f_name, f_first_name, f_who_name, f_party, f_context], candidate)
-        weighted_sim = weighted_similarity_score(f_name, f_context)
-
-        if weighted_sim > NED_CUTOFF_THRESHOLD:
-            store_entity_politician_linking(entity, candidate, weighted_sim)
+        if prediction_prob > NED_CUTOFF_THRESHOLD:
+            store_entity_politician_linking(entity, candidate, prediction_prob)
 
 
 def get_candidate_politicians(mention):
@@ -43,7 +48,7 @@ def get_candidate_politicians(mention):
     mention_array = mention.split(' ')
     candidate_count = 0
 
-    # FIXME: This method assumes that there are no weird parts at the end of the mention string (this would fail).
+    # FIXME: This method assumes that there are no weird strings at the end of the mention string (this would fail).
     while candidate_count == 0 and len(mention_array) > 0:
         name = ' '.join(mention_array)
         candidate_count = Politician.query.filter(
@@ -64,8 +69,12 @@ def get_candidate_politicians(mention):
     return candidates
 
 
-def weighted_similarity_score(name_sim, context_sim):
-    return NED_STRING_SIM_WEIGHT * name_sim + NED_CONTEXT_SIM_WEIGHT * context_sim
+def classifier_probability(feature_vector):
+    # Classifier returns a certainty for "False" ([0]) and "True" ([1])
+    # We return the probability for true
+    candidate_certainty = disambiguation_model.predict_proba([feature_vector])[0]
+    print(candidate_certainty)
+    return candidate_certainty[1]
 
 
 def store_entity_politician_linking(entity, politician, certainty):

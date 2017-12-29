@@ -29,7 +29,7 @@ def f_party_similarity(document, candidate):
     document_parties = []
     for party in document['parties']:
         document_parties.append(party)
-    # TODO this is not a very string way to compare this.
+    # TODO this is not a very strong method to compare this.
     sim = string_similarity(candidate.party, document['collection'])
     return sim
 
@@ -43,17 +43,16 @@ def f_context_similarity(document, entities, candidate):
     document_entries.append(document['collection'])
     document_entries.append(document['location'])
 
-    candidate_array = [candidate.title,
-                       candidate.first_name,
-                       candidate.last_name,
+    candidate_array = [candidate.last_name,
                        candidate.party,
-                       candidate.role,
                        candidate.municipality.split(' ')[-1]]
 
     [x.lower() for x in document_entries]
     [x.lower() for x in candidate_array]
+
+    print('Simialrity [{}], [{}]'.format(document_entries, candidate_array))
+
     sim = jaccard_distance(document_entries, candidate_array)
-    # print('Similarity between "{}" and {} is {}'.format(document['parties'], candidate.full_name, sim))
     return sim
 
 

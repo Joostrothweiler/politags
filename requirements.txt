@@ -20,3 +20,7 @@ PyGreSQL
 # Automated tests
 pytest
 pytest-cov
+
+# Machine learning
+scipy
+sklearn
