@@ -12,6 +12,7 @@ bs4
 
 # Names
 nameparser
+whoswho
 
 # Postgres connector
 PyGreSQL

@@ -1,4 +1,6 @@
 from difflib import SequenceMatcher
+
+import datetime
 from bs4 import BeautifulSoup
 
 from nameparser import HumanName
@@ -57,3 +59,6 @@ def string_similarity(a, b):
 
 def pure_len(str):
     return len(str) - str.count(' ')
+
+def timeStamped(fname, fmt='%Y%m%d-%H%M_{fname}'):
+    return datetime.datetime.now().strftime(fmt).format(fname=fname)

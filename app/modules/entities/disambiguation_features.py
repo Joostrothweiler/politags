@@ -1,4 +1,5 @@
 from app.modules.common.utils import string_similarity
+from whoswho import who
 
 
 def f_name_similarity(mention, candidate):
@@ -16,6 +17,11 @@ def f_first_name_similarity(mention, candidate):
         for first_letter in first_letters_candidate:
             if len(part_of_name) > 0 and part_of_name[0] == first_letter:
                 sim = 1
+    return sim
+
+
+def f_who_name_similarity(mention, candidate):
+    sim = who.ratio(mention, candidate.full_name) / 100
     return sim
 
 
@@ -42,7 +48,7 @@ def f_context_similarity(document, entities, candidate):
                        candidate.last_name,
                        candidate.party,
                        candidate.role,
-                       candidate.municipality]
+                       candidate.municipality.split(' ')[-1]]
 
     [x.lower() for x in document_entries]
     [x.lower() for x in candidate_array]

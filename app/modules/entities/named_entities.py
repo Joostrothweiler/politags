@@ -13,12 +13,12 @@ def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.all():
+    for politician in Politician.query.limit(10).all():
         if not politician.last_name == '':
             politicians.append(politician.last_name)
 
     parties = []
-    for party in Party.query.all():
+    for party in Party.query.limit(10).all():
         parties.append(party.name)
         if not party.abbreviation == '':
             parties.append(party.abbreviation)

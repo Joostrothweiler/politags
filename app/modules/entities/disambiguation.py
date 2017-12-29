@@ -1,14 +1,10 @@
-import json
 import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
-from app.modules.common.utils import string_similarity, parse_human_name
-from app.modules.entities.disambiguation_features import f_context_similarity, f_name_similarity, \
-    f_first_name_similarity, f_party_similarity
-from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file, \
-    candidate_present_in_document
+from app.modules.entities.disambiguation_features import *
+from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file
 from app.settings import NED_CUTOFF_THRESHOLD, NED_STRING_SIM_WEIGHT, NED_CONTEXT_SIM_WEIGHT
 
 
@@ -27,17 +23,11 @@ def politician_disambiguation(document, entities, entity):
     for candidate in candidates:
         f_name = f_name_similarity(entity.text, candidate)
         f_first_name = f_first_name_similarity(entity.text, candidate)
+        f_who_name = f_who_name_similarity(entity.text, candidate)
         f_party = f_party_similarity(document, candidate)
         f_context = f_context_similarity(document, entities, candidate)
 
-        write_classifier_training_file(document, [f_name, f_first_name, f_party, f_context], candidate)
-
-        if candidate_present_in_document(document, candidate):
-            print(
-                'This is the actual candidate! feature vector: [{},{},{},{}]. {}'.format(f_name, f_first_name, f_party,
-                                                                                         f_context,
-                                                                                         candidate.full_name))
-
+        write_classifier_training_file(document, [f_name, f_first_name, f_who_name, f_party, f_context], candidate)
         weighted_sim = weighted_similarity_score(f_name, f_context)
 
         if weighted_sim > NED_CUTOFF_THRESHOLD:
@@ -45,14 +35,32 @@ def politician_disambiguation(document, entities, entity):
 
 
 def get_candidate_politicians(mention):
-    human_name = parse_human_name(mention)
+    # Remove starting and trailing whitespace from string.
+    mention = mention.strip()
+    # Possible mentions: Jeroen, J. van der Maat, Jeroen van der Maat, van der Maat
+    # Match on last name in database: van der Maat
+    name = mention
+    mention_array = mention.split(' ')
+    candidate_count = 0
+
+    # FIXME: This method assumes that there are no weird parts at the end of the mention string (this would fail).
+    while candidate_count == 0 and len(mention_array) > 0:
+        name = ' '.join(mention_array)
+        candidate_count = Politician.query.filter(
+            or_(func.lower(Politician.last_name) == func.lower(name),
+                func.lower(Politician.last_name) == func.lower(name))).count()
+
+        mention_array.pop(0)
+
     candidates = Politician.query.filter(
-        or_(func.lower(Politician.last_name) == func.lower(human_name['first_name']),
-            func.lower(Politician.last_name) == func.lower(human_name['last_name']))).all()
-    candidate_count = Politician.query.filter(
-        or_(func.lower(Politician.last_name) == func.lower(human_name['first_name']),
-            func.lower(Politician.last_name) == func.lower(human_name['last_name']))).count()
-    print('Human Name: {}, #candidates: {}'.format(human_name, candidate_count))
+        or_(func.lower(Politician.last_name) == func.lower(name),
+            func.lower(Politician.last_name) == func.lower(name))).all()
+
+    # For evaluation - print some info
+    print('Mention: {}, #candidates: {}'.format(mention, candidate_count))
+    for c in candidates:
+        print(c.full_name)
+
     return candidates
 
 
