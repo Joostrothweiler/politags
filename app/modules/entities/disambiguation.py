@@ -1,6 +1,6 @@
 import numpy as np
 import pickle
-from sklearn.svm import SVC
+from sklearn.linear_model import Perceptron
 from sqlalchemy import or_, func
 
 from app import db
@@ -36,6 +36,7 @@ def politician_disambiguation(document, entities, entity):
         prediction_prob = classifier_probability(feature_vector)
 
         if prediction_prob > NED_CUTOFF_THRESHOLD:
+            print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, prediction_prob))
             store_entity_politician_linking(entity, candidate, prediction_prob)
 
 
@@ -70,11 +71,12 @@ def get_candidate_politicians(mention):
 
 
 def classifier_probability(feature_vector):
-    # Classifier returns a certainty for "False" ([0]) and "True" ([1])
+    # Classifier returns a certainty
     # We return the probability for true
-    candidate_certainty = disambiguation_model.predict_proba([feature_vector])[0]
-    print(candidate_certainty)
-    return candidate_certainty[1]
+    candidate_confidence = disambiguation_model.predict_proba([feature_vector])
+    print(candidate_confidence)
+    print(disambiguation_model.predict([feature_vector]))
+    return candidate_confidence[0][1]
 
 
 def store_entity_politician_linking(entity, politician, certainty):

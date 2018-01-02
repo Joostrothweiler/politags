@@ -20,13 +20,18 @@ def test_ne():
     print('Deleting all old data')
     remove_all_articles()
 
-    input = 'data_resources/evaluation/van_dijk_input.json'
+    # input = 'data_resources/evaluation/van_dijk_input.json'
+    # output = process_evaluation_input(input)
+    # eval = 'data_resources/evaluation/van_dijk_eval.json'
+    # eval_output = json.load(open(eval))
+    # evaluate_ned(output, eval_output)
+
+    input = 'data_resources/evaluation/new_test_input.json'
     output = process_evaluation_input(input)
-
-    eval = 'data_resources/evaluation/van_dijk_eval.json'
+    eval = 'data_resources/evaluation/new_test_eval.json'
     eval_output = json.load(open(eval))
-
     evaluate_ned(output, eval_output)
+
 
 
 def remove_all_articles():
@@ -145,7 +150,7 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
     recall_count = 0
 
     for ep in eval_item_politicians:
-        if ep['system_id'] != "000":
+        if ep['system_id'] != 999999999:
             eval_count_simple += 1
 
     # Hoe veel die die heeft gevonden zijn correct (PRECISION)
@@ -168,7 +173,7 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
     else:
         recall_ratio = 1.0
 
-    return {
+    res = {
         'output_count': len(output_item_politicians),
         'eval_count_simple': eval_count_simple,
         'precision_count': precision_count,
@@ -176,3 +181,6 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
         'recall_count': recall_count,
         'recall_ratio': recall_ratio
     }
+    print(res)
+
+    return res

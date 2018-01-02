@@ -1,0 +1,72 @@
+{
+  "items": [
+    {
+      "article_id": "4e8f2c46403d40023c701c94455eb7c502c16593",
+      "parties": [
+        {
+          "system_id": 999,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Bets Beltman",
+          "party": "SP",
+          "municipality": "Amersfoort"
+        },
+        {
+          "system_id": 123742,
+          "full_name": "Fleur Imming",
+          "party": "PvdA",
+          "municipality": "Amersfoort"
+        }
+      ]
+    },
+    {
+      "article_id": "7ebb3e39e73ed87ef1b1038e726290d4bf348526",
+      "parties": [
+        {
+          "system_id": 999,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "system_id" : 999,
+          "name" : "DENK",
+          "abbreviation" : "Denk"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": 21713018,
+          "full_name": "P.A. Zoon",
+          "party": "VVD",
+          "municipality": "Gemeente Veenendaal"
+        },
+        {
+          "system_id": 21681073,
+          "full_name": "Dhr. mr. A.W. Kolff",
+          "party": "VVD"
+        },
+        {
+          "system_id": 81576,
+          "full_name": "Dhr. J.P. Breur"
+        },
+        {
+          "system_id": 73276,
+          "full_name" : "Dhr. J.R. van Geijtenbeek"
+        },
+        {
+          "system_id" : 81303,
+          "full_name" : "Mw. S. Bette-van de Nadort"
+        },
+        {
+          "system_id" : 134884,
+          "full_name" : "Dhr. G. Çoban"
+        }
+      ]
+    }
+  ]
+}

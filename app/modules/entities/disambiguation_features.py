@@ -19,6 +19,10 @@ def f_first_name_similarity(mention, candidate):
                 sim = 1
     return sim
 
+def f_role(mention, candidate):
+    # TODO - possibly check if his role is named anywhere in the document
+    return 0
+
 
 def f_who_name_similarity(mention, candidate):
     sim = who.ratio(mention, candidate.full_name) / 100
@@ -50,8 +54,7 @@ def f_context_similarity(document, entities, candidate):
     [x.lower() for x in document_entries]
     [x.lower() for x in candidate_array]
 
-    print('Simialrity [{}], [{}]'.format(document_entries, candidate_array))
-
+    # print('Simialrity [{}], [{}]'.format(document_entries, candidate_array))
     sim = jaccard_distance(document_entries, candidate_array)
     return sim
 

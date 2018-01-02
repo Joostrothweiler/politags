@@ -22,12 +22,16 @@ def write_classifier_training_file(document, feature_vector, candidate):
 
 
 def candidate_present_in_document(document, candidate):
-    eval = 'data_resources/evaluation/van_dijk_eval.json'
-    eval_data = json.load(open(eval))
+    eval_data_dijk = json.load(open('data_resources/evaluation/van_dijk_eval.json'))
+    eval_data_new = json.load(open('data_resources/evaluation/new_test_eval.json'))
     eval_doc = None
     candidate_in_document = False
 
-    for doc in eval_data['items']:
+    for doc in eval_data_dijk['items']:
+        if doc['article_id'] == document['id']:
+            eval_doc = doc
+
+    for doc in eval_data_new['items']:
         if doc['article_id'] == document['id']:
             eval_doc = doc
 
