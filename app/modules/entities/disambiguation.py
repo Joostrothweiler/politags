@@ -2,22 +2,87 @@ import numpy as np
 import pickle
 from sklearn.linear_model import Perceptron
 from sqlalchemy import or_, func
+from whoswho import who
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
 from app.modules.entities.disambiguation_features import *
-from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file
+from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file, \
+    candidate_present_in_document
 from app.settings import NED_CUTOFF_THRESHOLD
 
 disambiguation_model = pickle.load(open('app/modules/entities/nlp_model/disambiguation_model.sav', 'rb'))
 
+
 def named_entity_disambiguation(document, entities):
     for entity in entities:
         if entity.label == 'PER':
-            politician_disambiguation(document, entities, entity)
+            politician_decision_tree(document, entities, entity)
 
         if entity.label == 'ORG':
             party_disambiguation(document, entities, entity)
+
+
+def politician_decision_tree(document, entities, entity):
+    MAX_NUMBER_OF_CANDIDATES = 2
+    FIRST_SELECTION_SIZE = 5
+    candidates = get_candidate_politicians(entity.text)
+
+    while len(candidates) > FIRST_SELECTION_SIZE:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_who_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_who_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_first_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_party_similarity(document, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_context_similarity(document, entities, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    for candidate in candidates:
+        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
+        if candidate_present_in_document(document, candidate):
+            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
+        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
 
 
 def politician_disambiguation(document, entities, entity):
@@ -27,6 +92,7 @@ def politician_disambiguation(document, entities, entity):
         f_name = f_name_similarity(entity.text, candidate)
         f_first_name = f_first_name_similarity(entity.text, candidate)
         f_who_name = f_who_name_similarity(entity.text, candidate)
+        f_role = f_role_in_document(document, candidate)
         f_party = f_party_similarity(document, candidate)
         f_context = f_context_similarity(document, entities, candidate)
         feature_vector = [f_name, f_first_name, f_who_name, f_party, f_context]
@@ -42,28 +108,23 @@ def politician_disambiguation(document, entities, entity):
 
 def get_candidate_politicians(mention):
     # Remove starting and trailing whitespace from string.
-    mention = mention.strip()
+    mention_stripped = mention.strip()
     # Possible mentions: Jeroen, J. van der Maat, Jeroen van der Maat, van der Maat
     # Match on last name in database: van der Maat
-    name = mention
-    mention_array = mention.split(' ')
-    candidate_count = 0
+    name = mention_stripped
+    name_array = mention_stripped.split(' ')
+    candidates = []
 
-    # FIXME: This method assumes that there are no weird strings at the end of the mention string (this would fail).
-    while candidate_count == 0 and len(mention_array) > 0:
-        name = ' '.join(mention_array)
-        candidate_count = Politician.query.filter(
+    while len(candidates) == 0 and len(name_array) > 0:
+        name = ' '.join(name_array)
+        candidates = Politician.query.filter(
             or_(func.lower(Politician.last_name) == func.lower(name),
-                func.lower(Politician.last_name) == func.lower(name))).count()
+                func.lower(Politician.last_name) == func.lower(name))).all()
 
-        mention_array.pop(0)
-
-    candidates = Politician.query.filter(
-        or_(func.lower(Politician.last_name) == func.lower(name),
-            func.lower(Politician.last_name) == func.lower(name))).all()
+        name_array.pop(0)
 
     # For evaluation - print some info
-    print('Mention: {}, #candidates: {}'.format(mention, candidate_count))
+    print('Mention: {}, #candidates: {}'.format(mention, len(candidates)))
     for c in candidates:
         print(c.full_name)
 

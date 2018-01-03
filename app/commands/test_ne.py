@@ -20,11 +20,11 @@ def test_ne():
     print('Deleting all old data')
     remove_all_articles()
 
-    # input = 'data_resources/evaluation/van_dijk_input.json'
-    # output = process_evaluation_input(input)
-    # eval = 'data_resources/evaluation/van_dijk_eval.json'
-    # eval_output = json.load(open(eval))
-    # evaluate_ned(output, eval_output)
+    input = 'data_resources/evaluation/van_dijk_input.json'
+    output = process_evaluation_input(input)
+    eval = 'data_resources/evaluation/van_dijk_eval.json'
+    eval_output = json.load(open(eval))
+    evaluate_ned(output, eval_output)
 
     input = 'data_resources/evaluation/new_test_input.json'
     output = process_evaluation_input(input)

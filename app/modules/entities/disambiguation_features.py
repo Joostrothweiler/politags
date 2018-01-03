@@ -10,18 +10,19 @@ def f_name_similarity(mention, candidate):
 
 def f_first_name_similarity(mention, candidate):
     parts_of_mention_name = mention.split(' ')
-    first_letters_candidate = candidate.first_name.split('.')
-    sim = 0
+    first_letter_candidate = candidate.first_name.split('.')[0]
+    sim = 0.0
 
     for part_of_name in parts_of_mention_name:
-        for first_letter in first_letters_candidate:
-            if len(part_of_name) > 0 and part_of_name[0] == first_letter:
-                sim = 1
+        if len(part_of_name) > 0 and part_of_name[0] == first_letter_candidate:
+            sim = 1.0
     return sim
 
-def f_role(mention, candidate):
-    # TODO - possibly check if his role is named anywhere in the document
-    return 0
+def f_role_in_document(document, candidate):
+    if candidate.role.lower() in document['text_description'].lower():
+        return 1.0
+    else:
+        return 0.0
 
 
 def f_who_name_similarity(mention, candidate):
@@ -30,12 +31,15 @@ def f_who_name_similarity(mention, candidate):
 
 
 def f_party_similarity(document, candidate):
-    document_parties = []
-    for party in document['parties']:
-        document_parties.append(party)
-    # TODO this is not a very strong method to compare this.
-    sim = string_similarity(candidate.party, document['collection'])
-    return sim
+    if len(document['parties']) > 0:
+        parties = [x.lower() for x in document['parties']]
+        if candidate.party.lower() in parties:
+            return 1.0
+        else:
+            return 0.0
+    else:
+        return 0.5
+
 
 def f_context_similarity(document, entities, candidate):
     # Fill document entries for comparison
@@ -51,13 +55,12 @@ def f_context_similarity(document, entities, candidate):
                        candidate.party,
                        candidate.municipality.split(' ')[-1]]
 
-    [x.lower() for x in document_entries]
-    [x.lower() for x in candidate_array]
+    a = [x.lower() for x in document_entries]
+    b = [x.lower() for x in candidate_array]
 
     # print('Simialrity [{}], [{}]'.format(document_entries, candidate_array))
-    sim = jaccard_distance(document_entries, candidate_array)
+    sim = jaccard_distance(a, b)
     return sim
-
 
 
 def jaccard_distance(list1, list2):

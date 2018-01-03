@@ -17,12 +17,13 @@ class TrainClfCommand(Command):
 
 def train_clf():
     X_train, Y_train = initialize_from_file('features_train.txt')
+    # X_resampled, Y_resampled = X_train, Y_train
     X_resampled, Y_resampled = SMOTE().fit_sample(X_train, Y_train)
     X_test, Y_test = initialize_from_file('features_test.txt')
 
     clf = Perceptron(class_weight="balanced")
     clf_isotonic = CalibratedClassifierCV(clf, method='isotonic')
-    clf_isotonic.fit(X_train, Y_train)
+    clf_isotonic.fit(X_resampled, Y_resampled)
 
     print("Training score: {}".format(clf_isotonic.score(X_train, Y_train)))
     print("Test score: {}".format(clf_isotonic.score(X_test, Y_test)))
@@ -44,5 +45,5 @@ def initialize_from_file(filename):
         X.append(i[0:-1])
         Y.append(i[-1])
 
-    X = np.float_(X)
+    X = np.float_(X, dtype=object)
     return X,Y

@@ -17,7 +17,7 @@ def write_classifier_training_file(document, feature_vector, candidate):
         print('This is the actual candidate!: [{}] / {} ({})'.format(feature_vector, candidate.full_name, candidate.party))
 
 
-    with open('app/modules/entities/nlp_model/tooling/training/features.txt', 'a') as my_file:
+    with open('app/modules/entities/nlp_model/tooling/training/features_test.txt', 'a') as my_file:
         my_file.write(line)
 
 
