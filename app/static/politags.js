@@ -72,7 +72,7 @@ function printQuestionAnswers(response) {
     let entityText = response["text"]
 
     hiliter(article, entityText, questionId)
-    appendDiv(questionId, question)
+    appendDiv(questionId, question, possibleAnswers)
 }
 
 
@@ -85,6 +85,7 @@ function postAnswer(answer, questionId) {
         data: JSON.stringify(answer),
         success: function (response) {
             console.log(response)
+            feedbackYesNo()
         },
         error: function (error) {
             console.log(error);
@@ -101,15 +102,40 @@ function hiliter(element, word, questionId) {
 }
 
 
-function appendDiv(questionId, question) {
+function appendDiv(questionId, question, possibleAnswers) {
+    let buttonsHtml = generateButtons(questionId, possibleAnswers)
+    console.log(buttonsHtml)
+
     $('#' + questionId).append(
-        '<div class="list-group"> <a href="#" class="list-group-item disabled">' + question + '<button id="yes" title = '+ questionId +'  type="button" class="btn btn-success">Ja</button> <button id="no" title = '+ questionId +' type="button" class="btn btn-danger">Nee</button></a> </div>'
+        '<div id = "yesnoquestion" class="card card-outline-danger text-center">\n' +
+        '  <div class="card-block">\n' +
+        '    <p id="text" class="card-text">' + question + '</p>\n' +
+        buttonsHtml +
+        // '    <button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>\n' +
+        // '    <button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>' +
+        '  </div>\n' +
+        '</div>'
     )
+}
+
+
+function generateButtons(questionId, possibleAnswers) {
+    let buttonsHtml = ""
+    for (let i=0; i < possibleAnswers.length; i++) {
+        if (possibleAnswers[i] == "Ja") {
+            console.log("hi")
+            buttonsHtml += '<button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>\n'
+        }
+        else if (possibleAnswers[i] == "Nee") {
+            buttonsHtml += '<button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>\n'
+        }
+    }
+    return buttonsHtml
 }
 
 $('body').on('click', '#yes', function () {
     let answer = {"response": "yes"}
-    let questionId = $('#yes').title
+    let questionId = $('#yes').attr("question_id")
     postAnswer(answer, questionId)
 })
 
@@ -117,8 +143,27 @@ $('body').on('click', '#yes', function () {
 // if you click the no button, we want to record no
 $('body').on('click', '#no', function () {
     let answer = {"response": "no"}
-    let questionId = $('#no').title
+    let questionId = $('#no').attr("question_id")
     postAnswer(answer, questionId)
 })
 
+
+
+
+function feedbackYesNo() {
+    $('#yesnoquestion').removeClass('card-outline-danger')
+    $('#yesnoquestion').addClass('card-outline-success')
+    $('#yes').remove()
+    $('#no').remove()
+    $('#text').text("thanks, you are the best!")
+
+
+}
+
+// function generateButtons(responses):
+
+
+//general function maken voor het aanmaken van buttons
+
+//general functie schrijven voor een reactie op click
 

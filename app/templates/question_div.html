@@ -16,11 +16,20 @@
 
 <body>
 
-<div class="list-group">
-    <a href="#" class="list-group-item disabled">question</a>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
+<div class="list-group"><a href="#" class="list-group-item">' + question + '
+
+</a></div>
+
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Lezersvraag</h4>
+    <p class="card-text">' + question + '</p>
+    <button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>
+    <button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>  </div>
 </div>
+
+
 
 </body>
 </html>
