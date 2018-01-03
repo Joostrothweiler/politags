@@ -4,7 +4,13 @@ from app.modules.common.utils import pure_len
 
 
 def named_entity_recognition(article, nlp_doc):
+    # Reset counts to 0 so that we can process the document again and dont have to delete entities.
+    article_entities = Entity.query.filter(Entity.article_id == article.id).all()
+    for entity in article_entities:
+        entity.count = 0
+        db.session.add(entity)
 
+    # Count again.
     for doc_ent in nlp_doc.ents:
         entity = Entity.query.filter(Entity.article_id == article.id)\
             .filter(Entity.text == doc_ent.text)\

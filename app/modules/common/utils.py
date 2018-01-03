@@ -1,7 +1,14 @@
 from difflib import SequenceMatcher
-from bs4 import BeautifulSoup
-import pickle
 
+import datetime
+from bs4 import BeautifulSoup
+
+from nameparser import HumanName
+from nameparser.config import CONSTANTS
+
+CONSTANTS.titles.add('dhr', 'mw', 'drs', 'ing', 'ir', 'jhr', 'jkvr')
+CONSTANTS.suffix_acronyms.remove('bart')
+CONSTANTS.first_name_titles.remove('van', 'van der', 'van den')
 
 def get_document_identifier(document):
     url = document['meta']['pfl_url']
@@ -28,6 +35,17 @@ def html2text(html):
     return text
 
 
+def parse_human_name(name):
+    human_name = HumanName(name)
+
+    return {
+        'title': human_name['title'].strip(),
+        'first_name': human_name['first'].strip(),
+        'last_name': (html2text(human_name['middle'] + ' ' + human_name['last'])).strip(),
+        'suffix': human_name['suffix'].strip(),
+    }
+
+
 def collection_as_dict(collection):
     dict_array = []
     for model in collection:
@@ -42,3 +60,5 @@ def string_similarity(a, b):
 def pure_len(str):
     return len(str) - str.count(' ')
 
+def timeStamped(fname, fmt='%Y%m%d-%H%M_{fname}'):
+    return datetime.datetime.now().strftime(fmt).format(fname=fname)

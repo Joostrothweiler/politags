@@ -51,12 +51,13 @@ class Politician(db.Model):
     __tablename__ = 'politicians'
     id = db.Column(db.Integer(), primary_key=True)
     system_id = db.Column(db.Integer(), unique=True)
+    title = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
     last_name = db.Column(db.String(100), nullable=False, server_default=u'')
+    suffix = db.Column(db.String(20), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
     municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
-    level_of_ambiguity = db.Column(db.Float(), default=0.0)  # TODO: We should probably remove this attribute.
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     @hybrid_property
@@ -68,8 +69,10 @@ class Politician(db.Model):
         return {
             'id': self.id,
             'system_id': self.system_id,
+            'title': self.title,
             'first_name': self.first_name,
             'last_name': self.last_name,
+            'suffix': self.suffix,
             'party': self.party,
             'municipality': self.municipality,
             'role': self.role,
