@@ -1,16 +1,18 @@
-version: '3'
+version: '2.1'
 
 services:
 
   web:
     build: .
-    ports:
-      - "5555:5000"
     volumes:
       - .:/usr/src/app
     depends_on:
       - postgres
     restart: always
+    expose:
+      - "5000"
+    networks:
+      - pfl
 
   postgres:
     image: postgres:10.1
@@ -19,9 +21,21 @@ services:
       POSTGRES_PASSWORD: politagsadmin
       POSTGRES_DB: politags
     restart: always
+    networks:
+      - pfl
 
   adminer:
     image: adminer:4.3.1-standalone
     restart: always
-    ports:
-      - 9999:8080
+    networks:
+      - pfl
+      - nginx-load-balancer
+
+networks:
+  pfl:
+    external: 
+      name: pfl_pfl
+  nginx-load-balancer:
+    external:
+      name: docker_nginx-load-balancer
+  

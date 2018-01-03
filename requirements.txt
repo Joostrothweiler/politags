@@ -10,9 +10,18 @@ spacy
 html2text
 bs4
 
+# Names
+nameparser
+whoswho
+
 # Postgres connector
 PyGreSQL
 
 # Automated tests
 pytest
 pytest-cov
+
+# Machine learning
+scipy
+sklearn
+imblearn

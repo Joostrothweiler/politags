@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+
+  web:
+    ports:
+      - "5555:5000"
+    restart: "no"
+
+  postgres:
+    restart: "no"
+
+  adminer:
+    restart: "no"
+    ports:
+      - 9999:8080
+
+networks:
+  pfl:
+  nginx-load-balancer:

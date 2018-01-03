@@ -12,6 +12,7 @@ class InitDbCommand(Command):
     def run(self):
         init_db()
 
+
 def init_db():
     """ Initialize the database."""
     # # Recreate the database
@@ -28,7 +29,7 @@ def init_db():
     db.session.add(article)
     party = Party.query.first()
     db.session.add(party)
-    entity = Entity(article = article)
+    entity = Entity(article=article)
     db.session.add(entity)
     linking = EntityLinking(entity=entity, linkable_object=party)
     db.session.add(linking)
@@ -37,9 +38,9 @@ def init_db():
     db.session.commit()
 
     politician = Politician.query.first()
-    entity = Entity(article = article)
+    entity = Entity(article=article)
     db.session.add(entity)
-    linking = EntityLinking(entity = entity, linkable_object = politician)
+    linking = EntityLinking(entity=entity, linkable_object=politician)
     db.session.add(linking)
     db.session.commit()
 
@@ -49,15 +50,15 @@ def init_db():
 
 def init_questions_responses():
     linking = EntityLinking.query.first()
-    question = Question(possible_answers = ['Yes', 'No'], questionable_object = linking)
+    question = Question(possible_answers=['Yes', 'No'], questionable_object=linking)
     db.session.add(question)
-    question = Question(possible_answers = ['Maybe', 'Nah'], questionable_object = linking)
+    question = Question(possible_answers=['Maybe', 'Nah'], questionable_object=linking)
     db.session.add(question)
     db.session.commit()
 
-    response = Response(question_id = 1, response='Yes')
+    response = Response(question_id=1, response='Yes')
     db.session.add(response)
-    response = Response(question_id = 1, response='No')
+    response = Response(question_id=1, response='No')
     db.session.add(response)
     db.session.commit()
 
@@ -68,14 +69,15 @@ def init_politicians():
         for row in politicians:
             # id,name,party,municipality
             system_id = row['id']
+            title = row['title']
             first_name = row['first_name']
             last_name = row['last_name']
+            suffix = row['suffix']
             party = row['party']
             municipality = row['municipality']
             role = row['role']
-            p = find_or_create_politician(system_id, first_name, last_name, party, municipality, role)
-    db.session.commit()
-
+            p = find_or_create_politician(system_id, title, first_name, last_name, suffix, party, municipality, role)
+            db.session.commit()
 
 def init_parties():
     with open('data_resources/wiki_parties.csv') as csv_file:
@@ -86,19 +88,17 @@ def init_parties():
             p = find_or_create_party(name, abbreviation)
     db.session.commit()
 
-
-def find_or_create_politician(system_id, first_name, last_name, party, municipality, role):
+def find_or_create_politician(system_id, title, first_name, last_name, suffix, party, municipality, role):
     """ Find existing politicians or create new one """
-    politician = Politician.query.filter(Politician.last_name == last_name)\
-        .filter(Politician.first_name == first_name)\
+    politician = Politician.query.filter(Politician.last_name == last_name) \
+        .filter(Politician.first_name == first_name) \
         .filter(Politician.party == party).first()
 
     if not politician:
-        politician = Politician(system_id=system_id, first_name=first_name, last_name=last_name,
-                                party=party, municipality=municipality, role=role)
+        politician = Politician(system_id=system_id, title=title, first_name=first_name, last_name=last_name,
+                                suffix=suffix, party=party, municipality=municipality, role=role)
         db.session.add(politician)
     return politician
-
 
 def find_or_create_party(name, abbreviation):
     """ Find existing politicians or create new one """

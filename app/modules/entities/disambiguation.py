@@ -3,101 +3,154 @@ from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
-from app.modules.common.utils import string_similarity
+from app.modules.entities.disambiguation_features import *
+from app.modules.entities.nlp_model.tooling.disambiguation_tooling import candidate_present_in_document
 
 
 def named_entity_disambiguation(document, entities):
-    for e in entities:
-        if e.label == 'PER':
-            politician_disambiguation(document, entities, e)
+    for entity in entities:
+        if entity.label == 'PER':
+            politician_disambiguation(document, entities, entity)
 
-        if e.label == 'ORG':
-            party_disambiguation(document, entities, e)
+        if entity.label == 'ORG':
+            party_disambiguation(document, entities, entity)
+
+
+def politician_decision_tree(document, entities, entity):
+    MAX_NUMBER_OF_CANDIDATES = 2
+    FIRST_SELECTION_SIZE = 5
+    candidates = get_candidate_politicians(entity.text)
+
+    while len(candidates) > FIRST_SELECTION_SIZE:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_who_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_who_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_first_name_similarity(entity.text, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_party_similarity(document, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
+        f_min = 999
+        candidate_min = None
+        for candidate in candidates:
+            f_candidate = f_context_similarity(document, entities, candidate)
+            if f_candidate < f_min:
+                f_min = f_candidate
+                candidate_min = candidate
+        candidates.remove(candidate_min)
+
+    for candidate in candidates:
+        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
+        if candidate_present_in_document(document, candidate):
+            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
+        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
 
 
 def politician_disambiguation(document, entities, entity):
-    # Get candidates
     candidates = get_candidate_politicians(entity.text)
-    if candidates:
-        # For each candidate, compute mention_name_similarity
-        name_sim = politician_mention_name_similarity(entity.text, candidates)
-        # For each candidate, compute context_similarity
-        context_sim = politician_context_similarity(entity.text, document, entities, candidates)
-        # Return the average of the two
-        scored_candidates = average_sim(candidates, name_sim, context_sim)
-        politician, certainty = politician_optimal_candidate(scored_candidates)
-        # Store in database
-        store_entity_politician_linking(entity, politician, certainty)
-    else:
-        print('No candidates found for {}'.format(entity.text))
+    result = []
+
+    for candidate in candidates:
+        f_name = f_name_similarity(entity.text, candidate)
+        f_first_name = f_first_name_similarity(entity.text, candidate)
+        f_who_name = f_who_name_similarity(entity.text, candidate)
+        f_role = f_role_in_document(document, candidate)
+        f_party = 30*f_party_similarity(document, candidate)
+        f_context = 30*f_context_similarity(document, entities, candidate)
+        feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
+
+        result.append({'candidate' : candidate, 'score': np.sum(feature_vector) })
+
+    while len(result) > 2:
+        min_score  = 999
+        min_obj = None
+        for obj in result:
+            if obj['score'] < min_score :
+                min_score = obj['score']
+                min_obj = obj
+
+        result.remove(min_obj)
+
+    for obj in result:
+        candidate = obj['candidate']
+        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
+        if candidate_present_in_document(document, candidate):
+            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
+        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
 
 
-def politician_context_similarity(mention, document, entities, candidates):
-    result = {}
-    # Fill document entries for comparison
-    document_entries = []
-    for entity in entities:
-        document_entries.append(entity.text)
-    for party in document['parties']:
-        document_entries.append(party)
-    document_entries.append(document['collection'])
-    document_entries.append(document['location'])
-    document_string = ' '.join(document_entries)
-
-    for candidate_politician in candidates:
-        # Fill candidate data for comparison
-        candidate_politician_string = ' '.join([candidate_politician.first_name,
-                                                candidate_politician.last_name,
-                                                candidate_politician.party,
-                                                candidate_politician.role,
-                                                candidate_politician.municipality])
-
-        result[candidate_politician.id] = string_similarity(document_string, candidate_politician_string)
-    return result
-
-
-def politician_mention_name_similarity(mention, candidates):
-    result = {}
-    for candidate_politician in candidates:
-        result[candidate_politician.id] = string_similarity(candidate_politician.last_name, mention)
-
-    return result
-
-
-# TODO: Improve method to return a maximum number of candidates
 def get_candidate_politicians(mention):
-    mention_arr = mention.split(' ')
-    # Get based on last name match
-    candidates = Politician.query.filter(or_(*[Politician.last_name.like(name) for name in mention_arr])).all()
+    # Remove starting and trailing whitespace from string.
+    mention_stripped = mention.strip()
+    # Possible mentions: Jeroen, J. van der Maat, Jeroen van der Maat, van der Maat
+    # Match on last name in database: van der Maat
+    name = mention_stripped
+    name_array = mention_stripped.split(' ')
+    candidates = []
+
+    while len(candidates) == 0 and len(name_array) > 0:
+        name = ' '.join(name_array)
+        candidates = Politician.query.filter(
+            or_(func.lower(Politician.last_name) == func.lower(name),
+                func.lower(Politician.last_name) == func.lower(name))).all()
+        name_array.pop(0)
+
+    # If no candidates found based on exact matches so far.
+    # Next call decreases Precision but increases Recall
+    if len(candidates) == 0:
+        candidates = Politician.query.filter(
+            or_(func.lower(Politician.last_name).contains(func.lower(name)),
+                func.lower(Politician.last_name).contains(func.lower(name)))).all()
+
+    # For evaluation - print some info
+    print('Mention: {}, #candidates: {}'.format(mention, len(candidates)))
+    print([x.full_name for x in candidates])
+
     return candidates
 
 
-def average_sim(candidates, name_sim, context_sim):
-    result = []
-    for candidate in candidates:
-        # TODO: We could improve the weight distribution based on the level of ambiguity stored in the database.
-        # High ambiguity -> focus on context, low ambiguity, focus on name.
-        result.append({
-            'id': candidate.id,
-            'score': 0.9 * name_sim[candidate.id] + 0.1 * context_sim[candidate.id]
-        })
-    return result
-
-
-def politician_optimal_candidate(scored_candidates):
-    max = 0
-    max_id = None
-
-    for candidate in scored_candidates:
-        if candidate['score'] > max:
-            max = candidate['score']
-            max_id = candidate['id']
-
-    return Politician.query.filter(Politician.id == max_id).first(), max
+def classifier_probability(feature_vector):
+    # Classifier returns a certainty
+    # We return the probability for true
+    candidate_confidence = disambiguation_model.predict_proba([feature_vector])
+    print(candidate_confidence)
+    print(disambiguation_model.predict([feature_vector]))
+    return candidate_confidence[0][1]
 
 
 def store_entity_politician_linking(entity, politician, certainty):
-    # print('Linking {} to {}'.format(entity.text, (politician.full_name)))
     a = EntityLinking(certainty=certainty)
     a.linkable_object = politician
     entity.linkings.append(a)
@@ -123,13 +176,10 @@ def party_disambiguation(document, entities, entity):
                 max_party = candidate_party
 
         store_entity_party_linking(entity, max_party, max_sim)
-    else:
-        print('No candidate parties found for {}'.format(entity.text))
 
 
 def store_entity_party_linking(entity, party, certainty):
-    # print('Linking {} to {}'.format(entity.text, party.abbreviation))
     linking = EntityLinking(certainty=certainty)
-    linking.linkable_object= party
+    linking.linkable_object = party
     entity.linkings.append(linking)
     db.session.add(entity)

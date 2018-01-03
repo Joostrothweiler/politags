@@ -7,3 +7,6 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Flask-User settings
 USER_APP_NAME = APP_NAME
+
+# At what threshold do we insert a linking
+NED_CUTOFF_THRESHOLD = 0.5

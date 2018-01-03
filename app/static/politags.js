@@ -161,10 +161,4 @@ function feedbackYesNo() {
 
 }
 
-// function generateButtons(responses):
-
-
-//general function maken voor het aanmaken van buttons
-
-//general functie schrijven voor een reactie op click
-
+// div appenden na P

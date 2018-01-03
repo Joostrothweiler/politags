@@ -1,7 +1,7 @@
 import nl_core_news_sm
 
 from app import db
-from app.models.models import Article, Politician, Party
+from app.models.models import Article, Politician, Party, EntityLinking
 from app.modules.entities.disambiguation import named_entity_disambiguation
 from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
@@ -9,15 +9,17 @@ from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, Party
 # Global NLP variable to initialize when necessary
 nlp = None
 
+
 def init_nlp():
     print('Initializing NLP with PhraseMatchers')
     global nlp
     politicians = []
-    for politician in Politician.query.distinct(Politician.last_name).limit(100).all():
-        politicians.append(politician.last_name)
+    for politician in Politician.query.limit(10).all():
+        if not politician.last_name == '':
+            politicians.append(politician.last_name)
 
     parties = []
-    for party in Party.query.all():
+    for party in Party.query.limit(10).all():
         parties.append(party.name)
         if not party.abbreviation == '':
             parties.append(party.abbreviation)
@@ -29,7 +31,7 @@ def init_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    nlp.remove_pipe('ner')
+    # nlp.remove_pipe('ner')
     print('NLP Initialized with PhraseMatchers. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
@@ -37,15 +39,14 @@ def process_document(document):
     # Initialize only if nlp is not yet loaded.
     if nlp == None:
         init_nlp()
-
+    # Make sure the article is in the database.
     article = Article.query.filter(Article.id == document['id']).first()
     if not article:
-        article = Article(id = document['id'])
+        article = Article(id=document['id'])
         db.session.add(article)
         db.session.commit()
-        extract_information(article, document)
-    extract_information(article, document) # TODO: Remove line when not necessary for testing.
 
+    extract_information(article, document)
     return return_extracted_information(article)
 
 
@@ -61,12 +62,17 @@ def return_extracted_information(article):
     politicians = []
 
     for entity in article.entities:
-        for linking in entity.linkings:
-            if linking.certainty > 0.95:
-                if linking.linkable_type == 'Party':
-                    parties.append(linking.linkable_object.as_dict())
-                elif linking.linkable_type == 'Politician':
-                    politicians.append(linking.linkable_object.as_dict())
+
+        top_linking = EntityLinking.query.filter(EntityLinking.entity_id == entity.id) \
+            .order_by(EntityLinking.certainty.desc()).first()
+
+        if top_linking:
+            if top_linking.linkable_type == 'Party':
+                if not top_linking.linkable_object.as_dict() in parties:
+                    parties.append(top_linking.linkable_object.as_dict())
+            elif top_linking.linkable_type == 'Politician':
+                if not top_linking.linkable_object.as_dict() in politicians:
+                    politicians.append(top_linking.linkable_object.as_dict())
 
     return {
         'article_id': article.id,
