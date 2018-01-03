@@ -2,7 +2,7 @@ from difflib import SequenceMatcher
 
 import datetime
 from bs4 import BeautifulSoup
-
+from flask import json
 from nameparser import HumanName
 from nameparser.config import CONSTANTS
 
@@ -59,6 +59,7 @@ def string_similarity(a, b):
 
 def pure_len(str):
     return len(str) - str.count(' ')
+
 
 def timeStamped(fname, fmt='%Y%m%d-%H%M_{fname}'):
     return datetime.datetime.now().strftime(fmt).format(fname=fname)

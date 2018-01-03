@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        mark {
+            background-image: linear-gradient(to bottom, rgba(12, 242, 143, .2), rgba(12, 242, 143, .2));
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="list-group"><a href="#" class="list-group-item">' + question + '
+
+</a></div>
+
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Lezersvraag</h4>
+    <p class="card-text">' + question + '</p>
+    <button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>
+    <button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>  </div>
+</div>
+
+
+
+</body>
+</html>

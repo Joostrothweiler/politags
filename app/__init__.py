@@ -45,6 +45,7 @@ def create_app(extra_config_settings={}):
 
     @app.route('/api/articles/questions', methods=['POST'])
     def articles_questions():
+        # return request.data
         return post_article_question(request.data)
 
     @app.route('/api/questions/<string:question_id>', methods=['POST'])
