@@ -77,12 +77,12 @@ function printQuestionAnswers(response) {
 
 
 // this function posts the answer to a certain question
-function postAnswer(answer, questionId) {
+function postResponse(questionResponse, questionId) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/questions/" + questionId,
-        data: JSON.stringify(answer),
+        data: JSON.stringify(questionResponse),
         success: function (response) {
             console.log(response)
             feedbackYesNo()
@@ -99,6 +99,9 @@ function hiliter(element, word, questionId) {
     var regexp = new RegExp(word);
     var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>';
     element.innerHTML = element.innerHTML.replace(regexp, replace);
+}
+
+function removeHighlights(element) {
 }
 
 
@@ -124,39 +127,37 @@ function generateButtons(questionId, possibleAnswers) {
     for (let i=0; i < possibleAnswers.length; i++) {
         if (possibleAnswers[i] == "Ja") {
             console.log("hi")
-            buttonsHtml += '<button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>\n'
+            buttonsHtml += '<button response="ja" question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n'
         }
         else if (possibleAnswers[i] == "Nee") {
-            buttonsHtml += '<button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>\n'
+            buttonsHtml += '<button response="nee" question_id='+ questionId +' type="button" class="btn btn-danger responseButton">Nee</button>\n'
         }
     }
     return buttonsHtml
 }
 
-$('body').on('click', '#yes', function () {
-    let answer = {"response": "yes"}
-    let questionId = $('#yes').attr("question_id")
-    postAnswer(answer, questionId)
-})
-
-
-// if you click the no button, we want to record no
-$('body').on('click', '#no', function () {
-    let answer = {"response": "no"}
-    let questionId = $('#no').attr("question_id")
-    postAnswer(answer, questionId)
-})
-
-
+$('body').on('click', '.responseButton', function () {
+    let clickedResponse = $(this).attr("response")
+    let response = {"response": clickedResponse}
+    let questionId = $(this).attr("question_id")
+    postResponse(response, questionId)
+    }
+)
 
 
 function feedbackYesNo() {
     $('#yesnoquestion').removeClass('card-outline-danger')
     $('#yesnoquestion').addClass('card-outline-success')
-    $('#yes').remove()
-    $('#no').remove()
-    $('#text').text("thanks, you are the best!")
-
+    $('.responseButton').remove()
+    $('#text').text("Bedankt voor je bijdrage aan een beter doorzoekbare PoliFLW!")
+    $('#text').append(
+        '<br><i class="fa fa-check" style="color:green;font-size:60px" aria-hidden="true"></i>'
+    )
+    setTimeout(function() {
+        $('mark').contents().unwrap();
+        $('strong').contents().unwrap();
+        $('#yesnoquestion').fadeOut().empty();
+    }, 3000);
 
 }
 
