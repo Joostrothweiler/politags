@@ -1,23 +1,16 @@
 import numpy as np
-import pickle
-from sklearn.linear_model import Perceptron
 from sqlalchemy import or_, func
-from whoswho import who
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking
 from app.modules.entities.disambiguation_features import *
-from app.modules.entities.nlp_model.tooling.disambiguation_tooling import write_classifier_training_file, \
-    candidate_present_in_document
-from app.settings import NED_CUTOFF_THRESHOLD
-
-disambiguation_model = pickle.load(open('app/modules/entities/nlp_model/disambiguation_model.sav', 'rb'))
+from app.modules.entities.nlp_model.tooling.disambiguation_tooling import candidate_present_in_document
 
 
 def named_entity_disambiguation(document, entities):
     for entity in entities:
         if entity.label == 'PER':
-            politician_decision_tree(document, entities, entity)
+            politician_disambiguation(document, entities, entity)
 
         if entity.label == 'ORG':
             party_disambiguation(document, entities, entity)
@@ -87,23 +80,35 @@ def politician_decision_tree(document, entities, entity):
 
 def politician_disambiguation(document, entities, entity):
     candidates = get_candidate_politicians(entity.text)
+    result = []
 
     for candidate in candidates:
         f_name = f_name_similarity(entity.text, candidate)
         f_first_name = f_first_name_similarity(entity.text, candidate)
         f_who_name = f_who_name_similarity(entity.text, candidate)
         f_role = f_role_in_document(document, candidate)
-        f_party = f_party_similarity(document, candidate)
-        f_context = f_context_similarity(document, entities, candidate)
-        feature_vector = [f_name, f_first_name, f_who_name, f_party, f_context]
-        # Write to file for training
-        write_classifier_training_file(document, feature_vector, candidate)
-        # Classify
-        prediction_prob = classifier_probability(feature_vector)
+        f_party = 30*f_party_similarity(document, candidate)
+        f_context = 30*f_context_similarity(document, entities, candidate)
+        feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
 
-        if prediction_prob > NED_CUTOFF_THRESHOLD:
-            print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, prediction_prob))
-            store_entity_politician_linking(entity, candidate, prediction_prob)
+        result.append({'candidate' : candidate, 'score': np.sum(feature_vector) })
+
+    while len(result) > 2:
+        min_score  = 999
+        min_obj = None
+        for obj in result:
+            if obj['score'] < min_score :
+                min_score = obj['score']
+                min_obj = obj
+
+        result.remove(min_obj)
+
+    for obj in result:
+        candidate = obj['candidate']
+        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
+        if candidate_present_in_document(document, candidate):
+            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
+        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
 
 
 def get_candidate_politicians(mention):
@@ -120,13 +125,18 @@ def get_candidate_politicians(mention):
         candidates = Politician.query.filter(
             or_(func.lower(Politician.last_name) == func.lower(name),
                 func.lower(Politician.last_name) == func.lower(name))).all()
-
         name_array.pop(0)
+
+    # If no candidates found based on exact matches so far.
+    # Next call decreases Precision but increases Recall
+    if len(candidates) == 0:
+        candidates = Politician.query.filter(
+            or_(func.lower(Politician.last_name).contains(func.lower(name)),
+                func.lower(Politician.last_name).contains(func.lower(name)))).all()
 
     # For evaluation - print some info
     print('Mention: {}, #candidates: {}'.format(mention, len(candidates)))
-    for c in candidates:
-        print(c.full_name)
+    print([x.full_name for x in candidates])
 
     return candidates
 

@@ -8,7 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 migrate = Migrate()
 # Import rest of the app# Import api route endpoints.
-from .endpoints import post_article_ner, post_article_question, post_question_response
+from .endpoints import post_article_ner, post_article_question, post_question_response, post_find_party, \
+    post_find_politician
+
 
 # Create the actual application
 def create_app(extra_config_settings={}):
@@ -32,6 +34,14 @@ def create_app(extra_config_settings={}):
     @app.route('/api/articles/entities', methods=['POST'])
     def articles_entities():
         return post_article_ner(request.data)
+
+    @app.route('/api/politicians/<string:politician_id>', methods=['POST'])
+    def politician_by_id(politician_id):
+        return post_find_politician(politician_id)
+
+    @app.route('/api/parties/<string:name>', methods=['POST'])
+    def party_by_id(name):
+        return post_find_party(name)
 
     @app.route('/api/articles/questions', methods=['POST'])
     def articles_questions():

@@ -1,13 +1,14 @@
 import nl_core_news_sm
 
 from app import db
-from app.models.models import Article, Politician, Party
+from app.models.models import Article, Politician, Party, EntityLinking
 from app.modules.entities.disambiguation import named_entity_disambiguation
 from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 
 # Global NLP variable to initialize when necessary
 nlp = None
+
 
 def init_nlp():
     print('Initializing NLP with PhraseMatchers')
@@ -41,7 +42,7 @@ def process_document(document):
     # Make sure the article is in the database.
     article = Article.query.filter(Article.id == document['id']).first()
     if not article:
-        article = Article(id = document['id'])
+        article = Article(id=document['id'])
         db.session.add(article)
         db.session.commit()
 
@@ -61,13 +62,17 @@ def return_extracted_information(article):
     politicians = []
 
     for entity in article.entities:
-        for linking in entity.linkings:
-            if linking.linkable_type == 'Party':
-                if not linking.linkable_object.as_dict() in parties:
-                    parties.append(linking.linkable_object.as_dict())
-            elif linking.linkable_type == 'Politician':
-                if not linking.linkable_object.as_dict() in politicians:
-                    politicians.append(linking.linkable_object.as_dict())
+
+        top_linking = EntityLinking.query.filter(EntityLinking.entity_id == entity.id) \
+            .order_by(EntityLinking.certainty.desc()).first()
+
+        if top_linking:
+            if top_linking.linkable_type == 'Party':
+                if not top_linking.linkable_object.as_dict() in parties:
+                    parties.append(top_linking.linkable_object.as_dict())
+            elif top_linking.linkable_type == 'Politician':
+                if not top_linking.linkable_object.as_dict() in politicians:
+                    politicians.append(top_linking.linkable_object.as_dict())
 
     return {
         'article_id': article.id,

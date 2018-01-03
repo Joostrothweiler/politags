@@ -1,6 +1,7 @@
 from app.modules.entities.named_entities import process_document
 from app.modules.common.utils import translate_doc
 from app.modules.computation.questioning import ask_first_question, process_question
+from app.modules.knowledge_base.api import find_politician, find_party
 from flask import jsonify
 import json
 
@@ -9,10 +10,22 @@ import json
 # Should contain no further logic.
 
 # Route endpoint
+
+
+
 def post_article_ner(document):
     doc = json.loads(document)
     simple_doc = translate_doc(doc)
     res = process_document(simple_doc)
+    return jsonify(res)
+
+
+def post_find_politician(id):
+    res = find_politician(id)
+    return jsonify(res)
+
+def post_find_party(name):
+    res = find_party(name)
     return jsonify(res)
 
 
