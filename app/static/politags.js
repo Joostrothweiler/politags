@@ -43,9 +43,6 @@ let articleObject = {
     "type": "Partij"
 }
 
-
-console.log(articleObject)
-
 //On click we call the API to receive the question
 
 $(function () {
@@ -55,8 +52,10 @@ $(function () {
         url: "http://localhost:5555/api/articles/questions",
         data: JSON.stringify(articleObject),
         success: function (response) {
-            printQuestionAnswers(response)
             console.log(response)
+            if ($.isEmptyObject(response['error']) === true)  {
+                printQuestionAnswers(response)
+            }
         },
         error: function (error) {
             console.log(error);
@@ -66,10 +65,10 @@ $(function () {
 
 
 function printQuestionAnswers(response) {
-    let question = response["question"]
-    let questionId = response["question_id"]
-    let possibleAnswers = response["possible_answers"]
-    let entityText = response["text"]
+    let question = response['question']
+    let questionId = response['question_id']
+    let possibleAnswers = response['possible_answers']
+    let entityText = response['text']
 
     hiliter(article, entityText, questionId)
     appendDiv(questionId, question, possibleAnswers)
@@ -107,9 +106,8 @@ function removeHighlights(element) {
 
 function appendDiv(questionId, question, possibleAnswers) {
     let buttonsHtml = generateButtons(questionId, possibleAnswers)
-    console.log(buttonsHtml)
 
-    $('#' + questionId).append(
+    $('#' + questionId).parent().append(
         '<div id = "yesnoquestion" class="card card-outline-danger text-center">\n' +
         '  <div class="card-block">\n' +
         '    <p id="text" class="card-text">' + question + '</p>\n' +
@@ -126,7 +124,6 @@ function generateButtons(questionId, possibleAnswers) {
     let buttonsHtml = ""
     for (let i=0; i < possibleAnswers.length; i++) {
         if (possibleAnswers[i] == "Ja") {
-            console.log("hi")
             buttonsHtml += '<button response="ja" question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n'
         }
         else if (possibleAnswers[i] == "Nee") {
@@ -151,7 +148,7 @@ function feedbackYesNo() {
     $('.responseButton').remove()
     $('#text').text("Bedankt voor je bijdrage aan een beter doorzoekbare PoliFLW!")
     $('#text').append(
-        '<br><i class="fa fa-check" style="color:green;font-size:60px" aria-hidden="true"></i>'
+        '<br><i class="fa fa-heart" style="color:red;font-size:50px"></i>'
     )
     setTimeout(function() {
         $('mark').contents().unwrap();
