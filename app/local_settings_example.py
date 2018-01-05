@@ -21,3 +21,8 @@ DB_NAME = 'yourdbname'
 SQLALCHEMY_DATABASE_URI = 'postgresql+pygresql://{}:{}@postgres/{}'.format(DB_USER, DB_PASSWORD, DB_NAME)
 # Other settings
 SQLALCHEMY_TRACK_MODIFICATIONS = False    # Avoids a SQLAlchemy Warning
+
+
+# POLIFLOW API CREDENTIALS
+PFL_USER = 'someuser'
+PFL_PASSWORD = 'secretpassword'
