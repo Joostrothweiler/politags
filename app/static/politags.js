@@ -67,7 +67,7 @@ $(function () {
 function printQuestionAnswers(response) {
     let question = response['question']
     let questionId = response['question_id']
-    let possibleAnswers = response['possible_answers']
+    let possibleAnswers = response['possible_answers']['answers']
     let entityText = response['text']
 
     hiliter(article, entityText, questionId)
@@ -95,12 +95,9 @@ function postResponse(questionResponse, questionId) {
 
 // this function highlights a word in the text using bootstrap's mark
 function hiliter(element, word, questionId) {
-    var regexp = new RegExp(word);
-    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>';
-    element.innerHTML = element.innerHTML.replace(regexp, replace);
-}
-
-function removeHighlights(element) {
+    var regexp = new RegExp(word)
+    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>'
+    element.innerHTML = element.innerHTML.replace(regexp, replace)
 }
 
 
@@ -112,8 +109,6 @@ function appendDiv(questionId, question, possibleAnswers) {
         '  <div class="card-block">\n' +
         '    <p id="text" class="card-text">' + question + '</p>\n' +
         buttonsHtml +
-        // '    <button id="yes" question_id='+ questionId +' type="button" class="btn btn-success">Ja</button>\n' +
-        // '    <button id="no" question_id='+ questionId +' type="button" class="btn btn-danger">Nee</button>' +
         '  </div>\n' +
         '</div>'
     )
@@ -121,26 +116,22 @@ function appendDiv(questionId, question, possibleAnswers) {
 
 
 function generateButtons(questionId, possibleAnswers) {
-    let buttonsHtml = ""
-    for (let i=0; i < possibleAnswers.length; i++) {
-        if (possibleAnswers[i] == "Ja") {
-            buttonsHtml += '<button response="ja" question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n'
-        }
-        else if (possibleAnswers[i] == "Nee") {
-            buttonsHtml += '<button response="nee" question_id='+ questionId +' type="button" class="btn btn-danger responseButton">Nee</button>\n'
-        }
+    let buttonsHtml = ''
+
+    if (possibleAnswers.length == 2) {
+        buttonsHtml += '<button id='+ possibleAnswers[0]['id'] +' question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n'
+        buttonsHtml += '<button id='+ possibleAnswers[1]['id'] +' question_id='+ questionId +' type="button" class="btn btn-danger responseButton">Nee</button>\n'
     }
+
     return buttonsHtml
 }
 
 $('body').on('click', '.responseButton', function () {
-    let clickedResponse = $(this).attr("response")
-    let response = {"response": clickedResponse}
+    let response = $(this).attr("id")
     let questionId = $(this).attr("question_id")
     postResponse(response, questionId)
     }
 )
-
 
 function feedbackYesNo() {
     $('#yesnoquestion').removeClass('card-outline-danger')
@@ -158,4 +149,3 @@ function feedbackYesNo() {
 
 }
 
-// div appenden na P
