@@ -17,6 +17,7 @@ def get_document_identifier(document):
 
 
 def translate_doc(document):
+    document = fix_empty_document_fields(document)
     simple_doc = {
         'id': get_document_identifier(document),
         'html_description': document['description'],
@@ -26,6 +27,19 @@ def translate_doc(document):
         'collection': document['meta']['collection']
     }
     return simple_doc
+
+
+def fix_empty_document_fields(document):
+    if not 'description' in document:
+        document['description'] = 'none'
+    if not 'parties' in document:
+        document['parties'] = []
+    if not 'location' in document:
+        document['location'] = 'unknown'
+    if not 'collection' in document:
+        document['collection'] = 'unknown'
+
+    return document
 
 
 def html2text(html):

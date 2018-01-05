@@ -1,5 +1,5 @@
 from .init_db import InitDbCommand
 from .test_ne import TestNeCommand
 from .construct_kb import ConstructKbCommand
-from .compute_ambiguity import ComputeAmbiguity
 from .train_clf import TrainClfCommand
+from .test_poliflow import TestPoliflowCommand
