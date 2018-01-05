@@ -16,7 +16,7 @@ class TestPoliflowCommand(Command):
 
 def test_poliflow():
     """ Test Named Entity Algorithms."""
-    n_documents = 10000
+    n_documents = 500
     documents = fetch_latest_documents(n_documents)
 
     start = time.time()
