@@ -64,11 +64,11 @@ def return_extracted_information(article):
     politicians = []
 
     for entity in article.entities:
-        # Select only the linking with the highest certainty.
+        # Select only the linking with the highest updated certainty.
         top_linking = EntityLinking.query.filter(EntityLinking.entity_id == entity.id) \
-            .order_by(EntityLinking.certainty.desc()).first()
+            .order_by(EntityLinking.updated_certainty.desc()).first()
 
-        if top_linking and top_linking.certainty > NED_CUTOFF_THRESHOLD:
+        if top_linking and top_linking.updated_certainty > NED_CUTOFF_THRESHOLD:
             if top_linking.linkable_type == 'Party':
                 if not top_linking.linkable_object.as_dict() in parties:
                     parties.append(top_linking.linkable_object.as_dict())

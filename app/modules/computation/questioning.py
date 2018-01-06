@@ -18,7 +18,7 @@ def ask_first_question(document):
     if not article:
         return {'error': 'article not found'}
 
-    # find all entity linkings for the entities in this article in ascending order of certainty
+    # find all entity linkings for the entities in this article in ascending order of initial certainty
     entity_linkings = find_entity_linkings(article.entities)
 
     # check if there are any, if not, stop
@@ -43,7 +43,7 @@ def ask_first_question(document):
         'label': question_linking.entity.label,
         'start_pos': question_linking.entity.start_pos,
         'end_pos': question_linking.entity.end_pos,
-        'certainty': question_linking.certainty,
+        'certainty': question_linking.update_certainty,
         'possible_answers': question.possible_answers
     }
 
@@ -66,7 +66,7 @@ def process_question(question_id, doc):
 # Find all entity linkings found by Joost's module and sort them by ascending order
 def find_entity_linkings(entities):
     entity_ids = [e.id for e in entities]
-    entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(EntityLinking.certainty.asc()).all()
+    entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(EntityLinking.initial_certainty.asc()).all()
 
     return entity_linkings
 

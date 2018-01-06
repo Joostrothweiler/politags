@@ -77,8 +77,8 @@ def get_candidate_politicians(mention):
     return candidates
 
 
-def store_entity_politician_linking(entity, politician, certainty):
-    a = EntityLinking(certainty=certainty)
+def store_entity_politician_linking(entity, politician, initial_certainty):
+    a = EntityLinking(initial_certainty=initial_certainty)
     a.linkable_object = politician
     entity.linkings.append(a)
     db.session.add(entity)
@@ -105,8 +105,8 @@ def party_disambiguation(document, entities, entity):
         store_entity_party_linking(entity, max_party, max_sim)
 
 
-def store_entity_party_linking(entity, party, certainty):
-    linking = EntityLinking(certainty=certainty)
+def store_entity_party_linking(entity, party, initial_certainty):
+    linking = EntityLinking(initial_certainty=initial_certainty)
     linking.linkable_object = party
     entity.linkings.append(linking)
     db.session.add(entity)
