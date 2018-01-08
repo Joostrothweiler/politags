@@ -37,7 +37,7 @@ def generate_question(apidoc):
         'label': next_question_linking.entity.label,
         'start_pos': next_question_linking.entity.start_pos,
         'end_pos': next_question_linking.entity.end_pos,
-        'certainty': next_question_linking.certainty,
+        'certainty': next_question_linking.updated_certainty,
         'possible_answers': question.possible_answers
     }
 
@@ -46,7 +46,7 @@ def generate_question(apidoc):
 def find_linkings(entities):
     entity_ids = [e.id for e in entities]
     entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(
-        EntityLinking.certainty.desc()).all()
+        EntityLinking.updated_certainty.desc()).all()
 
     return entity_linkings
 
@@ -95,9 +95,9 @@ def find_next_linking(entity_linkings):
     maximum_certainty = 0
 
     for linking in entity_linkings:
-        if linking.certainty > maximum_certainty:
+        if linking.updated_certainty > maximum_certainty:
             next_question_linking = linking
-            maximum_certainty = linking.certainty
+            maximum_certainty = linking.updated_certainty
 
     return next_question_linking
 
@@ -123,9 +123,13 @@ def process_response(question_id, response_id):
 def update_linking_certainty(question, response):
     learning_rate = 0.1
 
-    #BUILD CHECKS FOR 0 and 1
-
     if response == question.questionable_object.linkable_object.id:
-        question.questionable_object.certainty += learning_rate
+        if question.questionable_object.updated_certainty + learning_rate > 1:
+            question.questionable_object.updated_certainty = 1
+        else:
+            question.questionable_object.updated_certainty += learning_rate
     else:
-        question.questionable_object.certainty -= learning_rate
+        if question.questionable_object.updated_certainty - learning_rate < 0:
+            question.questionable_object.updated_certainty = 0
+        else:
+            question.questionable_object.updated_certainty -= learning_rate

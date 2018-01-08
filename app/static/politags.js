@@ -2,46 +2,32 @@
 
 let article = document.getElementById("article_container");
 
-let articleObject = {
-    "date": "2010-01-30T00:00:00",
-    "date_granularity": 12,
-    "description": "<img srcset=\"https://d2vry01uvf8h31.cloudfront.net/_processed_/0/0/csm_178405088_4_dunl_546dcd1cc5.jpg 1.5x\" class=\"placeholder-image\" src=\"https://d2vry01uvf8h31.cloudfront.net/_processed_/0/0/csm_178405088_4_dunl_6562388c8b.jpg\" width=\"1110\" height=\"572\" alt=\"\" title=\"178405088_4_dunl\"/>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<p><span id=\"dnn_ctr33769_ArticleDetails_ctl00_lblDescription\" class=\"normalbold\">&#160;&#13; <p align=\"justify\">Naar aanleiding van diverse publicaties in de media, betreffende voormalig wethouder van Dijk en diens handelen in zijn hoedanigheid&#160; van werknemer/directeur van Louppen B.V., heeft de CDA fractie op maandag 12 juni jongstleden een aantal schriftelijke vragen aan het college gesteld. </p></span>&#13; </p><p align=\"justify\">Naar aanleiding van diverse publicaties in de media, betreffende voormalig wethouder van Dijk en diens handelen in zijn hoedanigheid&#160; van werknemer/directeur van Louppen B.V., heeft de CDA fractie op maandag 12 juni jongstleden een aantal schriftelijke vragen aan het college gesteld. </p><p/>&#13; <p><span id=\"dnn_ctr33769_ArticleDetails_ctl00_lblArticle\" class=\"normal\">&#13; <p>Naar aanleiding van diverse publicaties in de media, betreffende voormalig wethouder van Dijk en diens handelen in zijn hoedanigheid&#160; van werknemer/directeur van Louppen B.V., heeft de CDA fractie op maandag 12 juni jongstleden een aantal schriftelijke vragen aan het college gesteld. Als grootste fractie in onze raad, achten wij het onze taak om zo spoedig mogelijk helderheid in deze kwestie te krijgen. Het betrof onder ander de navolgende vragen (met daarachter in het kort de beantwoording via het college):<br/>1.&#160;Kunt U aangeven of de toenmalige coalitie bekend was met de nevenfunctie van de heer van Dijk en zo ja, sinds wanneer? De coalitie werd in januari 2004 op de hoogte gebracht van de nieuwe functie (directeur ad interim sinds november 2003). Binnen het college waren de collega wethouders sinds juli/augustus 2003 op de hoogte van het feit dat de heer van Dijk een functie binnen de Louppen Groep had aanvaard.<br/>2.&#160;Is het correct dat het handelen van de heer van Dijk niet heeft geleid tot financi&#235;le schade, juridische verplichtingen of andere nadelige gevolgen voor de gemeente Vaals?",
-    "enrichments": {},
-    "location": "Vaals",
-    "meta": {
-        "_index": "pfl_combined_index",
-        "_score": 18.702293,
-        "_type": "item",
-        "collection": "CDA",
-        "highlight": {
-            "description": [
-                " wethouder <em>van</em> <em>Dijk</em> en diens handelen in zijn hoedanigheid&#160; <em>van</em> werknemer/directeur <em>van</em> Louppen B.V",
-                " media, betreffende voormalig wethouder <em>van</em> <em>Dijk</em> en diens handelen in zijn hoedanigheid&#160; <em>van</em>",
-                ", betreffende voormalig wethouder <em>van</em> <em>Dijk</em> en diens handelen in zijn hoedanigheid&#160; <em>van</em> werknemer/directeur",
-                " toenmalige coalitie bekend was met de nevenfunctie <em>van</em> de heer <em>van</em> <em>Dijk</em> en zo ja, sinds wanneer? De coalitie",
-                " het feit dat de heer <em>van</em> <em>Dijk</em> een functie binnen de Louppen Groep had aanvaard.<br/>2.&#160;Is het"
-            ],
-            "title": [
-                "\n\t\t\t\t\t\t\t\t51. Dhr. <em>van</em> <em>Dijk</em>\n\t\t\t\t\t\t\t"
-            ]
-        },
-        "original_object_id": "https://www.cda.nl/limburg/vaals/actueel/nieuws/51-dhr-van-dijk-1/",
+let articleObject =
+   {
+      "date": "2017-12-01T00:00:00",
+      "date_granularity": 12,
+      "description": "<div class=\"node-content clearfix\"> &#13;\n  &#13;\n\t <p>Afgelopen dinsdag besloot de gemeenteraad om eindelijk een fatsoenlijk tarief te gaan betalen voor de huishoudelijke zorg.<br/>\nAlle gemeenten moeten per 1 april 2018 aan thuiszorgorganisaties het in de cao geregelde loon vergoeden van de bij hen werkende thuiszorgmedewerkers.</p>\n<p>Dankzij talrijke acties in het hele land&#160; - ook in Amersfoort met steun vanuit de lokale SP-afdeling -&#160; is dit resultaat bereikt:&#160; eindelijk &#8220;loon naar werken!&#8220;.</p>\n<p>SP-raadslid Bets Beltman maakte tijdens de raadsvergadering van de gelegenheid gebruik om de thuiszorg-medewerkers in Amersfoort te feliciteren met hun succes. Dit werd haar door de andere partijen niet echt in dank afgenomen &#8211; het was toch &#8216;maar een hamerstuk &#8216; en&#160; zij wilden liever wat vroeger naar huis&#8230;.</p>\n<p>Ook de wethouder, Fleur Imming van de PvdA,&#160; hield zich stil.</p>\n         <div class=\"zie-ook\">&#13;\n      <strong>Zie ook:</strong>&#13;\n      <ul>&#13;\n                            <li><a href=\"/dossier/thuiszorg\">Dossier: Thuiszorg</a></li>&#13;\n              </ul>&#13;\n    </div>&#13;\n    </div>&#13;\n&#13;\n\t\t\n",
+      "enrichments": {},
+      "location": "Amersfoort",
+      "meta": {
+        "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/4e8f2c46403d40023c701c94455eb7c502c16593",
+        "collection": "SP",
+        "original_object_id": "http://amersfoort.sp.nl/nieuws/2017/12/succes-thuiszorg-acties-ook-in-amersfoort-verzilverd",
         "original_object_urls": {
-            "html": "https://www.cda.nl/limburg/vaals/actueel/nieuws/51-dhr-van-dijk-1/"
+          "html": "http://amersfoort.sp.nl/nieuws/2017/12/succes-thuiszorg-acties-ook-in-amersfoort-verzilverd"
         },
-        "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/0ccfc69dba4a64e3cf3a5fd1ca1faa0446a24843",
-        "processing_finished": "2017-12-07T23:39:30.990206",
-        "processing_started": "2017-12-07T21:06:51.056808",
+        "processing_finished": "2017-12-05T20:56:11.729632",
+        "processing_started": "2017-12-05T20:24:15.921745",
         "rights": "Undefined",
-        "source_id": "cda_archives_vaals"
-    },
-    "parties": [
-        "CDA"
-    ],
-    "source": "Partij nieuws",
-    "title": "\n\t\t\t\t\t\t\t\t51. Dhr. van Dijk\n\t\t\t\t\t\t\t",
-    "type": "Partij"
-};
+        "source_id": "sp_archives_amersfoort"
+      },
+      "parties": [
+        "SP"
+      ],
+      "source": "Partij nieuws",
+      "title": "SUCCES THUISZORG-ACTIES OOK IN AMERSFOORT VERZILVERD!",
+      "type": "Partij"
+    };
 
 //On click we call the API to receive the question
 
