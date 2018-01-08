@@ -1,6 +1,6 @@
-"use strict"
+"use strict";
 
-let article = document.getElementById("article_container")
+let article = document.getElementById("article_container");
 
 let articleObject = {
     "date": "2010-01-30T00:00:00",
@@ -41,7 +41,7 @@ let articleObject = {
     "source": "Partij nieuws",
     "title": "\n\t\t\t\t\t\t\t\t51. Dhr. van Dijk\n\t\t\t\t\t\t\t",
     "type": "Partij"
-}
+};
 
 //On click we call the API to receive the question
 
@@ -52,28 +52,19 @@ $(function () {
         url: "http://localhost:5555/api/articles/questions",
         data: JSON.stringify(articleObject),
         success: function (response) {
-            console.log(response)
+            console.log(response);
             if ($.isEmptyObject(response['error']) === true)  {
-                printQuestionAnswers(response)
+                showQuestion(response)
+            }
+            else {
+                console.log(response['error'])
             }
         },
         error: function (error) {
             console.log(error);
         }
     })
-})
-
-
-function printQuestionAnswers(response) {
-    let question = response['question']
-    let questionId = response['question_id']
-    let possibleAnswers = response['possible_answers']['answers']
-    let entityText = response['text']
-
-    hiliter(article, entityText, questionId)
-    appendDiv(questionId, question, possibleAnswers)
-}
-
+});
 
 // this function posts the answer to a certain question
 function postResponse(questionResponse, questionId) {
@@ -83,8 +74,8 @@ function postResponse(questionResponse, questionId) {
         url: "http://localhost:5555/api/questions/" + questionId,
         data: JSON.stringify(questionResponse),
         success: function (response) {
-            console.log(response)
-            feedbackYesNo()
+            console.log(response);
+            showFeedback()
         },
         error: function (error) {
             console.log(error);
@@ -93,16 +84,27 @@ function postResponse(questionResponse, questionId) {
 
 }
 
-// this function highlights a word in the text using bootstrap's mark
-function hiliter(element, word, questionId) {
-    var regexp = new RegExp(word)
-    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>'
-    element.innerHTML = element.innerHTML.replace(regexp, replace)
+
+function showQuestion(apiresponse) {
+    let question = apiresponse['question'];
+    let questionId = apiresponse['question_id'];
+    let possibleAnswers = apiresponse['possible_answers'];
+    let entityText = apiresponse['text'];
+
+    highlighter(article, entityText, questionId);
+    appendDiv(questionId, question, possibleAnswers)
 }
 
 
+// this function highlights a word in the text using bootstrap's mark
+function highlighter(element, word, questionId) {
+    var regexp = new RegExp(word);
+    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>';
+    element.innerHTML = element.innerHTML.replace(regexp, replace)
+}
+
 function appendDiv(questionId, question, possibleAnswers) {
-    let buttonsHtml = generateButtons(questionId, possibleAnswers)
+    let buttonsHtml = generateButtons(questionId, possibleAnswers);
 
     $('#' + questionId).parent().append(
         '<div id = "yesnoquestion" class="card card-outline-danger text-center">\n' +
@@ -116,10 +118,10 @@ function appendDiv(questionId, question, possibleAnswers) {
 
 
 function generateButtons(questionId, possibleAnswers) {
-    let buttonsHtml = ''
+    let buttonsHtml = '';
 
     if (possibleAnswers.length == 2) {
-        buttonsHtml += '<button id='+ possibleAnswers[0]['id'] +' question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n'
+        buttonsHtml += '<button id='+ possibleAnswers[0]['id'] +' question_id='+ questionId +' type="button" class="btn btn-success responseButton">Ja</button>\n';
         buttonsHtml += '<button id='+ possibleAnswers[1]['id'] +' question_id='+ questionId +' type="button" class="btn btn-danger responseButton">Nee</button>\n'
     }
 
@@ -127,20 +129,21 @@ function generateButtons(questionId, possibleAnswers) {
 }
 
 $('body').on('click', '.responseButton', function () {
-    let response = $(this).attr("id")
-    let questionId = $(this).attr("question_id")
+    let response = $(this).attr("id");
+    let questionId = $(this).attr("question_id");
     postResponse(response, questionId)
     }
-)
+);
 
-function feedbackYesNo() {
-    $('#yesnoquestion').removeClass('card-outline-danger')
-    $('#yesnoquestion').addClass('card-outline-success')
-    $('.responseButton').remove()
-    $('#text').text("Bedankt voor je bijdrage aan een beter doorzoekbare PoliFLW!")
+
+function showFeedback() {
+    $('#yesnoquestion').removeClass('card-outline-danger');
+    $('#yesnoquestion').addClass('card-outline-success');
+    $('.responseButton').remove();
+    $('#text').text("Bedankt voor je bijdrage aan een beter doorzoekbare PoliFLW!");
     $('#text').append(
         '<br><i class="fa fa-heart" style="color:red;font-size:50px"></i>'
-    )
+    );
     setTimeout(function() {
         $('mark').contents().unwrap();
         $('strong').contents().unwrap();

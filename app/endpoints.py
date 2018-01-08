@@ -1,6 +1,6 @@
 from app.modules.entities.named_entities import process_document
 from app.modules.common.utils import translate_doc
-from app.modules.computation.questioning import ask_first_question, process_response
+from app.modules.computation.questioning import generate_question, process_response
 from app.modules.knowledge_base.api import find_politician, find_party
 from flask import jsonify
 import json
@@ -31,7 +31,7 @@ def post_find_party(name):
 def post_article_question(data):
     doc = json.loads(data)
     simple_doc = translate_doc(doc)
-    res = ask_first_question(simple_doc)
+    res = generate_question(simple_doc)
     return jsonify(res)
 
 
