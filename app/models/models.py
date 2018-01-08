@@ -128,13 +128,19 @@ class Response(db.Model):
 
     question = db.relationship('Question', back_populates='responses')
 
+# Helper function to set updated certainty to the same value as the initial certainty
+def same_as(column_name):
+    def default_function(context):
+        return context.current_parameters.get(column_name)
+    return default_function
 
 # RELATIONS
 class EntityLinking(db.Model):
     __tablename__ = 'entity_linkings'
     id = db.Column(db.Integer(), primary_key=True)
     entity_id = db.Column(db.Integer(), db.ForeignKey('entities.id'))
-    certainty = db.Column(db.Float(), default=0.0)
+    initial_certainty = db.Column(db.Float(), default=0.0)
+    updated_certainty = db.Column(db.Float(), default=same_as('initial_certainty'))
     linkable_type = db.Column(db.String(50))
     linkable_id = db.Column(db.Integer(), nullable=False)
 
@@ -145,7 +151,8 @@ class EntityLinking(db.Model):
         return {
             'id': self.id,
             'entity_id': self.entity_id,
-            'certainty': self.certainty,
+            'initial_certainty': self.initial_certainty,
+            'updated_certainty': self.updated_certainty,
             'linkable_type': self.linkable_type,
             'linkable_id': self.linkable_id,
         }

@@ -3,7 +3,7 @@ import json
 from flask_script import Command
 
 from app import post_article_ner
-from app.models.models import Entity, Article, EntityLinking
+from app.models.models import Entity, Article, EntityLinking, Question, Response
 from app.modules.common.utils import translate_doc
 from app.modules.entities.named_entities import process_document
 
@@ -20,11 +20,11 @@ def test_ne():
     print('Deleting all old data')
     remove_all_articles()
 
-    input = 'data_resources/evaluation/van_dijk_input.json'
-    output = process_evaluation_input(input)
-    eval = 'data_resources/evaluation/van_dijk_eval.json'
-    eval_output = json.load(open(eval))
-    evaluate_ned(output, eval_output)
+    # input = 'data_resources/evaluation/van_dijk_input.json'
+    # output = process_evaluation_input(input)
+    # eval = 'data_resources/evaluation/van_dijk_eval.json'
+    # eval_output = json.load(open(eval))
+    # evaluate_ned(output, eval_output)
 
     input = 'data_resources/evaluation/new_test_input.json'
     output = process_evaluation_input(input)
@@ -35,6 +35,9 @@ def test_ne():
 
 
 def remove_all_articles():
+    # Remove all questions
+    Response.query.delete()
+    Question.query.delete()
     # Remove all linkings
     EntityLinking.query.delete()
     # Remove all entities
