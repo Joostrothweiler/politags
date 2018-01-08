@@ -16,68 +16,6 @@ def named_entity_disambiguation(document, entities):
             party_disambiguation(document, entities, entity)
 
 
-def politician_decision_tree(document, entities, entity):
-    MAX_NUMBER_OF_CANDIDATES = 2
-    FIRST_SELECTION_SIZE = 5
-    candidates = get_candidate_politicians(entity.text)
-
-    while len(candidates) > FIRST_SELECTION_SIZE:
-        f_min = 999
-        candidate_min = None
-        for candidate in candidates:
-            f_candidate = f_who_name_similarity(entity.text, candidate)
-            if f_candidate < f_min:
-                f_min = f_candidate
-                candidate_min = candidate
-        candidates.remove(candidate_min)
-
-    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
-        f_min = 999
-        candidate_min = None
-        for candidate in candidates:
-            f_candidate = f_who_name_similarity(entity.text, candidate)
-            if f_candidate < f_min:
-                f_min = f_candidate
-                candidate_min = candidate
-        candidates.remove(candidate_min)
-
-    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
-        f_min = 999
-        candidate_min = None
-        for candidate in candidates:
-            f_candidate = f_first_name_similarity(entity.text, candidate)
-            if f_candidate < f_min:
-                f_min = f_candidate
-                candidate_min = candidate
-        candidates.remove(candidate_min)
-
-    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
-        f_min = 999
-        candidate_min = None
-        for candidate in candidates:
-            f_candidate = f_party_similarity(document, candidate)
-            if f_candidate < f_min:
-                f_min = f_candidate
-                candidate_min = candidate
-        candidates.remove(candidate_min)
-
-    if len(candidates) > MAX_NUMBER_OF_CANDIDATES:
-        f_min = 999
-        candidate_min = None
-        for candidate in candidates:
-            f_candidate = f_context_similarity(document, entities, candidate)
-            if f_candidate < f_min:
-                f_min = f_candidate
-                candidate_min = candidate
-        candidates.remove(candidate_min)
-
-    for candidate in candidates:
-        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
-        if candidate_present_in_document(document, candidate):
-            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
-        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
-
-
 def politician_disambiguation(document, entities, entity):
     candidates = get_candidate_politicians(entity.text)
     result = []
@@ -94,7 +32,7 @@ def politician_disambiguation(document, entities, entity):
         result.append({'candidate' : candidate, 'score': np.sum(feature_vector) })
 
     while len(result) > 2:
-        min_score  = 999
+        min_score  = float('inf')
         min_obj = None
         for obj in result:
             if obj['score'] < min_score :
@@ -105,9 +43,7 @@ def politician_disambiguation(document, entities, entity):
 
     for obj in result:
         candidate = obj['candidate']
-        print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
-        if candidate_present_in_document(document, candidate):
-            print('This is the actual candidate!: {} ({})'.format(candidate.full_name, candidate.party))
+        # print("Linked {} to {} with prob {}".format(entity.text, candidate.full_name, f_who_name_similarity(entity.text, candidate)))
         store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
 
 
@@ -135,23 +71,14 @@ def get_candidate_politicians(mention):
                 func.lower(Politician.last_name).contains(func.lower(name)))).all()
 
     # For evaluation - print some info
-    print('Mention: {}, #candidates: {}'.format(mention, len(candidates)))
-    print([x.full_name for x in candidates])
+    # print('Mention: {}, #candidates: {}'.format(mention, len(candidates)))
+    # print([x.full_name for x in candidates])
 
     return candidates
 
 
-def classifier_probability(feature_vector):
-    # Classifier returns a certainty
-    # We return the probability for true
-    candidate_confidence = disambiguation_model.predict_proba([feature_vector])
-    print(candidate_confidence)
-    print(disambiguation_model.predict([feature_vector]))
-    return candidate_confidence[0][1]
-
-
-def store_entity_politician_linking(entity, politician, certainty):
-    a = EntityLinking(certainty=certainty)
+def store_entity_politician_linking(entity, politician, initial_certainty):
+    a = EntityLinking(initial_certainty=initial_certainty)
     a.linkable_object = politician
     entity.linkings.append(a)
     db.session.add(entity)
@@ -178,8 +105,8 @@ def party_disambiguation(document, entities, entity):
         store_entity_party_linking(entity, max_party, max_sim)
 
 
-def store_entity_party_linking(entity, party, certainty):
-    linking = EntityLinking(certainty=certainty)
+def store_entity_party_linking(entity, party, initial_certainty):
+    linking = EntityLinking(initial_certainty=initial_certainty)
     linking.linkable_object = party
     entity.linkings.append(linking)
     db.session.add(entity)

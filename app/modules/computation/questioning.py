@@ -1,8 +1,6 @@
-from app import db
 from app.models.models import Article
 from app import db
 from app.models.models import Question, Response, EntityLinking
-from random import random
 
 
 def generate_question(apidoc):
