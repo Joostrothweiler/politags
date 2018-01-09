@@ -29,6 +29,7 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param entity: The entity from the database we are currently evaluating.
     """
     MAX_NUMBER_OF_LINKINGS = 2
+    ADDITIONAL_WEIGHT = 30
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
@@ -36,6 +37,10 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for candidate in candidates:
         candidate_feature_vector = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        # Reweigh feature at index 4 and 5
+        candidate_feature_vector[4] = ADDITIONAL_WEIGHT * candidate_feature_vector[5]
+        candidate_feature_vector[5] = ADDITIONAL_WEIGHT * candidate_feature_vector[5]
+
         result.append({'candidate': candidate,
                        'feature_vector': candidate_feature_vector,
                        'score': np.sum(candidate_feature_vector)})
@@ -65,15 +70,12 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     :param candidate:
     :return:
     """
-    F_ROLE_WEIGHT = 30
-    F_PARTY_WEIGHT = 30
-
     f_name = f_name_similarity(entity.text, candidate)
     f_first_name = f_first_name_similarity(entity.text, candidate)
     f_who_name = f_who_name_similarity(entity.text, candidate)
     f_role = f_role_in_document(document, candidate)
-    f_party = F_ROLE_WEIGHT * f_party_similarity(document, candidate)
-    f_context = F_PARTY_WEIGHT * f_context_similarity(document, doc_entities, candidate)
+    f_party = f_party_similarity(document, candidate)
+    f_context = f_context_similarity(document, doc_entities, candidate)
 
     feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
 
