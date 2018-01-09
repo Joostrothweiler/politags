@@ -29,23 +29,16 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param entity: The entity from the database we are currently evaluating.
     """
     MAX_NUMBER_OF_LINKINGS = 2
-    F_ROLE_WEIGHT = 30
-    F_PARTY_WEIGHT = 30
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
     result = []
 
     for candidate in candidates:
-        f_name = f_name_similarity(entity.text, candidate)
-        f_first_name = f_first_name_similarity(entity.text, candidate)
-        f_who_name = f_who_name_similarity(entity.text, candidate)
-        f_role = f_role_in_document(document, candidate)
-        f_party = F_ROLE_WEIGHT * f_party_similarity(document, candidate)
-        f_context = F_PARTY_WEIGHT * f_context_similarity(document, doc_entities, candidate)
-        feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
-        # TODO: Normalize this count so that we can use it directly as certainty instead of name similarity.
-        result.append({'candidate': candidate, 'score': np.sum(feature_vector)})
+        candidate_feature_vector = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        result.append({'candidate': candidate,
+                       'feature_vector': candidate_feature_vector,
+                       'score': np.sum(candidate_feature_vector)})
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
@@ -59,7 +52,42 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for obj in result:
         candidate = obj['candidate']
-        store_entity_politician_linking(entity, candidate, f_who_name_similarity(entity.text, candidate))
+        feature_vector = obj['feature_vector']
+        store_entity_politician_linking(entity, candidate, compute_politician_certainty(feature_vector))
+
+
+def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
+    """
+    Compute a feature vector that represents the relationship between an entity and a candidate politician.
+    :param document:
+    :param doc_entities:
+    :param entity:
+    :param candidate:
+    :return:
+    """
+    F_ROLE_WEIGHT = 30
+    F_PARTY_WEIGHT = 30
+
+    f_name = f_name_similarity(entity.text, candidate)
+    f_first_name = f_first_name_similarity(entity.text, candidate)
+    f_who_name = f_who_name_similarity(entity.text, candidate)
+    f_role = f_role_in_document(document, candidate)
+    f_party = F_ROLE_WEIGHT * f_party_similarity(document, candidate)
+    f_context = F_PARTY_WEIGHT * f_context_similarity(document, doc_entities, candidate)
+
+    feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
+
+    return feature_vector
+
+
+def compute_politician_certainty(candidate_feature_vector: list) -> float:
+    """
+    Compute the certainty of a linking based on the feature vector.
+    :param candidate_feature_vector: A feature vector representing the relation between a entity, document and linking.
+    :return: Certainty (float).
+    """
+    # TODO: Compute an actual certainty measure here instead of writing f_who_name.
+    return candidate_feature_vector[2]
 
 
 def get_candidate_politicians(entity: Entity) -> list:
