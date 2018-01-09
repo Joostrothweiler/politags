@@ -4,9 +4,14 @@
       "article_id": "4e8f2c46403d40023c701c94455eb7c502c16593",
       "parties": [
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
+        },
+        {
+          "system_id": 111,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
         }
       ],
       "politicians": [
@@ -28,12 +33,12 @@
       "article_id": "7ebb3e39e73ed87ef1b1038e726290d4bf348526",
       "parties": [
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "DENK",
           "abbreviation": "Denk"
         }
@@ -72,7 +77,7 @@
       "article_id": "9c1f0db64719886087ceec06c9a0fed10c3c1c9b",
       "parties": [
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
@@ -108,7 +113,7 @@
       "article_id": "ec09bc3eee6db3950699e3abd6cf501a352b48a6",
       "parties": [
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         }
@@ -124,7 +129,7 @@
       "article_id": "5982732449cb7124fd7282c8cf48bf2a65f7fea7",
       "parties": [
         {
-          "system_id": 999,
+          "system_id": 111,
           "name": "Christen-Democratisch Appèl",
           "abbreviation": "CDA"
         }
