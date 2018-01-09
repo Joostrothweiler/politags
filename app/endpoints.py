@@ -12,6 +12,11 @@ import json
 # Route endpoint
 
 def post_article_ner(document):
+    """
+    Process an article from poliflow and return the named entities to the api.
+    :param document: poliflow document
+    :return: API named entities in document
+    """
     doc = json.loads(document)
     simple_doc = translate_doc(doc)
     res = process_document(simple_doc)
