@@ -1,31 +1,30 @@
 import nl_core_news_sm
 
 from app import db
-from app.models.models import Article, Politician, Party, EntityLinking
+from app.models.models import Article, EntityLinking
 from app.modules.entities.disambiguation import named_entity_disambiguation
-from app.modules.entities.extraction import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
-
-# Global NLP variable to initialize when necessary
+from app.modules.entities.recognition import named_entity_recognition
 from app.settings import NED_CUTOFF_THRESHOLD
 
 nlp = None
 
 
 def init_nlp():
-    print('Initializing NLP with PhraseMatchers')
+    """
+    Initialize the NLP module with PhraseMatcher
+    """
+    print('NLP Module : Initializing')
     global nlp
     politicians = []
-    for politician in Politician.query.limit(10).all():
-        if not politician.last_name == '':
-            politicians.append(politician.last_name)
-
     parties = []
-    for party in Party.query.limit(10).all():
-        parties.append(party.name)
-        if not party.abbreviation == '':
-            parties.append(party.abbreviation)
-
+    # for politician in Politician.query.all():
+    #     if not politician.last_name == '':
+    #         politicians.append(politician.last_name)
+    # for party in Party.query.all():
+    #     parties.append(party.name)
+    #     if not party.abbreviation == '':
+    #         parties.append(party.abbreviation)
     nlp = nl_core_news_sm.load()
     politician_pipe = PoliticianRecognizer(nlp, politicians)
     party_pipe = PartyRecognizer(nlp, parties)
@@ -33,11 +32,15 @@ def init_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    # nlp.remove_pipe('ner')
-    print('NLP Initialized with PhraseMatchers. Pipelines in use: {}'.format(nlp.pipe_names))
+    print('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
-def process_document(document):
+def process_document(document: dict) -> dict:
+    """
+    Process the simple document and return extracted information.
+    :param document: simple document from poliflow.
+    :return: extracted information as dict.
+    """
     # Initialize only if nlp is not yet loaded.
     if nlp == None:
         init_nlp()
@@ -52,14 +55,24 @@ def process_document(document):
     return return_extracted_information(article)
 
 
-def extract_information(article, document):
+def extract_information(article: Article, document: dict):
+    """
+    Extract information from the article, more specifically all named entities linked to knowledge base.
+    :param article: article in database.
+    :param document: simple document from poliflow.
+    """
     nlp_doc = nlp(document['text_description'])
     entities = named_entity_recognition(article, nlp_doc)
-    named_entity_disambiguation(document, entities)
+    named_entity_disambiguation(entities, document)
     db.session.commit()
 
 
-def return_extracted_information(article):
+def return_extracted_information(article: Article) -> dict:
+    """
+    Return the extracted information as dict to the API.
+    :param article: article in database.
+    :return: API response as dict.
+    """
     parties = []
     politicians = []
 
