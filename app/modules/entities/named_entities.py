@@ -32,7 +32,7 @@ def init_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    print('NLP Module: Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
+    print('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
 def process_document(document: dict) -> dict:

@@ -184,6 +184,5 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
         'recall_count': recall_count,
         'recall_ratio': recall_ratio
     }
-    print(res)
 
     return res
