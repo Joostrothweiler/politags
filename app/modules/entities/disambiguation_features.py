@@ -4,7 +4,6 @@ from whoswho import who
 
 def f_name_similarity(mention, candidate):
     sim = string_similarity(candidate.last_name, mention)
-    # print('Similarity between "{}" and {} is {}'.format(mention, candidate.full_name, sim))
     return sim
 
 
@@ -58,7 +57,6 @@ def f_context_similarity(document, entities, candidate):
     a = [x.lower() for x in document_entries]
     b = [x.lower() for x in candidate_array]
 
-    # print('Simialrity [{}], [{}]'.format(document_entries, candidate_array))
     sim = jaccard_distance(a, b)
     return sim
 

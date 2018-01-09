@@ -1,7 +1,4 @@
 import json
-import datetime
-
-from app.modules.common.utils import timeStamped
 
 
 def write_classifier_training_file(document, feature_vector, candidate):
