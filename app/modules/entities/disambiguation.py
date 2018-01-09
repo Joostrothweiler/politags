@@ -2,7 +2,7 @@ import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntityLinking
+from app.models.models import Politician, Party, EntityLinking, Entity
 from app.modules.entities.disambiguation_features import *
 
 
@@ -16,7 +16,7 @@ def named_entity_disambiguation(entities, document):
     # Here we may want to call post_process_disambiguation_linkings...
 
 
-def politician_disambiguation(document, entities, entity):
+def politician_disambiguation(document : dict, entities, entity : Entity):
     candidates = get_candidate_politicians(entity.text)
     result = []
 

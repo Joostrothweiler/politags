@@ -100,7 +100,7 @@ def string_similarity(a: str, b: str) -> float:
     Compute a similarity score between two strings in the range of [0,1].
     :param a: First string to compare
     :param b: Second string to compare
-    :return: Simialrity score in the range of [0,1]
+    :return: Similarity score in the range of [0,1]
     """
     return SequenceMatcher(None, a, b).ratio()
 
