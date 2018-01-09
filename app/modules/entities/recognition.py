@@ -17,10 +17,13 @@ def named_entity_recognition(article, nlp_doc):
             .filter(Entity.label == doc_ent.label_).first()
 
         if entity:
-            entity.count = entity.count + 1
             db.session.add(entity)
+            entity.count += 1
         elif has_valid_text_len(doc_ent):
-            entity = Entity(text = doc_ent.text,
+            # Strip the entity text so that we have no empty space at the ends.
+            doc_ent_text = doc_ent.text.strip()
+            # Create the entity in the database.
+            entity = Entity(text = doc_ent_text,
                             label = doc_ent.label_,
                             start_pos = doc_ent.start_char,
                             end_pos = doc_ent.end_char)

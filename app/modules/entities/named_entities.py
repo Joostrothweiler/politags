@@ -3,7 +3,7 @@ import nl_core_news_sm
 from app import db
 from app.models.models import Article, Politician, Party, EntityLinking
 from app.modules.entities.disambiguation import named_entity_disambiguation
-from app.modules.entities.extraction import named_entity_recognition
+from app.modules.entities.recognition import named_entity_recognition
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 
 # Global NLP variable to initialize when necessary
@@ -55,7 +55,7 @@ def process_document(document):
 def extract_information(article, document):
     nlp_doc = nlp(document['text_description'])
     entities = named_entity_recognition(article, nlp_doc)
-    named_entity_disambiguation(document, entities)
+    named_entity_disambiguation(entities, document)
     db.session.commit()
 
 
