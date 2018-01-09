@@ -100,12 +100,25 @@ class Question(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     question_string = db.Column(db.String(200))
-    possible_answers = db.Column(postgresql.ARRAY(db.String(20), dimensions=1))
     questionable_type = db.Column(db.String(50))
     questionable_id = db.Column(db.Integer(), nullable=False)
 
-    # Relationships
+    # Hybrid property possible_answers
+    @hybrid_property
+    def possible_answers(self):
+        return [
+            {
+                'type': self.questionable_type,
+                'id': self.questionable_object.linkable_object.id
+            },
+            {
+                'type': 'reject',
+                'id': -1
+            }
+        ]
 
+
+    # Relationships
     article = db.relationship('Article', back_populates='questions')
     responses = db.relationship('Response', back_populates='question')
     questionable_object = generic_relationship(questionable_type, questionable_id)
@@ -124,7 +137,7 @@ class Response(db.Model):
     __tablename__ = 'responses'
     id = db.Column(db.Integer(), primary_key=True)
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
-    response = db.Column(db.String(100))
+    response = db.Column(db.Integer())
 
     question = db.relationship('Question', back_populates='responses')
 

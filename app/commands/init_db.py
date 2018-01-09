@@ -44,24 +44,6 @@ def init_db():
     db.session.add(linking)
     db.session.commit()
 
-    print('Initializing questions/responses')
-    init_questions_responses()
-
-
-def init_questions_responses():
-    linking = EntityLinking.query.first()
-    question = Question(possible_answers=['Yes', 'No'], questionable_object=linking)
-    db.session.add(question)
-    question = Question(possible_answers=['Maybe', 'Nah'], questionable_object=linking)
-    db.session.add(question)
-    db.session.commit()
-
-    response = Response(question_id=1, response='Yes')
-    db.session.add(response)
-    response = Response(question_id=1, response='No')
-    db.session.add(response)
-    db.session.commit()
-
 
 def init_politicians():
     with open('data_resources/archive_politicians.csv') as csv_file:
