@@ -72,8 +72,6 @@ def find_next_question(entity_linkings):
     return [next_question_linking, next_question]
 
 
-
-
 # this function generates a yes/no question string from an entity
 def generate_linking_questions(entity_linkings, article):
     for entity_linking in entity_linkings:
@@ -86,16 +84,16 @@ def generate_linking_questions(entity_linkings, article):
             politician = entity_linking.linkable_object
 
             if politician.role and politician.municipality:
-                question_string = 'Wordt "{}" van "{}", {} in "{}" genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                    politician.party,
                                                                                                    politician.role,
                                                                                                    politician.municipality)
             elif politician.role:
-                question_string = 'Wordt "{}" ({}) van "{}"  genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                    politician.party,
                                                                                                    politician.role,)
             else:
-                question_string = 'Wordt "{}" van "{}" in "{}" genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                politician.party,
                                                                                                politician.municipality)
 
@@ -108,7 +106,7 @@ def generate_linking_questions(entity_linkings, article):
         elif entity_linking.linkable_type == 'Party' and entity_linking.initial_certainty < 0.85:
             party = entity_linking.linkable_object
 
-            question_string = 'Wordt "{} ({})" uit genoemd in dit artikel?'.format(party.abbreviation, party.name)
+            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
 
             question = Question(questionable_object=entity_linking,
                                 question_string=question_string, article=article)
