@@ -128,7 +128,7 @@ function showFeedback() {
     $('.responseButton').remove();
     $('#text').text("Bedankt voor je bijdrage aan een beter doorzoekbare PoliFLW!");
     $('#text').append(
-        '<br><i class="fa fa-heart" style="color:red;font-size:50px"></i>'
+        '<br><i class="fa fa-heart text-danger"></i>'
     );
     setTimeout(function() {
         $('mark').contents().unwrap();

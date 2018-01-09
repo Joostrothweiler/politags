@@ -26,9 +26,12 @@ def generate_question(apidoc):
 
     generate_linking_questions(entity_linkings, article)
 
-    next_question_linking = find_next_linking(entity_linkings)
+    [next_question_linking, question] = find_next_question(entity_linkings)
 
-    question = Question.query.filter(Question.questionable_object == next_question_linking).first()
+    if not question:
+        return {
+            'error': 'no question found for this question'
+        }
 
     return {
         'question': question.question_string,
@@ -44,16 +47,35 @@ def generate_question(apidoc):
 
 # Find all entity linkings found by Joost's module and sort them by descending order
 def find_linkings(entities):
-    entity_ids = [e.id for e in entities]
-    entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(
-        EntityLinking.updated_certainty.desc()).all()
+    linkings = []
+    for entity in entities:
+        for linking in entity.linkings:
+            linkings.append(linking)
 
-    return entity_linkings
+    # entity_ids = [e.id for e in entities]
+    # entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).all()
+
+    return linkings
+
+
+def find_next_question(entity_linkings):
+    maximum_certainty = 0
+
+    for linking in entity_linkings:
+        question = Question.query.filter(Question.questionable_object == linking).first()
+        if question:
+            if linking.updated_certainty >= maximum_certainty:
+                next_question = question
+                next_question_linking = linking
+                maximum_certainty = linking.updated_certainty
+
+    return [next_question_linking, next_question]
+
+
 
 
 # this function generates a yes/no question string from an entity
 def generate_linking_questions(entity_linkings, article):
-
     for entity_linking in entity_linkings:
         database_question = Question.query.filter(Question.questionable_object == entity_linking).first()
 
@@ -63,11 +85,15 @@ def generate_linking_questions(entity_linkings, article):
         elif entity_linking.linkable_type == 'Politician':
             politician = entity_linking.linkable_object
 
-            if politician.role:
+            if politician.role and politician.municipality:
                 question_string = 'Wordt "{}" van "{}", {} in "{}" genoemd in dit artikel?'.format(politician.full_name,
                                                                                                    politician.party,
                                                                                                    politician.role,
                                                                                                    politician.municipality)
+            elif politician.role:
+                question_string = 'Wordt "{}" ({}) van "{}"  genoemd in dit artikel?'.format(politician.full_name,
+                                                                                                   politician.party,
+                                                                                                   politician.role,)
             else:
                 question_string = 'Wordt "{}" van "{}" in "{}" genoemd in dit artikel?'.format(politician.full_name,
                                                                                                politician.party,
@@ -79,7 +105,7 @@ def generate_linking_questions(entity_linkings, article):
             db.session.add(question)
             db.session.commit()
 
-        elif entity_linking.linkable_type == 'Party':
+        elif entity_linking.linkable_type == 'Party' and entity_linking.initial_certainty < 0.85:
             party = entity_linking.linkable_object
 
             question_string = 'Wordt "{} ({})" uit genoemd in dit artikel?'.format(party.abbreviation, party.name)
@@ -89,17 +115,6 @@ def generate_linking_questions(entity_linkings, article):
 
             db.session.add(question)
             db.session.commit()
-
-
-def find_next_linking(entity_linkings):
-    maximum_certainty = 0
-
-    for linking in entity_linkings:
-        if linking.updated_certainty > maximum_certainty:
-            next_question_linking = linking
-            maximum_certainty = linking.updated_certainty
-
-    return next_question_linking
 
 
 def process_response(question_id, response_id):
