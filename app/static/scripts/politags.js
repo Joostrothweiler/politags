@@ -29,9 +29,9 @@ let articleObject =
       "type": "Partij"
     };
 
-//On click we call the API to receive the question
-
+//On opening the website we call the API to receive the question
 $(getQuestion())
+
 
 function getQuestion() {
     $.ajax({
@@ -45,6 +45,7 @@ function getQuestion() {
                 showQuestion(response)
             }
             else {
+                updateCounter(response['count_responses'])
                 console.log(response['error'])
             }
         },
@@ -53,6 +54,7 @@ function getQuestion() {
         }
     })
 }
+
 
 // this function posts the answer to a certain question
 function postResponse(questionResponse, questionId) {
@@ -63,6 +65,7 @@ function postResponse(questionResponse, questionId) {
         data: JSON.stringify(questionResponse),
         success: function (response) {
             console.log(response);
+            updateCounter()
             showFeedback()
         },
         error: function (error) {
@@ -78,29 +81,60 @@ function showQuestion(apiresponse) {
     let questionId = apiresponse['question_id'];
     let possibleAnswers = apiresponse['possible_answers'];
     let entityText = apiresponse['text'];
+    let countResponses = apiresponse['count_responses']
 
     highlighter(article, entityText, questionId);
-    appendDiv(questionId, question, possibleAnswers)
+    addQuestionDiv(questionId, question, possibleAnswers)
+    updateCounter(countResponses)
 }
+
+$('body').on('click', '.responseButton', function () {
+    let response = $(this).attr("id");
+    let questionId = $(this).attr("question_id");
+    postResponse(response, questionId)
+    }
+);
 
 
 // this function highlights a word in the text using bootstrap's mark
 function highlighter(element, word, questionId) {
     var regexp = new RegExp(word);
-    var replace = '<mark id="' + questionId + '"><strong>' + word + '</strong></mark>';
+    var replace = '<mark id="' + questionId + '" style="background-color: transparent !important;\n' +
+        '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
+        '            border-radius: 5px;"><strong>' + word + '</strong></mark>';
     element.innerHTML = element.innerHTML.replace(regexp, replace)
 }
 
-function appendDiv(questionId, question, possibleAnswers) {
+
+function addQuestionDiv(questionId, question, possibleAnswers) {
     let buttonsHtml = generateButtons(questionId, possibleAnswers);
 
     $('#' + questionId).parent().after(
-        '<div id = "yesnoquestion" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+        '<div id = "question" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
         '   <div id="text" class="panel-body">' + question +
         '   </div>' +
         buttonsHtml +
         '</div>'
     )
+}
+
+
+function updateCounter(countResponses) {
+    let count = $('#count').text()
+
+    if ($.isEmptyObject(count)) {
+        $('#count').text(countResponses.toString())
+    }
+    else {
+        let countInt = parseInt(count)
+        $('#count').html((countInt +1).toString())
+    }
+
+    $('#counter-heart').addClass("fa-heart").removeClass("fa-heart-o")
+
+    setTimeout(function() {
+        $('#counter-heart').addClass("fa-heart-o").removeClass("fa-heart")
+    }, 1000)
 }
 
 
@@ -116,25 +150,17 @@ function generateButtons(questionId, possibleAnswers) {
 }
 
 
-$('body').on('click', '.responseButton', function () {
-    let response = $(this).attr("id");
-    let questionId = $(this).attr("question_id");
-    postResponse(response, questionId)
-    }
-);
-
-
 function showFeedback() {
-    $('#yesnoquestion').removeClass('panel-danger').addClass('panel-success')
+    $('#question').removeClass('panel-danger').addClass('panel-success')
     $('.responseButton').remove()
-    $('#text').text('Bedankt! Door jouw bijdrage wordt politiek nieuws transparanter!').after('<i class="fa fa-heart-o text-danger" style="font-size: 25px"><i>')
+    $('#text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">')
     setTimeout(function() {
         $('mark').contents().unwrap()
         $('strong').contents().unwrap()
-        $('#yesnoquestion').slideUp("swing", function() {
+        $('#question').slideUp("swing", function() {
             $(this).remove()
         })
-    }, 3000)
+    }, 4000)
 
 }
 

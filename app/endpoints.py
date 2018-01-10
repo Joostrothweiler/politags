@@ -27,6 +27,7 @@ def post_find_politician(id):
     res = find_politician(id)
     return jsonify(res)
 
+
 def post_find_party(name):
     res = find_party(name)
     return jsonify(res)

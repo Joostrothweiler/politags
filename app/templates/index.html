@@ -23,19 +23,19 @@
     <link  href="/static/styles/search_embed-datauri.css" media="all" rel="stylesheet" type="text/css" />
     <script src="/static/scripts/main.js"></script>
 
-    <style>
-        mark {
-            background-color: transparent !important;
-            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
 
 
 <!--politags container-->
-<div class="container" id="article_container" article_id="test">
+<div class="container" id="counter_container" style="text-align: center">
+    <div class="single_counter">
+        <h3 class="statistic-counter" id="response-counter"><span id="count"></span>&nbsp<i class="fa fa-heart-o text-danger" id="counter-heart"></i></h3>
+        <p>Vragen beantwoord!</p>
+    </div>
+</div>
+
+<div class="container" id="article_container" style="text-align: justify">
 
     <!--Actual content-->
     <div class=\"node-content clearfix\
