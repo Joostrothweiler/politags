@@ -138,6 +138,7 @@ class Response(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
     response = db.Column(db.Integer())
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     question = db.relationship('Question', back_populates='responses')
 
@@ -147,7 +148,7 @@ def same_as(column_name):
         return context.current_parameters.get(column_name)
     return default_function
 
-# RELATIONS
+
 class EntityLinking(db.Model):
     __tablename__ = 'entity_linkings'
     id = db.Column(db.Integer(), primary_key=True)
