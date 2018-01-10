@@ -9,7 +9,11 @@ from flask_migrate import MigrateCommand
 from flask_script import Manager
 
 from app import create_app
+<<<<<<< HEAD
 from app.commands import *
+=======
+from app.commands import InitDbCommand, ConstructKbCommand, TestNeCommand, TrainClfCommand, TestPoliflowCommand, WriteNedTraining
+>>>>>>> master
 
 # Setup Flask-Script with command line commands
 
@@ -22,6 +26,7 @@ manager.add_command('test_ne', TestNeCommand)
 manager.add_command('construct_kb', ConstructKbCommand)
 manager.add_command('train_clf', TrainClfCommand)
 manager.add_command('test_poliflow', TestPoliflowCommand)
+manager.add_command('write_ned_training', WriteNedTraining)
 
 
 if __name__ == "__main__":

@@ -24,7 +24,16 @@ def fetch_data(size):
 
     return documents
 
-def fetch_latest_documents(size = 1000):
+
+def fetch_latest_documents(size=1000):
     # Fetch document array
     documents = fetch_data(size)
     return documents
+
+
+def fetch_single_document(article_id: str):
+    # Read from the api
+    url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article_id)
+    request = requests.get(url_string, auth=(PFL_USER, PFL_PASSWORD))
+    json_response = json.loads(request.text)
+    return json_response
