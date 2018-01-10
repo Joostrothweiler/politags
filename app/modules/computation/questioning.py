@@ -72,7 +72,7 @@ def find_next_question(entity_linkings):
     for linking in entity_linkings:
         question = Question.query.filter(Question.questionable_object == linking).first()
         if question:
-            if 1 > linking.updated_certainty >= maximum_certainty:
+            if linking.updated_certainty >= maximum_certainty and linking.updated_certainty < 1:
                 next_question = question
                 next_question_linking = linking
                 maximum_certainty = linking.updated_certainty
