@@ -1,9 +1,13 @@
+import logging
+
 from flask_script import Command
 
 from app.models.models import EntityLinking, Article, Entity
 from app.modules.common.utils import translate_doc
 from app.modules.entities.disambiguation import compute_politician_feature_vector, compute_politician_certainty
 from app.modules.poliflow.fetch import fetch_single_document
+
+logger = logging.getLogger('write_ned_training')
 
 
 class WriteNedTraining(Command):
@@ -14,6 +18,7 @@ class WriteNedTraining(Command):
 
 
 def write_ned_training():
+    result = ''
     CERTAINTY_BOUNDARY_FALSE_LABEL = 0.2
     CERTAINTY_BOUNDARY_TRUE_LABEL = 0.95
     FALSE_LABEL = 0
@@ -21,7 +26,6 @@ def write_ned_training():
 
     # Process per article.
     articles = Article.query.limit(10).all()
-    result = ''
 
     for article in articles:
         # Fetch document from poliflow
@@ -43,13 +47,13 @@ def write_ned_training():
 
             if certainty < CERTAINTY_BOUNDARY_FALSE_LABEL:
                 feature_vector.append(FALSE_LABEL)
-                result += ",".join(str(x) for x in feature_vector) + '\n'
+                result = str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
             if certainty > CERTAINTY_BOUNDARY_TRUE_LABEL:
                 feature_vector.append(TRUE_LABEL)
-                result += ",".join(str(x) for x in feature_vector) + '\n'
+                result = str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
 
     file = open('data_resources/ned_db_training_file.txt', 'w')
     file.write(result)
     file.close()
 
-    print("NED TRAINING: Done.")
+    logger.info('Done.')
