@@ -1,3 +1,4 @@
+import csv
 from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
 from nameparser import HumanName
@@ -14,8 +15,11 @@ def get_document_identifier(document: dict) -> str:
     :param document: The document as found in poliflow.
     :return: Document identifier (id) as string.
     """
-    url = document['meta']['pfl_url']
-    identifier = url.split('/')[-1]
+    if '_id' in document['meta']:
+        identifier = document['meta']['_id']
+    else:
+        url = document['meta']['pfl_url']
+        identifier = url.split('/')[-1]
     return identifier
 
 
@@ -112,3 +116,18 @@ def pure_len(a: str) -> int:
     :return: Pure length of the string (no white space).
     """
     return len(a) - a.count(' ')
+
+
+def write_objects_to_file(filename: str, header : list, object_list : list):
+    """
+    Write an objects list to a csv file with headers.
+    :param filename: Name of the file in the folder data_resources to write to.
+    :param header: a list containing the header names, should be the same length as the objects in the object_list
+    :param object_list: list of objects written to csv file.
+    """
+    with open('data_resources/{}.csv'.format(filename), 'w') as file:
+        writer = csv.DictWriter(file, fieldnames=header)
+        writer.writeheader()
+
+        for obj in object_list:
+            writer.writerow(obj)
