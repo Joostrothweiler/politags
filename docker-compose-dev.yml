@@ -16,5 +16,4 @@ services:
       - 9999:8080
 
 networks:
-  pfl:
   nginx-load-balancer:

@@ -1,0 +1,143 @@
+.counter {
+  font-size: 6em;
+  text-align: center;
+}
+
+.expl {
+  font-size: 2em;
+}
+
+.primary {
+  color: white;
+  background-color: #19bbbd;
+}
+
+.primary-rev {
+  background-color: white;
+  color: #19bbbd;
+}
+
+.secondary {
+  color: white;
+  background-color: #ec117e;
+}
+
+.secondary-rev {
+  background-color: white;
+  color: #ec117e;
+}
+
+ul.wordcloud { list-style-type: none; }
+ul.wordcloud li { display: inline-block; }
+
+.btn-category {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.wob-id {
+  color: #cccccc;
+}
+
+.count {
+  color: #cccccc;
+}
+
+.vote-detail {
+  display: inline-block;
+}
+
+.vote-detail img {
+  width: 30px;
+  height: 30px;
+}
+
+.dashes {
+  width: 100%;
+  height: 10px;
+  background: url(/static/images/assets/dash.svg) repeat-x;
+}
+
+.dot {
+  width: 25px;
+  height: 25px;
+  margin-top: -7px;
+}
+
+.dot-left {
+  margin-left: -3px;
+  float: left;
+}
+
+.dot-right {
+  margin-right: -1px;
+  float: right;
+}
+
+.delay-lead {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  color: #c21889;
+  margin-bottom: 0px !important;
+}
+
+.delay-lead .count {
+  font-size: 4em;
+}
+
+.graph {
+  width: 100%;
+  height: auto;
+}
+
+#tagcloud {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#tagcloud a {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.email-signup img {
+  width: 30px;
+  height: 30px;
+}
+
+#search {
+  color: #c21889;
+  line-height: 30px;
+}
+
+#search .form-group {
+  width: 100%;
+  border-bottom: 1px solid #c21889;
+}
+
+#search input {
+  border: 0;
+  box-shadow: none;
+  width: 90%;
+}
+
+#open-requests .btn-default {
+  border-color: #c21889;
+  color: #c21889;
+}
+
+#statistics h2 {
+  text-align: center;
+}
+
+.facebook-external-link {
+  background: #ccc;
+  padding: 10px;
+}
+
+.facebook-external-link img {
+  float: left;
+  margin-right: 10px;
+}
