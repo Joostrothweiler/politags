@@ -10,19 +10,15 @@ def generate_question(apidict: dict) -> dict:
     :return: the question and its metadata
     """
 
-    # use the identifier to query for the article
     article = Article.query.filter(Article.id == apidict['id']).first()
 
-    # if the article is not in the database, stop and return something
     if not article:
         return {
             'error': 'article not found in database'
         }
 
-    # get article entities
     entities = article.entities
 
-    # find the most certain entity linking
     entity_linkings = find_linkings(entities)
 
     if not entity_linkings:
@@ -34,7 +30,6 @@ def generate_question(apidict: dict) -> dict:
 
     [next_question_linking, question] = find_next_question(entity_linkings)
 
-    # find total amount of responses to update the counter in the UI
     count_responses = Response.query.count()
 
     if not question:
@@ -56,7 +51,6 @@ def generate_question(apidict: dict) -> dict:
     }
 
 
-# Find all entity linkings found by Joost's module and sort them by descending order
 def find_linkings(entities: list) ->  list:
     """
     finds all linkings to entities that were saved to the database by the entities module
@@ -93,7 +87,6 @@ def find_next_question(entity_linkings: list) -> [EntityLinking, Question]:
     return [next_question_linking, next_question]
 
 
-# this function generates a yes/no question string from an entity
 def generate_linking_questions(entity_linkings: list, article: Article):
     """
     Generates all wanted linking questions and adds them to the database
@@ -157,7 +150,6 @@ def process_polar_response(question_id: int, response_id: int):
     """
     response_id = int(response_id)
 
-    # query the question with the question id
     question = Question.query.filter(Question.id == question_id).first()
     update_linking_certainty(question, response_id)
 
