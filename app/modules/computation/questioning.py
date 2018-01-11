@@ -28,9 +28,13 @@ def generate_question(apidoc):
 
     [next_question_linking, question] = find_next_question(entity_linkings)
 
+    # find total amount of responses to update the counter in the UI
+    count_responses = Response.query.count()
+
     if not question:
         return {
-            'error': 'no question found for this question'
+            'error': 'no question found for this question',
+            'count_responses': count_responses
         }
 
     return {
@@ -41,7 +45,8 @@ def generate_question(apidoc):
         'start_pos': next_question_linking.entity.start_pos,
         'end_pos': next_question_linking.entity.end_pos,
         'certainty': next_question_linking.updated_certainty,
-        'possible_answers': question.possible_answers
+        'possible_answers': question.possible_answers,
+        'count_responses': count_responses
     }
 
 
@@ -61,17 +66,18 @@ def find_linkings(entities):
 def find_next_question(entity_linkings):
     maximum_certainty = 0
 
+    next_question_linking = None
+    next_question = None
+
     for linking in entity_linkings:
         question = Question.query.filter(Question.questionable_object == linking).first()
         if question:
-            if linking.updated_certainty >= maximum_certainty:
+            if linking.updated_certainty >= maximum_certainty and linking.updated_certainty < 1:
                 next_question = question
                 next_question_linking = linking
                 maximum_certainty = linking.updated_certainty
 
     return [next_question_linking, next_question]
-
-
 
 
 # this function generates a yes/no question string from an entity
@@ -86,16 +92,16 @@ def generate_linking_questions(entity_linkings, article):
             politician = entity_linking.linkable_object
 
             if politician.role and politician.municipality:
-                question_string = 'Wordt "{}" van "{}", {} in "{}" genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                    politician.party,
                                                                                                    politician.role,
                                                                                                    politician.municipality)
             elif politician.role:
-                question_string = 'Wordt "{}" ({}) van "{}"  genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                    politician.party,
                                                                                                    politician.role,)
             else:
-                question_string = 'Wordt "{}" van "{}" in "{}" genoemd in dit artikel?'.format(politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(politician.full_name,
                                                                                                politician.party,
                                                                                                politician.municipality)
 
@@ -108,7 +114,7 @@ def generate_linking_questions(entity_linkings, article):
         elif entity_linking.linkable_type == 'Party' and entity_linking.initial_certainty < 0.85:
             party = entity_linking.linkable_object
 
-            question_string = 'Wordt "{} ({})" uit genoemd in dit artikel?'.format(party.abbreviation, party.name)
+            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
 
             question = Question(questionable_object=entity_linking,
                                 question_string=question_string, article=article)
@@ -136,15 +142,15 @@ def process_response(question_id, response_id):
 
 
 def update_linking_certainty(question, response):
-    learning_rate = 0.1
+    LEARNING_RATE = 0.1
 
     if response == question.questionable_object.linkable_object.id:
-        if question.questionable_object.updated_certainty + learning_rate > 1:
+        if question.questionable_object.updated_certainty + LEARNING_RATE > 1:
             question.questionable_object.updated_certainty = 1
         else:
-            question.questionable_object.updated_certainty += learning_rate
+            question.questionable_object.updated_certainty += LEARNING_RATE
     else:
-        if question.questionable_object.updated_certainty - learning_rate < 0:
+        if question.questionable_object.updated_certainty - LEARNING_RATE < 0:
             question.questionable_object.updated_certainty = 0
         else:
-            question.questionable_object.updated_certainty -= learning_rate
+            question.questionable_object.updated_certainty -= LEARNING_RATE
