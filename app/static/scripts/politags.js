@@ -42,6 +42,16 @@ function getQuestion() {
         success: function (response) {
             console.log(response);
             if ($.isEmptyObject(response['error']) === true)  {
+                let question = apiresponse['question'];
+                let questionId = apiresponse['question_id'];
+                let possibleAnswers = apiresponse['possible_answers'];
+                let entityText = apiresponse['text'];
+                let countResponses = apiresponse['count_responses']
+
+                highlighter(article, entityText, questionId);
+                addQuestionDiv(question, questionId, possibleAnswers)
+                updateCounter(countResponses)
+
                 showQuestion(response)
             }
             else {
@@ -76,16 +86,7 @@ function postResponse(questionResponse, questionId) {
 }
 
 
-function showQuestion(apiresponse) {
-    let question = apiresponse['question'];
-    let questionId = apiresponse['question_id'];
-    let possibleAnswers = apiresponse['possible_answers'];
-    let entityText = apiresponse['text'];
-    let countResponses = apiresponse['count_responses']
 
-    highlighter(article, entityText, questionId);
-    addQuestionDiv(questionId, question, possibleAnswers)
-    updateCounter(countResponses)
 }
 
 $('body').on('click', '.responseButton', function () {
@@ -106,7 +107,7 @@ function highlighter(element, word, questionId) {
 }
 
 
-function addQuestionDiv(questionId, question, possibleAnswers) {
+function addQuestionDiv(question, questionId, possibleAnswers) {
     let buttonsHtml = generateButtons(questionId, possibleAnswers);
 
     $('#' + questionId).parent().after(
