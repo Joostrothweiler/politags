@@ -1,11 +1,13 @@
 import json
+import logging
 
 from flask_script import Command
 
-from app import post_article_ner
 from app.models.models import Entity, Article, EntityLinking, Question, Response
 from app.modules.common.utils import translate_doc
 from app.modules.entities.named_entities import process_document
+
+logger = logging.getLogger('test_ne')
 
 
 class TestNeCommand(Command):
@@ -17,7 +19,7 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    print('Deleting all old data')
+    logger.info('Deleting all old data')
     remove_all_articles()
 
     # input = 'data_resources/evaluation/van_dijk_input.json'
@@ -97,14 +99,14 @@ def final_scorer(party_scores, politician_scores):
         politician_eval_count += i['eval_count_simple']
 
     if party_output_count > 0:
-        print('Party Precision: {}'.format(party_precision_count / party_output_count))
+        logger.info('Party Precision: {}'.format(party_precision_count / party_output_count))
     if party_eval_count > 0:
-        print('Party Recall: {}'.format(party_recall_count / party_eval_count))
+        logger.info('Party Recall: {}'.format(party_recall_count / party_eval_count))
 
     if politician_output_count > 0:
-        print('Politician Precision: {}'.format(politician_precision_count / politician_output_count))
+        logger.info('Politician Precision: {}'.format(politician_precision_count / politician_output_count))
     if politician_eval_count > 0:
-        print('Politician Recall: {}'.format(politician_recall_count / politician_eval_count))
+        logger.info('Politician Recall: {}'.format(politician_recall_count / politician_eval_count))
 
 
 

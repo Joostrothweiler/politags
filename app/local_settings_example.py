@@ -6,6 +6,7 @@ import os
 
 # DO NOT use "DEBUG = True" in production environments
 DEBUG = True
+LOGGING_LEVEL=logging.INFO
 
 # DO NOT use Unsecure Secrets in production environments
 # Generate a safe one with:

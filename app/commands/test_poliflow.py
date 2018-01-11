@@ -1,11 +1,12 @@
+import logging
 import time
-
 from flask_script import Command
 
 from app.modules.common.utils import translate_doc
 from app.modules.entities.named_entities import process_document
 from app.modules.poliflow.fetch import fetch_latest_documents
 
+logger = logging.getLogger('test_poliflow')
 
 class TestPoliflowCommand(Command):
     """ Test the NER/NED."""
@@ -27,12 +28,12 @@ def test_poliflow():
     end = time.time()
     time_diff = (end - start)
 
-    print('n_documents == len(documents): {}'.format(len(documents) == n_documents))
-    print('Time elapsed for {} documents: {}'.format(len(documents), time_diff))
-    print('Average time per document: {}'.format(time_diff / len(documents)))
+    logger.info('n_documents == len(documents): {}'.format(len(documents) == n_documents))
+    logger.info('Time elapsed for {} documents: {}'.format(len(documents), time_diff))
+    logger.info('Average time per document: {}'.format(time_diff / len(documents)))
 
 
 def process_article(document):
     simple_doc = translate_doc(document)
     process_document(simple_doc)
-    print('Processed document {}'.format(simple_doc['id']))
+    logger.info('Processed document {}'.format(simple_doc['id']))

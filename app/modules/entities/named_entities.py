@@ -1,4 +1,5 @@
 import nl_core_news_sm
+import logging
 
 from app import db
 from app.models.models import Article, EntityLinking
@@ -7,6 +8,7 @@ from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, Party
 from app.modules.entities.recognition import named_entity_recognition
 from app.settings import NED_CUTOFF_THRESHOLD
 
+logger = logging.getLogger('named_entities')
 nlp = None
 
 
@@ -14,7 +16,7 @@ def init_nlp():
     """
     Initialize the NLP module with PhraseMatcher
     """
-    print('NLP Module : Initializing')
+    logger.info('NLP Module : Initializing')
     global nlp
     politicians = []
     parties = []
@@ -32,7 +34,7 @@ def init_nlp():
     nlp.add_pipe(party_pipe, last=True)
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
-    print('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
+    logger.info('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
 def process_document(document: dict) -> dict:

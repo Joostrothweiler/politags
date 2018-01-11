@@ -1,13 +1,17 @@
 import csv
+import logging
 
 from flask_script import Command
 
 from app import db
-from app.models.models import Politician, Party, Question, Response, EntityLinking, Entity, Article
+from app.models.models import Politician, Party, EntityLinking, Entity, Article
+
+logger = logging.getLogger('init_db')
 
 
 class InitDbCommand(Command):
     """ Initialize the database."""
+
 
     def run(self):
         init_db()
@@ -15,14 +19,13 @@ class InitDbCommand(Command):
 
 def init_db():
     """ Initialize the database."""
-    # # Recreate the database
-    db.drop_all()
+    logger.info('Creating tables in database.')
     db.create_all()
     # Initialize with parties en politicians
-    print('Ready to initialize')
-    print('Initializing politicians')
+    logger.info('Ready to initialize')
+    logger.info('Initializing politicians')
     init_politicians()
-    print('Initializing parties')
+    logger.info('Initializing parties')
     init_parties()
 
     article = Article(id='someid')
