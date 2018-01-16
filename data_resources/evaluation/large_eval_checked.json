@@ -328,7 +328,12 @@
     {
       "article_id": "64d7047e6c71c3de8b7d2cd33e53e398c0e3888e",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "c6882259ec58de0099764a5c69ffb0d881c36963",
@@ -343,7 +348,12 @@
     {
       "article_id": "7b80d9d572b5e94982abe389eb275177fb564f3f",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Frans Wassenberg"
+        }
+      ]
     },
     {
       "article_id": "d44b1e3e84e2280fd3ccde8b182be9e5b8d03ae6",
@@ -354,7 +364,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Frans Wassenberg"
+        }
+      ]
     },
     {
       "article_id": "27f38a8e7f236a076d9d2ab3f9a3a3ccd58792a2",
@@ -375,7 +390,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Frans Wassenberg"
+        }
+      ]
     },
     {
       "article_id": "213dc7c576cef3195311d5636c60f021c9015eed",
@@ -438,7 +458,12 @@
     {
       "article_id": "e767c08ee452ffe2fec1fa5a731d63d0332ea56d",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Frans Wassenberg"
+        }
+      ]
     },
     {
       "article_id": "1ee68ce40e224207ff3769b87ea5dbd8ec9ff593",
@@ -475,7 +500,12 @@
     {
       "article_id": "9839966cab1a11fe7ed97a177508062b6eb4f146",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "69cbedc9c86f5b12d7842b1353009b5c8649bc25",
@@ -520,7 +550,12 @@
     {
       "article_id": "691f9e8b1f7317c18a825aa751d32100e5bea803",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "7ea287e58f92cedb0c1f6bc22e0074198d0a67af",
@@ -536,7 +571,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "ac182cc036959b77b0601cbabff7c72accdff0a3",
@@ -629,8 +669,24 @@
     },
     {
       "article_id": "5a2900b4aaf77aeb8db711f22699b93e4fdc9332",
-      "parties": [],
-      "politicians": []
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Bas Meijer"
+        },
+        {
+          "system_id": 123362,
+          "full_name": "Mw.	E.M.	van Esch",
+          "party": "Partij voor de Dieren"
+        }
+      ]
     },
     {
       "article_id": "74ae1bb6a3f63864b5ae42c49ec6e18fa90bd9a1",
@@ -644,13 +700,24 @@
     },
     {
       "article_id": "c45483e4a83b93c75264b531957dcfe47be9488c",
-      "parties": [],
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
       "politicians": []
     },
     {
       "article_id": "94d3d5ae46cd5c304288e2f8445ee7748ddd66d6",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "9bd1c9cd70411d1a41ca67df20f7b4ef8c1145a1",
@@ -665,19 +732,7 @@
     {
       "article_id": "e06eb6d53b3f8d3be500b05f2c419190d02add6d",
       "parties": [],
-      "politicians": [
-        {
-          "id": 1385,
-          "system_id": 113479,
-          "title": "Dhr.",
-          "first_name": "P.",
-          "last_name": "Kok",
-          "suffix": "",
-          "party": "VVD",
-          "municipality": "Gemeente Geertruidenberg",
-          "role": "Fractievoorzitter"
-        }
-      ]
+      "politicians": []
     },
     {
       "article_id": "51268a437f65431cda16c79d2503bb601ea8d938",
@@ -707,7 +762,13 @@
     },
     {
       "article_id": "4afa272267f4848679fb41394b5642f7b8a4fe7e",
-      "parties": [],
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
       "politicians": []
     },
     {
@@ -759,7 +820,12 @@
     {
       "article_id": "7e1d7b24130f51a8c31a590cbc8e9cb40cd7d874",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Femke Merel Arissen"
+        }
+      ]
     },
     {
       "article_id": "be63c40b89f75a5b8de622a4be0b09bfd3c16dcd",
@@ -783,7 +849,13 @@
     },
     {
       "article_id": "9b6dd096f04dc98f627a5838f4b869f762f26d49",
-      "parties": [],
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
       "politicians": []
     },
     {
@@ -820,7 +892,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "1de9277718709bc4d33f0e2de7bcc2b3acae7ffc",
@@ -876,7 +953,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Esther Ouwehand"
+        }
+      ]
     },
     {
       "article_id": "5d707857a6fa836609edddff82d593b61a954fee",
@@ -886,7 +968,12 @@
     {
       "article_id": "cc088cb266ad73bf4ae52e9c8e9cfaa243b3fce1",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Frans Wassenberg"
+        }
+      ]
     },
     {
       "article_id": "e45b657b90b6e38059346e65c116666aa12bc1ae",
@@ -908,7 +995,12 @@
     {
       "article_id": "4c05917ab5022a76efae7065249f8d5321329a4f",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
+        }
+      ]
     },
     {
       "article_id": "58df37774aebed75bba9335141c73e2cb2222470",
@@ -917,41 +1009,6 @@
     },
     {
       "article_id": "d45a1fcb18f8494a943ad058c4b4ee2455a4a963",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "3e2d2e8b59b78d2a680ef785c89d86545ba4ef41",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "35792612a9587f536d0c1401efbb545b28f7efc7",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "7537615024941a732ccf44ae0760189c55ce72e0",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "74036ec66276a8dbebb50d43457fb84e750da71e",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "2da18c532b8d4728387ca97f36f391aa647d9975",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "62f4365770ed453f9d9b4437143504d015038575",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "9b823639a489554d34f8b33d3f8e9d247dc33ba9",
       "parties": [],
       "politicians": []
     },
@@ -967,31 +1024,6 @@
       "politicians": []
     },
     {
-      "article_id": "39e0440a016023de49923acda9260f9a74ee0e5e",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "31e1e9190a9d2771089e2e1c2cc1084df35d8f16",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "f232f5d742ef3a3dc181fcfec68d83244e1a5741",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "151df8c12c6fb78ce9bf568a1768badd4e9d7021",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "4971aed066082fe8ae7be029bd8c8e831d48ac17",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "73d3e2fa2c4cff535994ad43c8c008456b3578a3",
       "parties": [
         {
@@ -1003,16 +1035,6 @@
       "politicians": []
     },
     {
-      "article_id": "1df87e5cffa45a60a33cc4c0d88c145f07fa6f9c",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "af77c8897613f880ed0b7e590d8cf0701dc84663",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "c3c6655cb10202e93bdd0dc15b4f59b9e921df7d",
       "parties": [
         {
@@ -1021,21 +1043,6 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
-    },
-    {
-      "article_id": "12564fc9288dbeea0cab104df0f79388d4954912",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "36cb6a3b040f9af9b51f66d5a773010aeeba1560",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "b79bd155aaa3e75ba37f7103eafe2c29f545a8e8",
-      "parties": [],
       "politicians": []
     },
     {
@@ -1104,21 +1111,6 @@
           "role": "Raadslid"
         }
       ]
-    },
-    {
-      "article_id": "f1cbbc8c89a5b8d54a1cb5daf611b230bdd6eb75",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "e1394a8a422e9c60cb5540e365c42d59a6b33079",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "4a0ef850e60b8c5e642dc7f60b15291111d77a91",
-      "parties": [],
-      "politicians": []
     },
     {
       "article_id": "40ba46204553385bcca63bf6dc4fb5e0255d4176",
@@ -1228,16 +1220,6 @@
       ]
     },
     {
-      "article_id": "c244ce4b58e017950ee2a761567ba97f67a84b97",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "104727738a99611292adb1dbee20fa152ee6ff88",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "27ba0dc490f0b8ad51a79f288e7e8003e075d6cf",
       "parties": [
         {
@@ -1293,11 +1275,6 @@
       ]
     },
     {
-      "article_id": "1f85f476e32c319cc255ea768c00a7bc1f16af2f",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "071fe51f45a70405d95e63b5aec061f17f4d74c7",
       "parties": [
         {
@@ -1319,26 +1296,6 @@
           "role": "Locoburgemeester"
         }
       ]
-    },
-    {
-      "article_id": "65eabebd006ffbdbf0c5c3db23c5b267499807cd",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "092d69e46351548915cef5eea079f37c1b887bce",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "11d6666674472144904aa90057facbb9d1f80781",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "10bb9c9898fbb0f11f44773407f246ba7fe07ecc",
-      "parties": [],
-      "politicians": []
     },
     {
       "article_id": "22c4fb9f3b6fc9444e47557db4629112c2f9ce6e",
@@ -1442,16 +1399,6 @@
       ]
     },
     {
-      "article_id": "05c56ef022c7e0c83daba7136b87ce6d5c6695e5",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "5c47fdbb125cb69585298d6a14b49ce0782a05cf",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "f6bcc0629290d6369800d79fc086aa087531b89c",
       "parties": [
         {
@@ -1486,26 +1433,6 @@
       ]
     },
     {
-      "article_id": "b04cfec35ec97f7a786ce7bce9c4c68df3863ab0",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "84c91f834ea9b4c9d446ca11f4d408d458e672c8",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "b35710e77014127795604a1c0d9a1087271bc7cd",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "50c1f9d3c67f3bdadccebdfa85f690e6c62caa79",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "c8ef8df49a2522270bbde3cafc684a021d5035ab",
       "parties": [
         {
@@ -1514,16 +1441,6 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
-    },
-    {
-      "article_id": "9ff022a966b5b31d7af10731f3e048b9cfc95185",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "0176f0da4b5d5ca0cead4c2d367b20d41419ec35",
-      "parties": [],
       "politicians": []
     },
     {
@@ -1561,16 +1478,6 @@
       "politicians": []
     },
     {
-      "article_id": "90ba3cf0c19144adc14ccfb37ddffa8a208edd06",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "116ef7a021d71befe94cfc041beff7a51c508717",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "d40ae93ee5ae9b50a751658114bbb06a215bf009",
       "parties": [
         {
@@ -1589,16 +1496,6 @@
           "abbreviation": "D66"
         }
       ],
-      "politicians": []
-    },
-    {
-      "article_id": "2de83ab0aaf68526caff7ef19c7b5d12f6393897",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "b01d666be4b36afd7e87b83d6858ee9a6659894f",
-      "parties": [],
       "politicians": []
     },
     {
@@ -1635,21 +1532,6 @@
       "politicians": []
     },
     {
-      "article_id": "aa4b8d7d56720e4d49e9fe03d87ce40302c4cd55",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "8776a8fe3b9913359ce51400974cdadef65526e1",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "d3e8bc0e5f971c56a1a1ee05315033f63d1428c7",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "fb8be855513aa27ce2bd6b49d2e636eb1dc71fb3",
       "parties": [
         {
@@ -1663,26 +1545,6 @@
           "abbreviation": "D66"
         }
       ],
-      "politicians": []
-    },
-    {
-      "article_id": "054c5d4b81cc7f3190405deff9ff7cccfbfe6f50",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "411a6f7634c78990bb25bfe259b7204802488c6c",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "47098fbe86b8369dc2397beba142433cd5029687",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "eaa018d2b73cd0e4b1f2055a7c22f1b391f7db6e",
-      "parties": [],
       "politicians": []
     },
     {
@@ -1717,61 +1579,6 @@
       "politicians": []
     },
     {
-      "article_id": "b860da2622e38a35c96c573d3c2fabd8edc9bedd",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "f4c7ea462168ce56c0380cff3535d3f4c90c9612",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "29e9adc41fb9702484f4cd3464d67d3a5daaa486",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "3da14e44512fe59eb7c58497d70d0e5ab4b7a39a",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "cb765db82f5022a5dace288db03b09792b3b136d",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "e3d05a9a15f967c1767dc1435bfa1b127de0ed01",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "161053f3b10bd8400958aa2e1213266697610fe5",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "77497fcab353f38c4450f4aef762d646ff35f1d0",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "a023c3184e642df7307947aeddcdf5f049ff2d45",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "d11d147c7a181c53cae40f53dabfa9348906f43c",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "f4d3c4552d5aa888e2edc279a6ce1f5474eadf42",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "23c93c5e766b3bdf7199688e143f0c0f16e14d3b",
       "parties": [
         {
@@ -1794,16 +1601,6 @@
       "politicians": []
     },
     {
-      "article_id": "46f43b2458871e29f2a50dba98ac8762fa41cd2c",
-      "parties": [],
-      "politicians": []
-    },
-    {
-      "article_id": "b7fc1b2822f611d0e9ae99cfe254d5afed6aea42",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "5112c0cc8279b1cadd7f7a2fed9695162783ea51",
       "parties": [
         {
@@ -1815,9 +1612,1766 @@
       "politicians": []
     },
     {
-      "article_id": "5fa6b21e7743910759ccc9292a7dbd4b4d77df21",
+      "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10663,
+          "system_id": 135540,
+          "title": "Dhr.",
+          "first_name": "J.",
+          "last_name": "Wackers",
+          "suffix": "",
+          "party": "Partij Nieuw Echt-Susteren",
+          "municipality": "Gemeente Echt-Susteren",
+          "role": "Wethouder"
+        }
+      ]
+    },
+    {
+      "article_id": "e81a9ba910a834c696d99598228a97dcc09bcde1",
+      "parties": [
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 329,
+          "system_id": 135627,
+          "title": "Dhr.",
+          "first_name": "A.B.",
+          "last_name": "Blase",
+          "suffix": "",
+          "party": "PvdA",
+          "municipality": "Gemeente Heerhugowaard",
+          "role": "Burgemeester waarnemend"
+        }
+      ]
+    },
+    {
+      "article_id": "5894ca1d4bbeca59611357fa1dec41c57d94ed2d",
       "parties": [],
       "politicians": []
-    }
+    },
+    {
+      "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        },
+        {
+          "id": 9,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 8190,
+          "system_id": 128161,
+          "title": "Dhr.",
+          "first_name": "R.",
+          "last_name": "Sips",
+          "suffix": "",
+          "party": "PvdA",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        },
+        {
+          "id": 3684,
+          "system_id": 122483,
+          "title": "Dhr.",
+          "first_name": "M.J.L.",
+          "last_name": "Scheifes",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        },
+        {
+          "id": 7475,
+          "system_id": 128162,
+          "title": "Dhr.",
+          "first_name": "R.H.W.T.M.",
+          "last_name": "Spiegels",
+          "suffix": "",
+          "party": "SP",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "6bad840551136344c049a8ae8b10098c0370615e",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "68000c923bced43b1d5986d807bcbacaa74e6973",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "e81a9ba910a834c696d99598228a97dcc09bcde1",
+      "parties": [
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 329,
+          "system_id": 135627,
+          "title": "Dhr.",
+          "first_name": "A.B.",
+          "last_name": "Blase",
+          "suffix": "",
+          "party": "PvdA",
+          "municipality": "Gemeente Heerhugowaard",
+          "role": "Burgemeester waarnemend"
+        }
+      ]
+    },
+    {
+      "article_id": "5894ca1d4bbeca59611357fa1dec41c57d94ed2d",
+      "parties": [],
+      "politicians": []
+    },
+    {
+      "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        },
+        {
+          "id": 9,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 8190,
+          "system_id": 128161,
+          "title": "Dhr.",
+          "first_name": "R.",
+          "last_name": "Sips",
+          "suffix": "",
+          "party": "PvdA",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        },
+        {
+          "id": 3684,
+          "system_id": 122483,
+          "title": "Dhr.",
+          "first_name": "M.J.L.",
+          "last_name": "Scheifes",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        },
+        {
+          "id": 7475,
+          "system_id": 128162,
+          "title": "Dhr.",
+          "first_name": "R.H.W.T.M.",
+          "last_name": "Spiegels",
+          "suffix": "",
+          "party": "SP",
+          "municipality": "Gemeente Breda",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "6bad840551136344c049a8ae8b10098c0370615e",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "68000c923bced43b1d5986d807bcbacaa74e6973",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "57d07a083e201b7fef0312718f42284916e4d0f0",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "54e3aa6fbba2f4fcc958d702cbef45eaf2810d3d",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10608,
+          "system_id": 125014,
+          "title": "Dhr.",
+          "first_name": "P.S.",
+          "last_name": "de Rook",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Groningen",
+          "role": "Wethouder"
+        },
+        {
+          "id": 6324,
+          "system_id": 133584,
+          "title": "Dhr.",
+          "first_name": "T.",
+          "last_name": "Rustebiel",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Groningen",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "b6f304672fa78d96b5a283daca79eb39d176cc8e",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 8769,
+          "system_id": 124760,
+          "title": "Dhr.",
+          "first_name": "A.S.",
+          "last_name": "Haase",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Rijssen-Holten",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "dbd4979c2dd513f7f837200bf772d5f00143dd77",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 3662,
+          "system_id": 85004,
+          "title": "Dhr.",
+          "first_name": "M.",
+          "last_name": "van Klompenburg",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Nunspeet",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "b18a61d83cbf0af79952e378bd6363375a44c7ae",
+      "parties": [],
+      "politicians": []
+    },
+    {
+      "article_id": "3f1857233ab50b09f4fdb66307f76ef6ceec6af6",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        },
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 2258,
+          "system_id": 87776,
+          "title": "Dhr.",
+          "first_name": "J.F.",
+          "last_name": "Slootweg",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente De Bilt",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 7039,
+          "system_id": 124720,
+          "title": "Mw. dr. ir.",
+          "first_name": "C",
+          "last_name": "Brouwer",
+          "suffix": "",
+          "party": "Beter De Bilt",
+          "municipality": "Gemeente De Bilt",
+          "role": "Raadslid"
+        },
+        {
+          "id": 9952,
+          "system_id": 124528,
+          "title": "Mw.",
+          "first_name": "M.E.T.",
+          "last_name": "Bakker",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente S&uacute;dwest Frysl&acirc;n",
+          "role": "Wethouder"
+        }
+      ]
+    },
+    {
+      "article_id": "603fe009567f0d306b887eece78b38cfb834704a",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10195,
+          "system_id": 127042,
+          "title": "Dhr.",
+          "first_name": "L.B.",
+          "last_name": "Harpe",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Delft",
+          "role": "Wethouder"
+        }
+      ]
+    },
+    {
+      "article_id": "4c927c977216f6d8114cc766d1c742aff7154d88",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10195,
+          "system_id": 127042,
+          "title": "Dhr.",
+          "first_name": "L.B.",
+          "last_name": "Harpe",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Delft",
+          "role": "Wethouder"
+        },
+        {
+          "id": 2837,
+          "system_id": 133112,
+          "title": "Dhr.",
+          "first_name": "G.E.M.",
+          "last_name": "Temmink",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Raalte",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },
+    {
+      "article_id": "b8329dc4bee3ae76a930068c06defa773fd02876",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "b67f00cf984a8812265c7418c6c5099b173f5a3f",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 2432,
+          "system_id": 83802,
+          "title": "Dhr.",
+          "first_name": "C.",
+          "last_name": "van Dalen",
+          "suffix": "",
+          "party": "ChristenUnie",
+          "municipality": "Gemeente Vlissingen",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },
+    {
+      "article_id": "a70988e51c7842eb22595118ed9d1e1336153621",
+      "parties": [
+        {
+          "id": 9,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "05ff506a61a1c700af37786bdc04ac7c60cc6841",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 2730,
+          "system_id": 127766,
+          "title": "Dhr.",
+          "first_name": "A.J.",
+          "last_name": "Achterhuis",
+          "suffix": "",
+          "party": "Partij Souburg Ritthem",
+          "municipality": "Gemeente Vlissingen",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },
+    {
+      "article_id": "d25cc28e6e15dd80bb13081dbcb5c52c94aee008",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 5810,
+          "system_id": 20573543,
+          "title": "Dhr. mr.",
+          "first_name": "D.",
+          "last_name": "Verboom",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Vlissingen",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "1443418349cb3300b2ec75ecd45700b34d50f807",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10199,
+          "system_id": 125164,
+          "title": "Dhr.",
+          "first_name": "S.",
+          "last_name": "Stroosnijder",
+          "suffix": "",
+          "party": "SP",
+          "municipality": "Gemeente Vlissingen",
+          "role": "Wethouder"
+        }
+      ]
+    },
+    {
+      "article_id": "39967ecf9f0998004fbbfc018e3aa57e29ae480e",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 4296,
+          "system_id": 126941,
+          "title": "Mw. ir.",
+          "first_name": "J.C.M.",
+          "last_name": "Jacobs",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Aa en Hunze",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "9585596585307b7499e383459de0b5c4db4a83e2",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 9600,
+          "system_id": 75197,
+          "title": "Dhr.",
+          "first_name": "A.L.",
+          "last_name": "Oosthoek",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Borsele",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "3b299b3788ec5e113fe537f3e02530407d4884dc",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 321,
+          "system_id": 129534,
+          "title": "Dhr. mr.",
+          "first_name": "A.B.",
+          "last_name": "Stapelkamp",
+          "suffix": "",
+          "party": "ChristenUnie",
+          "municipality": "Gemeente Kapelle",
+          "role": "Burgemeester"
+        },
+        {
+          "id": 10276,
+          "system_id": 135476,
+          "title": "Mw.",
+          "first_name": "J.M.H.",
+          "last_name": "van de Ven",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Oss",
+          "role": "Wethouder"
+        },
+        {
+          "id": 7020,
+          "system_id": 123024,
+          "title": "Dhr.",
+          "first_name": "J.J.R.",
+          "last_name": "Jansen",
+          "suffix": "",
+          "party": "Bloeiend Hillegom",
+          "municipality": "Gemeente Hillegom",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "b3a697af93b2db080c622f7170387e8d06f103b2",
+      "parties": [
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        },
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        },
+        {
+          "id": 5,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 8755,
+          "system_id": 126146,
+          "title": "Dhr.",
+          "first_name": "M.M.",
+          "last_name": "Sinke",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Reimerswaal",
+          "role": "Raadslid"
+        }
+      ]
+    },
+    {
+      "article_id": "42f0712bcdec4b697a301346aa5bf5f1c16ff1e3",
+      "parties": [
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        },
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 3080,
+          "system_id": 112315,
+          "title": "Dhr.",
+          "first_name": "R.",
+          "last_name": "Arts",
+          "suffix": "",
+          "party": "Progressief Ermelo",
+          "municipality": "Gemeente Ermelo",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 10590,
+          "system_id": 78759,
+          "title": "Dhr.",
+          "first_name": "A.L.",
+          "last_name": "Klappe",
+          "suffix": "",
+          "party": "PE",
+          "municipality": "Gemeente Ermelo",
+          "role": "Wethouder"
+        },
+        {
+          "id": 7010,
+          "system_id": 131649,
+          "title": "Dhr.",
+          "first_name": "D.M.W.",
+          "last_name": "Kleijer",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Heemstede",
+          "role": "Raadslid"
+        }
+      ]
+    },
+
+    {
+      "article_id": "a6c90cc0b3e675ddff8e5d77bc1a4892428fd870",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 369,
+          "system_id": 117520,
+          "title": "Dhr. drs.",
+          "first_name": "S.",
+          "last_name": "Stoop",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Korendijk",
+          "role": "Burgemeester waarnemend"
+        },
+        {
+          "id": 2562,
+          "system_id": 125028,
+          "title": "Dhr.",
+          "first_name": "E.F.A.",
+          "last_name": "Zevenbergen",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Leiden",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 6707,
+          "system_id": 120007,
+          "title": "Dhr.",
+          "first_name": "G.P.",
+          "last_name": "Schipaanboord",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Leiderdorp",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "aa0d2253d6a166fcea8cbcd6f5dc4033e0b3398a",
+      "parties": [
+        {
+          "id": 7,
+          "name": "Partij voor de Vrijheid",
+          "abbreviation": "PVV"
+        },
+        {
+          "id": 9,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        },
+        {
+          "id": 5,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 4329,
+          "system_id": 120152,
+          "title": "Dhr.",
+          "first_name": "E.A.",
+          "last_name": "Baudet",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Cuijk",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "22f4d813182ce30cdabacb24012b928093b66397",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 3649,
+          "system_id": 63513,
+          "title": "Dhr.",
+          "first_name": "J.P.",
+          "last_name": "Sinke",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Reimerswaal",
+          "role": "Locoburgemeester"
+        }
+      ]
+    },    {
+      "article_id": "60d33c944f8f8b17a6aa71f211bddeebfbe32460",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": []
+    },
+    {
+      "article_id": "036440ba0462e7eb201eb15750bbaaf9f0df84c2",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 5895,
+          "system_id": 131144,
+          "title": "Dhr.",
+          "first_name": "A.G.",
+          "last_name": "Baars",
+          "suffix": "",
+          "party": "SP",
+          "municipality": "Gemeente Sittard-Geleen",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "191faf373c6873c2c8f578f9b34e28240689dcc4",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 3085,
+          "system_id": 119770,
+          "title": "Dhr.",
+          "first_name": "L.A",
+          "last_name": "van der Velden",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Ermelo",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 9222,
+          "system_id": 85372,
+          "title": "Dhr.",
+          "first_name": "F.N.",
+          "last_name": "Snoek",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Ermelo",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "7691cfadae772fb9b9a9d2c458942ebc08f31cda",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        },
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 7603,
+          "system_id": 124932,
+          "title": "Dhr.",
+          "first_name": "H.B.G.",
+          "last_name": "van der Wal",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Noordwijkerhout",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "72ac0cd9e9b2b225589ae41f83c29e61000449a4",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        },
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "id": 5,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        },
+        {
+          "id": 7,
+          "name": "Partij voor de Vrijheid",
+          "abbreviation": "PVV"
+        },
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "id": 43,
+          "name": "Partij voor Zeeland",
+          "abbreviation": "PvZ"
+        },
+        {
+          "id": 9,
+          "name": "Socialistische Partij",
+          "abbreviation": "SP"
+        },
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 3490,
+          "system_id": 124346,
+          "title": "Mw.",
+          "first_name": "A.M.J.",
+          "last_name": "van Burg",
+          "suffix": "",
+          "party": "Leefbaar Schouwen-Duiveland",
+          "municipality": "Gemeente Schouwen-Duiveland",
+          "role": "Locoburgemeester"
+        }
+      ]
+    },    {
+      "article_id": "1a3a87acbbc471e4d929751fe0e7dbf7e17867e2",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 1251,
+          "system_id": 122806,
+          "title": "Dhr.",
+          "first_name": "E.",
+          "last_name": "Geluk",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Zederik",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "9258dcd6d0222f66c58e480158ba15a064a833be",
+      "parties": [
+        {
+          "id": 14,
+          "name": "De Groenen",
+          "abbreviation": ""
+        },
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 1049,
+          "system_id": 95594,
+          "title": "Dhr.",
+          "first_name": "J.",
+          "last_name": "Mulder",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Scherpenzeel",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 5833,
+          "system_id": 95850,
+          "title": "Dhr.",
+          "first_name": "G.",
+          "last_name": "van Deelen",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Scherpenzeel",
+          "role": "Raadslid"
+        },
+        {
+          "id": 4932,
+          "system_id": 95851,
+          "title": "Dhr.",
+          "first_name": "M.J.",
+          "last_name": "Zwankhuizen",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Scherpenzeel",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "a146c7e3c5c6b427479bc9116be63a2d98ef224a",
+      "parties": [
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "id": 5,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
+        },
+        {
+          "id": 1,
+          "name": "Christen-Democratisch App\u00e8l",
+          "abbreviation": "CDA"
+        },
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": []
+    },    {
+      "article_id": "011eb1f258adfe821b23d0812219b70d0180ba55",
+      "parties": [
+        {
+          "id": 8,
+          "name": "Staatkundig Gereformeerde Partij",
+          "abbreviation": "SGP"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10673,
+          "system_id": 131052,
+          "title": "Dhr.",
+          "first_name": "E.",
+          "last_name": "Spaan",
+          "suffix": "",
+          "party": "SGP",
+          "municipality": "Gemeente Kampen",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "47cae5216255eafc78b3e1fd2d1218a13e16ba9e",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 6833,
+          "system_id": 119938,
+          "title": "Dhr.",
+          "first_name": "S.R.H.",
+          "last_name": "Blom",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Amsterdam",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "bd2cd8876b380983cfd5723d516b50ef85c7e98e",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 2563,
+          "system_id": 135237,
+          "title": "Dhr.",
+          "first_name": "C.A.",
+          "last_name": "Hottentot",
+          "suffix": "",
+          "party": "Nissewaard Lokaal",
+          "municipality": "Gemeente Nissewaard",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 7659,
+          "system_id": 135241,
+          "title": "Dhr.",
+          "first_name": "T.",
+          "last_name": "den Daas",
+          "suffix": "",
+          "party": "Nissewaard Lokaal",
+          "municipality": "Gemeente Nissewaard",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "c2d7e4b50c4a436a7e83a9b47928950bc8d4cf24",
+      "parties": [
+        {
+          "id": 2,
+          "name": "ChristenUnie",
+          "abbreviation": "CU"
+        },
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 414,
+          "system_id": 131823,
+          "title": "Dhr.",
+          "first_name": "J.",
+          "last_name": "Hoekzema",
+          "suffix": "",
+          "party": "OPA",
+          "municipality": "Gemeente Alkmaar",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 3385,
+          "system_id": 133503,
+          "title": "Dhr.",
+          "first_name": "H.",
+          "last_name": "Blok",
+          "suffix": "",
+          "party": "ChristenUnie",
+          "municipality": "Gemeente Winsum",
+          "role": "Locoburgemeester"
+        },
+        {
+          "id": 10545,
+          "system_id": 125176,
+          "title": "Dhr.",
+          "first_name": "A.J.H.",
+          "last_name": "Verschuren",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Zaanstad",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "3b915bf79a9e127a867b696ef31f3dd69acdb0e4",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 6634,
+          "system_id": 116861,
+          "title": "Dhr.",
+          "first_name": "J.A.M.",
+          "last_name": "Klaver",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Schagen",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "38da43ee7af73afd0f61044f5d668cf59be1da43",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 1526,
+          "system_id": 20929778,
+          "title": "Mw.",
+          "first_name": "J.",
+          "last_name": "van der Meer",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Slochteren",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "8767c1430be380c55feb105ebe7c6b775355888e",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10545,
+          "system_id": 125176,
+          "title": "Dhr.",
+          "first_name": "A.J.H.",
+          "last_name": "Verschuren",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Zaanstad",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "3458451af22811c43e2859165ef2b4359fbdfe5a",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 300,
+          "system_id": 22423961,
+          "title": "Dhr. drs.",
+          "first_name": "J.M.L.N.",
+          "last_name": "Mikkers",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente 's-Hertogenbosch",
+          "role": "Burgemeester"
+        }
+      ]
+    },    {
+      "article_id": "cc9456f00cb6804ace789d1d0c3fcab2890a9c71",
+      "parties": [
+        {
+          "id": 7,
+          "name": "Partij voor de Vrijheid",
+          "abbreviation": "PVV"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 6634,
+          "system_id": 116861,
+          "title": "Dhr.",
+          "first_name": "J.A.M.",
+          "last_name": "Klaver",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Schagen",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "f797cc60f04a1bdc6b4657f7730846852c6595dd",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 2009,
+          "system_id": 127406,
+          "title": "Dhr.",
+          "first_name": "P.H.M.",
+          "last_name": "den Ouden",
+          "suffix": "",
+          "party": "Samenwerking '95",
+          "municipality": "Gemeente Haaren",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "bcf47dd39cee7557969aef0140f00ca55e6bed99",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 6096,
+          "system_id": 135233,
+          "title": "Mw.",
+          "first_name": "S.A.M.M.",
+          "last_name": "Vos",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Gulpen-Wittem",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "2104720fb9209f449f937917b73dd19aa50006d6",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 8288,
+          "system_id": 74503,
+          "title": "Dhr. mr.",
+          "first_name": "P.P.H.A.",
+          "last_name": "Leenders",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Eindhoven",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "fdaaf5fd1f19c5a1e172c9b578470e001c0a2364",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 8952,
+          "system_id": 88614,
+          "title": "Mw.",
+          "first_name": "E.E.",
+          "last_name": "van Helden",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Waddinxveen",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "996c4409e317c5d9e6b06f20992e77c4f761f2f3",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 1977,
+          "system_id": 130479,
+          "title": "Dhr.",
+          "first_name": "U.",
+          "last_name": "Kahya",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente 's-Hertogenbosch",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "33f241d60587387cd7a95ddd4cbb7f356cf2050d",
+      "parties": [
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 9987,
+          "system_id": 134659,
+          "title": "Mw.",
+          "first_name": "C.P.",
+          "last_name": "Dijkstra",
+          "suffix": "",
+          "party": "ChristenUnie",
+          "municipality": "Gemeente Gouda",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "972255afd952df5fdc6dab29cf497d344cf7d9de",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 8144,
+          "system_id": 121375,
+          "title": "Dhr.",
+          "first_name": "K.",
+          "last_name": "de Vries",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Leiden",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "5d4135c69c5e3049c2372d4c5a308a03644cd356",
+      "parties": [
+        {
+          "id": 3,
+          "name": "Democraten 66",
+          "abbreviation": "D66"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 9537,
+          "system_id": 75098,
+          "title": "Dhr.",
+          "first_name": "A.",
+          "last_name": "Bonte",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Rotterdam",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "8fdf9556564d18f3842e03eefe97e5be1ba054f6",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 1157,
+          "system_id": 132223,
+          "title": "Dhr.",
+          "first_name": "P.F.",
+          "last_name": "Ritzema",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Winsum",
+          "role": "Fractievoorzitter"
+        },
+        {
+          "id": 4616,
+          "system_id": 126542,
+          "title": "Dhr.",
+          "first_name": "J.C.M.",
+          "last_name": "Verschuren",
+          "suffix": "",
+          "party": "ABL",
+          "municipality": "Gemeente Laarbeek",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "43158814200d519b2775ca1b96c4a75115506835",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 10072,
+          "system_id": 124910,
+          "title": "Dhr.",
+          "first_name": "M.T.",
+          "last_name": "Gijsbertsen",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Groningen",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "5198ddc4d6d116345449d77ec50b205067323308",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 2009,
+          "system_id": 127406,
+          "title": "Dhr.",
+          "first_name": "P.H.M.",
+          "last_name": "den Ouden",
+          "suffix": "",
+          "party": "Samenwerking '95",
+          "municipality": "Gemeente Haaren",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "5fdec22b7488645f0254c088050033210b0497d7",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 6100,
+          "system_id": 126631,
+          "title": "Dhr.",
+          "first_name": "A.S.",
+          "last_name": "Bosch",
+          "suffix": "",
+          "party": "Positief Landsmeer",
+          "municipality": "Gemeente Landsmeer",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "c82611c38861fc8fdf0a07ea94fcdd74fed20647",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 3282,
+          "system_id": 95094,
+          "title": "Dhr.",
+          "first_name": "T.A.M.",
+          "last_name": "van de Loo",
+          "suffix": "",
+          "party": "DOP",
+          "municipality": "Gemeente Boekel",
+          "role": "Locoburgemeester"
+        }
+      ]
+    },    {
+      "article_id": "e322bb3b67b90f3c775f2be18d087346a3456c13",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 1866,
+          "system_id": 122158,
+          "title": "Dhr.",
+          "first_name": "R.J.",
+          "last_name": "van Rijn",
+          "suffix": "",
+          "party": "PvdA",
+          "municipality": "Gemeente Giessenlanden",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },
+    {
+      "article_id": "6d3c61218e302850d68fca205c8a74ae0f31a13c",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 9066,
+          "system_id": 119734,
+          "title": "Dhr.",
+          "first_name": "T.W.",
+          "last_name": "Reijnders",
+          "suffix": "",
+          "party": "VVD",
+          "municipality": "Gemeente Hof van Twente",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "138070662d368206355e7f110a2accec5c2852e4",
+      "parties": [
+        {
+          "id": 10,
+          "name": "Volkspartij voor Vrijheid en Democratie",
+          "abbreviation": "VVD"
+        },
+        {
+          "id": 7,
+          "name": "Partij voor de Vrijheid",
+          "abbreviation": "PVV"
+        },
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 5127,
+          "system_id": 124248,
+          "title": "Dhr.",
+          "first_name": "S.",
+          "last_name": "Klaver",
+          "suffix": "",
+          "party": "GBL Gemeentebelangen Leeuwarderadeel",
+          "municipality": "Gemeente Leeuwarderadeel",
+          "role": "Raadslid"
+        },
+        {
+          "id": 6634,
+          "system_id": 116861,
+          "title": "Dhr.",
+          "first_name": "J.A.M.",
+          "last_name": "Klaver",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Schagen",
+          "role": "Raadslid"
+        }
+      ]
+    },    {
+      "article_id": "4716b91b67943d17526c1fb6ef60aae5aedd5d24",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 317,
+          "system_id": 117613,
+          "title": "Dhr. drs.",
+          "first_name": "J.W.M.M.J.",
+          "last_name": "Hessels",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Echt-Susteren",
+          "role": "Burgemeester"
+        }
+      ]
+    },    {
+      "article_id": "10f3490d69b6f2e2fcb38c34981acf6395f0d6ea",
+      "parties": [],
+      "politicians": [
+        {
+          "id": 10497,
+          "system_id": 127551,
+          "title": "Mw.",
+          "first_name": "N.",
+          "last_name": "Dierdorp",
+          "suffix": "",
+          "party": "D66",
+          "municipality": "Gemeente Rijswijk",
+          "role": "Wethouder"
+        },
+        {
+          "id": 10499,
+          "system_id": 127553,
+          "title": "Mw.",
+          "first_name": "M.",
+          "last_name": "Borsboom",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Rijswijk",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "021ebdba761868115ecd35ed773fd3d08480525c",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 5604,
+          "system_id": 131645,
+          "title": "Mw. ir.",
+          "first_name": "A.P.A.M.",
+          "last_name": "Janssen",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Amersfoort",
+          "role": "Raadslid"
+        },
+        {
+          "id": 3220,
+          "system_id": 20856946,
+          "title": "Dhr.",
+          "first_name": "M.J.M.",
+          "last_name": "Wetemans",
+          "suffix": "",
+          "party": "GroenLinks",
+          "municipality": "Gemeente Echt-Susteren",
+          "role": "Fractievoorzitter"
+        }
+      ]
+    },    {
+      "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 10663,
+          "system_id": 135540,
+          "title": "Dhr.",
+          "first_name": "J.",
+          "last_name": "Wackers",
+          "suffix": "",
+          "party": "Partij Nieuw Echt-Susteren",
+          "municipality": "Gemeente Echt-Susteren",
+          "role": "Wethouder"
+        }
+      ]
+    },    {
+      "article_id": "3ef74665058271b3ab78c4887a70394beb05d6f0",
+      "parties": [
+        {
+          "id": 4,
+          "name": "GroenLinks",
+          "abbreviation": "GL"
+        }
+      ],
+      "politicians": [
+        {
+          "id": 6634,
+          "system_id": 116861,
+          "title": "Dhr.",
+          "first_name": "J.A.M.",
+          "last_name": "Klaver",
+          "suffix": "",
+          "party": "CDA",
+          "municipality": "Gemeente Schagen",
+          "role": "Raadslid"
+        }
+      ]
+    },
   ]
 }

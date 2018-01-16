@@ -37,5 +37,5 @@ def fetch_articles_from_db():
     """
     Create function that allows us to fetch specific type/list of articles representative of the data.
     """
-    articles = Article.query.limit(200).all()
+    articles = Article.query.all()
     return articles
