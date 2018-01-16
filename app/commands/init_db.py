@@ -28,26 +28,6 @@ def init_db():
     logger.info('Initializing parties')
     init_parties()
 
-    article = Article(id='someid')
-    db.session.add(article)
-    party = Party.query.first()
-    db.session.add(party)
-    entity = Entity(article=article)
-    db.session.add(entity)
-    linking = EntityLinking(entity=entity, linkable_object=party)
-    db.session.add(linking)
-
-    db.session.add(entity)
-    db.session.commit()
-
-    politician = Politician.query.first()
-    entity = Entity(article=article)
-    db.session.add(entity)
-    linking = EntityLinking(entity=entity, linkable_object=politician)
-    db.session.add(linking)
-    db.session.commit()
-
-
 def init_politicians():
     with open('data_resources/archive_politicians.csv') as csv_file:
         politicians = csv.DictReader(csv_file, delimiter=',')

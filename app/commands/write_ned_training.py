@@ -20,25 +20,26 @@ class WriteNedTraining(Command):
 def write_ned_training():
     result = ''
     CERTAINTY_BOUNDARY_FALSE_LABEL = 0.2
-    CERTAINTY_BOUNDARY_TRUE_LABEL = 0.95
+    CERTAINTY_BOUNDARY_TRUE_LABEL = 0.8
     FALSE_LABEL = 0
     TRUE_LABEL = 1
 
     # Process per article.
-    articles = Article.query.limit(10).all()
+    articles = Article.query.all()
 
     for article in articles:
         # Fetch document from poliflow
         api_document = fetch_single_document(article.id)
+
         simple_doc = translate_doc(api_document)
 
         # loop over all linkings
-        entities = Entity.query.filter(Entity.article == article).filter(Entity.label == 'PER').all()
-        entity_ids = [e.id for e in entities]
+        doc_entities = article.entities
+        per_entities = Entity.query.filter(Entity.article == article).filter(Entity.label == 'PER').all()
+        entity_ids = [e.id for e in per_entities]
         article_entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).all()
         # for each linking, create a feature vector
         for linking in article_entity_linkings:
-            doc_entities = article.entities
             entity = linking.entity
             candidate = linking.linkable_object
 
@@ -47,10 +48,10 @@ def write_ned_training():
 
             if certainty < CERTAINTY_BOUNDARY_FALSE_LABEL:
                 feature_vector.append(FALSE_LABEL)
-                result = str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
+                result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
             if certainty > CERTAINTY_BOUNDARY_TRUE_LABEL:
                 feature_vector.append(TRUE_LABEL)
-                result = str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
+                result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
 
     file = open('data_resources/ned_db_training_file.txt', 'w')
     file.write(result)

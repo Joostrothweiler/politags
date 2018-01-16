@@ -20,7 +20,6 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    logger.info('Deleting all old data')
     # remove_all_articles()
 
     # input = 'data_resources/evaluation/van_dijk_input.json'
@@ -38,6 +37,7 @@ def test_ne():
 
 
 def remove_all_articles():
+    logger.info('Deleting all old data')
     # Remove all questions
     Response.query.delete()
     Question.query.delete()
@@ -57,11 +57,11 @@ def process_evaluation_input(input):
 
     for eval_item in items:
         article = fetch_single_document(eval_item['article_id'])
-        article['meta']['_id'] = eval_item['article_id']
         simple_doc = translate_doc(article)
         res = process_document(simple_doc)
         output['items'].append(res)
 
+    logger.info('Number of articles processing: {}'.format(len(output['items'])))
     return output
 
 def evaluate_ned(output, eval_output):

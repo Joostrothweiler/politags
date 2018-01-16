@@ -36,4 +36,9 @@ def fetch_single_document(article_id: str):
     url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article_id)
     request = requests.get(url_string, auth=(PFL_USER, PFL_PASSWORD))
     json_response = json.loads(request.text)
+
+    # Fix that makes sure the article json contains an id.
+    json_response['meta']['_id'] = article_id
+
+    # Return article document from poliflow.
     return json_response
