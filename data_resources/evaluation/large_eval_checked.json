@@ -1593,6 +1593,10 @@
           "party": "SGP",
           "municipality": "Gemeente Rijssen-Holten",
           "role": "Raadslid"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Gert Harm ten Bolscher"
         }
       ]
     },
@@ -1618,11 +1622,6 @@
           "role": "Raadslid"
         }
       ]
-    },
-    {
-      "article_id": "b18a61d83cbf0af79952e378bd6363375a44c7ae",
-      "parties": [],
-      "politicians": []
     },
     {
       "article_id": "3f1857233ab50b09f4fdb66307f76ef6ceec6af6",
@@ -1667,15 +1666,8 @@
           "role": "Raadslid"
         },
         {
-          "id": 9952,
-          "system_id": 124528,
-          "title": "Mw.",
-          "first_name": "M.E.T.",
-          "last_name": "Bakker",
-          "suffix": "",
-          "party": "D66",
-          "municipality": "Gemeente S&uacute;dwest Frysl&acirc;n",
-          "role": "Wethouder"
+          "system_id": 124735,
+          "full_name": "Mw.	M.C.T.	Bakker-Smit"
         }
       ]
     },
@@ -1690,15 +1682,8 @@
       ],
       "politicians": [
         {
-          "id": 10195,
-          "system_id": 127042,
-          "title": "Dhr.",
-          "first_name": "L.B.",
-          "last_name": "Harpe",
-          "suffix": "",
-          "party": "VVD",
-          "municipality": "Gemeente Delft",
-          "role": "Wethouder"
+          "system_id": 999999999,
+          "full_name": "Leen Harpe"
         }
       ]
     },
@@ -1713,26 +1698,28 @@
       ],
       "politicians": [
         {
-          "id": 10195,
-          "system_id": 127042,
-          "title": "Dhr.",
-          "first_name": "L.B.",
-          "last_name": "Harpe",
-          "suffix": "",
-          "party": "VVD",
-          "municipality": "Gemeente Delft",
-          "role": "Wethouder"
+          "system_id": 999999999,
+          "full_name": "Leen Harpe"
         },
         {
-          "id": 2837,
-          "system_id": 133112,
-          "title": "Dhr.",
-          "first_name": "G.E.M.",
-          "last_name": "Temmink",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Raalte",
-          "role": "Fractievoorzitter"
+          "system_id": 999999999,
+          "full_name": "Gerwi Temmink"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Els Reimt"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Alex Soplantila"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Marten Wiersma"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Janine Cooijmans"
         }
       ]
     },
@@ -1778,7 +1765,12 @@
           "abbreviation": "GL"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Corinne Ellemeet"
+        }
+      ]
     },
     {
       "article_id": "05ff506a61a1c700af37786bdc04ac7c60cc6841",
@@ -1811,6 +1803,15 @@
           "party": "D66",
           "municipality": "Gemeente Vlissingen",
           "role": "Raadslid"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Jan Dirk van Scheyen"
+        }
+        ,
+                {
+          "system_id": 999999999,
+          "full_name": "Louise de Dreu"
         }
       ]
     },
