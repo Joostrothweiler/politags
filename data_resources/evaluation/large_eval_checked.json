@@ -1032,7 +1032,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Esther Ouwehand"
+        }
+      ]
     },
     {
       "article_id": "c3c6655cb10202e93bdd0dc15b4f59b9e921df7d",
@@ -1043,7 +1048,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Esther Ouwehand"
+        }
+      ]
     },
     {
       "article_id": "918f7656dd5001c1c2b18b8330dce19cf10bd929",
@@ -1056,76 +1066,38 @@
       ],
       "politicians": [
         {
-          "id": 4994,
-          "system_id": 74868,
-          "title": "Dhr. drs.",
-          "first_name": "J.",
-          "last_name": "van den Berg",
-          "suffix": "",
-          "party": "SGP",
-          "municipality": "Gemeente Zwartewaterland",
-          "role": "Raadslid"
-        },
-        {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
         },
         {
-          "id": 171,
-          "system_id": 29282,
-          "title": "Dhr. drs.",
-          "first_name": "G.J.M.",
-          "last_name": "Cox",
-          "suffix": "",
-          "party": "PvdA",
-          "municipality": "Gemeente Sittard-Geleen",
-          "role": "Burgemeester"
-        },
-        {
-          "id": 1446,
-          "system_id": 82363,
-          "title": "Dhr.",
-          "first_name": "G.C.W.M.P.",
-          "last_name": "Slegers",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Veldhoven",
-          "role": "Fractievoorzitter"
-        },
-        {
-          "id": 8321,
-          "system_id": 85779,
-          "title": "Dhr.",
-          "first_name": "E.D.",
-          "last_name": "de Groot",
-          "suffix": "",
-          "party": "Ons Belang",
-          "municipality": "Gemeente Schiermonnikoog",
-          "role": "Raadslid"
+          "system_id": 999999999,
+          "full_name": "Laurens de Groot"
         }
       ]
     },
     {
       "article_id": "40ba46204553385bcca63bf6dc4fb5e0255d4176",
-      "parties": [],
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
       "politicians": [
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Annemarie Kruit"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Iris van Veen"
         }
       ]
     },
@@ -1141,20 +1113,24 @@
       "politicians": [
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
+        },
+        {
+          "sytem_id": 999999999,
+          "full_name": "Ruud van Velden"
         }
       ]
     },
     {
       "article_id": "594eec24da738e074441db5dcd74237b84dd4382",
-      "parties": [],
+      "parties": [
+        {
+          "id": 6,
+          "name": "Partij voor de Dieren",
+          "abbreviation": "PvdD"
+        }
+      ],
       "politicians": []
     },
     {
@@ -1169,14 +1145,8 @@
       "politicians": [
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
         }
       ]
     },
@@ -1208,14 +1178,12 @@
       "politicians": [
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Marianne Thieme"
         }
       ]
     },
@@ -1233,7 +1201,12 @@
           "abbreviation": "PvdD"
         }
       ],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 999999999,
+          "full_name": "Bart Canton"
+        }
+      ]
     },
     {
       "article_id": "fe6c8a072b712fcb3c3c7ef07ef7e4dfe42508de",
@@ -1251,26 +1224,13 @@
       ],
       "politicians": [
         {
-          "id": 8321,
-          "system_id": 85779,
-          "title": "Dhr.",
-          "first_name": "E.D.",
-          "last_name": "de Groot",
-          "suffix": "",
-          "party": "Ons Belang",
-          "municipality": "Gemeente Schiermonnikoog",
-          "role": "Raadslid"
+          "system_id": 999999999,
+          "full_name": "Laurens de Groot"
         },
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
         }
       ]
     },
@@ -1285,15 +1245,8 @@
       ],
       "politicians": [
         {
-          "id": 3486,
-          "system_id": 89121,
-          "title": "Dhr.",
-          "first_name": "J.J.A.M.",
-          "last_name": "van Groningen",
-          "suffix": "",
-          "party": "Lokaal Alternatief",
-          "municipality": "Gemeente Duiven",
-          "role": "Locoburgemeester"
+          "system_id": 999999999,
+          "full_name": "Anja Hazekamp"
         }
       ]
     },
@@ -1309,307 +1262,14 @@
       "politicians": [
         {
           "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
+          "system_id": 122651,
+          "full_name": "J.D. van der Lee - van der Haagen"
         },
         {
-          "id": 113,
-          "system_id": 135672,
-          "title": "Dhr.",
-          "first_name": "M.S.",
-          "last_name": "van Veen",
-          "suffix": "",
-          "party": "VVD",
-          "municipality": "Gemeente Gemert-Bakel",
-          "role": "Burgemeester"
+          "system_id": 999999999,
+          "full_name": "Iris van Veen"
         }
       ]
-    },
-    {
-      "article_id": "0efa2756e92b0cf1674462304ea86da5213cdabd",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": [
-        {
-          "id": 4994,
-          "system_id": 74868,
-          "title": "Dhr. drs.",
-          "first_name": "J.",
-          "last_name": "van den Berg",
-          "suffix": "",
-          "party": "SGP",
-          "municipality": "Gemeente Zwartewaterland",
-          "role": "Raadslid"
-        },
-        {
-          "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
-        },
-        {
-          "id": 171,
-          "system_id": 29282,
-          "title": "Dhr. drs.",
-          "first_name": "G.J.M.",
-          "last_name": "Cox",
-          "suffix": "",
-          "party": "PvdA",
-          "municipality": "Gemeente Sittard-Geleen",
-          "role": "Burgemeester"
-        },
-        {
-          "id": 1446,
-          "system_id": 82363,
-          "title": "Dhr.",
-          "first_name": "G.C.W.M.P.",
-          "last_name": "Slegers",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Veldhoven",
-          "role": "Fractievoorzitter"
-        },
-        {
-          "id": 8321,
-          "system_id": 85779,
-          "title": "Dhr.",
-          "first_name": "E.D.",
-          "last_name": "de Groot",
-          "suffix": "",
-          "party": "Ons Belang",
-          "municipality": "Gemeente Schiermonnikoog",
-          "role": "Raadslid"
-        }
-      ]
-    },
-    {
-      "article_id": "f6bcc0629290d6369800d79fc086aa087531b89c",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": [
-        {
-          "id": 113,
-          "system_id": 135672,
-          "title": "Dhr.",
-          "first_name": "M.S.",
-          "last_name": "van Veen",
-          "suffix": "",
-          "party": "VVD",
-          "municipality": "Gemeente Gemert-Bakel",
-          "role": "Burgemeester"
-        },
-        {
-          "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
-        }
-      ]
-    },
-    {
-      "article_id": "c8ef8df49a2522270bbde3cafc684a021d5035ab",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "d2030e6c64eb3b754dfcdb7a8630ac4f29144d61",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": [
-        {
-          "id": 6698,
-          "system_id": 20843319,
-          "title": "Dhr.",
-          "first_name": "J.W.",
-          "last_name": "van der Lee",
-          "suffix": "",
-          "party": "CDA",
-          "municipality": "Gemeente Edam-Volendam",
-          "role": "Raadslid"
-        }
-      ]
-    },
-    {
-      "article_id": "60da99c6ab2d152d7ec0e8e3c60877b5c0df5196",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "d40ae93ee5ae9b50a751658114bbb06a215bf009",
-      "parties": [
-        {
-          "id": 50,
-          "name": "Leefbaar Rotterdam",
-          "abbreviation": ""
-        },
-        {
-          "id": 5,
-          "name": "Partij van de Arbeid",
-          "abbreviation": "PvdA"
-        },
-        {
-          "id": 3,
-          "name": "Democraten 66",
-          "abbreviation": "D66"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "68c5b760515d1d91493a7b38cfbee24dcd158b96",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "fad1e8f7ebaf7baac79ba46b9927c0aa221bd090",
-      "parties": [
-        {
-          "id": 14,
-          "name": "De Groenen",
-          "abbreviation": ""
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "d381d42a3bd14355fc0191884e3f34bfeac55e00",
-      "parties": [
-        {
-          "id": 14,
-          "name": "De Groenen",
-          "abbreviation": ""
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "fb8be855513aa27ce2bd6b49d2e636eb1dc71fb3",
-      "parties": [
-        {
-          "id": 7,
-          "name": "Partij voor de Vrijheid",
-          "abbreviation": "PVV"
-        },
-        {
-          "id": 3,
-          "name": "Democraten 66",
-          "abbreviation": "D66"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "c2993630e6e14ea110e7d092d6eafd7dc9b3cb9f",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        },
-        {
-          "id": 9,
-          "name": "Socialistische Partij",
-          "abbreviation": "SP"
-        },
-        {
-          "id": 3,
-          "name": "Democraten 66",
-          "abbreviation": "D66"
-        },
-        {
-          "id": 4,
-          "name": "GroenLinks",
-          "abbreviation": "GL"
-        },
-        {
-          "id": 7,
-          "name": "Partij voor de Vrijheid",
-          "abbreviation": "PVV"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "23c93c5e766b3bdf7199688e143f0c0f16e14d3b",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "e9d217413a7ef112cdcd326c817e7d1cc56c56a4",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
-    },
-    {
-      "article_id": "5112c0cc8279b1cadd7f7a2fed9695162783ea51",
-      "parties": [
-        {
-          "id": 6,
-          "name": "Partij voor de Dieren",
-          "abbreviation": "PvdD"
-        }
-      ],
-      "politicians": []
     },
     {
       "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
@@ -1631,6 +1291,10 @@
           "party": "Partij Nieuw Echt-Susteren",
           "municipality": "Gemeente Echt-Susteren",
           "role": "Wethouder"
+        },
+        {
+          "system_id": 999999999,
+          "full_name": "Jos Janssen"
         }
       ]
     },
@@ -1663,17 +1327,17 @@
       ]
     },
     {
-      "article_id": "5894ca1d4bbeca59611357fa1dec41c57d94ed2d",
-      "parties": [],
-      "politicians": []
-    },
-    {
       "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
       "parties": [
         {
           "id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
+        },
+        {
+          "id": 5,
+          "name": "Partij van de Arbeid",
+          "abbreviation": "PvdA"
         },
         {
           "id": 9,
@@ -1719,6 +1383,11 @@
           "party": "SP",
           "municipality": "Gemeente Breda",
           "role": "Raadslid"
+        },
+        {
+          "id": 5712,
+          "system_id": 112532,
+          "full_name": "Mw.	M.	van Hemel"
         }
       ]
     },
@@ -1829,6 +1498,11 @@
           "party": "SP",
           "municipality": "Gemeente Breda",
           "role": "Raadslid"
+        },
+        {
+          "id": 5712,
+          "system_id": 112532,
+          "full_name": "Mw.	M.	van Hemel"
         }
       ]
     },
@@ -2339,7 +2013,6 @@
         }
       ]
     },
-
     {
       "article_id": "a6c90cc0b3e675ddff8e5d77bc1a4892428fd870",
       "parties": [
@@ -2384,7 +2057,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "aa0d2253d6a166fcea8cbcd6f5dc4033e0b3398a",
       "parties": [
         {
@@ -2421,7 +2095,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "22f4d813182ce30cdabacb24012b928093b66397",
       "parties": [
         {
@@ -2443,7 +2118,8 @@
           "role": "Locoburgemeester"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "60d33c944f8f8b17a6aa71f211bddeebfbe32460",
       "parties": [
         {
@@ -2470,7 +2146,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "191faf373c6873c2c8f578f9b34e28240689dcc4",
       "parties": [
         {
@@ -2503,7 +2180,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "7691cfadae772fb9b9a9d2c458942ebc08f31cda",
       "parties": [
         {
@@ -2530,7 +2208,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "72ac0cd9e9b2b225589ae41f83c29e61000449a4",
       "parties": [
         {
@@ -2592,7 +2271,8 @@
           "role": "Locoburgemeester"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "1a3a87acbbc471e4d929751fe0e7dbf7e17867e2",
       "parties": [
         {
@@ -2614,7 +2294,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "9258dcd6d0222f66c58e480158ba15a064a833be",
       "parties": [
         {
@@ -2663,7 +2344,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "a146c7e3c5c6b427479bc9116be63a2d98ef224a",
       "parties": [
         {
@@ -2688,7 +2370,8 @@
         }
       ],
       "politicians": []
-    },    {
+    },
+    {
       "article_id": "011eb1f258adfe821b23d0812219b70d0180ba55",
       "parties": [
         {
@@ -2710,7 +2393,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "47cae5216255eafc78b3e1fd2d1218a13e16ba9e",
       "parties": [
         {
@@ -2732,7 +2416,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "bd2cd8876b380983cfd5723d516b50ef85c7e98e",
       "parties": [],
       "politicians": [
@@ -2759,7 +2444,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "c2d7e4b50c4a436a7e83a9b47928950bc8d4cf24",
       "parties": [
         {
@@ -2813,7 +2499,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "3b915bf79a9e127a867b696ef31f3dd69acdb0e4",
       "parties": [
         {
@@ -2835,7 +2522,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "38da43ee7af73afd0f61044f5d668cf59be1da43",
       "parties": [],
       "politicians": [
@@ -2851,7 +2539,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "8767c1430be380c55feb105ebe7c6b775355888e",
       "parties": [
         {
@@ -2873,7 +2562,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "3458451af22811c43e2859165ef2b4359fbdfe5a",
       "parties": [],
       "politicians": [
@@ -2889,7 +2579,8 @@
           "role": "Burgemeester"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "cc9456f00cb6804ace789d1d0c3fcab2890a9c71",
       "parties": [
         {
@@ -2916,7 +2607,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "f797cc60f04a1bdc6b4657f7730846852c6595dd",
       "parties": [
         {
@@ -2938,7 +2630,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "bcf47dd39cee7557969aef0140f00ca55e6bed99",
       "parties": [
         {
@@ -2960,7 +2653,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "2104720fb9209f449f937917b73dd19aa50006d6",
       "parties": [
         {
@@ -2982,7 +2676,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "fdaaf5fd1f19c5a1e172c9b578470e001c0a2364",
       "parties": [],
       "politicians": [
@@ -2998,7 +2693,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "996c4409e317c5d9e6b06f20992e77c4f761f2f3",
       "parties": [
         {
@@ -3020,7 +2716,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "33f241d60587387cd7a95ddd4cbb7f356cf2050d",
       "parties": [
         {
@@ -3042,7 +2739,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "972255afd952df5fdc6dab29cf497d344cf7d9de",
       "parties": [],
       "politicians": [
@@ -3058,7 +2756,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "5d4135c69c5e3049c2372d4c5a308a03644cd356",
       "parties": [
         {
@@ -3085,7 +2784,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "8fdf9556564d18f3842e03eefe97e5be1ba054f6",
       "parties": [],
       "politicians": [
@@ -3112,7 +2812,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "43158814200d519b2775ca1b96c4a75115506835",
       "parties": [],
       "politicians": [
@@ -3128,7 +2829,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "5198ddc4d6d116345449d77ec50b205067323308",
       "parties": [],
       "politicians": [
@@ -3144,7 +2846,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "5fdec22b7488645f0254c088050033210b0497d7",
       "parties": [],
       "politicians": [
@@ -3160,7 +2863,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "c82611c38861fc8fdf0a07ea94fcdd74fed20647",
       "parties": [],
       "politicians": [
@@ -3176,7 +2880,8 @@
           "role": "Locoburgemeester"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "e322bb3b67b90f3c775f2be18d087346a3456c13",
       "parties": [],
       "politicians": [
@@ -3209,7 +2914,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "138070662d368206355e7f110a2accec5c2852e4",
       "parties": [
         {
@@ -3252,7 +2958,8 @@
           "role": "Raadslid"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "4716b91b67943d17526c1fb6ef60aae5aedd5d24",
       "parties": [],
       "politicians": [
@@ -3268,7 +2975,8 @@
           "role": "Burgemeester"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "10f3490d69b6f2e2fcb38c34981acf6395f0d6ea",
       "parties": [],
       "politicians": [
@@ -3295,7 +3003,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "021ebdba761868115ecd35ed773fd3d08480525c",
       "parties": [
         {
@@ -3328,7 +3037,8 @@
           "role": "Fractievoorzitter"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
       "parties": [
         {
@@ -3350,7 +3060,8 @@
           "role": "Wethouder"
         }
       ]
-    },    {
+    },
+    {
       "article_id": "3ef74665058271b3ab78c4887a70394beb05d6f0",
       "parties": [
         {
@@ -3372,6 +3083,6 @@
           "role": "Raadslid"
         }
       ]
-    },
+    }
   ]
 }
