@@ -6,6 +6,7 @@ from flask_script import Command
 from app.models.models import Entity, Article, EntityLinking, Question, Response
 from app.modules.common.utils import translate_doc
 from app.modules.entities.named_entities import process_document
+from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('test_ne')
 
@@ -20,7 +21,7 @@ class TestNeCommand(Command):
 def test_ne():
     """ Test Named Entity Algorithms."""
     logger.info('Deleting all old data')
-    remove_all_articles()
+    # remove_all_articles()
 
     # input = 'data_resources/evaluation/van_dijk_input.json'
     # output = process_evaluation_input(input)
@@ -28,9 +29,9 @@ def test_ne():
     # eval_output = json.load(open(eval))
     # evaluate_ned(output, eval_output)
 
-    input = 'data_resources/evaluation/new_test_input.json'
-    output = process_evaluation_input(input)
-    eval = 'data_resources/evaluation/new_test_eval.json'
+
+    eval = 'data_resources/evaluation/large_eval_checked.json'
+    output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
     evaluate_ned(output, eval_output)
 
@@ -54,8 +55,10 @@ def process_evaluation_input(input):
 
     output = {'items': []}
 
-    for doc in items:
-        simple_doc = translate_doc(doc)
+    for eval_item in items:
+        article = fetch_single_document(eval_item['article_id'])
+        article['meta']['_id'] = eval_item['article_id']
+        simple_doc = translate_doc(article)
         res = process_document(simple_doc)
         output['items'].append(res)
 

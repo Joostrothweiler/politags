@@ -4,12 +4,12 @@
       "article_id": "4e8f2c46403d40023c701c94455eb7c502c16593",
       "parties": [
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -158,22 +158,22 @@
       "article_id": "755384eab198b796275e79942d040407f9365781",
       "parties": [
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -196,7 +196,7 @@
       "article_id": "45d7053f7d042b99b2251c6c19c3b1bf203b2bfa",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -207,7 +207,7 @@
       "article_id": "5a9e185fc44a098f2dec59f833c09aab5a78de53",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -240,7 +240,7 @@
       "article_id": "9b81931d592bc1ed7d1f00d0158fbd1cbae89103",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -266,7 +266,7 @@
       "article_id": "bb792e8c0731b54a2c31ff8bdb2773b9e01e3f92",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -297,7 +297,7 @@
       "article_id": "2a53b3fc63b67e43bb7e89ef4ab81e8c72fdcbd0",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -313,7 +313,7 @@
       "article_id": "aafd4d8fea0472cc37d8f696ffe40a54f5ef0442",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -359,7 +359,7 @@
       "article_id": "d44b1e3e84e2280fd3ccde8b182be9e5b8d03ae6",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -385,7 +385,7 @@
       "article_id": "36da9f19b8365ab10f9965adb4c7ba0277d02aa0",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -401,7 +401,7 @@
       "article_id": "213dc7c576cef3195311d5636c60f021c9015eed",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -412,12 +412,12 @@
       "article_id": "bfad8c539c2e70485be3f8a5e4b0d236fca812e4",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -438,7 +438,7 @@
       "article_id": "48927751a977270645f758c0f660531134ab935e",
       "parties": [
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -469,7 +469,7 @@
       "article_id": "1ee68ce40e224207ff3769b87ea5dbd8ec9ff593",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -490,7 +490,7 @@
       "article_id": "92fc0159751c5d6b26c1b3388f7e1513e445d52f",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -566,7 +566,7 @@
       "article_id": "32bfb591620406545452561a0be527a528904b18",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -597,7 +597,7 @@
       "article_id": "5e82c84b2013564c7db424377ab18beb1cb83289",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -613,7 +613,7 @@
       "article_id": "064f718ac3452742d1bbb36769c7925a452dbfed",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -624,12 +624,12 @@
       "article_id": "6bed1c9c0656eed2fabb60915724d3c6ad8806fb",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         },
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         }
@@ -645,17 +645,17 @@
       "article_id": "7b3845c99d102e8fe48cdb92dc6a6dfea6d7197a",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -671,7 +671,7 @@
       "article_id": "5a2900b4aaf77aeb8db711f22699b93e4fdc9332",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -683,7 +683,7 @@
         },
         {
           "system_id": 123362,
-          "full_name": "Mw.	E.M.	van Esch",
+          "full_name": "Mw. E.M. van Esch",
           "party": "Partij voor de Dieren"
         }
       ]
@@ -702,7 +702,7 @@
       "article_id": "c45483e4a83b93c75264b531957dcfe47be9488c",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -743,7 +743,7 @@
       "article_id": "19d64b03652a8a0520f84806eeb6e34e5ab47feb",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -764,7 +764,7 @@
       "article_id": "4afa272267f4848679fb41394b5642f7b8a4fe7e",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -785,7 +785,7 @@
       "article_id": "469033f50b12762f960c253fa9ec78bb57518854",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -851,7 +851,7 @@
       "article_id": "9b6dd096f04dc98f627a5838f4b869f762f26d49",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -887,7 +887,7 @@
       "article_id": "09a7e13c2885f07a7347b7ffe6e79bc5f258e59c",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -948,7 +948,7 @@
       "article_id": "db2d2b1152ad45199ce43c7efc47e1c8b2573cda",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1016,7 +1016,7 @@
       "article_id": "2d9afa6b6d4c4aeda0aa35eb011311a5006a0dbc",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1027,7 +1027,7 @@
       "article_id": "73d3e2fa2c4cff535994ad43c8c008456b3578a3",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1043,7 +1043,7 @@
       "article_id": "c3c6655cb10202e93bdd0dc15b4f59b9e921df7d",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1059,7 +1059,7 @@
       "article_id": "918f7656dd5001c1c2b18b8330dce19cf10bd929",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1080,7 +1080,7 @@
       "article_id": "40ba46204553385bcca63bf6dc4fb5e0255d4176",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1105,7 +1105,7 @@
       "article_id": "a3bc697567e5f14e342fc09fa7a663ad5c5e6431",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1117,7 +1117,7 @@
           "full_name": "J.D. van der Lee - van der Haagen"
         },
         {
-          "sytem_id": 999999999,
+          "system_id": 999999999,
           "full_name": "Ruud van Velden"
         }
       ]
@@ -1126,7 +1126,7 @@
       "article_id": "594eec24da738e074441db5dcd74237b84dd4382",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1137,7 +1137,7 @@
       "article_id": "46e4eac52f464f7c848a38e017e5c102483031ae",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1159,7 +1159,7 @@
       "article_id": "522e4c09f95ac60af03945a90f6c6b5fdbf14361",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1170,7 +1170,7 @@
       "article_id": "6e4a4b7322a277af23a66a88ff2c8df3dd3c0424",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1191,12 +1191,12 @@
       "article_id": "27ba0dc490f0b8ad51a79f288e7e8003e075d6cf",
       "parties": [
         {
-          "id": 50,
+          "system_id": 50,
           "name": "Leefbaar Rotterdam",
           "abbreviation": ""
         },
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1217,7 +1217,7 @@
       "article_id": "dcc19f8692a17f6585ef71043f0bf84bf9139c3f",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1238,7 +1238,7 @@
       "article_id": "071fe51f45a70405d95e63b5aec061f17f4d74c7",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1254,7 +1254,7 @@
       "article_id": "22c4fb9f3b6fc9444e47557db4629112c2f9ce6e",
       "parties": [
         {
-          "id": 6,
+          "system_id": 6,
           "name": "Partij voor de Dieren",
           "abbreviation": "PvdD"
         }
@@ -1275,7 +1275,7 @@
       "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1302,12 +1302,12 @@
       "article_id": "e81a9ba910a834c696d99598228a97dcc09bcde1",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         }
@@ -1330,22 +1330,22 @@
       "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         },
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1387,7 +1387,7 @@
         {
           "id": 5712,
           "system_id": 112532,
-          "full_name": "Mw.	M.	van Hemel"
+          "full_name": "Mw. M. van Hemel"
         }
       ]
     },
@@ -1395,7 +1395,7 @@
       "article_id": "6bad840551136344c049a8ae8b10098c0370615e",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -1406,7 +1406,7 @@
       "article_id": "68000c923bced43b1d5986d807bcbacaa74e6973",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         }
@@ -1417,12 +1417,12 @@
       "article_id": "e81a9ba910a834c696d99598228a97dcc09bcde1",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         }
@@ -1450,17 +1450,17 @@
       "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         },
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1502,7 +1502,7 @@
         {
           "id": 5712,
           "system_id": 112532,
-          "full_name": "Mw.	M.	van Hemel"
+          "full_name": "Mw. M. van Hemel"
         }
       ]
     },
@@ -1510,7 +1510,7 @@
       "article_id": "6bad840551136344c049a8ae8b10098c0370615e",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -1521,7 +1521,7 @@
       "article_id": "68000c923bced43b1d5986d807bcbacaa74e6973",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         }
@@ -1532,7 +1532,7 @@
       "article_id": "57d07a083e201b7fef0312718f42284916e4d0f0",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         }
@@ -1543,7 +1543,7 @@
       "article_id": "54e3aa6fbba2f4fcc958d702cbef45eaf2810d3d",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         }
@@ -1577,7 +1577,7 @@
       "article_id": "b6f304672fa78d96b5a283daca79eb39d176cc8e",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -1604,7 +1604,7 @@
       "article_id": "dbd4979c2dd513f7f837200bf772d5f00143dd77",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -1627,17 +1627,17 @@
       "article_id": "3f1857233ab50b09f4fdb66307f76ef6ceec6af6",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         }
@@ -1667,7 +1667,7 @@
         },
         {
           "system_id": 124735,
-          "full_name": "Mw.	M.C.T.	Bakker-Smit"
+          "full_name": "Mw. M.C.T. Bakker-Smit"
         }
       ]
     },
@@ -1675,7 +1675,7 @@
       "article_id": "603fe009567f0d306b887eece78b38cfb834704a",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1691,7 +1691,7 @@
       "article_id": "4c927c977216f6d8114cc766d1c742aff7154d88",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1727,7 +1727,7 @@
       "article_id": "b8329dc4bee3ae76a930068c06defa773fd02876",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1755,12 +1755,12 @@
       "article_id": "a70988e51c7842eb22595118ed9d1e1336153621",
       "parties": [
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1807,19 +1807,20 @@
         {
           "system_id": 999999999,
           "full_name": "Jan Dirk van Scheyen"
-        }
-        ,
-                {
+        },
+        {
           "system_id": 999999999,
           "full_name": "Louise de Dreu"
         }
       ]
-    },
+    }
+  ],
+  "other": [
     {
       "article_id": "1443418349cb3300b2ec75ecd45700b34d50f807",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -1915,27 +1916,27 @@
       "article_id": "b3a697af93b2db080c622f7170387e8d06f103b2",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -1958,22 +1959,22 @@
       "article_id": "42f0712bcdec4b697a301346aa5bf5f1c16ff1e3",
       "parties": [
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         }
@@ -2018,7 +2019,7 @@
       "article_id": "a6c90cc0b3e675ddff8e5d77bc1a4892428fd870",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2063,22 +2064,22 @@
       "article_id": "aa0d2253d6a166fcea8cbcd6f5dc4033e0b3398a",
       "parties": [
         {
-          "id": 7,
+          "system_id": 7,
           "name": "Partij voor de Vrijheid",
           "abbreviation": "PVV"
         },
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         }
@@ -2101,7 +2102,7 @@
       "article_id": "22f4d813182ce30cdabacb24012b928093b66397",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2124,7 +2125,7 @@
       "article_id": "60d33c944f8f8b17a6aa71f211bddeebfbe32460",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2152,7 +2153,7 @@
       "article_id": "191faf373c6873c2c8f578f9b34e28240689dcc4",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2186,12 +2187,12 @@
       "article_id": "7691cfadae772fb9b9a9d2c458942ebc08f31cda",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         },
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
@@ -2214,47 +2215,47 @@
       "article_id": "72ac0cd9e9b2b225589ae41f83c29e61000449a4",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         },
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 7,
+          "system_id": 7,
           "name": "Partij voor de Vrijheid",
           "abbreviation": "PVV"
         },
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 43,
+          "system_id": 43,
           "name": "Partij voor Zeeland",
           "abbreviation": "PvZ"
         },
         {
-          "id": 9,
+          "system_id": 9,
           "name": "Socialistische Partij",
           "abbreviation": "SP"
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2277,7 +2278,7 @@
       "article_id": "1a3a87acbbc471e4d929751fe0e7dbf7e17867e2",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2300,12 +2301,12 @@
       "article_id": "9258dcd6d0222f66c58e480158ba15a064a833be",
       "parties": [
         {
-          "id": 14,
+          "system_id": 14,
           "name": "De Groenen",
           "abbreviation": ""
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2350,22 +2351,22 @@
       "article_id": "a146c7e3c5c6b427479bc9116be63a2d98ef224a",
       "parties": [
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 5,
+          "system_id": 5,
           "name": "Partij van de Arbeid",
           "abbreviation": "PvdA"
         },
         {
-          "id": 1,
+          "system_id": 1,
           "name": "Christen-Democratisch App\u00e8l",
           "abbreviation": "CDA"
         },
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2376,7 +2377,7 @@
       "article_id": "011eb1f258adfe821b23d0812219b70d0180ba55",
       "parties": [
         {
-          "id": 8,
+          "system_id": 8,
           "name": "Staatkundig Gereformeerde Partij",
           "abbreviation": "SGP"
         }
@@ -2399,7 +2400,7 @@
       "article_id": "47cae5216255eafc78b3e1fd2d1218a13e16ba9e",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2450,17 +2451,17 @@
       "article_id": "c2d7e4b50c4a436a7e83a9b47928950bc8d4cf24",
       "parties": [
         {
-          "id": 2,
+          "system_id": 2,
           "name": "ChristenUnie",
           "abbreviation": "CU"
         },
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2505,7 +2506,7 @@
       "article_id": "3b915bf79a9e127a867b696ef31f3dd69acdb0e4",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2545,7 +2546,7 @@
       "article_id": "8767c1430be380c55feb105ebe7c6b775355888e",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2585,12 +2586,12 @@
       "article_id": "cc9456f00cb6804ace789d1d0c3fcab2890a9c71",
       "parties": [
         {
-          "id": 7,
+          "system_id": 7,
           "name": "Partij voor de Vrijheid",
           "abbreviation": "PVV"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2613,7 +2614,7 @@
       "article_id": "f797cc60f04a1bdc6b4657f7730846852c6595dd",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2636,7 +2637,7 @@
       "article_id": "bcf47dd39cee7557969aef0140f00ca55e6bed99",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2659,7 +2660,7 @@
       "article_id": "2104720fb9209f449f937917b73dd19aa50006d6",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2699,7 +2700,7 @@
       "article_id": "996c4409e317c5d9e6b06f20992e77c4f761f2f3",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2722,7 +2723,7 @@
       "article_id": "33f241d60587387cd7a95ddd4cbb7f356cf2050d",
       "parties": [
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         }
@@ -2762,12 +2763,12 @@
       "article_id": "5d4135c69c5e3049c2372d4c5a308a03644cd356",
       "parties": [
         {
-          "id": 3,
+          "system_id": 3,
           "name": "Democraten 66",
           "abbreviation": "D66"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -2920,17 +2921,17 @@
       "article_id": "138070662d368206355e7f110a2accec5c2852e4",
       "parties": [
         {
-          "id": 10,
+          "system_id": 10,
           "name": "Volkspartij voor Vrijheid en Democratie",
           "abbreviation": "VVD"
         },
         {
-          "id": 7,
+          "system_id": 7,
           "name": "Partij voor de Vrijheid",
           "abbreviation": "PVV"
         },
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -3009,7 +3010,7 @@
       "article_id": "021ebdba761868115ecd35ed773fd3d08480525c",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -3043,7 +3044,7 @@
       "article_id": "2f7b7fc0dff21c78c4a9a30548429ee9f6250a58",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
@@ -3066,7 +3067,7 @@
       "article_id": "3ef74665058271b3ab78c4887a70394beb05d6f0",
       "parties": [
         {
-          "id": 4,
+          "system_id": 4,
           "name": "GroenLinks",
           "abbreviation": "GL"
         }
