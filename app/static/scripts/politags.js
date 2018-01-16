@@ -33,10 +33,10 @@ let articleObject =
 $(getQuestion());
 
 
+/**
+ * Gets the question for the current article by calling the Politags API and updates html accordingly
+ */
 function getQuestion() {
-    /**
-     * Gets the question for the current article by calling the Politags API and updates html accordingly
-     */
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -70,13 +70,12 @@ function getQuestion() {
 }
 
 
-// this function posts the answer to a certain question
+/**
+ * Posts a response to the politags API
+ * @param: response: the response to a question
+ * @param: questionId: the question that response answers
+ */
 function postResponse(response, questionId) {
-    /**
-     * Posts a response to the politags API
-     * @param: response: the response to a question
-     * @param: questionId: the question that response answers
-     */
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -105,14 +104,13 @@ $('body').on('click', '.responseButton', function () {
     }
 );
 
-
+/**
+ * This function highlights an entity in a given html element and saves the question we want to ask for this entity
+ * @param: element: the element in which we want to highlight the entity
+ * @param: entity: the entity we want to highlight
+ * @param: questionId: the questionId we want to store in the highlight so we know later on where to render the question
+ */
 function highlightEntity(element, entity, questionId) {
-    /**
-     * This function highlights an entity in a given html element and saves the question we want to ask for this entity
-     * @param: element: the element in which we want to highlight the entity
-     * @param: entity: the entity we want to highlight
-     * @param: questionId: the questionId we want to store in the highlight so we know later on where to render the question
-     */
     let regexp = new RegExp(entity);
     let replace = '<mark id="' + questionId + '" style="background-color: transparent !important;\n' +
         '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
@@ -121,13 +119,13 @@ function highlightEntity(element, entity, questionId) {
 }
 
 
+/**
+ * This function renders a question in the html and presents the possible answers
+ * @param: question: the question and its metadata
+ * @param: questionId: the id for the question
+ * @param: possibleAnswers: the possible answers for this question
+ */
 function renderQuestion(question, questionId, possibleAnswers) {
-    /**
-     * This function renders a question in the html and presents the possible answers
-     * @param: question: the question and its metadata
-     * @param: questionId: the id for the question
-     * @param: possibleAnswers: the possible answers for this question
-     */
     let buttonsHtml = generatePolarButtons(questionId, possibleAnswers);
 
     $('#' + questionId).parent().after(
@@ -139,12 +137,11 @@ function renderQuestion(question, questionId, possibleAnswers) {
     )
 }
 
-
+/**
+ * This function updates the counter based on the amount of recorded responses
+ * @param: countResponses: the total amount of responses in the politags database
+ */
 function updateCounter(countResponses) {
-    /**
-     * This function updates the counter based on the amount of recorded responses
-     * @param: countResponses: the total amount of responses in the politags database
-     */
     let count = $('#count').text();
 
     if ($.isEmptyObject(count)) {
@@ -158,10 +155,10 @@ function updateCounter(countResponses) {
     blinkHeart()
 }
 
+/**
+ * this function blinks the heart in the counter
+ */
 function blinkHeart() {
-    /**
-     * this function blinks the heart in the counter
-     */
     $('#counter-heart').addClass("fa-heart").removeClass("fa-heart-o");
 
     setTimeout(function () {
@@ -169,13 +166,12 @@ function blinkHeart() {
     }, 1000)
 }
 
-
+/**
+ * This function generates the HTML buttons for a polar question
+ * @param: questionId: id of the question
+ * @param: possibleAnswers: the possible answers one can pass to the politags api
+ */
 function generatePolarButtons(questionId, possibleAnswers) {
-    /**
-     * This function generates the HTML buttons for a polar question
-     * @param: questionId: id of the question
-     * @param: possibleAnswers: the possible answers one can pass to the politags api
-     */
     let buttonsHtml = '';
 
     buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
@@ -184,11 +180,10 @@ function generatePolarButtons(questionId, possibleAnswers) {
     return buttonsHtml
 }
 
-
+/**
+ * This function performs all the actions to show feedback when a question is responded to
+ */
 function showFeedback() {
-    /**
-     * This function performs all the actions to show feedback when a question is responded to
-     */
     $('#question').removeClass('panel-danger').addClass('panel-success');
     $('.responseButton').remove();
     $('#text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">');
