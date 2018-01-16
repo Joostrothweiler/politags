@@ -54,9 +54,8 @@
 			if (settings.hasOwnProperty(key) && settings[key] !== undefined) {
 				settings[key] = encodeString(settings[key]);
 			}
-		};
-
-		if (settings.url !== undefined) {
+        }
+         if (settings.url !== undefined) {
 			$(this).find('.rrssb-facebook a').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + settings.url);
 			$(this).find('.rrssb-tumblr a').attr('href', 'http://tumblr.com/share/link?url=' + settings.url + (settings.title !== undefined ? '&name=' + settings.title : '')  + (settings.description !== undefined ? '&description=' + settings.description : ''));
 			$(this).find('.rrssb-linkedin a').attr('href', 'http://www.linkedin.com/shareArticle?mini=true&url=' + settings.url + (settings.title !== undefined ? '&title=' + settings.title : '') + (settings.description !== undefined ? '&summary=' + settings.description : ''));
