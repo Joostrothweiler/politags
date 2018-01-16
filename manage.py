@@ -23,6 +23,7 @@ manager.add_command('construct_kb', ConstructKbCommand)
 manager.add_command('train_clf', TrainClfCommand)
 manager.add_command('test_poliflow', TestPoliflowCommand)
 manager.add_command('write_ned_training', WriteNedTraining)
+manager.add_command('write_ned_eval', WriteNedEval)
 
 
 if __name__ == "__main__":
