@@ -11,10 +11,12 @@ def generate_question(apidict: dict) -> dict:
     """
 
     article = Article.query.filter(Article.id == apidict['id']).first()
+    count_responses = Response.query.count()
 
     if not article:
         return {
-            'error': 'article not found in database'
+            'error': 'article not found in database',
+            'count_responses': count_responses
         }
 
     entities = article.entities
@@ -30,11 +32,9 @@ def generate_question(apidict: dict) -> dict:
 
     [next_question_linking, question] = find_next_question(entity_linkings)
 
-    count_responses = Response.query.count()
-
     if not question:
         return {
-            'error': 'no question found for this question',
+            'error': 'no question found for this article',
             'count_responses': count_responses
         }
 
