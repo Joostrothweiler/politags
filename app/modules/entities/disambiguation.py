@@ -127,6 +127,8 @@ def store_entity_politician_linking(entity: Entity, politician: Politician, init
     :param politician: Candidate politician from the database.
     :param initial_certainty: Intial certainty score computed based on similarity features and weights.
     """
+    # TODO: Check if linking already exists, then update.
+
     a = EntityLinking(initial_certainty=initial_certainty)
     a.linkable_object = politician
     entity.linkings.append(a)
