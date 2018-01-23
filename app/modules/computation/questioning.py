@@ -107,18 +107,21 @@ def generate_linking_questions(entity_linkings: list, article: Article):
             politician = entity_linking.linkable_object
 
             if politician.role and politician.municipality:
-                question_string = 'Wordt <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
                     politician.full_name,
                     politician.party,
                     politician.role,
                     politician.municipality)
             elif politician.role:
-                question_string = 'Wordt <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
                     politician.full_name,
                     politician.party,
-                    politician.role, )
+                    politician.role)
             else:
-                question_string = 'Wordt <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
                     politician.full_name,
                     politician.party,
                     politician.municipality)
