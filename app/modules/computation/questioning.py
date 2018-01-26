@@ -1,6 +1,7 @@
 from app.models.models import Article
 from app import db
 from app.models.models import Question, Response, EntityLinking
+from app.modules.entities.named_entities import process_document
 
 
 def generate_question(apidict: dict) -> dict:
@@ -11,16 +12,12 @@ def generate_question(apidict: dict) -> dict:
     """
 
     article = Article.query.filter(Article.id == apidict['id']).first()
-    count_responses = Response.query.count()
-
     if not article:
-        return {
-            'error': 'article not found in database',
-            'count_responses': count_responses
-        }
+        process_document(apidict)
+        article = Article.query.filter(Article.id == apidict['id']).first()
 
+    count_responses = Response.query.count()
     entities = article.entities
-
     entity_linkings = find_linkings(entities)
 
     if not entity_linkings:
