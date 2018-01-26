@@ -58,7 +58,7 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     for obj in result:
         candidate = obj['candidate']
         feature_vector = obj['feature_vector']
-        store_entity_politician_linking(entity, candidate, compute_politician_certainty(feature_vector))
+        store_entity_linking(entity, candidate, compute_politician_certainty(feature_vector))
 
 
 def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
@@ -120,21 +120,6 @@ def get_candidate_politicians(entity: Entity) -> list:
     return candidates
 
 
-def store_entity_politician_linking(entity: Entity, politician: Politician, initial_certainty: float):
-    """
-    Store a linking between a database entity and a politician with a given certainty.
-    :param entity: Entity from the database.
-    :param politician: Candidate politician from the database.
-    :param initial_certainty: Intial certainty score computed based on similarity features and weights.
-    """
-    # TODO: Check if linking already exists, then update.
-
-    a = EntityLinking(initial_certainty=initial_certainty)
-    a.linkable_object = politician
-    entity.linkings.append(a)
-    db.session.add(entity)
-
-
 def party_disambiguation(document: dict, entities: list, entity: Entity):
     """
     Generate candidates based on entity and store linkings if found.
@@ -157,20 +142,27 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
                 max_sim = candidate_sim
                 max_party = candidate_party
 
-        store_entity_party_linking(entity, max_party, max_sim)
+        store_entity_linking(entity, max_party, max_sim)
 
 
-def store_entity_party_linking(entity: Entity, party: Party, initial_certainty: float):
+def store_entity_linking(entity: Entity, linkable_object: object, initial_certainty: float):
     """
     Store the linkings between an entity and a party in the database.
     :param entity: Entity in the database.
-    :param party: Party in the database.
+    :param linkable_object: Either party or politician object
     :param initial_certainty: Intial certainty score computed based on similarity features and weights.
     """
-    linking = EntityLinking(initial_certainty=initial_certainty)
-    linking.linkable_object = party
-    entity.linkings.append(linking)
-    db.session.add(entity)
+    linking = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
+        EntityLinking.linkable_object == linkable_object).first()
+
+    if linking:
+        linking.initial_certainty = initial_certainty
+        db.session.add(linking)
+    else:
+        linking = EntityLinking(initial_certainty=initial_certainty)
+        linking.linkable_object = linkable_object
+        entity.linkings.append(linking)
+        db.session.add(entity)
 
 
 # FIXME: Does not add any gain in recall/precision like this with the current setup. Therefore, leave out for now.
