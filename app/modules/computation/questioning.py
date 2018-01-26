@@ -39,7 +39,7 @@ def generate_question(apidict: dict) -> dict:
         }
 
     return {
-        'question': question.question_string,
+        'question': question.question_string_new,
         'question_id': question.id,
         'text': next_question_linking.entity.text,
         'label': next_question_linking.entity.label,
@@ -77,7 +77,8 @@ def find_next_question(entities: list) -> [EntityLinking, Question]:
     next_question = None
 
     for entity in entities:
-        certain_linkings_count = EntityLinking.query.filter(EntityLinking.entity == entity).filter(EntityLinking.initial_certainty == 1).count()
+        certain_linkings_count = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
+            EntityLinking.initial_certainty == 1).count()
 
         if certain_linkings_count == 0:
             for linking in entity.linkings:
@@ -89,7 +90,6 @@ def find_next_question(entities: list) -> [EntityLinking, Question]:
                         current_maximum_certainty = linking.updated_certainty
 
     return [next_question_linking, next_question]
-
 
 
 def generate_linking_questions(entity_linkings: list, article: Article):
@@ -105,48 +105,13 @@ def generate_linking_questions(entity_linkings: list, article: Article):
     for entity_linking in entity_linkings:
         database_question = Question.query.filter(Question.questionable_object == entity_linking).first()
 
-        if database_question:
-            pass
-
-        elif entity_linking.linkable_type == 'Politician':
-            politician = entity_linking.linkable_object
-
-            if politician.role and politician.municipality:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.role,
-                    politician.municipality)
-            elif politician.role:
-                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.role)
-            else:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.municipality)
-
-            question = Question(questionable_object=entity_linking,
-                                question_string=question_string, article=article)
-
-            db.session.add(question)
-            db.session.commit()
-
-        elif entity_linking.linkable_type == 'Party' and entity_linking.initial_certainty < CUTOFF_PARTY_CERTAINTY:
-            party = entity_linking.linkable_object
-
-            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
-
-            question = Question(questionable_object=entity_linking,
-                                question_string=question_string, article=article)
-
-            db.session.add(question)
-            db.session.commit()
+        if not database_question:
+            if entity_linking.linkable_type == 'Politician' or (
+                    entity_linking.linkable_type == 'Party' and entity_linking.initial_certainty < CUTOFF_PARTY_CERTAINTY):
+                
+                question = Question(questionable_object=entity_linking, article=article)
+                db.session.add(question)
+                db.session.commit()
 
 
 def process_polar_response(question_id: int, response_id: int):
