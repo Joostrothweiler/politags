@@ -22,7 +22,8 @@ def generate_question(apidict: dict) -> dict:
 
     if not entity_linkings:
         return {
-            'error': 'no linkings for entities in this article'
+            'error': 'no linkings for entities in this article',
+            'count_responses': count_responses
         }
 
     generate_linking_questions(entity_linkings, article)
