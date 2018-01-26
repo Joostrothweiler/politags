@@ -139,7 +139,6 @@ class Response(db.Model):
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
     response = db.Column(db.Integer())
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-
     question = db.relationship('Question', back_populates='responses')
 
 # Helper function to set updated certainty to the same value as the initial certainty
