@@ -30,7 +30,7 @@ def generate_question(apidict: dict) -> dict:
 
     generate_linking_questions(entity_linkings, article)
 
-    [next_question_linking, question] = find_next_question(entity_linkings)
+    [next_question_linking, question] = find_next_question1(entities)
 
     if not question:
         return {
@@ -51,7 +51,7 @@ def generate_question(apidict: dict) -> dict:
     }
 
 
-def find_linkings(entities: list) ->  list:
+def find_linkings(entities: list) -> list:
     """
     finds all linkings to entities that were saved to the database by the entities module
     :param entities: a list of entities
@@ -64,27 +64,53 @@ def find_linkings(entities: list) ->  list:
 
     return linkings
 
+#
+# def find_next_question(entity_linkings: list) -> [EntityLinking, Question]:
+#     """
+#     Finds the next question to ask based on a list of entity_linkings
+#     :param entity_linkings: a list of EntityLinkings
+#     :return: the EntityLinking to be questioned and the corresponding Question
+#     """
+#     current_maximum_certainty = 0
+#     next_question_linking = None
+#     next_question = None
+#
+#     for linking in entity_linkings:
+#         question = Question.query.filter(Question.questionable_object == linking).first()
+#         if question:
+#             if linking.updated_certainty >= current_maximum_certainty and linking.updated_certainty < 1:
+#                 next_question = question
+#                 next_question_linking = linking
+#                 current_maximum_certainty = linking.updated_certainty
+#
+#     return [next_question_linking, next_question]
 
-def find_next_question(entity_linkings: list) -> [EntityLinking, Question]:
-    """
-    Finds the next question to ask based on a list of entity_linkings
-    :param entity_linkings: a list of EntityLinkings
-    :return: the EntityLinking to be questioned and the corresponding Question
-    """
-    maximum_certainty = 0
 
+def find_next_question1(entities: list) -> [EntityLinking, Question]:
+    """
+    Finds the next question to ask based on a list of entities
+    :param entities:
+    :return:
+    """
+
+    current_maximum_certainty = 0
     next_question_linking = None
     next_question = None
 
-    for linking in entity_linkings:
-        question = Question.query.filter(Question.questionable_object == linking).first()
-        if question:
-            if linking.updated_certainty >= maximum_certainty and linking.updated_certainty < 1:
-                next_question = question
-                next_question_linking = linking
-                maximum_certainty = linking.updated_certainty
+    for entity in entities:
+        certain_linkings_count = EntityLinking.query.filter(EntityLinking.entity == entity).filter(EntityLinking.initial_certainty == 1).count()
+
+        if certain_linkings_count == 0:
+            for linking in entity.linkings:
+                question = Question.query.filter(Question.questionable_object == linking).first()
+                if question:
+                    if linking.updated_certainty >= current_maximum_certainty and linking.updated_certainty < 1:
+                        next_question = question
+                        next_question_linking = linking
+                        current_maximum_certainty = linking.updated_certainty
 
     return [next_question_linking, next_question]
+
 
 
 def generate_linking_questions(entity_linkings: list, article: Article):
