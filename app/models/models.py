@@ -117,6 +117,41 @@ class Question(db.Model):
             }
         ]
 
+    @hybrid_property
+    def question_string_new(self):
+        question_string = ""
+
+        if self.questionable_object.linkable_type == "Politician":
+
+            politician = self.questionable_object.linkable_object
+
+            if politician.role and politician.municipality:
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.role,
+                    politician.municipality)
+            elif politician.role:
+                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.role)
+            else:
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.municipality)
+
+        elif self.questionable_object.linkable_type == 'Party':
+            party = self.questionable_object.linkable_object
+
+            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
+
+        return question_string
+
 
     # Relationships
     article = db.relationship('Article', back_populates='questions')
