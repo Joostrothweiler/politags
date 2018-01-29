@@ -52,17 +52,20 @@ class Politician(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     system_id = db.Column(db.Integer(), unique=True)
     title = db.Column(db.String(20), nullable=False, server_default=u'')
+    initials = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
-    last_name = db.Column(db.String(100), nullable=False, server_default=u'')
+    given_name = db.Column(db.String(50), nullable=False, server_default=u'')
+    last_name = db.Column(db.String(100), nullable=False)
     suffix = db.Column(db.String(20), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
+    department = db.Column(db.String(200), nullable=False, server_default=u'')
     municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     @hybrid_property
     def full_name(self):
-        return self.first_name + ' ' + self.last_name
+        return self.initials + ' ' + self.last_name
 
     # API Representation
     def as_dict(self):
@@ -70,7 +73,7 @@ class Politician(db.Model):
             'id': self.id,
             'system_id': self.system_id,
             'title': self.title,
-            'first_name': self.first_name,
+            'initials': self.initials,
             'last_name': self.last_name,
             'suffix': self.suffix,
             'party': self.party,

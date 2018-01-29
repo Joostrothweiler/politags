@@ -80,15 +80,17 @@ def get_all_current_members_of_chamber():
                         new_item.append('')
 
             data.append({
-                'system_id': new_item[0],
-                'title': new_item[1],
-                'initials': new_item[2],
-                'middle_name': new_item[3],
-                'last_name': new_item[4],
-                'first_name': new_item[5],
-                'first_name_alt': new_item[6],
-                'role': new_item[12],
-                'party': new_item[14]
+                'system_id': abs(hash(new_item[0])) % (10 ** 8),
+                'title': new_item[1].strip(),
+                'initials': new_item[2].strip(),
+                'last_name': new_item[3].strip() + ' ' + new_item[4].strip(),
+                'first_name': new_item[5].strip(),
+                'given_name': new_item[6].strip(),
+                'role': new_item[12].strip(),
+                'party': new_item[14].strip(),
+                'municipality': '',
+                'suffix': '',
+                'department': '',
             })
 
         # Check if a 'next' URL is provided

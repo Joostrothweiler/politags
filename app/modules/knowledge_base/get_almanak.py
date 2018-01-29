@@ -2,35 +2,46 @@ from lxml import etree
 import re
 import requests
 
+from app.modules.common.utils import parse_human_name
+
 
 def get_all_current_ministers():
     # Download and save data, data lake style
     r = requests.get('https://almanak.overheid.nl/archive/exportOO.xml', verify=False)
     xml = etree.XML(r.text)
 
-    # Process ministers and staatssecretarissen
-    ministers = []
+    # Process politicians and staatssecretarissen
+    politicians = []
     for ministerie in xml.xpath(
             '/p:overheidsorganisaties/p:organisaties/p:organisatie/p:categorie[@p:naam="Ministeries"]/..',
             namespaces=xml.nsmap):
-        ministerie_naam = ministerie.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
-        for functie in ministerie.xpath('.//p:categorie[@p:naam="Ministeries"]/../p:functies/p:functie',
+        department = ministerie.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
+        for role in ministerie.xpath('.//p:categorie[@p:naam="Ministeries"]/../p:functies/p:functie',
                                         namespaces=xml.nsmap):
-            functie_naam = functie.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
-            if re.match(r'^Minister.*', functie_naam, re.I) or re.match(r'^Staats.*', functie_naam, re.I):
+            role_name = role.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
+            if re.match(r'^Minister.*', role_name, re.I) or re.match(r'^Staats.*', role_name, re.I):
                 # Sometimes wrongly multiple medewerkers are provided, so
                 # far the last one has always been the actual one in office
-                medewerker_id = \
-                    functie.xpath('p:medewerkers/p:medewerker/p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
-                medewerker_naam = functie.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1]
-                ministers.append({
-                    'system_id': medewerker_id,
-                    'full_name': medewerker_naam,
-                    'department': ministerie_naam,
-                    'role': functie_naam
+                system_id = \
+                    role.xpath('p:medewerkers/p:medewerker/p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
+                politician_name = role.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1]
+
+                human_name = parse_human_name(politician_name)
+                politicians.append({
+                    'system_id': system_id,
+                    'title': human_name['title'],
+                    'initials': human_name['first_name'],
+                    'last_name': human_name['last_name'],
+                    'suffix': human_name['suffix'],
+                    'role': role_name,
+                    'department': department,
+                    'first_name': '',
+                    'party': '',
+                    'municipality': '',
+                    'given_name': '',
                 })
 
-    return ministers
+    return politicians
 
 
 def get_all_current_local_politicians():
@@ -38,35 +49,43 @@ def get_all_current_local_politicians():
     r = requests.get('https://almanak.overheid.nl/archive/exportOO.xml', verify=False)
     xml = etree.XML(r.text)
 
-    # Process gemeentemedewerkers
-    gemeentemedewerkers = []
+    # Process politicians
+    politicians = []
 
-    for gemeente in xml.xpath('/p:overheidsorganisaties/p:gemeenten/p:gemeente', namespaces=xml.nsmap):
-        gemeente_naam = gemeente.xpath('./p:naam/text()', namespaces=xml.nsmap)[0]
-        gemeente_afkorting = gemeente.xpath('./p:afkorting/text()', namespaces=xml.nsmap)
+    for municipality in xml.xpath('/p:overheidsorganisaties/p:gemeenten/p:gemeente', namespaces=xml.nsmap):
+        municipality_name = municipality.xpath('./p:naam/text()', namespaces=xml.nsmap)[0]
+        municipality_abbreviation = municipality.xpath('./p:afkorting/text()', namespaces=xml.nsmap)
         # Not every gemeente has an afkorting
-        if gemeente_afkorting:
-            gemeente_afkorting = gemeente_afkorting[0]
+        if municipality_abbreviation:
+            municipality_abbreviation = municipality_abbreviation[0]
         else:
-            gemeente_afkorting = ''
-        for functie in gemeente.xpath('./p:functies/p:functie', namespaces=xml.nsmap):
-            functie_naam = functie.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
-            for medewerker in functie.xpath('./p:medewerkers/p:medewerker', namespaces=xml.nsmap):
-                medewerker_id = medewerker.xpath('./p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
-                medewerker_naam = medewerker.xpath('./p:naam/text()', namespaces=xml.nsmap)[-1]
-                medewerker_partij = medewerker.xpath('./p:partij/text()', namespaces=xml.nsmap)
+            municipality_abbreviation = ''
+        for role in municipality.xpath('./p:functies/p:functie', namespaces=xml.nsmap):
+            role_name = role.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
+            for politician in role.xpath('./p:medewerkers/p:medewerker', namespaces=xml.nsmap):
+                system_id = politician.xpath('./p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
+                full_name = politician.xpath('./p:naam/text()', namespaces=xml.nsmap)[-1]
+                party = politician.xpath('./p:partij/text()', namespaces=xml.nsmap)
                 # Not every medewerker belongs to a political party
-                if medewerker_partij:
-                    medewerker_partij = medewerker_partij[0]
+                if party:
+                    party = party[0]
                 else:
-                    medewerker_partij = ''
+                    party = ''
 
-                gemeentemedewerkers.append({
-                    'system_id': medewerker_id,
-                    'full_name': medewerker_naam,
-                    'party': medewerker_partij,
-                    'municipality': gemeente_afkorting,
-                    'role': functie_naam,
+                human_name = parse_human_name(full_name)
+
+                politicians.append({
+                    'system_id': system_id,
+                    'title': human_name['title'],
+                    'first_name': '',
+                    'initials': human_name['first_name'],
+                    'last_name': human_name['last_name'],
+                    'suffix': human_name['suffix'],
+                    'party': party,
+                    'municipality': municipality_abbreviation,
+                    'role': role_name,
+                    'given_name': '',
+                    'department': '',
                 })
 
-    return gemeentemedewerkers
+    return politicians
