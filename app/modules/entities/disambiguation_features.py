@@ -3,29 +3,52 @@ from whoswho import who
 
 
 def f_name_similarity(mention, candidate):
-    sim = string_similarity(candidate.last_name, mention)
-    return sim
-
-
-def f_first_name_similarity(mention, candidate):
-    parts_of_mention_name = mention.split(' ')
-    first_letter_candidate = candidate.first_name.split('.')[0]
-    sim = 0.0
-
-    for part_of_name in parts_of_mention_name:
-        if len(part_of_name) > 0 and part_of_name[0] == first_letter_candidate:
-            sim = 1.0
-    return sim
-
-def f_role_in_document(document, candidate):
-    if candidate.role.lower() in document['text_description'].lower():
-        return 1.0
-    else:
-        return 0.0
+    sim_last = string_similarity(candidate.last_name, mention)
+    sim_given = string_similarity((candidate.given_name + ' ' + candidate.last_name), mention)
+    sim_first = string_similarity((candidate.first_name + ' ' + candidate.last_name), mention)
+    sim_full = string_similarity(candidate.full_name, mention)
+    return max(sim_first, sim_last, sim_given, sim_full)
 
 
 def f_who_name_similarity(mention, candidate):
-    sim = who.ratio(mention, candidate.full_name) / 100
+    sim_given = who.ratio(mention, (candidate.given_name + ' ' + candidate.last_name)) / 100
+    sim_first = who.ratio(mention, (candidate.first_name + ' ' + candidate.last_name)) / 100
+    sim_initials = who.ratio(mention, candidate.full_name) / 100
+    return max(sim_given, sim_first, sim_initials)
+
+
+def f_first_name_similarity(mention, candidate):
+    sim_first = 0
+    sim_given = 0
+
+    if len(candidate.first_name) > 1:
+        sim_first = string_similarity(mention.split(' ')[0].lower(), candidate.first_name.lower())
+    if len(candidate.given_name) > 1:
+        sim_given = string_similarity(mention.split(' ')[0].lower(), candidate.given_name.lower())
+
+    return max(sim_first, sim_given)
+
+
+def f_initials_similarity(mention, candidate):
+    parts_of_mention_name = mention.lower().split(' ')
+    first_letter_candidate = candidate.initials.split('.')[0].lower()
+
+    if parts_of_mention_name[0] == first_letter_candidate:
+        return 1
+    else:
+        return 0
+
+
+def f_role_in_document(document, candidate):
+    role_splitted = candidate.role.lower().split(' ')
+    sim = 0
+
+    if len(role_splitted) > 0:
+        for role in role_splitted:
+            if role in document['text_description'].lower():
+                sim = 1
+    else:
+        sim = 0
     return sim
 
 
@@ -36,8 +59,8 @@ def f_party_similarity(document, candidate):
             return 1.0
         else:
             return 0.0
-    else:
-        return 0.5
+    elif candidate.party.lower() in document['text_description']:
+        return 0.75
 
 
 def f_context_similarity(document, entities, candidate):
@@ -65,5 +88,3 @@ def jaccard_distance(list1, list2):
     intersection = len(list(set(list1).intersection(list2)))
     union = (len(list1) + len(list2)) - intersection
     return float(intersection / union)
-
-

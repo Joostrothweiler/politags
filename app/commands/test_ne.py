@@ -20,14 +20,13 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    # remove_all_articles()
+    remove_all_articles()
 
     # input = 'data_resources/evaluation/van_dijk_input.json'
     # output = process_evaluation_input(input)
     # eval = 'data_resources/evaluation/van_dijk_eval.json'
     # eval_output = json.load(open(eval))
     # evaluate_ned(output, eval_output)
-
 
     eval = 'data_resources/evaluation/large_eval_checked.json'
     output = process_evaluation_input(eval)
