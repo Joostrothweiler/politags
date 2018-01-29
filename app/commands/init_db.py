@@ -5,6 +5,7 @@ from flask_script import Command
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity, Article
+from app.modules.knowledge_base.update import update_knowledge_base
 
 logger = logging.getLogger('init_db')
 
@@ -22,11 +23,13 @@ def init_db():
     logger.info('Creating tables in database.')
     db.create_all()
     # Initialize with parties en politicians
-    logger.info('Ready to initialize')
-    logger.info('Initializing politicians')
-    init_politicians()
-    logger.info('Initializing parties')
-    init_parties()
+
+    update_knowledge_base()
+    # logger.info('Ready to initialize')
+    # logger.info('Initializing politicians')
+    # init_politicians()
+    # logger.info('Initializing parties')
+    # init_parties()
 
 def init_politicians():
     with open('data_resources/archive_politicians.csv') as csv_file:
