@@ -37,8 +37,7 @@ def translate_doc(document: dict) -> dict:
         'text_description': html2text(document['description']),
         'parties': document['parties'],
         'location': document['location'],
-        'collection': document['meta']['collection'],
-        'cookie_id': document['cookie_id']
+        'collection': document['meta']['collection']
     }
     return simple_doc
 

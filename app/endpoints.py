@@ -38,8 +38,9 @@ def post_find_party(name):
 # Handling the question generation/querying when poliflw asks for a question.
 def post_article_question(data):
     doc = json.loads(data)
+    cookie_id = doc['cookie_id']
     simple_doc = translate_doc(doc)
-    res = generate_question(simple_doc)
+    res = generate_question(simple_doc, cookie_id)
     return jsonify(res)
 
 

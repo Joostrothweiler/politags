@@ -9,7 +9,7 @@ from app.local_settings import PFL_PASSWORD, PFL_USER
 from app.modules.entities.named_entities import return_extracted_information
 
 
-def generate_question(apidict: dict) -> dict:
+def generate_question(apidict: dict, cookie_id : str) -> dict:
     """
     Generate a question for an article in PoliFLW
     :param apidict: POST dict posted by PoliFLW
@@ -17,7 +17,6 @@ def generate_question(apidict: dict) -> dict:
     """
 
     article = Article.query.filter(Article.id == apidict['id']).first()
-    cookie_id = apidict['cookie_id']
 
     if not article:
         process_document(apidict)
