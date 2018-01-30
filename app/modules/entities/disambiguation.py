@@ -86,7 +86,7 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     f_party = f_party_similarity(document, candidate)
     f_context = f_context_similarity(document, doc_entities, candidate)
 
-    feature_vector = [f_name, 30 * f_initials, 50 * f_first_name, f_who_name, 40 * f_location, f_role, 20 * f_party,
+    feature_vector = [f_name, 30 * f_initials, 100 * f_first_name, f_who_name, 50 * f_location, f_role, 50 * f_party,
                       f_context]
 
     return feature_vector

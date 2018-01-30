@@ -1,6 +1,8 @@
 from lxml import etree
 import requests
 
+from app.modules.common.utils import string2numeric_hash
+
 
 def get_all_current_members_of_chamber():
     # URL to retrieve all kamerleden
@@ -86,7 +88,7 @@ def get_all_current_members_of_chamber():
                 last_name = new_item[4].strip()
 
             data.append({
-                'system_id': abs(hash(new_item[0])) % (10 ** 8),
+                'system_id': string2numeric_hash(new_item[0]),
                 'title': new_item[1].strip(),
                 'initials': new_item[2].strip(),
                 'last_name': last_name,

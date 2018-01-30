@@ -56,8 +56,8 @@ def f_party_similarity(document, candidate):
             return 1.0
         else:
             return 0.0
-    elif candidate.party.lower() in document['text_description']:
-        return 0.75
+    else:
+        return 0.0
 
 def f_location_similarity(document, candidate):
     if document['location'].lower() == candidate.municipality.lower():

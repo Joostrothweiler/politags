@@ -1,4 +1,5 @@
 import csv
+import hashlib
 from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
 from nameparser import HumanName
@@ -131,3 +132,8 @@ def write_objects_to_file(filename: str, header : list, object_list : list):
 
         for obj in object_list:
             writer.writerow(obj)
+
+
+def string2numeric_hash(text):
+    text = text.encode('utf-8')
+    return int(hashlib.md5(text).hexdigest()[:5], 16)
