@@ -118,7 +118,7 @@ def generate_linking_questions(entity_linkings: list, article: Article):
                 db.session.commit()
 
 
-def process_polar_response(question_id: int, apidoc: int):
+def process_polar_response(question_id: int, apidoc: dict):
     """
     Processes a polar response to a question given by a PoliFLW reader
     :param question_id: the question to which the response was given
