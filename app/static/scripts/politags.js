@@ -38,14 +38,14 @@ $(getQuestion());
  */
 function getQuestion() {
     let apiObject = addCookieIdToObject(articleObject)
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/articles/questions",
         data: JSON.stringify(apiObject),
-        success: function (response) {
-            console.dir(response)
 
+        success: function (response) {
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']

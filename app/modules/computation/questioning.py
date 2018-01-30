@@ -157,7 +157,7 @@ def update_linking_certainty(question: Question, response: Response):
     """
 
     LEARNING_RATE = 0.05
-    article = question.article
+    # article = question.article
 
     if response == question.questionable_object.linkable_object.id:
         if question.questionable_object.updated_certainty + LEARNING_RATE > 1:
