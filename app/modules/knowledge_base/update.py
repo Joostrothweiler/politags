@@ -10,23 +10,18 @@ logger = logging.getLogger('update')
 
 
 def update_knowledge_base():
-    logger.info('Updating knowledge base')
-    logger.info('Initializing politicians (and update)')
-    for person in get_all_current_members_of_chamber():
-        find_or_create_politician(person)
-
-    for person in get_all_current_local_politicians():
-        find_or_create_politician(person)
-
-    for person in get_all_current_ministers():
-        find_or_create_politician(person)
-
-
-
-    db.session.commit()
-
-    logger.info('Initializing parties (and update)')
+    logger.info('Initializing politicians')
+    init_politicians()
+    logger.info('Initializing parties')
     init_parties()
+
+
+def init_politicians():
+    with open('data_resources/politicians.csv') as csv_file:
+        politicians = csv.DictReader(csv_file, delimiter=',')
+        for person in politicians:
+            find_or_create_politician(person)
+    db.session.commit()
 
 
 def init_parties():

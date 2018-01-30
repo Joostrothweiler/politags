@@ -1,44 +1,43 @@
 import csv
+import logging
+
 from flask_script import Command
 
 from app.modules.common.utils import parse_human_name, write_objects_to_file
+from app.modules.knowledge_base.get_almanak import get_all_current_local_politicians, get_all_current_ministers
+from app.modules.knowledge_base.get_kamerleden import get_all_current_members_of_chamber
+
+logger = logging.getLogger('construct_kb')
 
 
 class ConstructKbCommand(Command):
     """ Construct the database."""
 
     def run(self):
-        politicians = get_politicians_from_archive_scraper()
-        write_objects_to_file('archive_politicians',
-                              ['id', 'title', 'first_name', 'last_name', 'suffix', 'party', 'municipality', 'role'],
-                              politicians)
+        get_politicians_from_archive()
 
 
-def get_politicians_from_archive_scraper():
-    politicians = []
+def get_politicians_from_archive():
+    logger.info('Updating knowledge base')
+    logger.info('Initializing politicians (and update)')
 
-    with open('data_resources/archive_scraped.csv') as csv_file:
-        data_rows = csv.DictReader(csv_file, delimiter=',')
-        for row in data_rows:
-            system_id = get_system_id_from_url(row['Address'])
-            human_name = parse_human_name(row['Naam'])
+    data = []
 
-            person = {
-                'id': system_id,
-                'title': human_name['title'],
-                'first_name': human_name['first_name'],
-                'last_name': human_name['last_name'],
-                'suffix': human_name['suffix'],
-                'party': row['partij-abbr 1'],
-                'municipality': row['gemeente 1'],
-                'role': row['functie 1']
-            }
-            politicians.append(person)
+    for person in get_all_current_members_of_chamber():
+        data.append(person)
 
-    return politicians
+    for person in get_all_current_local_politicians():
+        data.append(person)
 
+    for person in get_all_current_ministers():
+        data.append(person)
 
-def get_system_id_from_url(url):
-    arr = url.split('/')  # ['https:', '', 'almanak.overheid.nl', '126360', 'Mw_D_Dekker-Mulder', '']
-    system_id = arr[-3]  # '126360'
-    return system_id
+    with open('data_resources/politicians.csv', 'w') as csvfile:
+        fieldnames = ['system_id', 'title', 'initials', 'first_name', 'given_name', 'last_name', 'suffix', 'party', 'department', 'municipality', 'role']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for person in data:
+            writer.writerow(person)
+
+    logger.info('done')
