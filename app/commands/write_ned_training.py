@@ -19,8 +19,6 @@ class WriteNedTraining(Command):
 
 def write_ned_training():
     result = ''
-    CERTAINTY_BOUNDARY_FALSE_LABEL = 0.3
-    CERTAINTY_BOUNDARY_TRUE_LABEL = 0.8
     FALSE_LABEL = 0
     TRUE_LABEL = 1
 
@@ -46,10 +44,10 @@ def write_ned_training():
             feature_vector = compute_politician_feature_vector(simple_doc, doc_entities, entity, candidate)
             certainty = compute_politician_certainty(feature_vector)
 
-            if certainty < CERTAINTY_BOUNDARY_FALSE_LABEL or linking.updated_certainty < linking.initial_certainty:
+            if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
                 result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
-            if certainty > CERTAINTY_BOUNDARY_TRUE_LABEL or linking.updated_certainty > linking.initial_certainty:
+            if linking.updated_certainty > linking.initial_certainty:
                 feature_vector.append(TRUE_LABEL)
                 result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
 
