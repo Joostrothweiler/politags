@@ -52,7 +52,7 @@ def find_or_create_politician(person: dict):
 
     politician_by_name = Politician.query.filter(Politician.last_name == person['last_name']) \
         .filter(Politician.initials == person['initials']) \
-        .filter(Politician.party == person['party']).first()
+        .filter(Politician.municipality == person['municipality']).first()
 
     if politician_by_id or politician_by_name:
         return politician_by_id

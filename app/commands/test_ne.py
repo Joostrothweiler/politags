@@ -70,7 +70,7 @@ def evaluate_ned(output, eval_output):
     for output_obj in output['items']:
         for eval_obj in eval_output['items']:
             if output_obj['article_id'] == eval_obj['article_id']:
-
+                logger.info(output_obj['article_id'])
                 party_scores.append(party_scorer(output_obj['parties'], eval_obj['parties']))
                 politician_scores.append(politician_scorer(output_obj['politicians'], eval_obj['politicians']))
 
@@ -156,6 +156,9 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
     precision_count = 0
     recall_count = 0
 
+    logger.info({'output' : output_item_politicians})
+    logger.info({'eval' : eval_item_politicians})
+
     for ep in eval_item_politicians:
         if ep['system_id'] != 999999999:
             eval_count_simple += 1
@@ -189,4 +192,5 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
         'recall_ratio': recall_ratio
     }
 
+    logger.info(res)
     return res

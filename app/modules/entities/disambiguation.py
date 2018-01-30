@@ -9,8 +9,9 @@ from app.modules.entities.disambiguation_features import *
 
 logger = logging.getLogger('disambiguation')
 
-with open('app/modules/entities/nlp_model/test_tree_clf.pkl', 'rb') as fid:
-    classifier = pickle.load(fid)
+
+# with open('app/modules/entities/nlp_model/test_tree_clf.pkl', 'rb') as fid:
+#     classifier = pickle.load(fid)
 
 
 def named_entity_disambiguation(entities: list, document: dict):
@@ -35,21 +36,21 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param doc_entities: The entities found in the document using Spacy NER.
     :param entity: The entity from the database we are currently evaluating.
     """
-    MAX_NUMBER_OF_LINKINGS = 2
+    MAX_NUMBER_OF_LINKINGS = 1
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
     result = []
 
+    # logger.info('Mention: ' + entity.text)
+
     for candidate in candidates:
-        candidate_feature_vector = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        score = 0
+        candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
 
-        y_prediction = classifier.predict([candidate_feature_vector])[0]
-
-        result.append({'candidate': candidate,
-                       'feature_vector': candidate_feature_vector,
-                       'score': 10*y_prediction + np.sum(candidate_feature_vector)
-                       })
+        # logger.info([candidate.full_name, result_object['score'], compute_politician_certainty(candidate_fv)])
+        result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
@@ -63,8 +64,8 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for obj in result:
         candidate = obj['candidate']
-        feature_vector = obj['feature_vector']
-        store_entity_linking(entity, candidate, compute_politician_certainty(feature_vector))
+        candidate_fv = obj['feature_vector']
+        store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
 
 
 def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
@@ -80,11 +81,13 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     f_initials = f_initials_similarity(entity.text, candidate)
     f_first_name = f_first_name_similarity(entity.text, candidate)
     f_who_name = f_who_name_similarity(entity.text, candidate)
+    f_location = f_location_similarity(document, candidate)
     f_role = f_role_in_document(document, candidate)
     f_party = f_party_similarity(document, candidate)
     f_context = f_context_similarity(document, doc_entities, candidate)
 
-    feature_vector = [f_name, f_initials, f_first_name, f_who_name, f_role, f_party, f_context]
+    feature_vector = [f_name, 30 * f_initials, 50 * f_first_name, f_who_name, 40 * f_location, f_role, 20 * f_party,
+                      f_context]
 
     return feature_vector
 
@@ -113,16 +116,14 @@ def get_candidate_politicians(entity: Entity) -> list:
 
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)
-        candidates = Politician.query.filter(
-            or_(func.lower(Politician.last_name) == func.lower(name),
-                func.lower(Politician.last_name) == func.lower(name))).all()
+        candidates = Politician.query.filter(func.lower(Politician.last_name) == func.lower(name)).all()
         name_array.pop(0)
 
     # If no candidates found based on exact matches so far, take LAST PART OF NAME and look for this one.
-    if len(candidates) == 0:
-        candidates = Politician.query.filter(
-            or_(func.lower(Politician.last_name).contains(func.lower(name)),
-                func.lower(Politician.last_name).contains(func.lower(name)))).all()
+    # if len(candidates) == 0:
+    #     candidates = Politician.query.filter(
+    #         or_(func.lower(Politician.last_name).contains(func.lower(name)),
+    #             func.lower(Politician.last_name).contains(func.lower(name)))).all()
 
     return candidates
 

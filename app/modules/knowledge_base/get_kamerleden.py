@@ -79,11 +79,17 @@ def get_all_current_members_of_chamber():
                     else:
                         new_item.append('')
 
+
+            if len(new_item[3]) > 1:
+                last_name = new_item[3].strip() + ' ' + new_item[4].strip()
+            else:
+                last_name = new_item[4].strip()
+
             data.append({
                 'system_id': abs(hash(new_item[0])) % (10 ** 8),
                 'title': new_item[1].strip(),
                 'initials': new_item[2].strip(),
-                'last_name': new_item[3].strip() + ' ' + new_item[4].strip(),
+                'last_name': last_name,
                 'first_name': new_item[5].strip(),
                 'given_name': new_item[6].strip(),
                 'role': new_item[12].strip(),

@@ -28,13 +28,13 @@ def get_all_current_ministers():
 
                 human_name = parse_human_name(politician_name)
                 politicians.append({
-                    'system_id': system_id,
-                    'title': human_name['title'],
-                    'initials': human_name['first_name'],
-                    'last_name': human_name['last_name'],
-                    'suffix': human_name['suffix'],
-                    'role': role_name,
-                    'department': department,
+                    'system_id': system_id.strip(),
+                    'title': human_name['title'].strip(),
+                    'initials': human_name['first_name'].strip(),
+                    'last_name': human_name['last_name'].strip(),
+                    'suffix': human_name['suffix'].strip(),
+                    'role': role_name.strip(),
+                    'department': department.strip(),
                     'first_name': '',
                     'party': '',
                     'municipality': '',
@@ -75,15 +75,15 @@ def get_all_current_local_politicians():
                 human_name = parse_human_name(full_name)
 
                 politicians.append({
-                    'system_id': system_id,
-                    'title': human_name['title'],
+                    'system_id': system_id.strip(),
+                    'title': human_name['title'].strip(),
                     'first_name': '',
-                    'initials': human_name['first_name'],
-                    'last_name': human_name['last_name'],
-                    'suffix': human_name['suffix'],
-                    'party': party,
-                    'municipality': municipality_abbreviation,
-                    'role': role_name,
+                    'initials': human_name['first_name'].strip(),
+                    'last_name': human_name['last_name'].strip(),
+                    'suffix': human_name['suffix'].strip(),
+                    'party': party.strip(),
+                    'municipality': municipality_abbreviation.strip(),
+                    'role': role_name.strip(),
                     'given_name': '',
                     'department': '',
                 })

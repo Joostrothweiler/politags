@@ -18,19 +18,16 @@ def f_who_name_similarity(mention, candidate):
 
 
 def f_first_name_similarity(mention, candidate):
-    sim_first = 0
-    sim_given = 0
-
-    if len(candidate.first_name) > 1:
-        sim_first = string_similarity(mention.split(' ')[0].lower(), candidate.first_name.lower())
-    if len(candidate.given_name) > 1:
-        sim_given = string_similarity(mention.split(' ')[0].lower(), candidate.given_name.lower())
-
-    return max(sim_first, sim_given)
+    sim = 0
+    if len(candidate.first_name) > 1 and mention.split(' ')[0].lower() == candidate.first_name.lower():
+        sim = 1
+    if len(candidate.given_name) > 1 and mention.split(' ')[0].lower() == candidate.given_name.lower():
+        sim = 1
+    return sim
 
 
 def f_initials_similarity(mention, candidate):
-    parts_of_mention_name = mention.lower().split(' ')
+    parts_of_mention_name = mention[0].lower()
     first_letter_candidate = candidate.initials.split('.')[0].lower()
 
     if parts_of_mention_name[0] == first_letter_candidate:
@@ -61,6 +58,12 @@ def f_party_similarity(document, candidate):
             return 0.0
     elif candidate.party.lower() in document['text_description']:
         return 0.75
+
+def f_location_similarity(document, candidate):
+    if document['location'].lower() == candidate.municipality.lower():
+        return 1.0
+    else:
+        return 0.0
 
 
 def f_context_similarity(document, entities, candidate):
