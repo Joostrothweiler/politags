@@ -37,34 +37,34 @@ $(getQuestion());
  * Gets the question for the current article by calling the Politags API and updates html accordingly
  */
 function getQuestion() {
+    let apiObject = addCookieIdToObject(articleObject)
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/articles/questions",
-        data: JSON.stringify(articleObject),
+        data: JSON.stringify(apiObject),
 
         success: function (response) {
-            console.log(response);
             if ($.isEmptyObject(response['error']) === true) {
 
-                let question = response['question'];
-                let questionId = response['question_id'];
-                let possibleAnswers = response['possible_answers'];
-                let entityText = response['text'];
-                let countResponses = response['count_responses'];
+                let question = response['question']
+                let questionId = response['question_id']
+                let possibleAnswers = response['possible_answers']
+                let entityText = response['text']
+                let countResponses = response['count_responses']
 
-                highlightEntity(article, entityText, questionId);
-                renderQuestion(question, questionId, possibleAnswers);
+                highlightEntity(article, entityText, questionId)
+                renderQuestion(question, questionId, possibleAnswers)
                 updateCounter(countResponses)
             }
             else {
-                updateCounter(response['count_responses']);
+                updateCounter(response['count_responses'])
                 console.log(response['error'])
             }
         },
 
         error: function (error) {
-            console.log(error);
+            console.log(error)
         }
     })
 }
@@ -75,32 +75,36 @@ function getQuestion() {
  * @param: response: the response to a question
  * @param: questionId: the question that response answers
  */
-function postResponse(response, questionId) {
+function postAnswer(answer, questionId) {
+    answer = addCookieIdToObject(answer)
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/questions/" + questionId,
-        data: JSON.stringify(response),
+        data: JSON.stringify(answer),
         success: function (response) {
-            console.log(response);
-            updateCounter();
+            console.log(response)
+            updateCounter()
             showFeedback()
         },
         error: function (error) {
             console.log(error);
         }
     })
-
-
 }
 
 /**
  * This piece of code checks for a click on the responseButton class and posts the response to politags
  */
 $('body').on('click', '.responseButton', function () {
-        let response = $(this).attr("id");
+        let answerId = $(this).attr("id")
+
+        let answer = {
+            "answer_id": answerId
+        }
         let questionId = $(this).attr("question_id");
-        postResponse(response, questionId)
+        postAnswer(answer, questionId)
     }
 );
 
@@ -197,4 +201,73 @@ function showFeedback() {
     }, 4000)
 
 }
+
+
+/**
+ * This function sets a cookie
+ * @param cookieName
+ * @param cookieValue
+ * @param expiryDays
+ */
+function setCookie(cookieName, cookieValue, expiryDays) {
+    var date = new Date()
+    date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000))
+    var expires = "expires=" + date.toUTCString()
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires
+}
+
+/**
+ * This function checks if a certain cooking exists and returns its value
+ * @param cookieName: the name of the cookie we want to get
+ * @return {string}: the value of the cookie we're searching
+ */
+function getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie)
+    var ca = decodedCookie.split(';')
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i]
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1)
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length)
+        }
+    }
+    return ""
+}
+
+/**
+ * This function gets the cookie ID for the current reader
+ * @param cookieName
+ */
+function getCookieId() {
+    var id = getCookie("id");
+    if (id === "") {
+        setCookie("id", uuidv4(), 10000);
+    }
+    return id
+}
+
+/**
+ * This function generates a Unique User ID
+ * @return UUID
+ */
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c = >
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+)
+}
+
+/**
+ * This function adds the unique cookie ID to any object before making an api call
+ * @param object: the object to which we want to add the cookie_id
+ * @return {*}
+ */
+function addCookieIdToObject(object) {
+    let cookieId = getCookieId()
+    object["cookie_id"] = cookieId
+    return object
+}
+
 

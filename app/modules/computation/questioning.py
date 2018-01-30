@@ -2,6 +2,7 @@ from app.models.models import Article
 from app import db
 from app.models.models import Question, Response, EntityLinking
 from app.modules.entities.named_entities import process_document
+from sqlalchemy import and_
 
 
 def generate_question(apidict: dict) -> dict:
@@ -12,6 +13,8 @@ def generate_question(apidict: dict) -> dict:
     """
 
     article = Article.query.filter(Article.id == apidict['id']).first()
+    cookie_id = apidict['cookie_id']
+
     if not article:
         process_document(apidict)
         article = Article.query.filter(Article.id == apidict['id']).first()
@@ -28,7 +31,7 @@ def generate_question(apidict: dict) -> dict:
 
     generate_linking_questions(entity_linkings, article)
 
-    [next_question_linking, question] = find_next_question(entities)
+    [next_question_linking, question] = find_next_question(entities, cookie_id)
 
     if not question:
         return {
@@ -63,11 +66,12 @@ def find_linkings(entities: list) -> list:
     return linkings
 
 
-def find_next_question(entities: list) -> [EntityLinking, Question]:
+def find_next_question(entities: list, cookie_id) -> [EntityLinking, Question]:
     """
     Finds the next question to ask based on a list of entities
-    :param entities:
-    :return:
+    :param entities: entities in an article
+    :param cookie_id: cookie_id of the user reading
+    :return: [next_question_linking, next_question]: the linking and next question to ask
     """
 
     current_maximum_certainty = 0
@@ -82,10 +86,12 @@ def find_next_question(entities: list) -> [EntityLinking, Question]:
             for linking in entity.linkings:
                 question = Question.query.filter(Question.questionable_object == linking).first()
                 if question:
-                    if linking.updated_certainty >= current_maximum_certainty and linking.updated_certainty < 1:
-                        next_question = question
-                        next_question_linking = linking
-                        current_maximum_certainty = linking.updated_certainty
+                    if linking.updated_certainty >= current_maximum_certainty and 0.5 <= linking.updated_certainty < 1:
+
+                        if Response.query.filter(and_(Response.cookie_id == cookie_id, Response.question == question)).first() is None:
+                            next_question = question
+                            next_question_linking = linking
+                            current_maximum_certainty = linking.updated_certainty
 
     return [next_question_linking, next_question]
 
@@ -112,25 +118,28 @@ def generate_linking_questions(entity_linkings: list, article: Article):
                 db.session.commit()
 
 
-def process_polar_response(question_id: int, response_id: int):
+def process_polar_response(question_id: int, apidoc: dict):
     """
     Processes a polar response to a question given by a PoliFLW reader
     :param question_id: the question to which the response was given
     :param response_id: the id of the response, either equal to the questioned entity (YES) or -1 (NO)
     :return:
     """
-    response_id = int(response_id)
+
+    answer_id = int(apidoc["answer_id"])
+    cookie_id = apidoc["cookie_id"]
 
     question = Question.query.filter(Question.id == question_id).first()
-    update_linking_certainty(question, response_id)
+    update_linking_certainty(question, answer_id)
 
-    response = Response(question_id=question_id, response=response_id)
+    response = Response(question_id=question_id, response=answer_id, cookie_id=cookie_id)
     db.session.add(response)
     db.session.commit()
 
     return {
         'message': 'response successfully recorded',
-        'response': response_id,
+        'response': answer_id,
+        'cookie_id': cookie_id,
         'right response': question.questionable_object.linkable_object.id
     }
 

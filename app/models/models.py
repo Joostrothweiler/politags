@@ -11,7 +11,6 @@ from sqlalchemy_utils import generic_relationship
 # After changes, use python manage.py db revision --autogenerate -m 'Present tense message'
 class Article(db.Model):
     __tablename__ = 'articles'
-    # Attributes
     id = db.Column(db.String(200), primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
@@ -152,7 +151,6 @@ class Question(db.Model):
 
         return question_string
 
-
     # Relationships
     article = db.relationship('Article', back_populates='questions')
     responses = db.relationship('Response', back_populates='question')
@@ -172,8 +170,11 @@ class Response(db.Model):
     __tablename__ = 'responses'
     id = db.Column(db.Integer(), primary_key=True)
     question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
+    cookie_id = db.Column(db.String(200))
     response = db.Column(db.Integer())
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    # Relationships
     question = db.relationship('Question', back_populates='responses')
 
 # Helper function to set updated certainty to the same value as the initial certainty
@@ -192,6 +193,7 @@ class EntityLinking(db.Model):
     linkable_type = db.Column(db.String(50))
     linkable_id = db.Column(db.Integer(), nullable=False)
 
+    # Relationships
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
 
