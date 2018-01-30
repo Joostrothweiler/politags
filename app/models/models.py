@@ -29,6 +29,7 @@ class Entity(db.Model):
     start_pos = db.Column(db.Integer())
     end_pos = db.Column(db.Integer())
     count = db.Column(db.Integer(), default=1)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
     article = db.relationship('Article', back_populates='entities')
