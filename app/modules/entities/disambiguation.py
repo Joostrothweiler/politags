@@ -1,9 +1,17 @@
+import logging
+import pickle
 import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity, Article
 from app.modules.entities.disambiguation_features import *
+
+logger = logging.getLogger('disambiguation')
+
+
+# with open('app/modules/entities/nlp_model/test_tree_clf.pkl', 'rb') as fid:
+#     classifier = pickle.load(fid)
 
 
 def named_entity_disambiguation(entities: list, document: dict):
@@ -28,22 +36,21 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param doc_entities: The entities found in the document using Spacy NER.
     :param entity: The entity from the database we are currently evaluating.
     """
-    MAX_NUMBER_OF_LINKINGS = 2
-    ADDITIONAL_WEIGHT = 30
+    MAX_NUMBER_OF_LINKINGS = 1
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
     result = []
 
-    for candidate in candidates:
-        candidate_feature_vector = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        # Reweigh feature at index 4 and 5
-        candidate_feature_vector[4] = ADDITIONAL_WEIGHT * candidate_feature_vector[5]
-        candidate_feature_vector[5] = ADDITIONAL_WEIGHT * candidate_feature_vector[5]
+    # logger.info('Mention: ' + entity.text)
 
-        result.append({'candidate': candidate,
-                       'feature_vector': candidate_feature_vector,
-                       'score': np.sum(candidate_feature_vector)})
+    for candidate in candidates:
+        score = 0
+        candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
+
+        # logger.info([candidate.full_name, result_object['score'], compute_politician_certainty(candidate_fv)])
+        result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
@@ -57,8 +64,8 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for obj in result:
         candidate = obj['candidate']
-        feature_vector = obj['feature_vector']
-        store_entity_linking(entity, candidate, compute_politician_certainty(feature_vector))
+        candidate_fv = obj['feature_vector']
+        store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
 
 
 def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
@@ -71,13 +78,16 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     :return:
     """
     f_name = f_name_similarity(entity.text, candidate)
+    f_initials = f_initials_similarity(entity.text, candidate)
     f_first_name = f_first_name_similarity(entity.text, candidate)
     f_who_name = f_who_name_similarity(entity.text, candidate)
+    f_location = f_location_similarity(document, candidate)
     f_role = f_role_in_document(document, candidate)
     f_party = f_party_similarity(document, candidate)
     f_context = f_context_similarity(document, doc_entities, candidate)
 
-    feature_vector = [f_name, f_first_name, f_who_name, f_role, f_party, f_context]
+    feature_vector = [f_name, 30 * f_initials, 100 * f_first_name, f_who_name, 50 * f_location, f_role, 50 * f_party,
+                      f_context]
 
     return feature_vector
 
@@ -89,7 +99,7 @@ def compute_politician_certainty(candidate_feature_vector: list) -> float:
     :return: Certainty (float).
     """
     # TODO: Compute an actual certainty measure here instead of writing f_who_name.
-    return candidate_feature_vector[2]
+    return candidate_feature_vector[3]
 
 
 def get_candidate_politicians(entity: Entity) -> list:
@@ -106,16 +116,14 @@ def get_candidate_politicians(entity: Entity) -> list:
 
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)
-        candidates = Politician.query.filter(
-            or_(func.lower(Politician.last_name) == func.lower(name),
-                func.lower(Politician.last_name) == func.lower(name))).all()
+        candidates = Politician.query.filter(func.lower(Politician.last_name) == func.lower(name)).all()
         name_array.pop(0)
 
     # If no candidates found based on exact matches so far, take LAST PART OF NAME and look for this one.
-    if len(candidates) == 0:
-        candidates = Politician.query.filter(
-            or_(func.lower(Politician.last_name).contains(func.lower(name)),
-                func.lower(Politician.last_name).contains(func.lower(name)))).all()
+    # if len(candidates) == 0:
+    #     candidates = Politician.query.filter(
+    #         or_(func.lower(Politician.last_name).contains(func.lower(name)),
+    #             func.lower(Politician.last_name).contains(func.lower(name)))).all()
 
     return candidates
 
@@ -163,6 +171,7 @@ def store_entity_linking(entity: Entity, linkable_object: object, initial_certai
         linking.linkable_object = linkable_object
         entity.linkings.append(linking)
         db.session.add(entity)
+    db.session.commit()
 
 
 # FIXME: Does not add any gain in recall/precision like this with the current setup. Therefore, leave out for now.

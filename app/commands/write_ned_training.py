@@ -4,35 +4,30 @@ from flask_script import Command
 
 from app.models.models import EntityLinking, Article, Entity
 from app.modules.common.utils import translate_doc
-from app.modules.entities.disambiguation import compute_politician_feature_vector, compute_politician_certainty
+from app.modules.entities.disambiguation import compute_politician_feature_vector
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('write_ned_training')
 
 
 class WriteNedTraining(Command):
-    """ Test the NER/NED."""
+    """ Write NED classifier training file. """
 
     def run(self):
+        logger.info('Start processing for NED writing.')
         write_ned_training()
 
 
 def write_ned_training():
     result = ''
-    CERTAINTY_BOUNDARY_FALSE_LABEL = 0.2
-    CERTAINTY_BOUNDARY_TRUE_LABEL = 0.8
     FALSE_LABEL = 0
     TRUE_LABEL = 1
-
-    # Process per article.
     articles = Article.query.all()
 
     for article in articles:
         # Fetch document from poliflow
         api_document = fetch_single_document(article.id)
-
         simple_doc = translate_doc(api_document)
-
         # loop over all linkings
         doc_entities = article.entities
         per_entities = Entity.query.filter(Entity.article == article).filter(Entity.label == 'PER').all()
@@ -44,12 +39,11 @@ def write_ned_training():
             candidate = linking.linkable_object
 
             feature_vector = compute_politician_feature_vector(simple_doc, doc_entities, entity, candidate)
-            certainty = compute_politician_certainty(feature_vector)
 
-            if certainty < CERTAINTY_BOUNDARY_FALSE_LABEL:
+            if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
                 result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
-            if certainty > CERTAINTY_BOUNDARY_TRUE_LABEL:
+            if linking.updated_certainty > linking.initial_certainty:
                 feature_vector.append(TRUE_LABEL)
                 result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
 
