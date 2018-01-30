@@ -21,7 +21,5 @@ class InitDbCommand(Command):
 def init_db():
     """ Initialize the database."""
     logger.info('Creating tables in database.')
-    db.create_all()
     logger.info('Ready to initialize')
     update_knowledge_base()
-

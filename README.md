@@ -31,8 +31,16 @@ Edit the `local_settings.py` file.
 
 ## Initializing the Database
 
-    # Create DB tables and populate the roles and users tables
-    python manage.py init_db
+    # Create DB using Alembic migrations:
+    python manage.py db upgrade
+    
+Ones you change something in the database, run:
+
+    python manage.py db migrate
+    
+and
+
+    python manage.py db upgrade
 
 ## Running the app
 
