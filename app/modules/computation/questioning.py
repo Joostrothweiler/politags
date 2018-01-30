@@ -1,8 +1,12 @@
+import requests, json
+
 from app.models.models import Article
 from app import db
 from app.models.models import Question, Response, EntityLinking
 from app.modules.entities.named_entities import process_document
 from sqlalchemy import and_
+from app.local_settings import PFL_PASSWORD, PFL_USER
+from app.modules.entities.named_entities import return_extracted_information
 
 
 def generate_question(apidict: dict) -> dict:
@@ -50,7 +54,6 @@ def generate_question(apidict: dict) -> dict:
         'possible_answers': question.possible_answers,
         'count_responses': count_responses
     }
-
 
 def find_linkings(entities: list) -> list:
     """
@@ -146,7 +149,7 @@ def process_polar_response(question_id: int, apidoc: dict):
 
 def update_linking_certainty(question: Question, response: Response):
     """
-    Updates the certainty of a linking for a given question and response
+    Updates the linking for a given question and response
     :param question: question that was answered
     :param response: response that was given
     :updated_certainty: certainty in the database that we update, this is different from the initial_certainty
@@ -154,14 +157,26 @@ def update_linking_certainty(question: Question, response: Response):
     """
 
     LEARNING_RATE = 0.05
+    # article = question.article
 
     if response == question.questionable_object.linkable_object.id:
         if question.questionable_object.updated_certainty + LEARNING_RATE > 1:
             question.questionable_object.updated_certainty = 1
+            # add poliFLW call here
+            # update_poliflw_entities(article)
         else:
             question.questionable_object.updated_certainty += LEARNING_RATE
     else:
-        if question.questionable_object.updated_certainty - LEARNING_RATE < 0:
+        if question.questionable_object.updated_certainty - LEARNING_RATE < 0.5:
             question.questionable_object.updated_certainty = 0
+            # add poliFLW call here
+            # update_poliflw_entities(article)
         else:
             question.questionable_object.updated_certainty -= LEARNING_RATE
+
+
+def update_poliflw_entities(article):
+    # fill in correct url here
+    url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
+    jsonupdate = return_extracted_information(article)
+    requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
