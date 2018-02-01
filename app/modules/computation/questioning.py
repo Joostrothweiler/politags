@@ -43,7 +43,7 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         }
 
     return {
-        'question': question.question_string_new,
+        'question': question.question_string,
         'question_id': question.id,
         'text': next_question_linking.entity.text,
         'label': next_question_linking.entity.label,
