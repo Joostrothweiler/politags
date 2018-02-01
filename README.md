@@ -55,6 +55,7 @@ and http://localhost:9999/ for db adminer
     docker exec -it politags_web_1 bash
     
     # To create the database in bash
+    python manage.py db migrate
     python manage.py db upgrade
     python manage.py init_db
 
