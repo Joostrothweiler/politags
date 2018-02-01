@@ -31,6 +31,8 @@ class ArticleTopic(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
     topic_id = db.Column(db.Integer(), db.ForeignKey('topics.id'))
+    initial_certainty = db.Column(db.Float(), default=0.0)
+    updated_certainty = db.Column(db.Float(), default=same_as('initial_certainty'))
 
     # Relationships
     article = db.relationship('Article', back_populates='topics')
