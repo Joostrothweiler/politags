@@ -132,7 +132,7 @@ class Question(db.Model):
                     politician.title,
                     politician.full_name,
                     politician.party,
-                    politician.role,
+                    politician.role, 
                     politician.municipality)
             elif politician.role:
                 question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
