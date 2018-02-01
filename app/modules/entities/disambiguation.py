@@ -36,20 +36,20 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param doc_entities: The entities found in the document using Spacy NER.
     :param entity: The entity from the database we are currently evaluating.
     """
-    MAX_NUMBER_OF_LINKINGS = 1
+    MAX_NUMBER_OF_LINKINGS = 2
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
     result = []
 
-    # logger.info('Mention: ' + entity.text)
-
     for candidate in candidates:
-        score = 0
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
+        candidate_fv[1] = 30 * candidate_fv[1]
+        candidate_fv[2] = 100 * candidate_fv[2]
+        candidate_fv[4] = 50 * candidate_fv[4]
+        candidate_fv[6] = 50 * candidate_fv[6]
 
-        # logger.info([candidate.full_name, result_object['score'], compute_politician_certainty(candidate_fv)])
+        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
         result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
@@ -86,10 +86,7 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     f_party = f_party_similarity(document, candidate)
     f_context = f_context_similarity(document, doc_entities, candidate)
 
-    feature_vector = [f_name, 30 * f_initials, 100 * f_first_name, f_who_name, 50 * f_location, f_role, 50 * f_party,
-                      f_context]
-
-    return feature_vector
+    return [f_name, f_initials, f_first_name, f_who_name, f_location, f_role, f_party, f_context]
 
 
 def compute_politician_certainty(candidate_feature_vector: list) -> float:
@@ -98,8 +95,8 @@ def compute_politician_certainty(candidate_feature_vector: list) -> float:
     :param candidate_feature_vector: A feature vector representing the relation between a entity, document and linking.
     :return: Certainty (float).
     """
-    # TODO: Compute an actual certainty measure here instead of writing f_who_name.
-    return candidate_feature_vector[3]
+    # TODO: Compute an actual certainty measure here instead of writing f_who_name. Should be result of active learning classifier.
+    return min(candidate_feature_vector[3], 0.95)
 
 
 def get_candidate_politicians(entity: Entity) -> list:
