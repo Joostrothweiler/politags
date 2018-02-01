@@ -102,7 +102,6 @@ class Question(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer(), primary_key=True)
     article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
-    question_string = db.Column(db.String(200))
     questionable_type = db.Column(db.String(50))
     questionable_id = db.Column(db.Integer(), nullable=False)
 
@@ -121,7 +120,7 @@ class Question(db.Model):
         ]
 
     @hybrid_property
-    def question_string_new(self):
+    def question_string(self):
         question_string = ""
 
         if self.questionable_object.linkable_type == "Politician":
