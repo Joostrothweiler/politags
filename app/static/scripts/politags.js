@@ -10,7 +10,7 @@ let articleObject =
         "enrichments": {},
         "location": "Amersfoort",
         "meta": {
-            "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/4e8f2c46403d40023c701c94455eb7c502c16593",
+            "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/4e8f2c46403d40023c701c94455eb7c502c16593", 
             "collection": "SP",
             "original_object_id": "http://amersfoort.sp.nl/nieuws/2017/12/succes-thuiszorg-acties-ook-in-amersfoort-verzilverd",
             "original_object_urls": {
