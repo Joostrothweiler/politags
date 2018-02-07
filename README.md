@@ -1,6 +1,6 @@
-# Politags (Alpha v0.0)
+# Politags (Beta v0.2)
 
-Current work is for Alpha version (Jan 15th)
+Current work is for Beta version (Mar 15th)
 
 ## Code characteristics
 
@@ -45,16 +45,19 @@ and
 ## Running the app
 
     # Start the Flask development web server
-    docker-compose up
+    docker-compose -f docker-compose.yml -f docker-compose-dev.yml up
 
 Point your web browser to http://localhost:5555/ for the app
-and http://localhost:9999/ for adminer
+and http://localhost:9999/ for db adminer
 
 
     # To access the bash in docker:
     docker exec -it politags_web_1 bash
+    
+    # To create the database in bash
+    python manage.py db migrate
+    python manage.py db upgrade
     python manage.py init_db
-    python manage.py test_ne
 
 
 ## Running the automated tests

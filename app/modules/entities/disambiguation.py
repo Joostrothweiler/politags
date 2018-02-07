@@ -1,10 +1,9 @@
 import logging
-import pickle
 import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntityLinking, Entity, Article
+from app.models.models import Politician, Party, EntityLinking, Entity
 from app.modules.entities.disambiguation_features import *
 
 logger = logging.getLogger('disambiguation')

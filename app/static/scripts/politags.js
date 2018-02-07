@@ -29,8 +29,43 @@ let articleObject =
         "type": "Partij"
     };
 
+
+let tags = [
+    {
+        "id": "0",
+        "text": "Rijksoverheid",
+        "selected": true
+    },
+    {
+        "id": "1",
+        "text": "Parlement",
+        "selected": false
+    },
+    {
+        "id": "2",
+        "text": "Eerste kamer",
+        "selected": false
+    },
+    {
+        "id": "3",
+        "text": "Tweede kamer",
+        "selected": false
+    }
+]
+
+
+
 //On opening the website we call the API to receive the question
 $(getQuestion());
+
+$('.js-example').select2({
+    width: 'element',
+    theme: 'bootstrap',
+    data: tags
+})
+
+console.dir($('.js-example').select2('data'))
+
 
 
 /**
@@ -46,20 +81,25 @@ function getQuestion() {
         data: JSON.stringify(apiObject),
 
         success: function (response) {
+            console.log(response)
+            let countResponsesTotal = response['count_verifications']
+            let countResponsesPersonal = response['count_verifications_personal']
+            let countResponsesToday = response['count_verifications_today']
+
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
-                let questionId = response['question_id']
+                let questionLinkingId = response['question_linking_id']
                 let possibleAnswers = response['possible_answers']
                 let entityText = response['text']
-                let countResponses = response['count_responses']
 
-                highlightEntity(article, entityText, questionId)
-                renderQuestion(question, questionId, possibleAnswers)
-                updateCounter(countResponses)
+
+                highlightEntity(article, entityText, questionLinkingId)
+                renderQuestion(question, questionLinkingId, possibleAnswers)
+                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
-                updateCounter(response['count_responses'])
+                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
                 console.log(response['error'])
             }
         },
@@ -74,19 +114,19 @@ function getQuestion() {
 /**
  * Posts a response to the politags API
  * @param: response: the response to a question
- * @param: questionId: the question that response answers
+ * @param: questionLinkingId: the question that response answers
  */
-function postAnswer(answer, questionId) {
+function postAnswer(answer, questionLinkingId) {
     answer = addCookieIdToObject(answer)
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:5555/api/questions/" + questionId,
+        url: "http://localhost:5555/api/questions/" + questionLinkingId,
         data: JSON.stringify(answer),
         success: function (response) {
             console.log(response)
-            updateCounter()
+            updateCounters()
             showFeedback()
         },
         error: function (error) {
@@ -113,11 +153,11 @@ $('body').on('click', '.responseButton', function () {
  * This function highlights an entity in a given html element and saves the question we want to ask for this entity
  * @param: element: the element in which we want to highlight the entity
  * @param: entity: the entity we want to highlight
- * @param: questionId: the questionId we want to store in the highlight so we know later on where to render the question
+ * @param: questionLinkingId: the questionLinkingId we want to store in the highlight so we know later on where to render the question
  */
-function highlightEntity(element, entity, questionId) {
+function highlightEntity(element, entity, questionLinkingId) {
     let regexp = new RegExp(entity);
-    let replace = '<mark id="' + questionId + '" style="background-color: transparent !important;\n' +
+    let replace = '<mark id="' + questionLinkingId + '" style="background-color: transparent !important;\n' +
         '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
         '            border-radius: 5px;"><strong>' + entity + '</strong></mark>';
     element.innerHTML = element.innerHTML.replace(regexp, replace)
@@ -127,13 +167,13 @@ function highlightEntity(element, entity, questionId) {
 /**
  * This function renders a question in the html and presents the possible answers
  * @param: question: the question and its metadata
- * @param: questionId: the id for the question
+ * @param: questionLinkingId: the id for the question
  * @param: possibleAnswers: the possible answers for this question
  */
-function renderQuestion(question, questionId, possibleAnswers) {
-    let buttonsHtml = generatePolarButtons(questionId, possibleAnswers);
+function renderQuestion(question, questionLinkingId, possibleAnswers) {
+    let buttonsHtml = generatePolarButtons(questionLinkingId, possibleAnswers);
 
-    $('#' + questionId).parent().after(
+    $('#' + questionLinkingId).parent().after(
         '<div id = "question" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
         '   <div id="text" class="panel-body">' + question +
         '   </div>' +
@@ -143,33 +183,73 @@ function renderQuestion(question, questionId, possibleAnswers) {
 }
 
 /**
- * This function updates the counter based on the amount of recorded responses
- * @param: countResponses: the total amount of responses in the politags database
+ * This function updates the counter based on the amount of recorded verifications
+ * @param: countResponses: the total amount of verifications in the politags database
  */
-function updateCounter(countResponses) {
-    let count = $('#count').text();
+function updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday) {
+    let counterTotal = $('#response-counter-total')
+    let counterPersonal = $('#response-counter-personal')
+    let counterToday =  $('#response-counter-today')
 
-    if ($.isEmptyObject(count)) {
-        $('#count').text(countResponses.toString())
-    }
-    else {
-        let countInt = parseInt(count);
-        $('#count').html((countInt + 1).toString())
-    }
+    increaseCounter(counterTotal, countResponsesTotal)
+    increaseCounter(counterPersonal, countResponsesPersonal)
+    increaseCounter(counterToday, countResponsesToday)
 
+    blinkCalendar()
+    blinkStar()
     blinkHeart()
 }
 
 /**
- * this function blinks the heart in the counter
+ * This function increases a counter by 1 or sets the value to value
+ * @param counter: the object that counts in html
+ * @param value: the value it should be set at
+ */
+function increaseCounter(counter, value) {
+     if (counter.text() == "") {
+         counter.html(value)
+    }
+    else {
+         let countTotalInt = parseInt(counter.text())
+         counter.html((countTotalInt + 1).toString())
+    }
+}
+
+/**
+ * this function blinks the hearts in the counter
  */
 function blinkHeart() {
-    $('#counter-heart').addClass("fa-heart").removeClass("fa-heart-o");
+    $('.fa-heart-o').addClass("fa-heart").removeClass("fa-heart-o");
 
     setTimeout(function () {
-        $('#counter-heart').addClass("fa-heart-o").removeClass("fa-heart")
+        $('.fa-heart').addClass("fa-heart-o").removeClass("fa-heart")
     }, 1000)
 }
+
+
+/**
+ * This function blinks the stars
+ */
+function blinkStar() {
+    $('.fa-star-o').addClass("fa-star").removeClass("fa-star-o");
+
+    setTimeout(function () {
+        $('.fa-star').addClass("fa-star-o").removeClass("fa-star")
+    }, 1000)
+}
+
+/**
+ * This function blinks the calendars
+ */
+function blinkCalendar() {
+    $('.fa-calendar-o').addClass("fa-calendar").removeClass("fa-calendar-o");
+
+    setTimeout(function () {
+        $('.fa-calendar').addClass("fa-calendar-o").removeClass("fa-calendar")
+    }, 1000)
+}
+
+
 
 /**
  * This function generates the HTML buttons for a polar question
