@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Politags</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Poliflw</title>
@@ -10,7 +10,6 @@
 
     <!-- Use http://realfavicongenerator.net/ to generate favicons based on your logo -->
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.0/css/buttons.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
     <link rel="stylesheet" href="/static/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/static/styles/main.css">
@@ -19,9 +18,10 @@
     <link rel="stylesheet" href="/static/styles/rrssb.css" />
     <link  href="/static/styles/search_embed-datauri.css" media="all" rel="stylesheet" type="text/css">
     <script src="/static/scripts/main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">#}
+
 
 
 
@@ -79,13 +79,13 @@
     <div class="col-sm-6">
         <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>
         <div class="input-group">
-            <select class="js-example" name="states[]" multiple="multiple" style="width: 100%">
-                <option value="zorg">Zorg</option>
-                <option value="thuiszorg">Thuiszorg</option>
-                <option value="thuiszorg">Huishoudelijk</option>
+            <select class="js-example form-control" name="states[]" multiple="multiple">
+{#                <option value="zorg">Zorg</option>#}
+{#                <option value="thuiszorg">Thuiszorg</option>#}
+{#                <option value="thuiszorg">Huishoudelijk</option>#}
             </select>
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Opslaan</button>
+                <button class="btn btn-default" type="button" style="height: 34px">Opslaan</button>
             </span>
         </div>
     </div>

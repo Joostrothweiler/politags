@@ -29,13 +29,43 @@ let articleObject =
         "type": "Partij"
     };
 
+
+let tags = [
+    {
+        "id": "0",
+        "text": "Rijksoverheid",
+        "selected": true
+    },
+    {
+        "id": "1",
+        "text": "Parlement",
+        "selected": false
+    },
+    {
+        "id": "2",
+        "text": "Eerste kamer",
+        "selected": false
+    },
+    {
+        "id": "3",
+        "text": "Tweede kamer",
+        "selected": false
+    }
+]
+
+
+
 //On opening the website we call the API to receive the question
 $(getQuestion());
 
 $('.js-example').select2({
     width: 'element',
-    // theme: 'bootstrap'
+    theme: 'bootstrap',
+    data: tags
 })
+
+console.dir($('.js-example').select2('data'))
+
 
 
 /**
