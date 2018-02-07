@@ -1,8 +1,7 @@
 import pickle
 import numpy as np
-from sklearn.decomposition import PCA
 from sklearn.linear_model import Perceptron
-from imblearn.over_sampling import SMOTE, ADASYN
+from imblearn.over_sampling import SMOTE
 from sklearn.calibration import CalibratedClassifierCV
 
 from flask_script import Command

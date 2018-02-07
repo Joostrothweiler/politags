@@ -3,7 +3,7 @@ import json
 from flask import jsonify
 
 from app.modules.common.utils import translate_doc
-from app.modules.computation.questioning import generate_question, process_polar_response
+from app.modules.computation.questioning import generate_question, process_polar_verification
 from app.modules.entities.named_entities import process_document
 from app.modules.knowledge_base.api import find_politician, find_party
 
@@ -45,9 +45,9 @@ def post_article_question(data):
 
 
 # Handling the response of a question using a post request from poliflw.
-def post_question_response(question_id, data):
+def post_question_response(entity_linking_id, data):
     doc = json.loads(data)
-    res = process_polar_response(question_id, doc)
+    res = process_polar_verification(entity_linking_id, doc)
     return jsonify(res)
 
 

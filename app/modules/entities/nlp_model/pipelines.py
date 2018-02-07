@@ -1,4 +1,3 @@
-import pickle
 from spacy.matcher import PhraseMatcher
 from spacy.tokens.span import Span
 
