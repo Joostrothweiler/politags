@@ -15,6 +15,7 @@ def same_as(column_name):
         return context.current_parameters.get(column_name)
     return default_function
 
+
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.String(200), primary_key=True)
@@ -22,7 +23,6 @@ class Article(db.Model):
 
     # Relationships
     entities = db.relationship('Entity')
-    questions = db.relationship('Question')
     topics = db.relationship('ArticleTopic ', back_populates='article')
 
 
@@ -33,10 +33,24 @@ class ArticleTopic(db.Model):
     topic_id = db.Column(db.Integer(), db.ForeignKey('topics.id'))
     initial_certainty = db.Column(db.Float(), default=0.0)
     updated_certainty = db.Column(db.Float(), default=same_as('initial_certainty'))
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    # Hybrid properties
+    @hybrid_property
+    def possible_answers(self):
+        return [
+            {
+                'id': self.topic_id
+            },
+            {
+                'id': -1
+            }
+        ]
 
     # Relationships
     article = db.relationship('Article', back_populates='topics')
     topic = db.relationship('Topic', back_populates='articles')
+    verifications = db.relationship('Verification')
 
 
 class Entity(db.Model):
@@ -76,10 +90,63 @@ class EntityLinking(db.Model):
     updated_certainty = db.Column(db.Float(), default=same_as('initial_certainty'))
     linkable_type = db.Column(db.String(50))
     linkable_id = db.Column(db.Integer(), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+
+    # Hybrid properties
+    @hybrid_property
+    def question_string(self):
+        question_string = ""
+
+        if self.linkable_type == "Politician":
+
+            politician = self.linkable_object
+
+            if politician.role and politician.municipality:
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.role,
+                    politician.municipality)
+            elif politician.role:
+                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.role)
+            else:
+                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.title,
+                    politician.full_name,
+                    politician.party,
+                    politician.municipality)
+
+        elif self.linkable_type == 'Party':
+            party = self.linkable_object
+
+            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
+
+        return question_string
+
+
+    @hybrid_property
+    def possible_answers(self):
+        return [
+            {
+                'id': self.linkable_id
+            },
+            {
+                'id': -1
+            }
+        ]
+
 
     # Relationships
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
+    verifications = db.relationship('Verification')
+
 
     def as_dict(self):
         return {
@@ -143,89 +210,6 @@ class Politician(db.Model):
         }
 
 
-class Question(db.Model):
-    __tablename__ = 'questions'
-    id = db.Column(db.Integer(), primary_key=True)
-    article_id = db.Column(db.String(200), db.ForeignKey('articles.id'))
-    questionable_type = db.Column(db.String(50))
-    questionable_id = db.Column(db.Integer(), nullable=False)
-
-    # Hybrid property possible_answers
-    @hybrid_property
-    def possible_answers(self):
-        return [
-            {
-                'type': self.questionable_type,
-                'id': self.questionable_object.linkable_object.id
-            },
-            {
-                'type': 'reject',
-                'id': -1
-            }
-        ]
-
-    @hybrid_property
-    def question_string(self):
-        question_string = ""
-
-        if self.questionable_object.linkable_type == "Politician":
-
-            politician = self.questionable_object.linkable_object
-
-            if politician.role and politician.municipality:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.role,
-                    politician.municipality)
-            elif politician.role:
-                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.role)
-            else:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
-                    politician.party,
-                    politician.municipality)
-
-        elif self.questionable_object.linkable_type == 'Party':
-            party = self.questionable_object.linkable_object
-
-            question_string = 'Wordt <strong>{} ({})</strong> hier genoemd?'.format(party.abbreviation, party.name)
-
-        return question_string
-
-    # Relationships
-    article = db.relationship('Article', back_populates='questions')
-    responses = db.relationship('Response', back_populates='question')
-    questionable_object = generic_relationship(questionable_type, questionable_id)
-
-    # API Representation
-    def as_dict(self):
-        return {
-            'id': self.id,
-            'questionable_id': self.questionable_id,
-            'questionable_type': self.questionable_type,
-            'possible_answers': self.possible_answers
-        }
-
-
-class Response(db.Model):
-    __tablename__ = 'responses'
-    id = db.Column(db.Integer(), primary_key=True)
-    question_id = db.Column(db.Integer(), db.ForeignKey('questions.id'))
-    cookie_id = db.Column(db.String(200))
-    response = db.Column(db.Integer())
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-
-    # Relationships
-    question = db.relationship('Question', back_populates='responses')
-
-
 class Topic(db.Model):
     __tablename__ = 'topics'
     id = db.Column(db.Integer(), primary_key=True)
@@ -233,3 +217,16 @@ class Topic(db.Model):
 
     # Relationships
     articles = db.relationship('ArticleTopic', back_populates='topic')
+
+
+class Verification(db.Model):
+    __tablename__ = 'verifications'
+    id = db.Column(db.Integer(), primary_key=True)
+    verifiable_type = db.Column(db.String(50))
+    verifiable_id = db.Column(db.Integer(), nullable=False)
+    cookie_id = db.Column(db.String(200))
+    response = db.Column(db.Integer())
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    # Relationships
+    verifiable_object = generic_relationship(verifiable_type, verifiable_id)
