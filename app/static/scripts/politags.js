@@ -82,14 +82,14 @@ function getQuestion() {
 
         success: function (response) {
             console.log(response)
-            let countResponsesTotal = response['count_responses']
-            let countResponsesPersonal = response['count_responses_personal']
-            let countResponsesToday = response['count_responses_today']
+            let countResponsesTotal = response['count_verifications']
+            let countResponsesPersonal = response['count_verifications_personal']
+            let countResponsesToday = response['count_verifications_today']
 
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
-                let questionId = response['question_id']
+                let questionId = response['entity_linking_id']
                 let possibleAnswers = response['possible_answers']
                 let entityText = response['text']
 
@@ -183,8 +183,8 @@ function renderQuestion(question, questionId, possibleAnswers) {
 }
 
 /**
- * This function updates the counter based on the amount of recorded responses
- * @param: countResponses: the total amount of responses in the politags database
+ * This function updates the counter based on the amount of recorded verifications
+ * @param: countResponses: the total amount of verifications in the politags database
  */
 function updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday) {
     let counterTotal = $('#response-counter-total')

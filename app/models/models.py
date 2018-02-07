@@ -50,7 +50,6 @@ class ArticleTopic(db.Model):
     # Relationships
     article = db.relationship('Article', back_populates='topics')
     topic = db.relationship('Topic', back_populates='articles')
-    verifications = db.relationship('Verification')
 
 
 class Entity(db.Model):
@@ -145,7 +144,6 @@ class EntityLinking(db.Model):
     # Relationships
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
-    verifications = db.relationship('Verification')
 
 
     def as_dict(self):
@@ -222,8 +220,8 @@ class Topic(db.Model):
 class Verification(db.Model):
     __tablename__ = 'verifications'
     id = db.Column(db.Integer(), primary_key=True)
-    verifiable_type = db.Column(db.String(50))
-    verifiable_id = db.Column(db.Integer(), nullable=False)
+    verifiable_type = db.Column(db.String(50), nullable=True)
+    verifiable_id = db.Column(db.Integer(), nullable=True)
     cookie_id = db.Column(db.String(200))
     response = db.Column(db.Integer())
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
