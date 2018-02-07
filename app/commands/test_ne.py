@@ -3,7 +3,7 @@ import logging
 
 from flask_script import Command
 
-from app.models.models import Entity, Article, EntityLinking, Question, Response
+from app.models.models import Entity, Article, EntityLinking, Verification
 from app.modules.common.utils import translate_doc
 from app.modules.entities.named_entities import process_document
 from app.modules.poliflow.fetch import fetch_single_document
@@ -37,9 +37,8 @@ def test_ne():
 
 def remove_all_articles():
     logger.info('Deleting all old data')
-    # Remove all questions
-    Response.query.delete()
-    Question.query.delete()
+    # Remove all verifications
+    Verification.query.delete()
     # Remove all linkings
     EntityLinking.query.delete()
     # Remove all entities
