@@ -2,7 +2,7 @@ import requests, json
 
 from app.models.models import Article
 from app import db
-from app.models.models import Question, Response, EntityLinking
+from app.models.models import EntityLinking, Verification
 from app.modules.entities.named_entities import process_document
 from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
@@ -23,9 +23,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         process_document(apidict)
         article = Article.query.filter(Article.id == apidict['id']).first()
 
-    count_responses = Response.query.count()
-    count_responses_personal = Response.query.filter(Response.cookie_id == cookie_id).count()
-    count_responses_today = Response.query.filter(and_(Response.cookie_id == cookie_id, cast(Response.created_at, Date) == date.today())).count()
+    count_verifications = Verification.query.count()
+    count_verifications_personal = Verification.query.filter(Verification.cookie_id == cookie_id).count()
+    count_verifications_today = Verification.query.filter(and_(Verification.cookie_id == cookie_id, cast(Verification.created_at, Date) == date.today())).count()
 
     entities = article.entities
     entity_linkings = find_linkings(entities)
@@ -33,9 +33,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
     if not entity_linkings:
         return {
             'error': 'no linkings for entities in this article',
-            'count_responses': count_responses,
-            'count_responses_personal': count_responses_personal,
-            'count_responses_today': count_responses_today
+            'count_verifications': count_verifications,
+            'count_verifications_personal': count_verifications_personal,
+            'count_verifications_today': count_verifications_today
         }
 
     generate_linking_questions(entity_linkings, article)
@@ -45,9 +45,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
     if not question:
         return {
             'error': 'no question found for this article',
-            'count_responses': count_responses,
-            'count_responses_personal': count_responses_personal,
-            'count_responses_today': count_responses_today
+            'count_verifications': count_verifications,
+            'count_verifications_personal': count_verifications_personal,
+            'count_verifications_today': count_verifications_today
         }
 
     return {
@@ -59,9 +59,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         'end_pos': next_question_linking.entity.end_pos,
         'certainty': next_question_linking.updated_certainty,
         'possible_answers': question.possible_answers,
-        'count_responses': count_responses,
-        'count_responses_personal': count_responses_personal,
-        'count_responses_today': count_responses_today
+        'count_verifications': count_verifications,
+        'count_verifications_personal': count_verifications_personal,
+        'count_verifications_today': count_verifications_today
     }
 
 def find_linkings(entities: list) -> list:
@@ -130,11 +130,11 @@ def generate_linking_questions(entity_linkings: list, article: Article):
                 db.session.commit()
 
 
-def process_polar_response(question_id: int, apidoc: dict):
+def process_polar_verification(question_id: int, apidoc: dict):
     """
-    Processes a polar response to a question given by a PoliFLW reader
-    :param question_id: the question to which the response was given
-    :param response_id: the id of the response, either equal to the questioned entity (YES) or -1 (NO)
+    Processes a polar verification to a question given by a PoliFLW reader
+    :param question_id: the question to which the verification was given
+    :param apidoc: the apidoc of the verification, either equal to the questioned entity (YES) or -1 (NO)
     :return:
     """
 
