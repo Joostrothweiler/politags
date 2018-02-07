@@ -1,4 +1,6 @@
-# README
+# Installation intstructions corpus
+
+In order to use the corpus, 
 
 This archive contains the Dutch word embeddings created on the corpus of a [Dutch Wikipedia dump](https://dumps.wikimedia.org/nlwiki/20160501/), as described in the paper [Evaluating Unsupervised Dutch Word Embeddings as a Linguistic Resource](http://www.lrec-conf.org/proceedings/lrec2016/pdf/1026_Paper.pdf)
 
