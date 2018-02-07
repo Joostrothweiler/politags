@@ -4,9 +4,10 @@ from app.models.models import Article
 from app import db
 from app.models.models import Question, Response, EntityLinking
 from app.modules.entities.named_entities import process_document
-from sqlalchemy import and_
+from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
 from app.modules.entities.named_entities import return_extracted_information
+from datetime import date
 
 
 def generate_question(apidict: dict, cookie_id : str) -> dict:
@@ -23,13 +24,18 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         article = Article.query.filter(Article.id == apidict['id']).first()
 
     count_responses = Response.query.count()
+    count_responses_personal = Response.query.filter(Response.cookie_id == cookie_id).count()
+    count_responses_today = Response.query.filter(and_(Response.cookie_id == cookie_id, cast(Response.created_at, Date) == date.today())).count()
+
     entities = article.entities
     entity_linkings = find_linkings(entities)
 
     if not entity_linkings:
         return {
             'error': 'no linkings for entities in this article',
-            'count_responses': count_responses
+            'count_responses': count_responses,
+            'count_responses_personal': count_responses_personal,
+            'count_responses_today': count_responses_today
         }
 
     generate_linking_questions(entity_linkings, article)
@@ -39,7 +45,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
     if not question:
         return {
             'error': 'no question found for this article',
-            'count_responses': count_responses
+            'count_responses': count_responses,
+            'count_responses_personal': count_responses_personal,
+            'count_responses_today': count_responses_today
         }
 
     return {
@@ -51,7 +59,9 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         'end_pos': next_question_linking.entity.end_pos,
         'certainty': next_question_linking.updated_certainty,
         'possible_answers': question.possible_answers,
-        'count_responses': count_responses
+        'count_responses': count_responses,
+        'count_responses_personal': count_responses_personal,
+        'count_responses_today': count_responses_today
     }
 
 def find_linkings(entities: list) -> list:

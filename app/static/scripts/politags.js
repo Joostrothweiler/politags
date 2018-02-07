@@ -29,8 +29,43 @@ let articleObject =
         "type": "Partij"
     };
 
+
+let tags = [
+    {
+        "id": "0",
+        "text": "Rijksoverheid",
+        "selected": true
+    },
+    {
+        "id": "1",
+        "text": "Parlement",
+        "selected": false
+    },
+    {
+        "id": "2",
+        "text": "Eerste kamer",
+        "selected": false
+    },
+    {
+        "id": "3",
+        "text": "Tweede kamer",
+        "selected": false
+    }
+]
+
+
+
 //On opening the website we call the API to receive the question
 $(getQuestion());
+
+$('.js-example').select2({
+    width: 'element',
+    theme: 'bootstrap',
+    data: tags
+})
+
+console.dir($('.js-example').select2('data'))
+
 
 
 /**
@@ -46,20 +81,25 @@ function getQuestion() {
         data: JSON.stringify(apiObject),
 
         success: function (response) {
+            console.log(response)
+            let countResponsesTotal = response['count_responses']
+            let countResponsesPersonal = response['count_responses_personal']
+            let countResponsesToday = response['count_responses_today']
+
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
                 let questionId = response['question_id']
                 let possibleAnswers = response['possible_answers']
                 let entityText = response['text']
-                let countResponses = response['count_responses']
+
 
                 highlightEntity(article, entityText, questionId)
                 renderQuestion(question, questionId, possibleAnswers)
-                updateCounter(countResponses)
+                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
-                updateCounter(response['count_responses'])
+                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
                 console.log(response['error'])
             }
         },
@@ -86,7 +126,7 @@ function postAnswer(answer, questionId) {
         data: JSON.stringify(answer),
         success: function (response) {
             console.log(response)
-            updateCounter()
+            updateCounters()
             showFeedback()
         },
         error: function (error) {
@@ -146,30 +186,70 @@ function renderQuestion(question, questionId, possibleAnswers) {
  * This function updates the counter based on the amount of recorded responses
  * @param: countResponses: the total amount of responses in the politags database
  */
-function updateCounter(countResponses) {
-    let count = $('#count').text();
+function updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday) {
+    let counterTotal = $('#response-counter-total')
+    let counterPersonal = $('#response-counter-personal')
+    let counterToday =  $('#response-counter-today')
 
-    if ($.isEmptyObject(count)) {
-        $('#count').text(countResponses.toString())
-    }
-    else {
-        let countInt = parseInt(count);
-        $('#count').html((countInt + 1).toString())
-    }
+    increaseCounter(counterTotal, countResponsesTotal)
+    increaseCounter(counterPersonal, countResponsesPersonal)
+    increaseCounter(counterToday, countResponsesToday)
 
+    blinkCalendar()
+    blinkStar()
     blinkHeart()
 }
 
 /**
- * this function blinks the heart in the counter
+ * This function increases a counter by 1 or sets the value to value
+ * @param counter: the object that counts in html
+ * @param value: the value it should be set at
+ */
+function increaseCounter(counter, value) {
+     if (counter.text() == "") {
+         counter.html(value)
+    }
+    else {
+         let countTotalInt = parseInt(counter.text())
+         counter.html((countTotalInt + 1).toString())
+    }
+}
+
+/**
+ * this function blinks the hearts in the counter
  */
 function blinkHeart() {
-    $('#counter-heart').addClass("fa-heart").removeClass("fa-heart-o");
+    $('.fa-heart-o').addClass("fa-heart").removeClass("fa-heart-o");
 
     setTimeout(function () {
-        $('#counter-heart').addClass("fa-heart-o").removeClass("fa-heart")
+        $('.fa-heart').addClass("fa-heart-o").removeClass("fa-heart")
     }, 1000)
 }
+
+
+/**
+ * This function blinks the stars
+ */
+function blinkStar() {
+    $('.fa-star-o').addClass("fa-star").removeClass("fa-star-o");
+
+    setTimeout(function () {
+        $('.fa-star').addClass("fa-star-o").removeClass("fa-star")
+    }, 1000)
+}
+
+/**
+ * This function blinks the calendars
+ */
+function blinkCalendar() {
+    $('.fa-calendar-o').addClass("fa-calendar").removeClass("fa-calendar-o");
+
+    setTimeout(function () {
+        $('.fa-calendar').addClass("fa-calendar-o").removeClass("fa-calendar")
+    }, 1000)
+}
+
+
 
 /**
  * This function generates the HTML buttons for a polar question
