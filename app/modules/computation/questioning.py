@@ -91,7 +91,7 @@ def find_next_question_linking(entities: list, cookie_id) -> EntityLinking:
         certain_linking_exists = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
             EntityLinking.initial_certainty == 1).first()
 
-        if certain_linking_exists:
+        if not certain_linking_exists:
             for linking in entity.linkings:
                 if linking.updated_certainty >= current_maximum_certainty and 0.5 <= linking.updated_certainty < 1:
                     if Verification.query.filter(and_(Verification.cookie_id == cookie_id, Verification.verifiable_object == linking)).first() is None:

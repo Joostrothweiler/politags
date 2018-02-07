@@ -89,13 +89,13 @@ function getQuestion() {
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
-                let questionId = response['entity_linking_id']
+                let questionLinkingId = response['question_linking_id']
                 let possibleAnswers = response['possible_answers']
                 let entityText = response['text']
 
 
-                highlightEntity(article, entityText, questionId)
-                renderQuestion(question, questionId, possibleAnswers)
+                highlightEntity(article, entityText, questionLinkingId)
+                renderQuestion(question, questionLinkingId, possibleAnswers)
                 updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
@@ -114,15 +114,15 @@ function getQuestion() {
 /**
  * Posts a response to the politags API
  * @param: response: the response to a question
- * @param: questionId: the question that response answers
+ * @param: questionLinkingId: the question that response answers
  */
-function postAnswer(answer, questionId) {
+function postAnswer(answer, questionLinkingId) {
     answer = addCookieIdToObject(answer)
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:5555/api/questions/" + questionId,
+        url: "http://localhost:5555/api/questions/" + questionLinkingId,
         data: JSON.stringify(answer),
         success: function (response) {
             console.log(response)
@@ -153,11 +153,11 @@ $('body').on('click', '.responseButton', function () {
  * This function highlights an entity in a given html element and saves the question we want to ask for this entity
  * @param: element: the element in which we want to highlight the entity
  * @param: entity: the entity we want to highlight
- * @param: questionId: the questionId we want to store in the highlight so we know later on where to render the question
+ * @param: questionLinkingId: the questionLinkingId we want to store in the highlight so we know later on where to render the question
  */
-function highlightEntity(element, entity, questionId) {
+function highlightEntity(element, entity, questionLinkingId) {
     let regexp = new RegExp(entity);
-    let replace = '<mark id="' + questionId + '" style="background-color: transparent !important;\n' +
+    let replace = '<mark id="' + questionLinkingId + '" style="background-color: transparent !important;\n' +
         '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
         '            border-radius: 5px;"><strong>' + entity + '</strong></mark>';
     element.innerHTML = element.innerHTML.replace(regexp, replace)
@@ -167,13 +167,13 @@ function highlightEntity(element, entity, questionId) {
 /**
  * This function renders a question in the html and presents the possible answers
  * @param: question: the question and its metadata
- * @param: questionId: the id for the question
+ * @param: questionLinkingId: the id for the question
  * @param: possibleAnswers: the possible answers for this question
  */
-function renderQuestion(question, questionId, possibleAnswers) {
-    let buttonsHtml = generatePolarButtons(questionId, possibleAnswers);
+function renderQuestion(question, questionLinkingId, possibleAnswers) {
+    let buttonsHtml = generatePolarButtons(questionLinkingId, possibleAnswers);
 
-    $('#' + questionId).parent().after(
+    $('#' + questionLinkingId).parent().after(
         '<div id = "question" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
         '   <div id="text" class="panel-body">' + question +
         '   </div>' +
