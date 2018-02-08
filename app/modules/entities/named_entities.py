@@ -2,10 +2,11 @@ import nl_core_news_sm
 import logging
 
 from app import db
-from app.models.models import Article, EntityLinking
+from app.models.models import Article, EntityLinking, ArticleTopic
 from app.modules.entities.disambiguation import named_entity_disambiguation
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 from app.modules.entities.recognition import named_entity_recognition
+from app.modules.topics.similarity import compute_most_similar_topic
 from app.settings import NED_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('named_entities')
@@ -66,6 +67,10 @@ def extract_information(article: Article, document: dict):
     nlp_doc = nlp(document['text_description'])
     entities = named_entity_recognition(article, nlp_doc)
     named_entity_disambiguation(entities, document)
+
+    # TODO: Refactor - rethink file structure and reorder to make more modular.
+    compute_most_similar_topic(article, document)
+
     db.session.commit()
 
 
@@ -91,8 +96,11 @@ def return_extracted_information(article: Article) -> dict:
                 if not top_linking.linkable_object.as_dict() in politicians:
                     politicians.append(top_linking.linkable_object.as_dict())
 
+    article_topics = ArticleTopic.query.filter(ArticleTopic.article == article).all()
+
     return {
         'article_id': article.id,
         'parties': parties,
-        'politicians': politicians
+        'politicians': politicians,
+        'topics' : [article_topic.topic.as_dict() for article_topic in article_topics]
     }

@@ -21,6 +21,7 @@ manager.add_command('test_ne', TestNeCommand)
 manager.add_command('train_clf', TrainClfCommand)
 manager.add_command('test_poliflow', TestPoliflowCommand)
 manager.add_command('write_ned_training', WriteNedTraining)
+manager.add_command('init_topics', InitTopicsCommand)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,6 @@ depends_on = None
 def upgrade():
     op.drop_column('verifications', 'question_id')
     op.drop_table('questions')
-    pass
 
 
 def downgrade():
