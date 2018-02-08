@@ -179,7 +179,6 @@ def generate_topics_json(article):
             "id": topic.id,
             "text": topic.name,
             "selected": selected
-
         }
 
         topicsarray.append(topicobject)

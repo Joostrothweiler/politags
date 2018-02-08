@@ -34,7 +34,7 @@ let tags = [
     {
         "id": "0",
         "text": "Rijksoverheid",
-        "selected": true
+        "selected": true,
     },
     {
         "id": "1",
@@ -52,6 +52,13 @@ let tags = [
         "selected": false
     }
 ]
+
+$('.js-example').select2 (
+    {
+        width: 'element',
+        theme: 'bootstrap'
+    }
+)
 
 
 
@@ -78,8 +85,13 @@ function getQuestion() {
             updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
 
             let topics = response['topics']
-            updateSelect(topics)
-
+            $('.js-example').select2 (
+                {
+                    width: 'element',
+                    theme: 'bootstrap',
+                    data: topics
+                }
+)
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
@@ -126,14 +138,6 @@ function postVerification(response, questionLinkingId) {
         error: function (error) {
             console.log(error);
         }
-    })
-}
-
-function updateSelect(topics) {
-    $('.js-example').select2({
-        width: 'element',
-        theme: 'bootstrap',
-        data: topics
     })
 }
 
