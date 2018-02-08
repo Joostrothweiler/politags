@@ -9,7 +9,7 @@ from app.modules.knowledge_base.get_kamerleden import get_all_current_members_of
 logger = logging.getLogger('update')
 
 
-def update_knowledge_base():
+def init_knowledge_base():
     logger.info('Initializing politicians')
     init_politicians()
     logger.info('Initializing parties')

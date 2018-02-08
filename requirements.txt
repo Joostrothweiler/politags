@@ -10,6 +10,10 @@ spacy
 html2text
 bs4
 
+# Gensim
+gensim
+pyemd
+
 # Names
 nameparser
 whoswho

@@ -1,4 +1,5 @@
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import backref
 
 from app import db
 import datetime
@@ -13,6 +14,7 @@ from sqlalchemy_utils import generic_relationship
 def same_as(column_name):
     def default_function(context):
         return context.current_parameters.get(column_name)
+
     return default_function
 
 
@@ -91,7 +93,6 @@ class EntityLinking(db.Model):
     linkable_id = db.Column(db.Integer(), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-
     # Hybrid properties
     @hybrid_property
     def question_string(self):
@@ -128,7 +129,6 @@ class EntityLinking(db.Model):
 
         return question_string
 
-
     @hybrid_property
     def possible_answers(self):
         return [
@@ -140,11 +140,9 @@ class EntityLinking(db.Model):
             }
         ]
 
-
     # Relationships
     entity = db.relationship('Entity', back_populates='linkings')
     linkable_object = generic_relationship(linkable_type, linkable_id)
-
 
     def as_dict(self):
         return {
@@ -211,10 +209,22 @@ class Politician(db.Model):
 class Topic(db.Model):
     __tablename__ = 'topics'
     id = db.Column(db.Integer(), primary_key=True)
+    parent_id = db.Column(db.Integer(), db.ForeignKey('topics.id'), nullable=True)
     name = db.Column(db.String(100))
 
     # Relationships
+    children = db.relationship('Topic', backref=backref('parent', remote_side=[id]))
     articles = db.relationship('ArticleTopic', back_populates='topic')
+
+    def as_dict(self):
+        parent_obj = None
+        if self.parent_id:
+            parent_obj = self.parent.as_dict()
+        return {
+            'id' : self.id,
+            'name' : self.name,
+            'parent' : parent_obj
+        }
 
 
 class Verification(db.Model):

@@ -9,15 +9,15 @@ from alembic import op
 import sqlalchemy as sa
 from app import db
 
-
 # revision identifiers, used by Alembic.
 revision = 'aa2af61f119b'
 down_revision = 'bb0bc279bf4c'
 branch_labels = None
 depends_on = None
 
+
 def upgrade():
-    #fill verifiable type and id with the right values.
+    # fill verifiable type and id with the right values.
 
     existing_data = db.engine.execute("SELECT id, questionable_type, questionable_id FROM questions")
 
@@ -27,7 +27,10 @@ def upgrade():
         questionable_id = res[2]
 
         # update verification, set verifiable_type and verifiable_id to questionable... for verification where verification.question_id = question_id
-        db.engine.execute("UPDATE verifications SET verifiable_type = '{}', verifiable_id = {} WHERE question_id = {}".format(questionable_type, questionable_id, question_id))
+        db.engine.execute(
+            "UPDATE verifications SET verifiable_type = '{}', verifiable_id = {} WHERE question_id = {}".format(
+                questionable_type, questionable_id, question_id))
+
 
 def downgrade():
     pass
