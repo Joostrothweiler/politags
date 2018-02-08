@@ -25,3 +25,5 @@ app/local_settings.py
 
 data_resources/ned_db_training_file.txt
 data_resources/embeddings/*.txt
+
+notebooks/.ipynb_checkpoints/*
