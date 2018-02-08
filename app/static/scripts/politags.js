@@ -58,16 +58,6 @@ let tags = [
 //On opening the website we call the API to receive the question
 $(getQuestion());
 
-$('.js-example').select2({
-    width: 'element',
-    theme: 'bootstrap',
-    data: tags
-})
-
-console.dir($('.js-example').select2('data'))
-
-
-
 /**
  * Gets the question for the current article by calling the Politags API and updates html accordingly
  */
@@ -85,6 +75,10 @@ function getQuestion() {
             let countResponsesTotal = response['count_verifications']
             let countResponsesPersonal = response['count_verifications_personal']
             let countResponsesToday = response['count_verifications_today']
+            updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
+
+            let topics = response['topics']
+            updateSelect(topics)
 
             if ($.isEmptyObject(response['error']) === true) {
 
@@ -93,13 +87,11 @@ function getQuestion() {
                 let possibleAnswers = response['possible_answers']
                 let entityText = response['text']
 
-
                 highlightEntity(article, entityText, questionLinkingId)
                 renderQuestion(question, questionLinkingId, possibleAnswers)
                 updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
-                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
                 console.log(response['error'])
             }
         },
@@ -111,19 +103,21 @@ function getQuestion() {
 }
 
 
+
+
 /**
  * Posts a response to the politags API
  * @param: response: the response to a question
  * @param: questionLinkingId: the question that response answers
  */
-function postAnswer(answer, questionLinkingId) {
-    answer = addCookieIdToObject(answer)
+function postVerification(response, questionLinkingId) {
+    response = addCookieIdToObject(response)
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/questions/" + questionLinkingId,
-        data: JSON.stringify(answer),
+        data: JSON.stringify(response),
         success: function (response) {
             console.log(response)
             updateCounters()
@@ -135,17 +129,26 @@ function postAnswer(answer, questionLinkingId) {
     })
 }
 
+function updateSelect(topics) {
+    $('.js-example').select2({
+        width: 'element',
+        theme: 'bootstrap',
+        data: topics
+    })
+}
+
+
 /**
  * This piece of code checks for a click on the responseButton class and posts the response to politags
  */
 $('body').on('click', '.responseButton', function () {
-        let answerId = $(this).attr("id")
+        let responseId = $(this).attr("id")
 
         let answer = {
-            "answer_id": answerId
+            "response_id": responseId
         }
         let questionId = $(this).attr("question_id");
-        postAnswer(answer, questionId)
+        postVerification(answer, questionId)
     }
 );
 
