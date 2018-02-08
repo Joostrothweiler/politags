@@ -161,7 +161,6 @@ def store_entity_linking(entity: Entity, linkable_object: object, initial_certai
 
     if linking:
         linking.initial_certainty = initial_certainty
-        db.session.add(linking)
     else:
         linking = EntityLinking(initial_certainty=initial_certainty)
         linking.linkable_object = linkable_object

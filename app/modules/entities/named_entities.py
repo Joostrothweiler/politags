@@ -2,7 +2,8 @@ import nl_core_news_sm
 import logging
 
 from app import db
-from app.models.models import Article, EntityLinking, ArticleTopic
+from sqlalchemy import func
+from app.models.models import Article, EntityLinking, ArticleTopic, Politician
 from app.modules.entities.disambiguation import named_entity_disambiguation
 from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
 from app.modules.entities.recognition import named_entity_recognition
@@ -21,13 +22,9 @@ def init_nlp():
     global nlp
     politicians = []
     parties = []
-    # for politician in Politician.query.all():
-    #     if not politician.last_name == '':
-    #         politicians.append(politician.last_name)
-    # for party in Party.query.all():
-    #     parties.append(party.name)
-    #     if not party.abbreviation == '':
-    #         parties.append(party.abbreviation)
+    for politician in Politician.query.filter(func.length(Politician.given_name) > 1).all():
+        politicians.append(politician.given_name + ' ' + politician.last_name)
+
     nlp = nl_core_news_sm.load()
     politician_pipe = PoliticianRecognizer(nlp, politicians)
     party_pipe = PartyRecognizer(nlp, parties)
