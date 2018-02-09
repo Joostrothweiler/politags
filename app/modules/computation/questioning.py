@@ -106,7 +106,7 @@ def find_next_question_linking(entities: list, cookie_id) -> EntityLinking:
     return next_question_linking
 
 
-def process_verification(entity_linking_id: int, apidoc: dict):
+def process_entity_verification(entity_linking_id: int, apidoc: dict):
     """
     Processes a polar verification to a question given by a PoliFLW reader
     :param entity_linking_id: the linking to which the verification was given
@@ -130,6 +130,37 @@ def process_verification(entity_linking_id: int, apidoc: dict):
         'cookie_id': cookie_id,
         'ground truth': entity_linking.linkable_object.id
     }
+
+
+def process_topic_verification(article_id: str, apidoc: dict):
+    """
+    Processes a topic verification given by a PoliFLW reader
+    :param article_id: the id of the article the reader was reading
+    :param apidoc: the apidoc of the verification
+    :return:
+    """
+
+    cookie_id = apidoc["cookie_id"]
+
+    topic_response = apidoc["topic_response"]
+
+    for topic in topic_response:
+        articleTopic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
+
+        if not articleTopic:
+            articleTopic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0.75)
+            db.session.add(articleTopic)
+            db.session.commit()
+
+        verification = Verification(verifiable_object=articleTopic, response=topic["response"], cookie_id=cookie_id)
+        db.session.add(verification)
+        db.session.commit()
+
+
+    return {
+        'message': 'topics successfully recorded'
+    }
+
 
 
 def update_linking_certainty(entity_linking: EntityLinking, response: int):

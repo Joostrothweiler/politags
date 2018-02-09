@@ -9,6 +9,7 @@ let articleObject =
         "description": "<div class=\"node-content clearfix\"> &#13;\n  &#13;\n\t <p>Afgelopen dinsdag besloot de gemeenteraad om eindelijk een fatsoenlijk tarief te gaan betalen voor de huishoudelijke zorg.<br/>\nAlle gemeenten moeten per 1 april 2018 aan thuiszorgorganisaties het in de cao geregelde loon vergoeden van de bij hen werkende thuiszorgmedewerkers.</p>\n<p>Dankzij talrijke acties in het hele land&#160; - ook in Amersfoort met steun vanuit de lokale SP-afdeling -&#160; is dit resultaat bereikt:&#160; eindelijk &#8220;loon naar werken!&#8220;.</p>\n<p>SP-raadslid Bets Beltman maakte tijdens de raadsvergadering van de gelegenheid gebruik om de thuiszorg-medewerkers in Amersfoort te feliciteren met hun succes. Dit werd haar door de andere partijen niet echt in dank afgenomen &#8211; het was toch &#8216;maar een hamerstuk &#8216; en&#160; zij wilden liever wat vroeger naar huis&#8230;.</p>\n<p>Ook de wethouder, Fleur Imming van de PvdA,&#160; hield zich stil.</p>\n         <div class=\"zie-ook\">&#13;\n      <strong>Zie ook:</strong>&#13;\n      <ul>&#13;\n                            <li><a href=\"/dossier/thuiszorg\">Dossier: Thuiszorg</a></li>&#13;\n              </ul>&#13;\n    </div>&#13;\n    </div>&#13;\n&#13;\n\t\t\n",
         "enrichments": {},
         "location": "Amersfoort",
+        "id": "4e8f2c46403d40023c701c94455eb7c502c16593",
         "meta": {
             "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/4e8f2c46403d40023c701c94455eb7c502c16593",
             "collection": "SP",
@@ -30,28 +31,7 @@ let articleObject =
     };
 
 
-let tags = [
-    {
-        "id": "0",
-        "text": "Rijksoverheid",
-        "selected": true,
-    },
-    {
-        "id": "1",
-        "text": "Parlement",
-        "selected": false
-    },
-    {
-        "id": "2",
-        "text": "Eerste kamer",
-        "selected": false
-    },
-    {
-        "id": "3",
-        "text": "Tweede kamer",
-        "selected": false
-    }
-]
+let initialTopics
 
 $('.js-example').select2 (
     {
@@ -64,6 +44,7 @@ $('.js-example').select2 (
 
 //On opening the website we call the API to receive the question
 $(getQuestion());
+
 
 /**
  * Gets the question for the current article by calling the Politags API and updates html accordingly
@@ -84,14 +65,9 @@ function getQuestion() {
             let countResponsesToday = response['count_verifications_today']
             updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
 
-            let topics = response['topics']
-            $('.js-example').select2 (
-                {
-                    width: 'element',
-                    theme: 'bootstrap',
-                    data: topics
-                }
-)
+            initialTopics = response['topics']
+            fillSelect2(initialTopics)
+
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
@@ -115,14 +91,12 @@ function getQuestion() {
 }
 
 
-
-
 /**
  * Posts a response to the politags API
  * @param: response: the response to a question
  * @param: questionLinkingId: the question that response answers
  */
-function postVerification(response, questionLinkingId) {
+function postEntityVerification(response, questionLinkingId) {
     response = addCookieIdToObject(response)
 
     $.ajax({
@@ -133,7 +107,7 @@ function postVerification(response, questionLinkingId) {
         success: function (response) {
             console.log(response)
             updateCounters()
-            showFeedback()
+            showEntityFeedback()
         },
         error: function (error) {
             console.log(error);
@@ -143,18 +117,52 @@ function postVerification(response, questionLinkingId) {
 
 
 /**
- * This piece of code checks for a click on the responseButton class and posts the response to politags
+ * Posts a response to the politags API
+ * @param: response: the response to a question
+ * @param: questionLinkingId: the question that response answers
  */
-$('body').on('click', '.responseButton', function () {
-        let responseId = $(this).attr("id")
+function postTopicVerification(postedTopics) {
+    let topicResponse = generateTopicResponse(initialTopics, postedTopics)
 
-        let answer = {
-            "response_id": responseId
-        }
-        let questionId = $(this).attr("question_id");
-        postVerification(answer, questionId)
+    let response = {
+        "topic_response": topicResponse
     }
-);
+
+    let postObject = addCookieIdToObject(response)
+
+    console.dir(postObject)
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "http://localhost:5555/api/topics/" + articleObject.id,
+        data: JSON.stringify(postObject),
+        success: function (postObject) {
+            console.log(postObject)
+            updateCounters()
+        //  showTopicFeedback()
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+
+/**
+ * Adds a list op topics to the select2 item
+ * @param topics: topics for the select to be filled with
+ */
+function fillSelect2(topics) {
+    $('.js-example').select2(
+        {
+            width: 'element',
+            theme: 'bootstrap',
+            data: topics
+        }
+    )
+}
+
 
 /**
  * This function highlights an entity in a given html element and saves the question we want to ask for this entity
@@ -189,6 +197,7 @@ function renderQuestion(question, questionLinkingId, possibleAnswers) {
     )
 }
 
+
 /**
  * This function updates the counter based on the amount of recorded verifications
  * @param: countResponses: the total amount of verifications in the politags database
@@ -207,6 +216,7 @@ function updateCounters(countResponsesTotal, countResponsesPersonal, countRespon
     blinkHeart()
 }
 
+
 /**
  * This function increases a counter by 1 or sets the value to value
  * @param counter: the object that counts in html
@@ -221,6 +231,7 @@ function increaseCounter(counter, value) {
          counter.html((countTotalInt + 1).toString())
     }
 }
+
 
 /**
  * this function blinks the hearts in the counter
@@ -245,6 +256,7 @@ function blinkStar() {
     }, 1000)
 }
 
+
 /**
  * This function blinks the calendars
  */
@@ -255,7 +267,6 @@ function blinkCalendar() {
         $('.fa-calendar').addClass("fa-calendar-o").removeClass("fa-calendar")
     }, 1000)
 }
-
 
 
 /**
@@ -272,10 +283,11 @@ function generatePolarButtons(questionId, possibleAnswers) {
     return buttonsHtml
 }
 
+
 /**
  * This function performs all the actions to show feedback when a question is responded to
  */
-function showFeedback() {
+function showEntityFeedback() {
     $('#question').removeClass('panel-danger').addClass('panel-success');
     $('.responseButton').remove();
     $('#text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">');
@@ -303,6 +315,7 @@ function setCookie(cookieName, cookieValue, expiryDays) {
     var expires = "expires=" + date.toUTCString()
     document.cookie = cookieName + "=" + cookieValue + ";" + expires
 }
+
 
 /**
  * This function checks if a certain cooking exists and returns its value
@@ -358,4 +371,70 @@ function addCookieIdToObject(object) {
     return object
 }
 
+/**
+ * This function generates a topic response to process in the backend
+ * @param initialTopics: initial topics given by politags
+ * @param postedTopics: posted topics given by politags
+ * @return topicResponse: response to be given back to backend
+ */
+
+function generateTopicResponse(initialTopics, postedTopics) {
+    let topicResponse = []
+
+    for (let i = 0; i < postedTopics.length; i++) {
+        topicResponse.push({
+                "id": postedTopics[i].id,
+                "response": postedTopics[i].id
+            }
+        )
+    }
+
+    for (let i = 0; i < initialTopics.length; i++) {
+        if (initialTopics[i].selected == true) {
+            let topics = $.grep(postedTopics, function (topic) {
+                return (topic.id == initialTopics[i].id)
+            })
+            if (topics.length == 0) {
+                topicResponse.push(
+                    {
+                        "id": initialTopics[i].id,
+                        "response": -1
+                    }
+                )
+            }
+        }
+    }
+    return topicResponse
+}
+
+
+
+/**
+ * Event listeners here
+ */
+
+/**
+ * This piece of code checks for a click on the responseButton class and posts the response to politags
+ */
+$('body').on('click', '.responseButton', function () {
+        let responseId = $(this).attr("id")
+
+        let answer = {
+            "response_id": responseId
+        }
+        let questionId = $(this).attr("question_id")
+        postEntityVerification(answer, questionId)
+    }
+)
+
+/**
+ * This piece of code registers a click on the submit button for topics
+ */
+$('#save').on('click', function () {
+    let postedTopics = $('.js-example').select2('data')
+    console.dir(postedTopics)
+
+    postTopicVerification(postedTopics)
+    }
+)
 
