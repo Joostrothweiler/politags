@@ -78,4 +78,5 @@ def insert_article_topic_linking(article: Article, topic: Topic, certainty: floa
     else:
         new_linking = ArticleTopic(article=article, topic=topic, initial_certainty=certainty)
         db.session.add(new_linking)
+
     db.session.commit()

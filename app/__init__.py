@@ -56,6 +56,10 @@ def create_app(extra_config_settings={}):
     def questions_response(entity_linking_id):
         return post_question_response(entity_linking_id, request.data)
 
+    @app.route('/api/topics/<string:article_id>', methods=['POST'])
+    def topics_response(article_id):
+        return post_topics_response(article_id, request.data)
+
     @app.route('/article', methods=['GET'])
     def render_html():
         return render_template('index.html')
