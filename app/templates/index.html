@@ -8,8 +8,6 @@
     <meta name="description" content="Lokaal politiek nieuws">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Use http://realfavicongenerator.net/ to generate favicons based on your logo -->
-
     <link rel="stylesheet" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
     <link rel="stylesheet" href="/static/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/static/styles/main.css">
@@ -21,13 +19,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
-
-
-
 </head>
-<body>
 
+
+<body>
 
 <!--politags container-->
 <div class="container" id="counter_container" style="text-align: center">
@@ -80,12 +75,9 @@
         <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>
         <div class="input-group">
             <select class="js-example form-control" name="states[]" multiple="multiple">
-{#                <option value="zorg">Zorg</option>#}
-{#                <option value="thuiszorg">Thuiszorg</option>#}
-{#                <option value="thuiszorg">Huishoudelijk</option>#}
             </select>
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="height: 34px">Opslaan</button>
+                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>
             </span>
         </div>
     </div>

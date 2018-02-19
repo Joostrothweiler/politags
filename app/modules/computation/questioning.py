@@ -2,7 +2,7 @@ import requests, json
 
 from app.models.models import Article
 from app import db
-from app.models.models import EntityLinking, Verification
+from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
 from app.modules.entities.named_entities import process_document
 from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
@@ -10,7 +10,7 @@ from app.modules.entities.named_entities import return_extracted_information
 from datetime import date
 
 
-def generate_question(apidict: dict, cookie_id : str) -> dict:
+def generate_questions(apidict: dict, cookie_id : str) -> dict:
     """
     Generate a question for an article in PoliFLW
     :param apidict: POST dict posted by PoliFLW
@@ -30,12 +30,15 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
     entities = article.entities
     entity_linkings = find_linkings(entities)
 
+    topics = generate_topics_json(article)
+
     if not entity_linkings:
         return {
             'error': 'no linkings for entities in this article',
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
-            'count_verifications_today': count_verifications_today
+            'count_verifications_today': count_verifications_today,
+            'topics': topics
         }
 
     next_question_linking = find_next_question_linking(entities, cookie_id)
@@ -45,7 +48,8 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
             'error': 'no question found for this article',
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
-            'count_verifications_today': count_verifications_today
+            'count_verifications_today': count_verifications_today,
+            'topics': topics
         }
 
     return {
@@ -59,7 +63,8 @@ def generate_question(apidict: dict, cookie_id : str) -> dict:
         'possible_answers': next_question_linking.possible_answers,
         'count_verifications': count_verifications,
         'count_verifications_personal': count_verifications_personal,
-        'count_verifications_today': count_verifications_today
+        'count_verifications_today': count_verifications_today,
+        'topics': topics
     }
 
 def find_linkings(entities: list) -> list:
@@ -101,7 +106,7 @@ def find_next_question_linking(entities: list, cookie_id) -> EntityLinking:
     return next_question_linking
 
 
-def process_polar_verification(entity_linking_id: int, apidoc: dict):
+def process_entity_verification(entity_linking_id: int, apidoc: dict):
     """
     Processes a polar verification to a question given by a PoliFLW reader
     :param entity_linking_id: the linking to which the verification was given
@@ -109,7 +114,7 @@ def process_polar_verification(entity_linking_id: int, apidoc: dict):
     :return:
     """
 
-    answer_id = int(apidoc["answer_id"])
+    answer_id = int(apidoc["response_id"])
     cookie_id = apidoc["cookie_id"]
 
     entity_linking = EntityLinking.query.filter(EntityLinking.id == entity_linking_id).first()
@@ -125,6 +130,37 @@ def process_polar_verification(entity_linking_id: int, apidoc: dict):
         'cookie_id': cookie_id,
         'ground truth': entity_linking.linkable_object.id
     }
+
+
+def process_topic_verification(article_id: str, apidoc: dict):
+    """
+    Processes a topic verification given by a PoliFLW reader
+    :param article_id: the id of the article the reader was reading
+    :param apidoc: the apidoc of the verification
+    :return:
+    """
+
+    cookie_id = apidoc["cookie_id"]
+
+    topic_response = apidoc["topic_response"]
+
+    for topic in topic_response:
+        articleTopic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
+
+        if not articleTopic:
+            articleTopic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0.75)
+            db.session.add(articleTopic)
+            db.session.commit()
+
+        verification = Verification(verifiable_object=articleTopic, response=topic["response"], cookie_id=cookie_id)
+        db.session.add(verification)
+        db.session.commit()
+
+
+    return {
+        'message': 'topics successfully recorded'
+    }
+
 
 
 def update_linking_certainty(entity_linking: EntityLinking, response: int):
@@ -157,3 +193,25 @@ def update_poliflw_entities(article):
     url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
     jsonupdate = return_extracted_information(article)
     requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
+
+
+def generate_topics_json(article):
+    topics = Topic.query.filter(Topic.parent_id is not None).all()
+    topicsarray = []
+    for topic in topics:
+        articletopic = ArticleTopic.query.filter(and_(ArticleTopic.article == article, ArticleTopic.topic == topic)).first()
+
+        selected = False
+        if articletopic:
+            if articletopic.updated_certainty > 0.5:
+                selected = True
+
+        topicobject = {
+            "id": topic.id,
+            "text": topic.name,
+            "selected": selected
+        }
+
+        topicsarray.append(topicobject)
+
+    return topicsarray
