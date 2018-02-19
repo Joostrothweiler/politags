@@ -140,7 +140,7 @@
         {
           "name": "Wet WOZ",
           "description": "Als uitvoerder van de Wet waardering onroerende zaken (WOZ) bepaalt de gemeente de waarde van alle onroerende zaken (woningen, bedrijfspanden, gronden etc.) binnen de eigen gemeentegrenzen. De VNG ziet bij de uitvoering van de WOZ de komende jaren een belangrijke uitdaging voor gemeenten. De werkwijzen en modellen zullen moeten laten zien dat zij ook in een dalende markt kunnen functioneren. Dat vraagt ondanks de financi\u00eble druk op gemeenten om blijvende investeringen in de uitvoeringspraktijk. Keuzes voor samenwerking, de informele aanpak, grotere openbaarheid en de landelijke voorziening kunnen daarbij van groot nut zijn.",
-          "slug": "asbest"
+          "slug": "wet-woz"
         },
         {
           "name": "Vennootschapsbelasting (Vpb) voor overheden",
@@ -165,14 +165,19 @@
           "slug": "herindeling"
         },
         {
-          "name": "Versterking lokale democratie",
+          "name": "Lokale democratie",
           "description": "De korte lijnen tussen inwoners, gemeenteraden en colleges maken van gemeenten bij uitstek de proeflokalen voor vernieuwende vormen van democratie. Met als centrale vraag: hoe kunnen gemeenten voor al hun inwoners een krachtige lokale overheid zijn die concreet bijdraagt aan de oplossing van maatschappelijke problemen? Het antwoord luidt: door democratie op maat. Op basis van maatschappelijke opgaven en wensen van de samenleving geven we de lokale democratie verder vorm, in nauwe samenwerking met het kabinet. Maatwerk voor en mogelijkheden tot differentiatie tussen gemeenten zijn nodig om tot oplossingen te komen. We vragen het kabinet vragen we om experimenteerruimte.",
-          "slug": "versterking-lokale-democratie"
+          "slug": "lokale-democratie"
         },
         {
           "name": "Verkiezingen & referenda",
           "description": "Gemeenten zijn verantwoordelijk voor de organisatie van de verkiezingen (voor de Tweede Kamer, Provinciale Staten, het Europees Parlement en de gemeenteraad) en referenda. De VNG is voorstander van de introductie van een electronische stemmenteller in combinatie met een daartoe geschikt stembiljet. We zijn tegen de introductie van stemmenprinters, o.a. vanwege beveiligingsrisico's en de aanzienlijke kosten.",
           "slug": "verkiezingen-referenda"
+        },
+        {
+          "name": "Burgerparticipatie",
+          "description": "",
+          "slug": "burgerparticipatie"
         }
       ],
       "slug": "bestuur",
@@ -249,9 +254,9 @@
           "slug": "informatieveiligheid"
         },
         {
-          "name": "Privacy gemeentelijke organisatie",
+          "name": "Privacy",
           "description": "Door de (nieuwe) Europese wetgeving, de technische mogelijkheden en de decentralisaties wordt het veld rond privacy voor gemeenten steeds complexer. Privacy is niet langer een onderwerp waar alleen juristen mee bezig zijn; privacy raakt de hele gemeentelijke organisatie. Algemene Verordening Gegevensbescherming EU 2016 | EUR-Lex Dossier Europese privacyregelgeving | Eerste Kamer Reform of EU data protection rules | Europese Commissie Meldplicht Datalekken | Overheid.nl Europese privacywetgeving | Autoriteit Persoonsgegevens Gegevensbescherming en de AVG | Europa Decentraal Vanaf 25 mei 2018 is de Algemene Verordening Gegevensbescherming (AVG) van toepassing. Dit brengt voor gemeenten meer verplichtingen met zich mee bij het werken met persoonsgegevens. Dat vraagt een gedegen voorbereiding, waarbij het kan helpen om prioriteiten te stellen voor de te nemen maatregelen. Het doel van deze handreiking is om gemeenten hier een handvat voor te bieden in de vorm van een stappenplan. Gemeenten kunnen dit stappenplan gebruiken als hulpmiddel bij het maken van keuzes: wat moet eerst en wat kan later?",
-          "slug": "gemeentelijk-belastinggebied"
+          "slug": "privacy"
         },
         {
           "name": "Smart Cities",
@@ -279,6 +284,10 @@
           "name": "Regionale economie",
           "description": "Versterken van de arbeidsmarkt door het stimuleren van de (regionale) economie is een thema op de VNG Agenda 2017. Het kabinet moet de lokale overheden en regionale samenwerkingsverbanden in staat stellen te investeren in het stimuleren van hun regionale economie. Bijvoorbeeld door (stedelijke) regio\u2019s te versterken. Het is van het grootste belang dat stad en en regio (ook de buitengebieden) goed bereikbaar zijn: fysiek \u00e9n digitaal. De energietransitie draagt ook in belangrijke mate bij aan de economische ontwikkeling en groei van de werkgelegenheid. De regio's Zwolle, Noordoost Friesland, Zeeland, Drechtsteden, Eindhoven, en de Metropoolregio Amsterdam toetsen als proeftuinen de aanbevelingen uit 'Maak Verschil', het rapport van de Studiegroep openbaar bestuur. De regioteams van de proeftuinen organiseren per regio verschillende activiteiten om de aanbevelingen uit het rapport \u2018 Maak verschil\u2019 uit te werken aan de hand van de praktijk van regionaal economische samenwerking. Meer meer hierover op de website van de Proeftuinen! Hoe ervaren ondernemers het economisch tebeleid en de dienstverlening? Het is belangrijk daar inzicht in te krijgen om stimulerend beleid te ontwikkelen dat aansluit bij de behoeften van lokale ondernemers. De Ondernemerspeiling van KING helpt gemeenten daarbij.",
           "slug": "regionale-economie"
+        },
+        {
+          "name": "Regionale economie stimuleren",
+          "slug": "regionale-economie-stimuleren"
         }
       ],
       "slug": "economie",
@@ -446,6 +455,11 @@
           "slug": "vernieuwing-preventie-en-inclusie-via-de-wmo"
         },
         {
+          "name": "Vernieuwing, precentie en inclusie",
+          "description": "",
+          "slug": "vernieuwing-preventie-inclusie"
+        },
+        {
           "name": "Vrijwilligerswerk & mantelzorgondersteuning",
           "description": "Sinds 2015 (het van kracht worden van de Wmo 2015) zijn gemeenten nog meer verantwoordelijk voor de zorg en ondersteuning van hun inwoners. Belangrijk thema hierbij is de informele zorg, zoals mantelzorg, buurthulp en vrijwillige inzet. MANTELZORG & DE WMO 2015 De Wmo 2015 bepaalt dat gemeenten verantwoordelijk zijn voor de ondersteuning van mantelzorgers via algemene voorzieningen en maatwerkvoorzieningen. Het betreft mantelzorgers van cli\u00ebnten die in de gemeente wonen en die geen gebruik maken van langdurige zorg. Kijk op de themapagina 'Mantelzorg & Wmo 2015' voor meer informatie over het mantelzorgbeleid sinds 2015.",
           "slug": "vrijwilligerswerk-mantelzorgondersteuning"
@@ -473,9 +487,9 @@
           "slug": "afval"
         },
         {
-          "name": "Afval",
-          "description": "Ministerie, gemeenten en bedrijfsleven hebben een nieuwe Raamovereenkomst Verpakkingen vastgesteld. In de overeenkomst en het addendum staan belangrijke afspraken over de inzameling en het hergebruik van verpakkingen. Ook is een verduurzamingsagenda opgesteld. STANDPUNT Het huidige debat richt zich voornamelijk op een klein maar financieel belangrijk deel van onze afvalinzameling: kunststofverpakkingen. En bij onze inwoners is zwerfafval een van de grootste ergernissen. In de positionpaper een korte uiteenzetting van deze twee onderwerpen.",
-          "slug": "afval"
+          "name": "Ondersteuningsprogramma energie",
+          "description": "",
+          "slug": "ondersteuningsprogramma-energie"
         },
         {
           "name": "Bodem en ondergrond",

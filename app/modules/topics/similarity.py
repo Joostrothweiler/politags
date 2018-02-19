@@ -1,71 +1,41 @@
+import pickle
 import logging
-from gensim.models import KeyedVectors
 
 from app import db
 from app.models.models import Topic, ArticleTopic, Article
 
 logger = logging.getLogger('similarity')
-model = None
+classifier = None
+transformer = None
 
 
-def init_model():
-    global model
-    model = KeyedVectors.load_word2vec_format("data_resources/embeddings/corpus.txt")
-    logger.info('Gensim model loaded')
+def init_models():
+    global classifier
+    global transformer
+    classifier = pickle.load(open('app/modules/topics/models/classifier.sav', 'rb'))
+    transformer = pickle.load(open('app/modules/topics/models/transformer.sav', 'rb'))
+    logger.info('Topics classifier loaded from desk.')
 
 
 def compute_most_similar_topic(article, document: dict):
     # Initialize only if model is not yet loaded.
-    if model == None:
-        init_model()
+    if classifier == None or transformer == None:
+        init_models()
 
-    parent_topic, parent_score = compute_most_similar_parent_topic(document)
-    child_topic, child_score = compute_most_similar_child_topic(parent_topic, document)
-
-    insert_article_topic_linking(article, child_topic, child_score)
+    topic, certainty = predict_article_topic(document)
+    insert_article_topic_linking(article, topic, certainty)
 
 
-def compute_most_similar_parent_topic(document: dict):
-    most_similar_parent_score = -1
-    most_similar_parent_topic = None
-
-    parent_topics = Topic.query.filter(Topic.parent == None).all()
-
-    for parent_topic in parent_topics:
-        children_topics = parent_topic.children
-
-        children_topic_names_array = [topic.name for topic in children_topics]
-        children_topic_names = ' '.join(children_topic_names_array)
-        string_to_compare = parent_topic.name + ' ' + children_topic_names
-
-        score = compute_certainty(document['text_description'], string_to_compare)
-
-        if score > most_similar_parent_score:
-            most_similar_parent_score = score
-            most_similar_parent_topic = parent_topic
-
-    return most_similar_parent_topic, most_similar_parent_score
-
-
-def compute_most_similar_child_topic(parent: Topic, document: dict):
-    most_similar_child_score = -1
-    most_similar_child_topic = None
-
-    child_topics = Topic.query.filter(Topic.parent == parent).all()
-
-    for child_topic in child_topics:
-        score = compute_certainty(document['text_description'], child_topic.name)
-
-        if score > most_similar_child_score:
-            most_similar_child_score = score
-            most_similar_child_topic = child_topic
-
-    return most_similar_child_topic, most_similar_child_score
-
-
-def compute_certainty(string_a, string_b):
-    # Distance should be minimized. So 1 - distance is the score
-    return 1 - model.wmdistance(string_a, string_b)
+def predict_article_topic(document: dict):
+    X_tfidf = transformer.transform([document['text_description']])
+    # The label used for prediction is the slug of the topic.
+    topic_slug = classifier.predict(X_tfidf)[0]
+    # Return the maximum probability found - this should be the probability found for this label.
+    topic_certainty = max(classifier.predict_proba(X_tfidf)[0])
+    # Find the topic in the database based on the slug returned by the classifier.
+    topic = Topic.query.filter(Topic.slug == topic_slug).first()
+    # Return topic object (None if not found) and certainty.
+    return topic, topic_certainty
 
 
 def insert_article_topic_linking(article: Article, topic: Topic, certainty: float):
@@ -75,7 +45,9 @@ def insert_article_topic_linking(article: Article, topic: Topic, certainty: floa
     if existing_linking:
         existing_linking.initial_certainty = certainty
         existing_linking.updated_certainty = certainty
-    else:
+    elif topic:
         new_linking = ArticleTopic(article=article, topic=topic, initial_certainty=certainty)
         db.session.add(new_linking)
+    else:
+        logger.error('Topic not found in database based on slug given. Not inserting anything.')
     db.session.commit()
