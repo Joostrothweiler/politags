@@ -42,10 +42,12 @@ def write_ned_training():
 
             if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
-                result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
+                result += str(article.id) + ',' + entity.text + ',' + candidate.id + ',' + ','.join(
+                    str(x) for x in feature_vector) + '\n'
             if linking.updated_certainty > linking.initial_certainty:
                 feature_vector.append(TRUE_LABEL)
-                result += str(article.id) + ',' + ','.join(str(x) for x in feature_vector) + '\n'
+                result += str(article.id) + ',' + entity.text + ',' + candidate.id + ',' + ','.join(
+                    str(x) for x in feature_vector) + '\n'
 
     file = open('data_resources/ned_db_training_file.txt', 'w')
     file.write(result)
