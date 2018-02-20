@@ -3,7 +3,11 @@ import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntityLinking, Entity
+from app.models.models import Politician, Party, EntityLinking, Entity, Article
+from app.modules.common.crud import store_entity_linking
+from app.modules.common.utils import string_similarity
+from app.modules.enrichment.named_entities.disambiguation_features import *
+from app.settings import NED_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('disambiguation')
 
@@ -12,19 +16,39 @@ logger = logging.getLogger('disambiguation')
 #     classifier = pickle.load(fid)
 
 
-def named_entity_disambiguation(entities: list, document: dict):
+def disambiguate_named_entities(article: Article, document: dict):
     """
     Process entities found in a document using Spacy and store any linkings found.
     :param entities: entities found in document.
     :param document: simple doc from API.
     """
+    entities = article.entities
     for entity in entities:
         if entity.label == 'PER':
             politician_disambiguation(document, entities, entity)
 
         if entity.label == 'ORG':
             party_disambiguation(document, entities, entity)
-    # Here we may want to call post_process_disambiguation_linkings...
+
+
+def disambiguated_named_entities(article):
+    parties = []
+    politicians = []
+
+    for entity in article.entities:
+        # Select only the linking with the highest updated certainty.
+        top_linking = EntityLinking.query.filter(EntityLinking.entity_id == entity.id) \
+            .order_by(EntityLinking.updated_certainty.desc()).first()
+
+        if top_linking and top_linking.updated_certainty > NED_CUTOFF_THRESHOLD:
+            if top_linking.linkable_type == 'Party':
+                if not top_linking.linkable_object.as_dict() in parties:
+                    parties.append(top_linking.linkable_object.as_dict())
+            elif top_linking.linkable_type == 'Politician':
+                if not top_linking.linkable_object.as_dict() in politicians:
+                    politicians.append(top_linking.linkable_object.as_dict())
+
+    return parties, politicians
 
 
 def politician_disambiguation(document: dict, doc_entities: list, entity: Entity):
@@ -146,26 +170,6 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
                 max_party = candidate_party
 
         store_entity_linking(entity, max_party, max_sim)
-
-
-def store_entity_linking(entity: Entity, linkable_object: object, initial_certainty: float):
-    """
-    Store the linkings between an entity and a party in the database.
-    :param entity: Entity in the database.
-    :param linkable_object: Either party or politician object
-    :param initial_certainty: Intial certainty score computed based on similarity features and weights.
-    """
-    linking = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
-        EntityLinking.linkable_object == linkable_object).first()
-
-    if linking:
-        linking.initial_certainty = initial_certainty
-    else:
-        linking = EntityLinking(initial_certainty=initial_certainty)
-        linking.linkable_object = linkable_object
-        entity.linkings.append(linking)
-        db.session.add(entity)
-    db.session.commit()
 
 
 # FIXME: Does not add any gain in recall/precision like this with the current setup. Therefore, leave out for now.
