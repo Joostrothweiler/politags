@@ -32,13 +32,31 @@ let articleObject =
 
 
 let initialTopics
+//
+// $('.js-example').select2 (
+//     {
+//         width: 'element',
+//         theme: 'bootstrap'
+//     }
+// )
 
-$('.js-example').select2 (
-    {
-        width: 'element',
-        theme: 'bootstrap'
-    }
-)
+$('.js-example').on('click' , function() {
+ $('select[data-customize-setting-link]').select2("close")
+} )
+
+$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+
+    Search.prototype.searchRemoveChoice = function () {
+        oldRemoveChoice.apply(this, arguments);
+        this.$search.val('');
+    };
+
+    $('#test').select2({
+        width:'300px'
+    });
+});
+
 
 
 
@@ -65,9 +83,6 @@ function getQuestion() {
             let countResponsesToday = response['count_verifications_today']
             updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
 
-            initialTopics = response['topics']
-            fillSelect2(initialTopics)
-
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
@@ -77,11 +92,21 @@ function getQuestion() {
 
                 highlightEntity(article, entityText, questionLinkingId)
                 renderQuestion(question, questionLinkingId, possibleAnswers)
-                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
                 console.log(response['error'])
             }
+
+            if (response['topic_response'] == false) {
+                console.log("filling select2")
+                initialTopics = response['topics']
+                fillSelect2(initialTopics)
+            }
+            else {
+                console.log("topic question already answered")
+                deleteTopicQuestion()
+            }
+
         },
 
         error: function (error) {
@@ -139,8 +164,10 @@ function postTopicVerification(postedTopics) {
         data: JSON.stringify(postObject),
         success: function (postObject) {
             console.log(postObject)
-            updateCounters()
-        //  showTopicFeedback()
+            for (let i=0; i<topicResponse.length; i++) {
+               updateCounters()
+            }
+         showTopicFeedback()
         },
         error: function (error) {
             console.log(error);
@@ -156,9 +183,9 @@ function postTopicVerification(postedTopics) {
 function fillSelect2(topics) {
     $('.js-example').select2(
         {
-            width: 'element',
+            data: topics,
             theme: 'bootstrap',
-            data: topics
+            width: 'element'
         }
     )
 }
@@ -285,7 +312,7 @@ function generatePolarButtons(questionId, possibleAnswers) {
 
 
 /**
- * This function performs all the actions to show feedback when a question is responded to
+ * This function performs all the actions to show feedback when an entity question is responded to
  */
 function showEntityFeedback() {
     $('#question').removeClass('panel-danger').addClass('panel-success');
@@ -299,8 +326,24 @@ function showEntityFeedback() {
             $(this).remove()
         })
     }, 4000)
+}
+
+/**
+ * This function performs all the actions to show feedback when a topic question is responded to
+ */
+function showTopicFeedback() {
+    $('#topic-content').replaceWith('<div class="col-sm-6 panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>')
+
+    setTimeout(function () {
+        $('#topic_container').slideUp("swing", function () {
+            $(this).remove()
+        })
+    }, 4000)
 
 }
+
+
 
 
 /**
@@ -408,6 +451,10 @@ function generateTopicResponse(initialTopics, postedTopics) {
 }
 
 
+function deleteTopicQuestion() {
+    $('#topic_container').remove()
+}
+
 
 /**
  * Event listeners here
@@ -437,4 +484,6 @@ $('#save').on('click', function () {
     postTopicVerification(postedTopics)
     }
 )
+
+
 

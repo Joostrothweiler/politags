@@ -31,6 +31,7 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
     entity_linkings = find_linkings(entities)
 
     topics = generate_topics_json(article)
+    topic_response = find_topic_response(cookie_id, article)
 
     if not entity_linkings:
         return {
@@ -38,7 +39,8 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
             'count_verifications_today': count_verifications_today,
-            'topics': topics
+            'topics': topics,
+            'topic_response': topic_response
         }
 
     next_question_linking = find_next_question_linking(entities, cookie_id)
@@ -49,7 +51,8 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
             'count_verifications_today': count_verifications_today,
-            'topics': topics
+            'topics': topics,
+            'topic_response': topic_response
         }
 
     return {
@@ -64,7 +67,8 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
         'count_verifications': count_verifications,
         'count_verifications_personal': count_verifications_personal,
         'count_verifications_today': count_verifications_today,
-        'topics': topics
+        'topics': topics,
+        'topic_response': topic_response
     }
 
 def find_linkings(entities: list) -> list:
@@ -215,3 +219,17 @@ def generate_topics_json(article):
         topicsarray.append(topicobject)
 
     return topicsarray
+
+
+def find_topic_response(cookie_id, article):
+    topic_response = False
+
+    article_topics = article.topics
+
+    user_verifications = Verification.query.filter(Verification.cookie_id == cookie_id)
+
+    for user_verification in user_verifications:
+        if user_verification.verifiable_object in article_topics:
+            topic_response = True
+
+    return topic_response
