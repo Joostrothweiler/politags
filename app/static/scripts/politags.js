@@ -32,13 +32,13 @@ let articleObject =
 
 
 let initialTopics
-//
-// $('.js-example').select2 (
-//     {
-//         width: 'element',
-//         theme: 'bootstrap'
-//     }
-// )
+
+$('.js-example').select2 (
+    {
+        width: 'element',
+        theme: 'bootstrap'
+    }
+)
 
 $('.js-example').on('click' , function() {
  $('select[data-customize-setting-link]').select2("close")
@@ -56,8 +56,6 @@ $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
         width:'300px'
     });
 });
-
-
 
 
 //On opening the website we call the API to receive the question
@@ -98,6 +96,7 @@ function getQuestion() {
             }
 
             if (response['topic_response'] == false) {
+                fillTopicContainer()
                 console.log("filling select2")
                 initialTopics = response['topics']
                 fillSelect2(initialTopics)
@@ -306,6 +305,8 @@ function generatePolarButtons(questionId, possibleAnswers) {
 
     buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
     buttonsHtml += '<button id=' + possibleAnswers[1]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-danger responseButton">NEE</button>\n';
+    buttonsHtml += '<button id=' + possibleAnswers[2]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-default responseButton">WEET IK NIET</button>\n';
+
 
     return buttonsHtml
 }
@@ -343,6 +344,20 @@ function showTopicFeedback() {
 
 }
 
+function fillTopicContainer() {
+    $('#topic_container').html('<div class="col-sm-3"></div>\n' +
+        '    <div class="col-sm-6" id="topic-content">\n' +
+        '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
+        '        <div class="input-group">\n' +
+        '            <select class="js-example form-control" name="topics[]" multiple="multiple">\n' +
+        '            </select>\n' +
+        '            <span class="input-group-btn">\n' +
+        '                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
+        '            </span>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div class="col-sm-3"></div>')
+}
 
 
 
@@ -477,13 +492,14 @@ $('body').on('click', '.responseButton', function () {
 /**
  * This piece of code registers a click on the submit button for topics
  */
-$('#save').on('click', function () {
+$('body').on('click', '#save', function () {
     let postedTopics = $('.js-example').select2('data')
     console.dir(postedTopics)
 
     postTopicVerification(postedTopics)
     }
 )
+
 
 
 

@@ -183,13 +183,15 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
         entity_linking.updated_certainty = min(entity_linking.updated_certainty + LEARNING_RATE, 1)
         # add poliFLW call here
         # update_poliflw_entities(article)
-    else:
+    elif response == -1:
         if entity_linking.updated_certainty - LEARNING_RATE < 0.5:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
             # update_poliflw_entities(article)
         else:
             entity_linking.updated_certainty -= LEARNING_RATE
+    else:
+        pass
 
 
 def update_poliflw_entities(article):
