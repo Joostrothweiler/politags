@@ -40,6 +40,22 @@ $('.js-example').select2 (
     }
 )
 
+$('.js-example').on('click' , function() {
+ $('select[data-customize-setting-link]').select2("close")
+} )
+
+$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+
+    Search.prototype.searchRemoveChoice = function () {
+        oldRemoveChoice.apply(this, arguments);
+        this.$search.val('');
+    };
+
+    $('#test').select2({
+        width:'300px'
+    });
+});
 
 
 //On opening the website we call the API to receive the question
@@ -65,9 +81,6 @@ function getQuestion() {
             let countResponsesToday = response['count_verifications_today']
             updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
 
-            initialTopics = response['topics']
-            fillSelect2(initialTopics)
-
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question']
@@ -77,11 +90,22 @@ function getQuestion() {
 
                 highlightEntity(article, entityText, questionLinkingId)
                 renderQuestion(question, questionLinkingId, possibleAnswers)
-                updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
             }
             else {
                 console.log(response['error'])
             }
+
+            if (response['topic_response'] == false) {
+                fillTopicContainer()
+                console.log("filling select2")
+                initialTopics = response['topics']
+                fillSelect2(initialTopics)
+            }
+            else {
+                console.log("topic question already answered")
+                deleteTopicQuestion()
+            }
+
         },
 
         error: function (error) {
@@ -139,8 +163,10 @@ function postTopicVerification(postedTopics) {
         data: JSON.stringify(postObject),
         success: function (postObject) {
             console.log(postObject)
-            updateCounters()
-        //  showTopicFeedback()
+            for (let i=0; i<topicResponse.length; i++) {
+               updateCounters()
+            }
+         showTopicFeedback()
         },
         error: function (error) {
             console.log(error);
@@ -156,9 +182,9 @@ function postTopicVerification(postedTopics) {
 function fillSelect2(topics) {
     $('.js-example').select2(
         {
-            width: 'element',
+            data: topics,
             theme: 'bootstrap',
-            data: topics
+            width: 'element'
         }
     )
 }
@@ -279,13 +305,15 @@ function generatePolarButtons(questionId, possibleAnswers) {
 
     buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
     buttonsHtml += '<button id=' + possibleAnswers[1]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-danger responseButton">NEE</button>\n';
+    buttonsHtml += '<button id=' + possibleAnswers[2]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-default responseButton">WEET IK NIET</button>\n';
+
 
     return buttonsHtml
 }
 
 
 /**
- * This function performs all the actions to show feedback when a question is responded to
+ * This function performs all the actions to show feedback when an entity question is responded to
  */
 function showEntityFeedback() {
     $('#question').removeClass('panel-danger').addClass('panel-success');
@@ -299,8 +327,38 @@ function showEntityFeedback() {
             $(this).remove()
         })
     }, 4000)
+}
+
+/**
+ * This function performs all the actions to show feedback when a topic question is responded to
+ */
+function showTopicFeedback() {
+    $('#topic-content').replaceWith('<div class="col-sm-6 panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>')
+
+    setTimeout(function () {
+        $('#topic_container').slideUp("swing", function () {
+            $(this).remove()
+        })
+    }, 4000)
 
 }
+
+function fillTopicContainer() {
+    $('#topic_container').html('<div class="col-sm-3"></div>\n' +
+        '    <div class="col-sm-6" id="topic-content">\n' +
+        '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
+        '        <div class="input-group">\n' +
+        '            <select class="js-example form-control" name="topics[]" multiple="multiple">\n' +
+        '            </select>\n' +
+        '            <span class="input-group-btn">\n' +
+        '                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
+        '            </span>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div class="col-sm-3"></div>')
+}
+
 
 
 /**
@@ -408,6 +466,10 @@ function generateTopicResponse(initialTopics, postedTopics) {
 }
 
 
+function deleteTopicQuestion() {
+    $('#topic_container').remove()
+}
+
 
 /**
  * Event listeners here
@@ -430,11 +492,14 @@ $('body').on('click', '.responseButton', function () {
 /**
  * This piece of code registers a click on the submit button for topics
  */
-$('#save').on('click', function () {
+$('body').on('click', '#save', function () {
     let postedTopics = $('.js-example').select2('data')
     console.dir(postedTopics)
 
     postTopicVerification(postedTopics)
     }
 )
+
+
+
 

@@ -99,5 +99,5 @@ def return_extracted_information(article: Article) -> dict:
         'article_id': article.id,
         'parties': parties,
         'politicians': politicians,
-        'topics' : [article_topic.topic.as_dict() for article_topic in article_topics]
+        'topics': [article_topic.topic.as_dict() for article_topic in article_topics]
     }

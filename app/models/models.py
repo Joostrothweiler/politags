@@ -137,6 +137,9 @@ class EntityLinking(db.Model):
             },
             {
                 'id': -1
+            },
+            {
+                'id': 0
             }
         ]
 
