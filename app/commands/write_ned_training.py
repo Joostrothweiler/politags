@@ -4,7 +4,7 @@ from flask_script import Command
 
 from app.models.models import EntityLinking, Article, Entity
 from app.modules.common.utils import translate_doc
-from app.modules.entities.disambiguation import compute_politician_feature_vector
+from app.modules.enrichment.named_entities import compute_politician_feature_vector
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('write_ned_training')

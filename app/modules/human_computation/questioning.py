@@ -1,12 +1,12 @@
-import requests, json
+import requests
 
 from app.models.models import Article
 from app import db
 from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
-from app.modules.entities.named_entities import process_document
+from app.modules.enrichment.named_entities.named_entities import process_document
 from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
-from app.modules.entities.named_entities import return_extracted_information
+from app.modules.enrichment.named_entities.named_entities import return_extracted_information
 from datetime import date
 
 

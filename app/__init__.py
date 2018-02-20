@@ -1,16 +1,20 @@
+import json
 import logging
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 # Instantiate Flask extensions
+from app.modules.common.utils import translate_doc
+from app.modules.enrichment.controller import *
+from app.modules.human_computation.controller import *
+from app.modules.knowledge_base.controller import *
+
+from app.local_settings import LOGGING_LEVEL
 
 db = SQLAlchemy()
 migrate = Migrate()
-# Import rest of the app# Import api route endpoints.
-from .endpoints import *
-from app.local_settings import LOGGING_LEVEL
 
 
 # Create the actual application
@@ -36,29 +40,42 @@ def create_app(extra_config_settings={}):
 
     # Register routes
     @app.route('/api/articles/entities', methods=['POST'])
-    def articles_entities():
-        return post_article_ner(request.data)
+    def article_enrichment():
+        document = json.loads(request.data)
+        simple_doc = translate_doc(document)
+        response = fetch_article_enrichment(simple_doc)
+        return jsonify(response)
+
+    @app.route('/api/articles/questions', methods=['POST'])
+    def article_question():
+        document = json.loads(request.data)
+        cookie_id = document['cookie_id']
+        simple_doc = translate_doc(document)
+        response = fetch_article_question(simple_doc, cookie_id)
+        return jsonify(response)
+
+    @app.route('/api/questions/<string:entity_linking_id>', methods=['POST'])
+    def entity_linking_verification(entity_linking_id):
+        document = json.loads(request.data) # TODO - not translate to simple_doc?
+        response = post_entity_linking_verification(document, entity_linking_id)
+        return jsonify(response)
+
+    # TODO - article id should either be passed in all routes or none.
+    @app.route('/api/topics/<string:article_id>', methods=['POST'])
+    def topic_verifications(article_id):
+        document = json.loads(request.data)
+        response = post_topic_verifications(document, article_id)
+        return jsonify(response)
 
     @app.route('/api/politicians/<string:politician_id>', methods=['POST'])
     def politician_by_id(politician_id):
-        return post_find_politician(politician_id)
+        response = fetch_politician_by_id(politician_id)
+        return jsonify(response)
 
     @app.route('/api/parties/<string:name>', methods=['POST'])
-    def party_by_id(name):
-        return post_find_party(name)
-
-    @app.route('/api/articles/questions', methods=['POST'])
-    def articles_questions():
-        # return request.data
-        return post_article_question(request.data)
-
-    @app.route('/api/questions/<string:entity_linking_id>', methods=['POST'])
-    def questions_response(entity_linking_id):
-        return post_question_response(entity_linking_id, request.data)
-
-    @app.route('/api/topics/<string:article_id>', methods=['POST'])
-    def topics_response(article_id):
-        return post_topics_response(article_id, request.data)
+    def party_by_name(name):
+        response = fetch_party_by_name(name)
+        return jsonify(response)
 
     @app.route('/article', methods=['GET'])
     def render_html():
