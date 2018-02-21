@@ -1,7 +1,7 @@
 import logging
 
 from app import db
-from app.models.models import *
+from app.models.models import Article, Entity, EntityLinking, ArticleTopic
 
 logger = logging.getLogger('crud')
 
@@ -34,23 +34,26 @@ def store_entity_linking(entity: Entity, linkable_object: object, initial_certai
     db.session.commit()
 
 
+def create_entity_or_increment_count(article: Article, text, label, start_pos, end_pos):
+    text = text.strip()
+
+    entity = Entity.query.filter(Entity.article_id == article.id) \
+        .filter(Entity.text == text) \
+        .filter(Entity.label == label).first()
+
+    if entity:
+        update_entity_count(entity, entity.count + 1)
+    else:
+        entity = Entity(text=text, label=label, start_pos=start_pos, end_pos=end_pos)
+        entity.article = article
+        db.session.add(entity)
+    db.session.commit()
+
+
+def reset_entity_count(entity: Entity):
+    update_entity_count(entity, 0)
+
+
 def update_entity_count(entity: Entity, count: int):
     entity.count = count
     db.session.commit()
-
-
-def insert_article_topic_linking(article: Article, topic: Topic, certainty: float):
-    existing_linking = ArticleTopic.query.filter(ArticleTopic.article == article).filter(
-        ArticleTopic.topic == topic).first()
-
-    if existing_linking:
-        existing_linking.initial_certainty = certainty
-        existing_linking.updated_certainty = certainty
-    elif topic:
-        new_linking = ArticleTopic(article=article, topic=topic, initial_certainty=certainty)
-        db.session.add(new_linking)
-    else:
-        logger.error('Topic not found in database based on slug given. Not inserting anything.')
-
-    db.session.commit()
-    return ArticleTopic

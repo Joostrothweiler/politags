@@ -4,9 +4,8 @@ import nl_core_news_sm
 from sqlalchemy import func
 
 from app.models.models import *
-from app.modules.common.crud import update_entity_count
-from app.modules.common.utils import pure_len
-from app.modules.enrichment.named_entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
+from app.modules.enrichment.named_entities.crud import update_entity_count, create_entity_or_increment_count
+from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 
 logger = logging.getLogger('recognition')
 
@@ -54,32 +53,6 @@ def recognize_named_entities(article: Article, document: dict) -> list:
     # Count again.
     for doc_ent in nlp_doc.ents:
         # Strip the entity text so that we have no empty space at the ends.
-        doc_ent_text = doc_ent.text.strip()
-        # Check if the entity is already in the database.
-        entity = Entity.query.filter(Entity.article_id == article.id) \
-            .filter(Entity.text == doc_ent_text) \
-            .filter(Entity.label == doc_ent.label_).first()
-
-        if entity:
-            entity.count += 1
-        elif entity_text_has_valid_length(doc_ent):
-            # Create the entity in the database.
-            entity = Entity(text=doc_ent_text,
-                            label=doc_ent.label_,
-                            start_pos=doc_ent.start_char,
-                            end_pos=doc_ent.end_char)
-            entity.article = article
-            db.session.add(entity)
+        create_entity_or_increment_count(article, doc_ent.text, doc_ent.label_, doc_ent.start_char, doc_ent.end_char)
 
     return article.entities
-
-
-def entity_text_has_valid_length(entity) -> bool:
-    """
-    Check whether the entity has a valid entity.text length such that we can insert it in the database.
-    :param entity: NLP entity processed by Spacy.
-    :return: Boolean whether entity has valid text length.
-    """
-    if entity and entity.text:
-        return pure_len(entity.text) > 1 and len(entity.text) < 50
-    return False

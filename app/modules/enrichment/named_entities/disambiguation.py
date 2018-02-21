@@ -2,18 +2,12 @@ import logging
 import numpy as np
 from sqlalchemy import or_, func
 
-from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity, Article
-from app.modules.common.crud import store_entity_linking
-from app.modules.common.utils import string_similarity
+from app.modules.enrichment.named_entities.crud import store_entity_linking
 from app.modules.enrichment.named_entities.disambiguation_features import *
 from app.settings import NED_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('disambiguation')
-
-
-# with open('app/modules/entities/nlp_model/test_tree_clf.pkl', 'rb') as fid:
-#     classifier = pickle.load(fid)
 
 
 def disambiguate_named_entities(article: Article, document: dict):
@@ -30,8 +24,6 @@ def disambiguate_named_entities(article: Article, document: dict):
         if entity.label == 'ORG':
             party_disambiguation(document, entities, entity)
 
-
-def disambiguated_named_entities(article):
     parties = []
     politicians = []
 
