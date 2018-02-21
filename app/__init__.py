@@ -7,9 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 # Instantiate Flask extensions
 from app.modules.common.utils import translate_doc
-from app.modules.enrichment.controller import *
-from app.modules.human_computation.controller import *
-from app.modules.knowledge_base.controller import *
+from app.modules.enrichment.controller import fetch_article_enrichment
+from app.modules.human_computation.controller import fetch_article_question, post_entity_linking_verification, \
+    post_topic_verifications
+from app.modules.knowledge_base.controller import fetch_politician_by_id, fetch_party_by_name
 
 from app.local_settings import LOGGING_LEVEL
 
@@ -55,16 +56,20 @@ def create_app(extra_config_settings={}):
         return jsonify(response)
 
     @app.route('/api/questions/<string:entity_linking_id>', methods=['POST'])
-    def entity_linking_verification(entity_linking_id):
-        document = json.loads(request.data) # TODO - not translate to simple_doc?
-        response = post_entity_linking_verification(document, entity_linking_id)
+    def entity_linking_verification(param_entity_linking_id):
+        document = json.loads(request.data)
+        cookie_id = document['cookie_id']
+        response_id = document['response_id']
+        response = post_entity_linking_verification(document, param_entity_linking_id, cookie_id, response_id)
         return jsonify(response)
 
     # TODO - article id should either be passed in all routes or none.
     @app.route('/api/topics/<string:article_id>', methods=['POST'])
     def topic_verifications(article_id):
         document = json.loads(request.data)
-        response = post_topic_verifications(document, article_id)
+        cookie_id = document['cookie_id']
+        topic_response = document['topic_response']
+        response = post_topic_verifications(document, article_id, cookie_id, topic_response)
         return jsonify(response)
 
     @app.route('/api/politicians/<string:politician_id>', methods=['POST'])

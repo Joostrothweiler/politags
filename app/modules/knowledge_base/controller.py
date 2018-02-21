@@ -3,7 +3,7 @@ from sqlalchemy import or_, func
 
 from app.modules.common.utils import collection_as_dict
 
-
+# TODO: Make actual controller without db communication and logic.
 def fetch_politician_by_id(id):
     politician = Politician.query.filter(Politician.system_id == id).first()
     if politician:
@@ -11,7 +11,7 @@ def fetch_politician_by_id(id):
     else:
         return {'message' : 'Politician not found.'}
 
-
+# TODO: Make actual controller without db communication and logic.
 def fetch_party_by_name(name):
     parties = Party.query.filter(
         or_(func.lower(Party.abbreviation) == func.lower(name), func.lower(Party.name) == func.lower(name))).all()

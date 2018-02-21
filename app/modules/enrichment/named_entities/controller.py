@@ -1,3 +1,6 @@
+"""
+Controller geeft alleen alle API responses, roept zelf geen data uit de database aan en bevat zelf geen logica.
+"""
 import logging
 
 from app.models.models import Article

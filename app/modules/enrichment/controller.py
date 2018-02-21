@@ -1,9 +1,5 @@
-
-
 """
-Controller geeft alleen alle API responses
-Controller roept zelf geen data aan??
-
+Controller geeft alleen alle API responses, roept zelf geen data uit de database aan en bevat zelf geen logica.
 """
 from app.modules.enrichment.named_entities.crud import find_or_create_article
 from app.modules.enrichment.named_entities.controller import extract_disambiguated_named_entities

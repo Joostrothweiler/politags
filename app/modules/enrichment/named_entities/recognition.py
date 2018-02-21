@@ -3,7 +3,7 @@ import logging
 import nl_core_news_sm
 from sqlalchemy import func
 
-from app.models.models import *
+from app.models.models import Politician, Entity, Article
 from app.modules.enrichment.named_entities.crud import update_entity_count, create_entity_or_increment_count
 from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 

@@ -1,13 +1,12 @@
 import requests
-
-from app.models.models import Article
-from app import db
-from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
-from app.modules.enrichment.named_entities.controller import process_document
-from sqlalchemy import and_, Date, cast
-from app.local_settings import PFL_PASSWORD, PFL_USER
-from app.modules.enrichment.named_entities.controller import return_extracted_information
 from datetime import date
+from sqlalchemy import and_, Date, cast
+
+from app import db
+from app.local_settings import PFL_PASSWORD, PFL_USER
+from app.models.models import Article
+from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
+from app.modules.enrichment.controller import fetch_article_enrichment
 
 
 def generate_questions(apidict: dict, cookie_id : str) -> dict:
@@ -20,7 +19,7 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
     article = Article.query.filter(Article.id == apidict['id']).first()
 
     if not article:
-        process_document(apidict)
+        fetch_article_enrichment(apidict)
         article = Article.query.filter(Article.id == apidict['id']).first()
 
     count_verifications = Verification.query.count()
@@ -106,7 +105,7 @@ def find_next_question_linking(entities: list, cookie_id) -> EntityLinking:
     return next_question_linking
 
 
-def process_entity_verification(entity_linking_id: int, apidoc: dict):
+def process_entity_verification(apidoc: dict, entity_linking_id: int):
     """
     Processes a polar verification to a question given by a PoliFLW reader
     :param entity_linking_id: the linking to which the verification was given
@@ -132,17 +131,13 @@ def process_entity_verification(entity_linking_id: int, apidoc: dict):
     }
 
 
-def process_topic_verification(article_id: str, apidoc: dict):
+def process_topic_verification(article_id: str, cookie_id:str, topic_response: dict):
     """
     Processes a topic verification given by a PoliFLW reader
     :param article_id: the id of the article the reader was reading
     :param apidoc: the apidoc of the verification
     :return:
     """
-
-    cookie_id = apidoc["cookie_id"]
-
-    topic_response = apidoc["topic_response"]
 
     for topic in topic_response:
         articleTopic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
