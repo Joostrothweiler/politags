@@ -4,7 +4,7 @@ from sqlalchemy import or_, func
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity
-from app.modules.entities.disambiguation_features import *
+from app.modules.enrichment.named_entities.disambiguation_features import *
 
 logger = logging.getLogger('disambiguation')
 

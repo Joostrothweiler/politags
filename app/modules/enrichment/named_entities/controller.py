@@ -4,10 +4,10 @@ import logging
 from app import db
 from sqlalchemy import func
 from app.models.models import Article, EntityLinking, ArticleTopic, Politician
-from app.modules.entities.disambiguation import named_entity_disambiguation
-from app.modules.entities.nlp_model.pipelines import PoliticianRecognizer, PartyRecognizer
-from app.modules.entities.recognition import named_entity_recognition
-from app.modules.topics.similarity import compute_most_similar_topic
+from app.modules.enrichment.named_entities.disambiguation import named_entity_disambiguation
+from app.modules.enrichment.named_entities.recognition import named_entity_recognition
+from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
+from app.modules.enrichment.topics.similarity import compute_most_similar_topic
 from app.settings import NED_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('named_entities')

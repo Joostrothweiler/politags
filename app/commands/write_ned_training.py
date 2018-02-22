@@ -1,10 +1,10 @@
 import logging
-
+from datetime import datetime
 from flask_script import Command
 
 from app.models.models import EntityLinking, Article, Entity
 from app.modules.common.utils import translate_doc
-from app.modules.entities.disambiguation import compute_politician_feature_vector
+from app.modules.enrichment.named_entities.disambiguation import compute_politician_feature_vector
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('write_ned_training')
@@ -49,7 +49,8 @@ def write_ned_training():
                 result += str(article.id) + ',' + entity.text + ',' + candidate.full_name + ',' + ','.join(
                     str(x) for x in feature_vector) + '\n'
 
-    file = open('data_resources/ned_db_training_file.txt', 'w')
+    now = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+    file = open('data_resources/ned/ned_db_training_file_{}.txt'.format(now), 'w')
     file.write(result)
     file.close()
 

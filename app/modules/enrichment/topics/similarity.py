@@ -12,8 +12,8 @@ transformer = None
 def init_models():
     global classifier
     global transformer
-    classifier = pickle.load(open('app/modules/topics/models/classifier.sav', 'rb'))
-    transformer = pickle.load(open('app/modules/topics/models/transformer.sav', 'rb'))
+    classifier = pickle.load(open('app/modules/enrichment/topics/models/classifier.sav', 'rb'))
+    transformer = pickle.load(open('app/modules/enrichment/topics/models/transformer.sav', 'rb'))
     logger.info('Topics classifier loaded from desk.')
 
 

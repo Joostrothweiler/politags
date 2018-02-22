@@ -4,7 +4,7 @@ from flask import jsonify
 
 from app.modules.common.utils import translate_doc
 from app.modules.computation.questioning import generate_questions, process_entity_verification, process_topic_verification
-from app.modules.entities.named_entities import process_document
+from app.modules.enrichment.named_entities.controller import process_document
 from app.modules.knowledge_base.api import find_politician, find_party
 
 
