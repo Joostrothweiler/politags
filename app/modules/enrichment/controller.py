@@ -23,8 +23,7 @@ def process_document(document: dict) -> dict:
         article = Article(id=document['id'])
         db.session.add(article)
         db.session.commit()
-
-    enrich_article(article, document)
+        enrich_article(article, document)
     return enrichment_response(article)
 
 

@@ -58,23 +58,24 @@ def named_entity_recognition(article: Article, document: dict) -> list:
 
     # Count again.
     for doc_ent in nlp_doc.ents:
-        # Strip the entity text so that we have no empty space at the ends.
-        doc_ent_text = doc_ent.text.strip()
-        # Check if the entity is already in the database.
-        entity = Entity.query.filter(Entity.article_id == article.id) \
-            .filter(Entity.text == doc_ent_text) \
-            .filter(Entity.label == doc_ent.label_).first()
+        if doc_ent.label_ == 'PER' or doc_ent.label_ == 'ORG':
+            # Strip the entity text so that we have no empty space at the ends.
+            doc_ent_text = doc_ent.text.strip()
+            # Check if the entity is already in the database.
+            entity = Entity.query.filter(Entity.article_id == article.id) \
+                .filter(Entity.text == doc_ent_text) \
+                .filter(Entity.label == doc_ent.label_).first()
 
-        if entity:
-            entity.count += 1
-        elif entity_text_has_valid_length(doc_ent):
-            # Create the entity in the database.
-            entity = Entity(text=doc_ent_text,
-                            label=doc_ent.label_,
-                            start_pos=doc_ent.start_char,
-                            end_pos=doc_ent.end_char)
-            entity.article = article
-            db.session.add(entity)
+            if entity:
+                entity.count += 1
+            elif entity_text_has_valid_length(doc_ent):
+                # Create the entity in the database.
+                entity = Entity(text=doc_ent_text,
+                                label=doc_ent.label_,
+                                start_pos=doc_ent.start_char,
+                                end_pos=doc_ent.end_char)
+                entity.article = article
+                db.session.add(entity)
 
-        db.session.commit()
+            db.session.commit()
     return article.entities

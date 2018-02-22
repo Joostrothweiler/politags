@@ -145,7 +145,7 @@ def find_category_and_text_from_kamerstuk_url(kamerstuk_url):
 
 
 def write_results_to_json(result):
-    
+
 
     with open('data_resources/topics/kamerstukken/kamerstukken_topics.json', 'w') as outfile:
         json.dump(result, outfile)
