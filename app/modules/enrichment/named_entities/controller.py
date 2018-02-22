@@ -8,7 +8,7 @@ from app.modules.enrichment.named_entities.disambiguation import named_entity_di
 from app.modules.enrichment.named_entities.recognition import named_entity_recognition
 from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 from app.modules.enrichment.topics.similarity import compute_most_similar_topic
-from app.settings import NED_CUTOFF_THRESHOLD
+from app.settings import NED_CUTOFF_THRESHOLD, TOPIC_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('named_entities')
 nlp = None
@@ -93,7 +93,8 @@ def return_extracted_information(article: Article) -> dict:
                 if not top_linking.linkable_object.as_dict() in politicians:
                     politicians.append(top_linking.linkable_object.as_dict())
 
-    article_topics = ArticleTopic.query.filter(ArticleTopic.article == article).all()
+    article_topics = ArticleTopic.query.filter(ArticleTopic.article == article).filter(
+        ArticleTopic.initial_certainty > TOPIC_CUTOFF_THRESHOLD).all()
 
     return {
         'article_id': article.id,
