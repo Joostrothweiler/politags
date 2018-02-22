@@ -4,7 +4,7 @@ import logging
 from flask_script import Command
 
 from app.modules.common.utils import translate_doc
-from app.modules.enrichment.named_entities.controller import process_document
+from app.modules.enrichment.controller import process_document
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('test_ne')

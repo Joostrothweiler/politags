@@ -3,10 +3,10 @@ import requests
 from app.models.models import Article
 from app import db
 from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
-from app.modules.enrichment.named_entities.controller import process_document
+from app.modules.enrichment.controller import process_document
 from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
-from app.modules.enrichment.named_entities.controller import return_extracted_information
+from app.modules.enrichment.controller import enrichment_response
 from datetime import date
 
 
@@ -197,7 +197,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
 def update_poliflw_entities(article):
     # fill in correct url here
     url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
-    jsonupdate = return_extracted_information(article)
+    jsonupdate = enrichment_response(article)
     requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
 
 

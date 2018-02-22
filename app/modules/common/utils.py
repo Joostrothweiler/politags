@@ -119,7 +119,18 @@ def pure_len(a: str) -> int:
     return len(a) - a.count(' ')
 
 
-def write_objects_to_file(filename: str, header : list, object_list : list):
+def entity_text_has_valid_length(entity) -> bool:
+    """
+    Check whether the entity has a valid entity.text length such that we can insert it in the database.
+    :param entity: NLP entity processed by Spacy.
+    :return: Boolean whether entity has valid text length.
+    """
+    if entity and entity.text:
+        return pure_len(entity.text) > 1 and len(entity.text) < 50
+    return False
+
+
+def write_objects_to_file(filename: str, header: list, object_list: list):
     """
     Write an objects list to a csv file with headers.
     :param filename: Name of the file in the folder data_resources to write to.

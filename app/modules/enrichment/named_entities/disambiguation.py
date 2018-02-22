@@ -3,7 +3,7 @@ import numpy as np
 from sqlalchemy import or_, func
 
 from app import db
-from app.models.models import Politician, Party, EntityLinking, Entity
+from app.models.models import Politician, Party, EntityLinking, Entity, Article
 from app.modules.enrichment.named_entities.disambiguation_features import *
 
 logger = logging.getLogger('disambiguation')
@@ -13,19 +13,20 @@ logger = logging.getLogger('disambiguation')
 #     classifier = pickle.load(fid)
 
 
-def named_entity_disambiguation(entities: list, document: dict):
+def named_entity_disambiguation(article : Article, document: dict):
     """
     Process entities found in a document using Spacy and store any linkings found.
     :param entities: entities found in document.
     :param document: simple doc from API.
     """
+    entities = article.entities
+
     for entity in entities:
         if entity.label == 'PER':
             politician_disambiguation(document, entities, entity)
 
         if entity.label == 'ORG':
             party_disambiguation(document, entities, entity)
-    # Here we may want to call post_process_disambiguation_linkings...
 
 
 def politician_disambiguation(document: dict, doc_entities: list, entity: Entity):
@@ -167,18 +168,3 @@ def store_entity_linking(entity: Entity, linkable_object: object, initial_certai
         entity.linkings.append(linking)
         db.session.add(entity)
     db.session.commit()
-
-
-# FIXME: Does not add any gain in recall/precision like this with the current setup. Therefore, leave out for now.
-def post_process_disambiguation_linkings(entities: list):
-    entity_ids = [e.id for e in entities]
-    entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).order_by(
-        EntityLinking.initial_certainty.desc()).all()
-
-    for high_certainty_linking in entity_linkings:
-        for low_certainty_linking in entity_linkings:
-            if not high_certainty_linking == low_certainty_linking and \
-                    high_certainty_linking.linkable_object == low_certainty_linking.linkable_object:
-                # Remove all linkings on the lower quality entity
-                low_quality_entity = low_certainty_linking.entity
-                EntityLinking.query.filter(EntityLinking.entity == low_quality_entity).delete()

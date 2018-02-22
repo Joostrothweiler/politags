@@ -1,38 +1,14 @@
-import nl_core_news_sm
 import logging
 
 from app import db
-from sqlalchemy import func
-from app.models.models import Article, EntityLinking, ArticleTopic, Politician
+from app.models.models import Article, EntityLinking, ArticleTopic
 from app.modules.enrichment.named_entities.disambiguation import named_entity_disambiguation
 from app.modules.enrichment.named_entities.recognition import named_entity_recognition
-from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 from app.modules.enrichment.topics.similarity import compute_most_similar_topic
 from app.settings import NED_CUTOFF_THRESHOLD, TOPIC_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('named_entities')
-nlp = None
 
-
-def init_nlp():
-    """
-    Initialize the NLP module with PhraseMatcher
-    """
-    logger.info('NLP Module : Initializing')
-    global nlp
-    politicians = []
-    parties = []
-    for politician in Politician.query.filter(func.length(Politician.given_name) > 1).all():
-        politicians.append(politician.given_name + ' ' + politician.last_name)
-
-    nlp = nl_core_news_sm.load()
-    politician_pipe = PoliticianRecognizer(nlp, politicians)
-    party_pipe = PartyRecognizer(nlp, parties)
-    nlp.add_pipe(politician_pipe, last=True)
-    nlp.add_pipe(party_pipe, last=True)
-    nlp.remove_pipe('tagger')
-    nlp.remove_pipe('parser')
-    logger.info('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
 
 
 def process_document(document: dict) -> dict:
@@ -41,9 +17,6 @@ def process_document(document: dict) -> dict:
     :param document: simple document from poliflow.
     :return: extracted information as dict.
     """
-    # Initialize only if nlp is not yet loaded.
-    if nlp == None:
-        init_nlp()
     # Make sure the article is in the database.
     article = Article.query.filter(Article.id == document['id']).first()
     if not article:
@@ -51,27 +24,21 @@ def process_document(document: dict) -> dict:
         db.session.add(article)
         db.session.commit()
 
-    extract_information(article, document)
-    return return_extracted_information(article)
+    enrich_article(article, document)
+    return enrichment_response(article)
 
 
-def extract_information(article: Article, document: dict):
+def enrich_article(article: Article, document: dict):
     """
     Extract information from the article, more specifically all named entities linked to knowledge base.
     :param article: article in database.
     :param document: simple document from poliflow.
     """
-    nlp_doc = nlp(document['text_description'])
-    entities = named_entity_recognition(article, nlp_doc)
-    named_entity_disambiguation(entities, document)
-
-    # TODO: Refactor - rethink file structure and reorder to make more modular.
+    named_entity_recognition(article, document)
+    named_entity_disambiguation(article, document)
     compute_most_similar_topic(article, document)
 
-    db.session.commit()
-
-
-def return_extracted_information(article: Article) -> dict:
+def enrichment_response(article: Article) -> dict:
     """
     Return the extracted information as dict to the API.
     :param article: article in database.

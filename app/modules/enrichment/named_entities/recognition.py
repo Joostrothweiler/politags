@@ -1,9 +1,47 @@
+import nl_core_news_sm
+import logging
 from app import db
-from app.models.models import Entity, Article
-from app.modules.common.utils import pure_len
+from app.models.models import Entity, Article, Politician
+from app.modules.common.utils import pure_len, entity_text_has_valid_length
+
+from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
+
+from sqlalchemy import func
+
+nlp = None
+
+logger = logging.getLogger('recognition')
 
 
-def named_entity_recognition(article: Article, nlp_doc) -> list:
+def init_nlp():
+    """
+    Initialize the NLP module with PhraseMatcher
+    """
+    logger.info('NLP Module : Initializing')
+    global nlp
+    politicians = []
+    parties = []
+    for politician in Politician.query.filter(func.length(Politician.given_name) > 1).all():
+        politicians.append(politician.given_name + ' ' + politician.last_name)
+
+    nlp = nl_core_news_sm.load()
+    politician_pipe = PoliticianRecognizer(nlp, politicians)
+    party_pipe = PartyRecognizer(nlp, parties)
+    nlp.add_pipe(politician_pipe, last=True)
+    nlp.add_pipe(party_pipe, last=True)
+    nlp.remove_pipe('tagger')
+    nlp.remove_pipe('parser')
+    logger.info('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
+
+
+def convert_document_description_to_nlp_doc(document):
+    # Initialize only if nlp is not yet loaded.
+    if nlp == None:
+        init_nlp()
+    return nlp(document['text_description'])
+
+
+def named_entity_recognition(article: Article, document: dict) -> list:
     """
     Perform Named Entity Recognition on the article in the database, including all types such as LOC, MISC
     :param article: article in the database
@@ -15,6 +53,8 @@ def named_entity_recognition(article: Article, nlp_doc) -> list:
     for entity in article_entities:
         entity.count = 0
         db.session.add(entity)
+
+    nlp_doc = convert_document_description_to_nlp_doc(document)
 
     # Count again.
     for doc_ent in nlp_doc.ents:
@@ -36,15 +76,5 @@ def named_entity_recognition(article: Article, nlp_doc) -> list:
             entity.article = article
             db.session.add(entity)
 
+        db.session.commit()
     return article.entities
-
-
-def entity_text_has_valid_length(entity) -> bool:
-    """
-    Check whether the entity has a valid entity.text length such that we can insert it in the database.
-    :param entity: NLP entity processed by Spacy.
-    :return: Boolean whether entity has valid text length.
-    """
-    if entity and entity.text:
-        return pure_len(entity.text) > 1 and len(entity.text) < 50
-    return False
