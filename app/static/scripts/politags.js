@@ -99,6 +99,7 @@ function getQuestion() {
                 fillTopicContainer()
                 console.log("filling select2")
                 initialTopics = response['topics']
+
                 fillSelect2(initialTopics)
             }
             else {
@@ -333,7 +334,7 @@ function showEntityFeedback() {
  * This function performs all the actions to show feedback when a topic question is responded to
  */
 function showTopicFeedback() {
-    $('#topic-content').replaceWith('<div class="col-sm-6 panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+    $('#topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
         '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>')
 
     setTimeout(function () {
@@ -345,8 +346,8 @@ function showTopicFeedback() {
 }
 
 function fillTopicContainer() {
-    $('#topic_container').html('<div class="col-sm-3"></div>\n' +
-        '    <div class="col-sm-6" id="topic-content">\n' +
+    $('#topic_container').html(
+        '    <div id="topic-content">\n' +
         '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
         '        <div class="input-group">\n' +
         '            <select class="js-example form-control" name="topics[]" multiple="multiple">\n' +
@@ -355,8 +356,8 @@ function fillTopicContainer() {
         '                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
         '            </span>\n' +
         '        </div>\n' +
-        '    </div>\n' +
-        '    <div class="col-sm-3"></div>')
+        '    </div>\n'
+    )
 }
 
 
@@ -441,8 +442,8 @@ function generateTopicResponse(initialTopics, postedTopics) {
 
     for (let i = 0; i < postedTopics.length; i++) {
         topicResponse.push({
-                "id": postedTopics[i].id,
-                "response": postedTopics[i].id
+                "id": parseInt(postedTopics[i].id),
+                "response": parseInt(postedTopics[i].id)
             }
         )
     }
@@ -455,7 +456,7 @@ function generateTopicResponse(initialTopics, postedTopics) {
             if (topics.length == 0) {
                 topicResponse.push(
                     {
-                        "id": initialTopics[i].id,
+                        "id": parseInt(initialTopics[i].id),
                         "response": -1
                     }
                 )

@@ -229,9 +229,9 @@ class Topic(db.Model):
 
     def as_dict(self):
         return {
-            'id' : self.id,
-            'name' : self.name,
-            'name_long' : self.name_long
+            'id': self.id,
+            'name': self.name,
+            'name_long': self.name_long
         }
 
 

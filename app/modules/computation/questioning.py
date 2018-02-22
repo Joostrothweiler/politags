@@ -47,7 +47,7 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
 
     if not next_question_linking:
         return {
-            'error': 'no question found for this article',
+            'error': 'no question found or left for this article',
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
             'count_verifications_today': count_verifications_today,
@@ -149,21 +149,40 @@ def process_topic_verification(article_id: str, apidoc: dict):
     topic_response = apidoc["topic_response"]
 
     for topic in topic_response:
-        articleTopic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
+        article_topic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
 
-        if not articleTopic:
-            articleTopic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0.75)
-            db.session.add(articleTopic)
+        if not article_topic:
+            article_topic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0, updated_certainty=1)
+            db.session.add(article_topic)
             db.session.commit()
 
-        verification = Verification(verifiable_object=articleTopic, response=topic["response"], cookie_id=cookie_id)
+        verification = Verification(verifiable_object=article_topic, response=topic["response"], cookie_id=cookie_id)
         db.session.add(verification)
+
+        sum_of_verifications = update_topic_certainty(article_topic)
+
         db.session.commit()
 
-
     return {
-        'message': 'topics successfully recorded'
+        'message': 'topics successfully recorded',
+        'sum' : sum_of_verifications,
+        'article_topic': article_topic.topic_id
     }
+
+
+def update_topic_certainty(article_topic):
+    positive_verifications_count = Verification.query.filter(and_(Verification.verifiable_object == article_topic, Verification.response == article_topic.topic_id)).count()
+    negative_verifications_count = Verification.query.filter(and_(Verification.verifiable_object == article_topic, Verification.response == -1)).count()
+
+    sum_of_verifications = positive_verifications_count - negative_verifications_count
+
+    if sum_of_verifications > 0:
+        article_topic.updated_certainty = 1
+    else:
+        article_topic.updated_certainty = 0
+
+    return sum_of_verifications
+
 
 
 
@@ -209,12 +228,12 @@ def generate_topics_json(article):
 
         selected = False
         if articletopic:
-            if articletopic.updated_certainty > 0.5:
+            if articletopic.updated_certainty > 0.1:
                 selected = True
 
         topicobject = {
             "id": topic.id,
-            "text": topic.name,
+            "text": topic.name_long,
             "selected": selected
         }
 
