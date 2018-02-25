@@ -20,30 +20,35 @@ starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|Howeve
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
 
+
+def remove_unnecessary_spaces(sentence):
+    return re.sub(' +', ' ', sentence).strip()
+
+
 def split_into_sentences(text):
     text = " " + text + "  "
-    text = text.replace("\n"," ")
-    text = re.sub(prefixes,"\\1<prd>",text)
-    text = re.sub(websites,"<prd>\\1",text)
-    if "Ph.D" in text: text = text.replace("Ph.D.","Ph<prd>D<prd>")
-    text = re.sub("\s" + caps + "[.] "," \\1<prd> ",text)
-    text = re.sub(acronyms+" "+starters,"\\1<stop> \\2",text)
-    text = re.sub(caps + "[.]" + caps + "[.]" + caps + "[.]","\\1<prd>\\2<prd>\\3<prd>",text)
-    text = re.sub(caps + "[.]" + caps + "[.]","\\1<prd>\\2<prd>",text)
-    text = re.sub(" "+suffixes+"[.] "+starters," \\1<stop> \\2",text)
-    text = re.sub(" "+suffixes+"[.]"," \\1<prd>",text)
-    text = re.sub(" " + caps + "[.]"," \\1<prd>",text)
-    if "”" in text: text = text.replace(".”","”.")
-    if "\"" in text: text = text.replace(".\"","\".")
-    if "!" in text: text = text.replace("!\"","\"!")
-    if "?" in text: text = text.replace("?\"","\"?")
-    text = text.replace(".",".<stop>")
-    text = text.replace("?","?<stop>")
-    text = text.replace("!","!<stop>")
-    text = text.replace("<prd>",".")
+    text = text.replace("\n", " ")
+    text = re.sub(prefixes, "\\1<prd>", text)
+    text = re.sub(websites, "<prd>\\1", text)
+    if "Ph.D" in text: text = text.replace("Ph.D.", "Ph<prd>D<prd>")
+    text = re.sub("\s" + caps + "[.] ", " \\1<prd> ", text)
+    text = re.sub(acronyms + " " + starters, "\\1<stop> \\2", text)
+    text = re.sub(caps + "[.]" + caps + "[.]" + caps + "[.]", "\\1<prd>\\2<prd>\\3<prd>", text)
+    text = re.sub(caps + "[.]" + caps + "[.]", "\\1<prd>\\2<prd>", text)
+    text = re.sub(" " + suffixes + "[.] " + starters, " \\1<stop> \\2", text)
+    text = re.sub(" " + suffixes + "[.]", " \\1<prd>", text)
+    text = re.sub(" " + caps + "[.]", " \\1<prd>", text)
+    if "”" in text: text = text.replace(".”", "”.")
+    if "\"" in text: text = text.replace(".\"", "\".")
+    if "!" in text: text = text.replace("!\"", "\"!")
+    if "?" in text: text = text.replace("?\"", "\"?")
+    text = text.replace(".", ".<stop>")
+    text = text.replace("?", "?<stop>")
+    text = text.replace("!", "!<stop>")
+    text = text.replace("<prd>", ".")
     sentences = text.split("<stop>")
     sentences = sentences[:-1]
-    sentences = [s.strip() for s in sentences]
+    sentences = [remove_unnecessary_spaces(s) for s in sentences]
     return sentences
 
 
@@ -73,7 +78,7 @@ def fetch_ao_url(url):
     return status_code, content
 
 
-def find_kamerstukken(content, url, what, already_saved_kamerstukken):
+def find_kamerstukken(content, url, what, saved_kamerstukken_urls):
     urls = []
     soup = BeautifulSoup(content, "lxml")
 
@@ -92,8 +97,8 @@ def find_kamerstukken(content, url, what, already_saved_kamerstukken):
         else:
             match = re.match('\/(kv|ah)-([^\.]*?)\.html', a['href'])
         if match:
-            new = 'https://zoek.officielebekendmakingen.nl/%s-%s.html' % (match.group(1), match.group(2), )
-            if new not in already_saved_kamerstukken:
+            new = 'https://zoek.officielebekendmakingen.nl/%s-%s.html' % (match.group(1), match.group(2),)
+            if new not in saved_kamerstukken_urls:
                 kamerstukken.append(new)
 
     try:
@@ -105,8 +110,6 @@ def find_kamerstukken(content, url, what, already_saved_kamerstukken):
         return kamerstukken, []
 
     max_count = paginering.findAll('a')[-2].findAll(text=True)
-
-
 
     if max_count[0] == 'Vorige' or int(max_count[0]) <= 0:
         return kamerstukken, []
@@ -121,7 +124,7 @@ def find_kamerstukken(content, url, what, already_saved_kamerstukken):
     while (cur_page <= last_page):
         next_page = cur_page + 1
         new_url = re.sub('&_page=(\d+)', '', url)
-        new_url += '&_page=%s' % (next_page, )
+        new_url += '&_page=%s' % (next_page,)
         cur_page = next_page
         urls.append(new_url)
     # urls = [a['href'] for a in paginering.findAll('a')]
@@ -135,8 +138,17 @@ def find_category_and_text_from_kamerstuk_url(kamerstuk_url):
     statuscode, content = fetch_ao_url(kamerstuk_url)
     soup = BeautifulSoup(content, "lxml")
 
-    category = soup.find('meta',attrs={'name':'OVERHEID.category'})['content']
-    content_html = soup.find("div", {"id": "broodtekst"}).get_text()
+    meta = soup.find('meta', attrs={'name': 'OVERHEID.category'})
+    if meta:
+        category = meta['content']
+    else:
+        category = 'NOCAT'
+
+    content = soup.find("div", {"id": "broodtekst"})
+    if content:
+        content_html = content.get_text()
+    else:
+        content_html = 'NOCONTENT'
 
     sentences = split_into_sentences(content_html)
     content = ' '.join(sentences)
@@ -145,20 +157,14 @@ def find_category_and_text_from_kamerstuk_url(kamerstuk_url):
 
 
 def write_results_to_json(result):
-
-
     with open('data_resources/topics/kamerstukken/kamerstukken_topics.json', 'w') as outfile:
         json.dump(result, outfile)
+
 
 def get_already_saved_kamerstukken():
     file = 'data_resources/topics/kamerstukken/kamerstukken_topics.json'
     data = json.load(open(file))
-    urls = []
-
-    for obj in data:
-        urls.append(obj['url'])
-
-    return urls
+    return data
 
 
 def main(args):
@@ -187,7 +193,9 @@ def main(args):
         'ao': 'vrt=Verslag+van+een+algemeen+overleg&zkd=AlleenInDeTitel&',
         'kamervragen': ''
     }
-    all_kamerstukken = []
+    all_kamerstukken_urls = []
+    saved_kamerstukken = get_already_saved_kamerstukken()
+    saved_kamerstukken_urls = [kamerstuk['url'] for kamerstuk in saved_kamerstukken]
 
     # year = int(args[0])
     # week = int(args[1])
@@ -199,8 +207,6 @@ def main(args):
     datum_eind = datetime.datetime.strptime(args[1], '%Y%m%d')
     days_between = int(args[3])
 
-    already_saved_kamerstukken = get_already_saved_kamerstukken()
-
     datum_curr = datum_start
     while (datum_curr < datum_eind):
         datumstart = datum_curr.strftime('%Y%m%d')
@@ -209,20 +215,20 @@ def main(args):
         par = what_to_par[args[2]]
         zoek = what_to_vrt[args[2]]
         url = (
-            'https://zoek.officielebekendmakingen.nl/zoeken/resultaat/'
-            '?zkt=Uitgebreid&pst=ParlementaireDocumenten&' + zoek +
-            'dpr=AnderePeriode&spd=' + datumstart + '&epd=' + datumeind +
-            '&kmr=TweedeKamerderStatenGeneraal&sdt=KenmerkendeDatum&par=' +
-            par + '&dst=Opgemaakt%7cOpgemaakt+na+onopgemaakt&isp=true&pnr=1&'
-            'rpp=10&_page=1&sorttype=1&sortorder=4')
+                'https://zoek.officielebekendmakingen.nl/zoeken/resultaat/'
+                '?zkt=Uitgebreid&pst=ParlementaireDocumenten&' + zoek +
+                'dpr=AnderePeriode&spd=' + datumstart + '&epd=' + datumeind +
+                '&kmr=TweedeKamerderStatenGeneraal&sdt=KenmerkendeDatum&par=' +
+                par + '&dst=Opgemaakt%7cOpgemaakt+na+onopgemaakt&isp=true&pnr=1&'
+                      'rpp=10&_page=1&sorttype=1&sortorder=4')
         status_code, content = fetch_ao_url(url)
-        logger.info('%s: %s' % (url, status_code, ))
+        logger.info('%s: %s' % (url, status_code,))
 
         if status_code != 200:
             return
 
-        kamerstukken, urls = find_kamerstukken(content, url, args[2], already_saved_kamerstukken)
-        all_kamerstukken += kamerstukken
+        kamerstukken, urls = find_kamerstukken(content, url, args[2], saved_kamerstukken_urls)
+        all_kamerstukken_urls += kamerstukken
 
         for url in urls:
             status_code, content = fetch_ao_url(url)
@@ -231,21 +237,20 @@ def main(args):
             if status_code != 200:
                 continue
 
-            kamerstukken, dummy = find_kamerstukken(content, url, args[2], already_saved_kamerstukken)
-            all_kamerstukken += kamerstukken
+            kamerstukken, dummy = find_kamerstukken(content, url, args[2], saved_kamerstukken_urls)
+            all_kamerstukken_urls += kamerstukken
 
         datum_curr = datum_curr + datetime.timedelta(days=(days_between + 1))
 
-    all_kamerstukken_clean = list(set(all_kamerstukken))
+    all_kamerstukken_urls_clean = list(set(all_kamerstukken_urls))
 
-    result = []
-
-    for kamerstuk_url in all_kamerstukken_clean:
+    for kamerstuk_url in all_kamerstukken_urls_clean:
         category, content = find_category_and_text_from_kamerstuk_url(kamerstuk_url)
-        result.append({'url': kamerstuk_url, 'category' : category, 'content' : content})
+        saved_kamerstukken.append({'url': kamerstuk_url, 'category': category, 'content': content})
 
-    print(len(result))
-    write_results_to_json(result)
+    print(len(saved_kamerstukken))
+    write_results_to_json(saved_kamerstukken)
+
 
 if __name__ == '__main__':
     # ./bin/zoek_ob.py 20150101 20150201 kamervragen 1
