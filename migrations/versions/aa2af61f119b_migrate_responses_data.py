@@ -1,4 +1,4 @@
-"""empty message
+"""migrate responses data
 
 Revision ID: aa2af61f119b
 Revises: bb0bc279bf4c
@@ -19,10 +19,16 @@ depends_on = None
 def upgrade():
     # fill verifiable type and id with the right values.
 
-    existing_data = db.engine.execute("SELECT id, questionable_type, questionable_id FROM questions")
+    # check if questions table already exists - otherwise we do not need to transfer data.
+    questions_table_exists = db.engine.execute(
+        "SELECT EXISTS(SELECT * FROM information_schema.tables WHERE table_name = 'questions')");
 
-    for res in existing_data:
-        question_id = res[0]
+
+    if questions_table_exists == 1:
+        existing_data = db.engine.execute("SELECT id, questionable_type, questionable_id FROM questions")
+
+        for res in existing_data:
+            question_id = res[0]
         questionable_type = res[1]
         questionable_id = res[2]
 

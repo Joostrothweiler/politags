@@ -1,4 +1,4 @@
-"""empty message
+"""rename responses table to verifications
 
 Revision ID: bb0bc279bf4c
 Revises: 4358c46d8072

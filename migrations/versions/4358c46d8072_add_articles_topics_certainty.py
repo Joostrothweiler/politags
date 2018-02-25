@@ -1,4 +1,4 @@
-"""empty message
+"""add articles_topics certainty
 
 Revision ID: 4358c46d8072
 Revises: 0d9b8c6d0654

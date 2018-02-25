@@ -1,6 +1,7 @@
 import logging
 
 from app import db
+from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
 from app.models.models import Article, EntityLinking, ArticleTopic
 from app.modules.enrichment.named_entities.disambiguation import named_entity_disambiguation
 from app.modules.enrichment.named_entities.recognition import named_entity_recognition
@@ -8,7 +9,6 @@ from app.modules.enrichment.topics.similarity import compute_most_similar_topic
 from app.settings import NED_CUTOFF_THRESHOLD, TOPIC_CUTOFF_THRESHOLD
 
 logger = logging.getLogger('named_entities')
-
 
 
 def process_document(document: dict) -> dict:
@@ -24,6 +24,10 @@ def process_document(document: dict) -> dict:
         db.session.add(article)
         db.session.commit()
         enrich_article(article, document)
+    # Else if it was already in the database but we set the ALWAYS_PROCESS variable to True in local settings, process.
+    elif ALWAYS_PROCESS_ARTICLE_AGAIN:
+        enrich_article(article, document)
+
     return enrichment_response(article)
 
 
@@ -36,6 +40,7 @@ def enrich_article(article: Article, document: dict):
     named_entity_recognition(article, document)
     named_entity_disambiguation(article, document)
     compute_most_similar_topic(article, document)
+
 
 def enrichment_response(article: Article) -> dict:
     """
