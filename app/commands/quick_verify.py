@@ -1,11 +1,8 @@
 import logging
-import re
 
-from flask_script import Command
+from flask_script import Command, Option
 
-from app import db
-
-from app.models.models import EntityLinking, Verification, Article
+from app.models.models import EntityLinking, Article
 from app.modules.common.utils import translate_doc
 from app.modules.computation.questioning import process_entity_verification, generate_questions
 from app.modules.poliflow.fetch import fetch_single_document
@@ -15,10 +12,28 @@ logger = logging.getLogger('quick_verify')
 
 class QuickVerifyCommand(Command):
     """ Initialize the database."""
+    option_list = (
+        Option('--cookie_id', '-c', dest='cookie_id'),
+    )
 
-    def run(self):
-        quick_verify()
+    def run(self, cookie_id):
+        url_verify(cookie_id)
 
+
+def url_verify(cookie_id):
+    if cookie_id:
+        for article in Article.query.all():
+            document = fetch_single_document(article.id)
+            simple_doc = translate_doc(document)
+            simple_doc['cookie_id'] = cookie_id
+            question_api_response = generate_questions(simple_doc, simple_doc['cookie_id'])
+
+            if 'error' not in question_api_response:
+                location = simple_doc['location']
+                party = simple_doc['parties'][0]
+                print('https://poliflw.nl/l/{}/{}/{}'.format(location, party, article.id))
+    else:
+        print('Cookie id not set. Set using --cookie_id or -c')
 
 
 def quick_verify():
@@ -40,9 +55,10 @@ def quick_verify():
             entity = entity_linking.entity
             politician = entity_linking.linkable_object
 
-
             print('Entity : \t{} from {} - {}'.format(entity.text, simple_doc['location'], simple_doc['parties']))
-            print('Politician: \t{} ({}) {} of {} from {}'.format(politician.title, politician.first_name, politician.full_name, politician.party, politician.municipality))
+            print('Politician: \t{} ({}) {} of {} from {}'.format(politician.title, politician.first_name,
+                                                                  politician.full_name, politician.party,
+                                                                  politician.municipality))
 
             response = input("Is this correct? [y,n,?,stop]: ")
             response_str = str(response)
