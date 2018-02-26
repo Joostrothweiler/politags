@@ -75,7 +75,9 @@ function getQuestion() {
         data: JSON.stringify(apiObject),
 
         success: function (response) {
+            console.log("the API response returned by Politags:")
             console.log(response)
+
             let countResponsesTotal = response['count_verifications']
             let countResponsesPersonal = response['count_verifications_personal']
             let countResponsesToday = response['count_verifications_today']
@@ -97,7 +99,7 @@ function getQuestion() {
 
             if (response['topic_response'] == false) {
                 fillTopicContainer()
-                console.log("filling select2")
+
                 initialTopics = response['topics']
 
                 fillSelect2(initialTopics)
@@ -130,7 +132,8 @@ function postEntityVerification(response, questionLinkingId) {
         url: "http://localhost:5555/api/questions/" + questionLinkingId,
         data: JSON.stringify(response),
         success: function (response) {
-            console.log(response)
+            console.log("This API response was sent to politags:")
+            console.dir(response)
             updateCounters()
             showEntityFeedback()
         },
@@ -155,15 +158,12 @@ function postTopicVerification(postedTopics) {
 
     let postObject = addCookieIdToObject(response)
 
-    console.dir(postObject)
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "http://localhost:5555/api/topics/" + articleObject.id,
         data: JSON.stringify(postObject),
-        success: function (postObject) {
-            console.log(postObject)
+        success: function () {
             for (let i=0; i<topicResponse.length; i++) {
                updateCounters()
             }
@@ -495,6 +495,7 @@ $('body').on('click', '.responseButton', function () {
  */
 $('body').on('click', '#save', function () {
     let postedTopics = $('.js-example').select2('data')
+    console.log("Topics that are sent to Politags:")
     console.dir(postedTopics)
 
     postTopicVerification(postedTopics)
