@@ -1,4 +1,4 @@
-"""empty message
+"""create main tables
 
 Revision ID: 4df404f78b9f
 Revises: 41308eb732ce
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '4df404f78b9f'
-down_revision = '41308eb732ce'
+down_revision = None
 branch_labels = None
 depends_on = None
 

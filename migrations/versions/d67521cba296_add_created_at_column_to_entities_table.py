@@ -1,4 +1,4 @@
-"""empty message
+"""add created_at column to entities table
 
 Revision ID: d67521cba296
 Revises: 4df404f78b9f

@@ -1,4 +1,4 @@
-"""empty message
+"""create topics table
 
 Revision ID: 0d9b8c6d0654
 Revises: 2dd000bf6d3c

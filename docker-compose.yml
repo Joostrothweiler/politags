@@ -16,6 +16,8 @@ services:
 
   postgres:
     image: postgres:10.1
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: politagsadmin
@@ -39,3 +41,5 @@ networks:
     external:
       name: docker_nginx-load-balancer
   
+volumes:
+  pgdata:

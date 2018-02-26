@@ -1,4 +1,4 @@
-"""empty message
+"""add slug to topics
 
 Revision ID: 517f796096a3
 Revises: e0d73ecf862d

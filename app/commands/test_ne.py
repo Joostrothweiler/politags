@@ -3,9 +3,8 @@ import logging
 
 from flask_script import Command
 
-from app.models.models import Entity, Article, EntityLinking, Verification
 from app.modules.common.utils import translate_doc
-from app.modules.entities.named_entities import process_document
+from app.modules.enrichment.controller import process_document
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('test_ne')

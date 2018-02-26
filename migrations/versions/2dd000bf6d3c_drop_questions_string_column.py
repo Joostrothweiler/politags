@@ -1,4 +1,4 @@
-"""empty message
+"""drop question_string column
 
 Revision ID: 2dd000bf6d3c
 Revises: 6f6365119d2d

@@ -1,4 +1,4 @@
-"""empty message
+"""add cookie_id to response
 
 Revision ID: 6f6365119d2d
 Revises: d67521cba296

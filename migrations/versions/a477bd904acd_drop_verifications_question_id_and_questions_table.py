@@ -1,4 +1,4 @@
-"""empty message
+"""drop verifications question_id and questions table
 
 Revision ID: a477bd904acd
 Revises: aa2af61f119b

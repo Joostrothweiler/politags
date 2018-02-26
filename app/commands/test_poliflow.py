@@ -3,7 +3,7 @@ import time
 from flask_script import Command
 
 from app.modules.common.utils import translate_doc
-from app.modules.entities.named_entities import process_document
+from app.modules.enrichment.controller import process_document
 from app.modules.poliflow.fetch import fetch_latest_documents
 
 logger = logging.getLogger('test_poliflow')
