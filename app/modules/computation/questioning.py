@@ -33,45 +33,36 @@ def generate_questions(apidict: dict, cookie_id : str) -> dict:
     topics = generate_topics_json(article)
     topic_response = find_topic_response(cookie_id, article)
 
-    if not entity_linkings:
-        return {
-            'error': 'no linkings for entities in this article',
+    api_response = {
             'count_verifications': count_verifications,
             'count_verifications_personal': count_verifications_personal,
             'count_verifications_today': count_verifications_today,
             'topics': topics,
             'topic_response': topic_response
-        }
+    }
+
+    if not entity_linkings:
+        api_response['error'] = 'no linkings for entities in this article'
+        return api_response
 
     next_question_linking = find_next_question_linking(entities, cookie_id)
 
     if not next_question_linking:
-        return {
-            'error': 'no question found or left for this article',
-            'count_verifications': count_verifications,
-            'count_verifications_personal': count_verifications_personal,
-            'count_verifications_today': count_verifications_today,
-            'topics': topics,
-            'topic_response': topic_response
-        }
+        api_response['error'] = 'no question found or left for this article'
+        return api_response
 
     add_verification_to_database(cookie_id, next_question_linking)
 
-    return {
-        'question': next_question_linking.question_string,
-        'question_linking_id': next_question_linking.id,
-        'text': next_question_linking.entity.text,
-        'label': next_question_linking.entity.label,
-        'start_pos': next_question_linking.entity.start_pos,
-        'end_pos': next_question_linking.entity.end_pos,
-        'certainty': next_question_linking.updated_certainty,
-        'possible_answers': next_question_linking.possible_answers,
-        'count_verifications': count_verifications,
-        'count_verifications_personal': count_verifications_personal,
-        'count_verifications_today': count_verifications_today,
-        'topics': topics,
-        'topic_response': topic_response
-    }
+    api_response['question'] = next_question_linking.question_string
+    api_response['question_linking_id'] = next_question_linking.id
+    api_response['text'] = next_question_linking.entity.text
+    api_response['label'] = next_question_linking.entity.label
+    api_response['start_pos'] = next_question_linking.entity.start_pos
+    api_response['end_pos'] = next_question_linking.entity.end_pos
+    api_response['certainty'] = next_question_linking.updated_certainty
+    api_response['possible_answers'] = next_question_linking.possible_answers
+
+    return api_response
 
 def find_linkings(entities: list) -> list:
     """
