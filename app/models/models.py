@@ -241,8 +241,9 @@ class Verification(db.Model):
     verifiable_type = db.Column(db.String(50), nullable=True)
     verifiable_id = db.Column(db.Integer(), nullable=True)
     cookie_id = db.Column(db.String(200))
-    response = db.Column(db.Integer())
+    response = db.Column(db.Integer(), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
     # Relationships
     verifiable_object = generic_relationship(verifiable_type, verifiable_id)
