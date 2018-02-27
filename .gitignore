@@ -22,7 +22,7 @@ __pycache__/
 # --------------------------------
 
 app/local_settings.py
-app/modules/enrichment/topics/models/*.pkl
+app/modules/enrichment/topics/models/*.sav
 
 data_resources/ned_db_training_file.txt
 data_resources/embeddings/*.txt

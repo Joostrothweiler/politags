@@ -14,7 +14,7 @@ def init_models():
     global transformer
     classifier = pickle.load(open('app/modules/enrichment/topics/models/classifier_kamerstukken.sav', 'rb'))
     transformer = pickle.load(open('app/modules/enrichment/topics/models/transformer_kamerstukken.sav', 'rb'))
-    logger.info('Topics classifier loaded from desk.')
+    logger.info('Topics classifier loaded from disk.')
 
 
 def compute_most_similar_topic(article, document: dict):
