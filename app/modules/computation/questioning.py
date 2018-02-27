@@ -233,7 +233,7 @@ def generate_topics_json(article):
 
         topicobject = {
             "id": topic.id,
-            "text": topic.name_long,
+            "text": topic.name,
             "selected": selected
         }
 
