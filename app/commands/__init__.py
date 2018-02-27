@@ -7,3 +7,4 @@ from .test_poliflow import TestPoliflowCommand
 from .write_ned_training import WriteNedTraining
 from .init_topics import InitTopicsCommand
 from .quick_verify import QuickVerifyCommand
+from .train_topic_clf import TrainTopicClfCommand

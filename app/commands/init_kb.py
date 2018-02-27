@@ -18,5 +18,5 @@ class InitKbCommand(Command):
 def init_kb():
     """ Initialize the database."""
     logger.info('Ready to initialize')
-    init_knowledge_base()
     init_topics()
+    init_knowledge_base()

@@ -22,7 +22,7 @@ class QuickVerifyCommand(Command):
 
 def url_verify(cookie_id):
     if cookie_id:
-        for article in Article.query.all():
+        for article in Article.query.order_by(Article.created_at.desc()).all():
             document = fetch_single_document(article.id)
             simple_doc = translate_doc(document)
             simple_doc['cookie_id'] = cookie_id

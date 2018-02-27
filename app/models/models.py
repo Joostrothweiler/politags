@@ -212,26 +212,15 @@ class Politician(db.Model):
 class Topic(db.Model):
     __tablename__ = 'topics'
     id = db.Column(db.Integer(), primary_key=True)
-    parent_id = db.Column(db.Integer(), db.ForeignKey('topics.id'), nullable=True)
     name = db.Column(db.String(100))
-    slug = db.Column(db.String(100))
 
     # Relationships
-    children = db.relationship('Topic', backref=backref('parent', remote_side=[id]))
     articles = db.relationship('ArticleTopic', back_populates='topic')
-
-    @hybrid_property
-    def name_long(self):
-        if self.parent:
-            return '{}: {}'.format(self.parent.name, self.name)
-        else:
-            return self.name
 
     def as_dict(self):
         return {
             'id': self.id,
-            'name': self.name,
-            'name_long': self.name_long
+            'name': self.name
         }
 
 
