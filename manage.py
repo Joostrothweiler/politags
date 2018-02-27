@@ -23,6 +23,7 @@ manager.add_command('test_poliflow', TestPoliflowCommand)
 manager.add_command('write_ned_training', WriteNedTraining)
 manager.add_command('init_topics', InitTopicsCommand)
 manager.add_command('quick_verify', QuickVerifyCommand)
+manager.add_command('train_topic_clf', TrainTopicClfCommand)
 
 
 if __name__ == "__main__":

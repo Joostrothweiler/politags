@@ -267,7 +267,7 @@ def generate_topics_json(article: Article) -> list:
 
         topicobject = {
             "id": topic.id,
-            "text": topic.name_long,
+            "text": topic.name,
             "selected": selected
         }
 

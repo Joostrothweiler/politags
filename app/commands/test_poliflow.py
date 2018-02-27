@@ -1,6 +1,6 @@
 import logging
 import time
-from flask_script import Command
+from flask_script import Command, Option
 
 from app.modules.common.utils import translate_doc
 from app.modules.enrichment.controller import process_document
@@ -10,14 +10,17 @@ logger = logging.getLogger('test_poliflow')
 
 class TestPoliflowCommand(Command):
     """ Test the NER/NED."""
+    option_list = (
+        Option('--count', '-c', dest='count'),
+    )
 
-    def run(self):
-        test_poliflow()
+    def run(self, count = 100):
+        test_poliflow(int(count))
 
 
-def test_poliflow():
+def test_poliflow(count):
     """ Test Named Entity Algorithms."""
-    n_documents = 500
+    n_documents = count
     documents = fetch_latest_documents(n_documents)
 
     start = time.time()

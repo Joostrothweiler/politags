@@ -1,15 +1,14 @@
-import nl_core_news_sm
 import logging
-from app import db
-from app.models.models import Entity, Article, Politician
-from app.modules.common.utils import pure_len, entity_text_has_valid_length
-
-from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
+import nl_core_news_sm
 
 from sqlalchemy import func
 
-nlp = None
+from app import db
+from app.models.models import Entity, Article, Politician
+from app.modules.common.utils import entity_text_has_valid_length
+from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 
+nlp = None
 logger = logging.getLogger('recognition')
 
 
