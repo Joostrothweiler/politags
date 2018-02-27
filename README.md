@@ -33,6 +33,7 @@ Edit the `local_settings.py` file.
 
     # Create DB using Alembic migrations:
     python manage.py db upgrade
+    python manage.py init_kb
     
 Ones you change something in the database, run:
 
@@ -58,6 +59,7 @@ and http://localhost:9999/ for db adminer
     python manage.py db migrate
     python manage.py db upgrade
     python manage.py init_db
+    python manage.py train_topic_clf
 
 
 ## Running the automated tests
