@@ -8,7 +8,7 @@ from sqlalchemy import and_, Date, cast
 from app.local_settings import PFL_PASSWORD, PFL_USER
 from app.modules.enrichment.controller import enrichment_response
 from datetime import date
-
+from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
 
 def generate_questions(apidict: dict, cookie_id: str) -> dict:
     """
@@ -20,7 +20,7 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
 
     article = Article.query.filter(Article.id == apidict['id']).first()
 
-    if not article:
+    if not article or ALWAYS_PROCESS_ARTICLE_AGAIN:
         process_document(apidict)
         article = Article.query.filter(Article.id == apidict['id']).first()
 
@@ -196,12 +196,16 @@ def update_topic_certainty(article_topic: ArticleTopic):
     :param article_topic: the article_topic linking
     """
 
+
     positive_verifications_count = Verification.query.filter(
         and_(Verification.verifiable_object == article_topic, Verification.response == article_topic.topic_id)).count()
     negative_verifications_count = Verification.query.filter(
         and_(Verification.verifiable_object == article_topic, Verification.response == -1)).count()
 
     sum_of_verifications = positive_verifications_count - negative_verifications_count
+
+    if article_topic.initial_certainty != 0:
+        sum_of_verifications += 1
 
     if sum_of_verifications > 0:
         article_topic.updated_certainty = 1
@@ -254,7 +258,7 @@ def generate_topics_json(article: Article) -> list:
     :return: topiclist for select2
     """
 
-    topics = Topic.query.filter(Topic.parent_id is not None).all()
+    topics = Topic.query.all()
     topicsarray = []
     for topic in topics:
         articletopic = ArticleTopic.query.filter(
