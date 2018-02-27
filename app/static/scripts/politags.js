@@ -1,4 +1,6 @@
-"use strict";
+"use strict"
+
+const LOGGING = true
 
 let article = document.getElementById("article_container");
 
@@ -31,18 +33,18 @@ let articleObject =
     };
 
 
-let initialTopics
+let initialTopics;
 
 $('.js-example').select2 (
     {
         width: 'element',
         theme: 'bootstrap'
     }
-)
+);
 
 $('.js-example').on('click' , function() {
  $('select[data-customize-setting-link]').select2("close")
-} )
+} );
 
 $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
     var oldRemoveChoice = Search.prototype.searchRemoveChoice;
@@ -66,7 +68,7 @@ $(getQuestion());
  * Gets the question for the current article by calling the Politags API and updates html accordingly
  */
 function getQuestion() {
-    let apiObject = addCookieIdToObject(articleObject)
+    let apiObject = addCookieIdToObject(articleObject);
 
     $.ajax({
         type: "POST",
@@ -75,44 +77,48 @@ function getQuestion() {
         data: JSON.stringify(apiObject),
 
         success: function (response) {
-            console.log("the API response returned by Politags:")
-            console.log(response)
+            if (LOGGING) {
+                console.log("the API response returned by Politags:")
+                console.log(response)
+            }
 
-            let countResponsesTotal = response['count_verifications']
-            let countResponsesPersonal = response['count_verifications_personal']
-            let countResponsesToday = response['count_verifications_today']
-            updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday)
+            let countResponsesTotal = response['count_verifications'];
+            let countResponsesPersonal = response['count_verifications_personal'];
+            let countResponsesToday = response['count_verifications_today'];
+            updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday);
 
             if ($.isEmptyObject(response['error']) === true) {
 
-                let question = response['question']
-                let questionLinkingId = response['question_linking_id']
-                let possibleAnswers = response['possible_answers']
-                let entityText = response['text']
+                let question = response['question'];
+                let questionLinkingId = response['question_linking_id'];
+                let possibleAnswers = response['possible_answers'];
+                let entityText = response['text'];
 
-                highlightEntity(article, entityText, questionLinkingId)
+                highlightEntity(article, entityText, questionLinkingId);
                 renderQuestion(question, questionLinkingId, possibleAnswers)
             }
-            else {
+            else if (LOGGING) {
                 console.log(response['error'])
             }
 
             if (response['topic_response'] == false) {
-                fillTopicContainer()
+                fillTopicContainer();
 
-                initialTopics = response['topics']
+                initialTopics = response['topics'];
 
                 fillSelect2(initialTopics)
             }
-            else {
-                console.log("topic question already answered")
+            else if (LOGGING) {
+                console.log("topic question already answered");
                 deleteTopicQuestion()
             }
 
         },
 
         error: function (error) {
-            console.log(error)
+            if (LOGGING) {
+                console.log(error)
+            }
         }
     })
 }
@@ -124,7 +130,7 @@ function getQuestion() {
  * @param: questionLinkingId: the question that response answers
  */
 function postEntityVerification(response, questionLinkingId) {
-    response = addCookieIdToObject(response)
+    response = addCookieIdToObject(response);
 
     $.ajax({
         type: "POST",
@@ -132,13 +138,17 @@ function postEntityVerification(response, questionLinkingId) {
         url: "http://localhost:5555/api/questions/" + questionLinkingId,
         data: JSON.stringify(response),
         success: function (response) {
-            console.log("This API response was sent to politags:")
-            console.dir(response)
-            updateCounters()
+            if (LOGGING) {
+                console.log("This API response was sent to politags:");
+                console.dir(response);
+            }
+            updateCounters();
             showEntityFeedback()
         },
         error: function (error) {
-            console.log(error);
+            if (LOGGING) {
+                console.log(error);
+            }
         }
     })
 }
@@ -150,13 +160,13 @@ function postEntityVerification(response, questionLinkingId) {
  * @param: questionLinkingId: the question that response answers
  */
 function postTopicVerification(postedTopics) {
-    let topicResponse = generateTopicResponse(initialTopics, postedTopics)
+    let topicResponse = generateTopicResponse(initialTopics, postedTopics);
 
     let response = {
         "topic_response": topicResponse
-    }
+    };
 
-    let postObject = addCookieIdToObject(response)
+    let postObject = addCookieIdToObject(response);
 
     $.ajax({
         type: "POST",
@@ -170,7 +180,9 @@ function postTopicVerification(postedTopics) {
          showTopicFeedback()
         },
         error: function (error) {
-            console.log(error);
+            if (LOGGING) {
+                console.log(error);
+            }
         }
     })
 }
@@ -230,16 +242,16 @@ function renderQuestion(question, questionLinkingId, possibleAnswers) {
  * @param: countResponses: the total amount of verifications in the politags database
  */
 function updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday) {
-    let counterTotal = $('#response-counter-total')
-    let counterPersonal = $('#response-counter-personal')
-    let counterToday =  $('#response-counter-today')
+    let counterTotal = $('#response-counter-total');
+    let counterPersonal = $('#response-counter-personal');
+    let counterToday =  $('#response-counter-today');
 
-    increaseCounter(counterTotal, countResponsesTotal)
-    increaseCounter(counterPersonal, countResponsesPersonal)
-    increaseCounter(counterToday, countResponsesToday)
+    increaseCounter(counterTotal, countResponsesTotal);
+    increaseCounter(counterPersonal, countResponsesPersonal);
+    increaseCounter(counterToday, countResponsesToday);
 
-    blinkCalendar()
-    blinkStar()
+    blinkCalendar();
+    blinkStar();
     blinkHeart()
 }
 
@@ -254,7 +266,7 @@ function increaseCounter(counter, value) {
          counter.html(value)
     }
     else {
-         let countTotalInt = parseInt(counter.text())
+         let countTotalInt = parseInt(counter.text());
          counter.html((countTotalInt + 1).toString())
     }
 }
@@ -335,7 +347,7 @@ function showEntityFeedback() {
  */
 function showTopicFeedback() {
     $('#topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
-        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>')
+        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>');
 
     setTimeout(function () {
         $('#topic_container').slideUp("swing", function () {
@@ -345,6 +357,9 @@ function showTopicFeedback() {
 
 }
 
+/**
+ * This function fills the topic contain
+ */
 function fillTopicContainer() {
     $('#topic_container').html(
         '    <div id="topic-content">\n' +
@@ -369,9 +384,9 @@ function fillTopicContainer() {
  * @param expiryDays
  */
 function setCookie(cookieName, cookieValue, expiryDays) {
-    var date = new Date()
-    date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000))
-    var expires = "expires=" + date.toUTCString()
+    var date = new Date();
+    date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + date.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + expires
 }
 
@@ -383,10 +398,10 @@ function setCookie(cookieName, cookieValue, expiryDays) {
  */
 function getCookie(cookieName) {
     var name = cookieName + "=";
-    var decodedCookie = decodeURIComponent(document.cookie)
-    var ca = decodedCookie.split(';')
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
     for (var i = 0; i < ca.length; i++) {
-        var c = ca[i]
+        var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1)
         }
@@ -425,8 +440,8 @@ function uuidv4() {
  * @return {*}
  */
 function addCookieIdToObject(object) {
-    let cookieId = getCookieId()
-    object["cookie_id"] = cookieId
+    let cookieId = getCookieId();
+    object["cookie_id"] = cookieId;
     return object
 }
 
@@ -438,7 +453,7 @@ function addCookieIdToObject(object) {
  */
 
 function generateTopicResponse(initialTopics, postedTopics) {
-    let topicResponse = []
+    let topicResponse = [];
 
     for (let i = 0; i < postedTopics.length; i++) {
         topicResponse.push({
@@ -452,7 +467,7 @@ function generateTopicResponse(initialTopics, postedTopics) {
         if (initialTopics[i].selected == true) {
             let topics = $.grep(postedTopics, function (topic) {
                 return (topic.id == initialTopics[i].id)
-            })
+            });
             if (topics.length == 0) {
                 topicResponse.push(
                     {
@@ -480,27 +495,29 @@ function deleteTopicQuestion() {
  * This piece of code checks for a click on the responseButton class and posts the response to politags
  */
 $('body').on('click', '.responseButton', function () {
-        let responseId = $(this).attr("id")
+        let responseId = $(this).attr("id");
 
         let answer = {
             "response_id": responseId
-        }
-        let questionId = $(this).attr("question_id")
+        };
+        let questionId = $(this).attr("question_id");
         postEntityVerification(answer, questionId)
     }
-)
+);
 
 /**
  * This piece of code registers a click on the submit button for topics
  */
 $('body').on('click', '#save', function () {
-    let postedTopics = $('.js-example').select2('data')
-    console.log("Topics that are sent to Politags:")
-    console.dir(postedTopics)
+    let postedTopics = $('.js-example').select2('data');
+    if (LOGGING) {
+        console.log("Topics that are sent to Politags:");
+        console.dir(postedTopics);
+    }
 
     postTopicVerification(postedTopics)
     }
-)
+);
 
 
 
