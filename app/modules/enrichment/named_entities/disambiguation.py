@@ -85,8 +85,9 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     f_role = f_role_in_document(document, candidate)
     f_party = f_party_similarity(document, candidate)
     f_context = f_context_similarity(document, doc_entities, candidate)
+    f_gender = f_gender_similarity(entity.text, candidate)
 
-    return [f_name, f_initials, f_first_name, f_who_name, f_location, f_role, f_party, f_context]
+    return [f_name, f_initials, f_first_name, f_who_name, f_location, f_role, f_party, f_context, f_gender]
 
 
 def compute_politician_certainty(candidate_feature_vector: list) -> float:

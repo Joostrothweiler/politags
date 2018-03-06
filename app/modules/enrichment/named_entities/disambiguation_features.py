@@ -1,11 +1,9 @@
+from app.modules.common.utils import string_similarity
+from whoswho import who
+from gender_guesser import detector
 import logging
 
-from app.modules.common.utils import string_similarity
-
-from whoswho import who
-from geopy.geocoders import Nominatim
-from geopy.distance import vincenty
-geolocator = Nominatim()
+gender_detector = detector.Detector()
 
 logger = logging.getLogger('disambiguation_features')
 
@@ -69,26 +67,30 @@ def f_party_similarity(document, candidate):
 
 
 def f_location_similarity(document, candidate):
-    MIN_LOCATION_LENGTH = 5
-    distance = float('inf')
+    if document['location'].lower() == candidate.municipality.lower():
+        return 1.0
+    else:
+        return 0.0
 
-    doc_loc = document['location']
-    can_loc = candidate.municipality
 
-    if len(doc_loc) > MIN_LOCATION_LENGTH and len(can_loc) > MIN_LOCATION_LENGTH:
-        geo_doc_loc = geolocator.geocode(doc_loc)
-        geo_can_loc = geolocator.geocode(can_loc)
+def f_gender_similarity(mention, candidate):
+    mention_first_name = mention.split(' ')[0]
+    mention_gender = gender_detector.get_gender(mention_first_name)
+    candidate_gender = candidate.gender
 
-        if not geo_doc_loc == None and not geo_can_loc == None:
-            doc_coordinates = (geo_doc_loc.latitude, geo_doc_loc.longitude)
-            can_coordinates = (geo_can_loc.latitude, geo_can_loc.longitude)
+    logger.info(
+        'Mention first name: {}, Mention gender: {}, Candidate: {} {}, Candidate gender: {}'.format(mention_first_name,
+                                                                                                    mention_gender,
+                                                                                                    candidate.title,
+                                                                                                    candidate.full_name,
+                                                                                                    candidate_gender))
 
-            distance = vincenty(doc_coordinates, can_coordinates).kilometers
-
-    # We want to return to return 1 if the distance is 0. [0, 1] -> with 1 being best, 0 being worst.
-    location_feature = max(0, (1 - (distance  / 1000)) )
-    logger.info(location_feature)
-    return location_feature
+    if mention_gender == 'unknown' or candidate_gender == 'unknown':
+        return 0.25
+    elif mention_gender in candidate_gender:
+        return 1.0
+    else:
+        return 0
 
 
 def f_context_similarity(document, entities, candidate):

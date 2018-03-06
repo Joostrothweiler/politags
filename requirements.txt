@@ -13,9 +13,8 @@ bs4
 # Names
 nameparser
 whoswho
+gender_guesser
 
-# Locations
-geopy
 
 # Postgres connector
 PyGreSQL

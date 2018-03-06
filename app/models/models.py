@@ -194,6 +194,19 @@ class Politician(db.Model):
     def full_name(self):
         return self.initials + ' ' + self.last_name
 
+    @hybrid_property
+    def gender(self):
+        titles = self.title.lower().split(' ')
+        male_titles = ['dhr.', 'jhr.']
+        female_titles = ['mw.']
+
+        if len(list(set(titles) & set(male_titles))) > len(list(set(titles) & set(female_titles))):
+            return 'male'
+        elif len(list(set(titles) & set(female_titles))) > len(list(set(titles) & set(male_titles))):
+            return 'female'
+        else:
+            return 'unknown'
+
     # API Representation
     def as_dict(self):
         return {
