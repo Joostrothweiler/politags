@@ -35,7 +35,8 @@ def test_ne():
 
 
 def remove_all_articles():
-    logger.info('Deleting all old data')
+    pass
+    # logger.info('Deleting all old data')
     # # Remove all verifications
     # Verification.query.delete()
     # # Remove all linkings

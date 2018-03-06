@@ -1,5 +1,13 @@
+import logging
+
 from app.modules.common.utils import string_similarity
+
 from whoswho import who
+from geopy.geocoders import Nominatim
+from geopy.distance import vincenty
+geolocator = Nominatim()
+
+logger = logging.getLogger('disambiguation_features')
 
 
 def f_name_similarity(mention, candidate):
@@ -61,10 +69,26 @@ def f_party_similarity(document, candidate):
 
 
 def f_location_similarity(document, candidate):
-    if document['location'].lower() == candidate.municipality.lower():
-        return 1.0
-    else:
-        return 0.0
+    MIN_LOCATION_LENGTH = 5
+    distance = float('inf')
+
+    doc_loc = document['location']
+    can_loc = candidate.municipality
+
+    if len(doc_loc) > MIN_LOCATION_LENGTH and len(can_loc) > MIN_LOCATION_LENGTH:
+        geo_doc_loc = geolocator.geocode(doc_loc)
+        geo_can_loc = geolocator.geocode(can_loc)
+
+        if not geo_doc_loc == None and not geo_can_loc == None:
+            doc_coordinates = (geo_doc_loc.latitude, geo_doc_loc.longitude)
+            can_coordinates = (geo_can_loc.latitude, geo_can_loc.longitude)
+
+            distance = vincenty(doc_coordinates, can_coordinates).kilometers
+
+    # We want to return to return 1 if the distance is 0. [0, 1] -> with 1 being best, 0 being worst.
+    location_feature = max(0, (1 - (distance  / 1000)) )
+    logger.info(location_feature)
+    return location_feature
 
 
 def f_context_similarity(document, entities, candidate):
