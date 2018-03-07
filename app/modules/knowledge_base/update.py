@@ -17,7 +17,7 @@ def init_knowledge_base():
 
 
 def init_politicians():
-    with open('data_resources/politicians.csv') as csv_file:
+    with open('data_resources/politicians/politicians.csv') as csv_file:
         politicians = csv.DictReader(csv_file, delimiter=',')
         for person in politicians:
             find_or_create_politician(person)

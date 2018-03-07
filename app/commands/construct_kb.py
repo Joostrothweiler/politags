@@ -32,7 +32,7 @@ def get_politicians_from_archive():
     for person in get_all_current_ministers():
         data.append(person)
 
-    with open('data_resources/politicians.csv', 'w') as csvfile:
+    with open('data_resources/politicians/politicians.csv', 'w') as csvfile:
         fieldnames = ['system_id', 'title', 'initials', 'first_name', 'given_name', 'last_name', 'suffix', 'party', 'department', 'municipality', 'role']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()

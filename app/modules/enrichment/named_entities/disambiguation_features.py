@@ -4,7 +4,6 @@ from gender_guesser import detector
 import logging
 
 gender_detector = detector.Detector()
-
 logger = logging.getLogger('disambiguation_features')
 
 
@@ -77,17 +76,19 @@ def f_gender_similarity(mention, candidate):
     mention_first_name = mention.split(' ')[0]
     mention_gender = gender_detector.get_gender(mention_first_name)
     candidate_gender = candidate.gender
-
-    logger.info(
-        'Mention first name: {}, Mention gender: {}, Candidate: {} {}, Candidate gender: {}'.format(mention_first_name,
-                                                                                                    mention_gender,
-                                                                                                    candidate.title,
-                                                                                                    candidate.full_name,
-                                                                                                    candidate_gender))
-
+    # logger.info(
+    #     'Mention first name: {}, Mention gender: {}, Candidate: {} {}, Candidate gender: {}'.format(mention_first_name,
+    #                                                                                                 mention_gender,
+    #                                                                                                 candidate.title,
+    #                                                                                                 candidate.full_name,
+    #                                                                                                 candidate_gender))
     if mention_gender == 'unknown' or candidate_gender == 'unknown':
-        return 0.25
-    elif mention_gender in candidate_gender:
+        return 0
+    elif mention_gender == 'andy':
+        return 0.15
+    elif candidate_gender == 'female' and (mention_gender == 'female' or mention_gender == 'mostly_female'):
+        return 1.0
+    elif candidate_gender == 'male' and (mention_gender == 'male' or mention_gender == 'mostly_male'):
         return 1.0
     else:
         return 0

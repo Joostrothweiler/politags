@@ -22,7 +22,13 @@ def write_ned_training():
     result = ''
     FALSE_LABEL = 0
     TRUE_LABEL = 1
-    articles = Article.query.all()
+
+    articles = []
+    interesting_linkings = EntityLinking.query.filter(not EntityLinking.initial_certainty == EntityLinking.updated_certainty).all()
+    for linking in interesting_linkings:
+        linking_article = linking.entity.article
+        if linking_article not in articles:
+            articles.append(linking.entity.article)
 
     for article in articles:
         # Fetch document from poliflow
@@ -30,14 +36,13 @@ def write_ned_training():
         simple_doc = translate_doc(api_document)
         # loop over all linkings
         doc_entities = article.entities
-        per_entities = Entity.query.filter(Entity.article == article).filter(Entity.label == 'PER').all()
-        entity_ids = [e.id for e in per_entities]
+        doc_entities_people = Entity.query.filter(Entity.article == article).filter(Entity.label == 'PER').all()
+        entity_ids = [e.id for e in doc_entities_people]
         article_entity_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(entity_ids)).all()
         # for each linking, create a feature vector
         for linking in article_entity_linkings:
             entity = linking.entity
             candidate = linking.linkable_object
-
             feature_vector = compute_politician_feature_vector(simple_doc, doc_entities, entity, candidate)
 
             if linking.updated_certainty < linking.initial_certainty:
@@ -50,7 +55,7 @@ def write_ned_training():
                     str(x) for x in feature_vector) + '\n'
 
     now = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-    file = open('data_resources/ned/ned_db_training_file_{}.txt'.format(now), 'w')
+    file = open('data_resources/ned/training/ned_db_training_file_{}.txt'.format(now), 'w')
     file.write(result)
     file.close()
 

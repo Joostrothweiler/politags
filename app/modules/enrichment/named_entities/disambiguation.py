@@ -48,6 +48,7 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
         candidate_fv[2] = 100 * candidate_fv[2]
         candidate_fv[4] = 50 * candidate_fv[4]
         candidate_fv[6] = 50 * candidate_fv[6]
+        candidate_fv[8] = 10 * candidate_fv[8]
 
         result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
         result.append(result_object)
