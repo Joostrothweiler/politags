@@ -19,7 +19,7 @@ def same_as(column_name):
 
 def sentiment_polarity_description(score):
     # polarity score range = [-1, 1]
-    if score ==  None:
+    if score == None:
         return 'Onbekend'
     elif score < -0.6:
         return 'Erg negatief'
@@ -31,13 +31,11 @@ def sentiment_polarity_description(score):
         return 'Positief'
     elif score >= 0.6:
         return 'Erg positief'
-    else:
-        return 'Onbekend'
 
 
 def sentiment_subjectivity_description(score):
     # subjectivity score range = [0, 1]
-    if score ==  None:
+    if score == None:
         return 'Onbekend'
     elif score < 0.3:
         return 'Objectief'
@@ -45,8 +43,6 @@ def sentiment_subjectivity_description(score):
         return 'Subjectief'
     elif score >= 0.6:
         return 'Erg subjectief'
-    else:
-        return 'Onbekend'
 
 
 class Article(db.Model):
