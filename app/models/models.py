@@ -18,6 +18,34 @@ def same_as(column_name):
     return default_function
 
 
+def sentiment_polarity_description(score):
+    # polarity score range = [-1, 1]
+    if score < -0.6:
+        return 'Erg negatief'
+    elif score < -0.2:
+        return 'Negatief'
+    elif score < 0.2:
+        return 'Neutraal'
+    elif score < 0.6:
+        return 'Positief'
+    elif score >= 0.6:
+        return 'Erg positief'
+    else:
+        return 'Onbekend'
+
+
+def sentiment_subjectivity_description(score):
+    # subjectivity score range = [0, 1]
+    if score < 0.3:
+        return 'Objectief'
+    elif score < 0.6:
+        return 'Subjectief'
+    elif score >= 0.6:
+        return 'Erg subjectief'
+    else:
+        return 'Onbekend'
+
+
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.String(200), primary_key=True)
@@ -32,8 +60,14 @@ class Article(db.Model):
     @hybrid_property
     def sentiment(self):
         return {
-            'polarity' : self.sentiment_polarity,
-            'subjectivity' : self.sentiment_subjectivity
+            'polarity': {
+                'score': self.sentiment_polarity,
+                'description': sentiment_polarity_description(self.sentiment_polarity)
+            },
+            'subjectivity': {
+                'score': self.sentiment_subjectivity,
+                'description': sentiment_subjectivity_description(self.sentiment_subjectivity)
+            }
         }
 
 
