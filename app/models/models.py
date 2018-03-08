@@ -17,34 +17,6 @@ def same_as(column_name):
     return default_function
 
 
-def sentiment_polarity_description(score):
-    # polarity score range = [-1, 1]
-    if score == None:
-        return 'Onbekend'
-    elif score < -0.6:
-        return 'Erg negatief'
-    elif score < -0.2:
-        return 'Negatief'
-    elif score < 0.2:
-        return 'Neutraal'
-    elif score < 0.6:
-        return 'Positief'
-    elif score >= 0.6:
-        return 'Erg positief'
-
-
-def sentiment_subjectivity_description(score):
-    # subjectivity score range = [0, 1]
-    if score == None:
-        return 'Onbekend'
-    elif score < 0.3:
-        return 'Objectief'
-    elif score < 0.6:
-        return 'Subjectief'
-    elif score >= 0.6:
-        return 'Erg subjectief'
-
-
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.String(200), primary_key=True)
@@ -58,14 +30,36 @@ class Article(db.Model):
 
     @hybrid_property
     def sentiment(self):
+        if self.sentiment_polarity == None:
+            sentiment_polarity_description = 'Onbekend'
+        elif self.sentiment_polarity < -0.6:
+            sentiment_polarity_description = 'Erg negatief'
+        elif self.sentiment_polarity < -0.2:
+            sentiment_polarity_description = 'Negatief'
+        elif self.sentiment_polarity < 0.2:
+            sentiment_polarity_description = 'Neutraal'
+        elif self.sentiment_polarity < 0.6:
+            sentiment_polarity_description = 'Positief'
+        elif self.sentiment_polarity >= 0.6:
+            sentiment_polarity_description = 'Erg positief'
+
+        if self.sentiment_subjectivity == None:
+            sentiment_subjectivity_description = 'Onbekend'
+        elif self.sentiment_subjectivity < 0.3:
+            sentiment_subjectivity_description = 'Objectief'
+        elif self.sentiment_subjectivity < 0.6:
+            sentiment_subjectivity_description = 'Subjectief'
+        elif self.sentiment_subjectivity >= 0.6:
+            sentiment_subjectivity_description = 'Erg subjectief'
+
         return {
             'polarity': {
                 'score': self.sentiment_polarity,
-                'description': sentiment_polarity_description(self.sentiment_polarity)
+                'description': sentiment_polarity_description
             },
             'subjectivity': {
                 'score': self.sentiment_subjectivity,
-                'description': sentiment_subjectivity_description(self.sentiment_subjectivity)
+                'description': sentiment_subjectivity_description
             }
         }
 
