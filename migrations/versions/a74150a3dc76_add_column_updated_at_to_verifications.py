@@ -1,4 +1,4 @@
-"""empty message
+"""add column updated_at to verifications
 
 Revision ID: a74150a3dc76
 Revises: 517f796096a3

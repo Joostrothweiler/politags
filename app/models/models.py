@@ -1,10 +1,9 @@
+import datetime
+
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import backref
+from sqlalchemy_utils import generic_relationship
 
 from app import db
-import datetime
-from sqlalchemy.dialects import postgresql
-from sqlalchemy_utils import generic_relationship
 
 
 # This file defines all the different models we use.
