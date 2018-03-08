@@ -21,11 +21,20 @@ def same_as(column_name):
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.String(200), primary_key=True)
+    sentiment_polarity = db.Column(db.Float(), default=None, nullable=True)
+    sentiment_subjectivity = db.Column(db.Float(), default=None, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
     entities = db.relationship('Entity')
     topics = db.relationship('ArticleTopic ', back_populates='article')
+
+    @hybrid_property
+    def sentiment(self):
+        return {
+            'polarity' : self.sentiment_polarity,
+            'subjectivity' : self.sentiment_subjectivity
+        }
 
 
 class ArticleTopic(db.Model):

@@ -5,10 +5,11 @@ Flask-Script
 Flask-SQLAlchemy
 sqlalchemy-utils
 
-# Spacy
+# Textprocessing
 spacy
 html2text
 bs4
+textblob
 
 # Names
 nameparser

@@ -23,13 +23,17 @@ def write_ned_training():
     FALSE_LABEL = 0
     TRUE_LABEL = 1
 
+    # Fetch only the articles of interest -> those where the initial certainty does not match the updated certainty
     articles = []
-    interesting_linkings = EntityLinking.query.filter(not EntityLinking.initial_certainty == EntityLinking.updated_certainty).all()
+    interesting_linkings = EntityLinking.query.filter(
+        not EntityLinking.initial_certainty == EntityLinking.updated_certainty).all()
+
     for linking in interesting_linkings:
         linking_article = linking.entity.article
         if linking_article not in articles:
             articles.append(linking.entity.article)
 
+    # Write the feature vectors of the linkings in each article to a training file.
     for article in articles:
         # Fetch document from poliflow
         api_document = fetch_single_document(article.id)
@@ -54,9 +58,9 @@ def write_ned_training():
                 result += str(article.id) + ',' + entity.text + ',' + candidate.full_name + ',' + ','.join(
                     str(x) for x in feature_vector) + '\n'
 
+    # Write data to a training file with the data as identifying string.
     now = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
     file = open('data_resources/ned/training/ned_db_training_file_{}.txt'.format(now), 'w')
     file.write(result)
     file.close()
-
     logger.info('Done.')
