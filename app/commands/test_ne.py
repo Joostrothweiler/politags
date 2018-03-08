@@ -21,13 +21,13 @@ def test_ne():
     """ Test Named Entity Algorithms."""
     remove_all_articles()
 
-    # input = 'data_resources/evaluation/van_dijk_input.json'
+    # input = 'data_resources/ned/evaluation/van_dijk_input.json'
     # output = process_evaluation_input(input)
-    # eval = 'data_resources/evaluation/van_dijk_eval.json'
+    # eval = 'data_resources/ned/evaluation/van_dijk_eval.json'
     # eval_output = json.load(open(eval))
     # evaluate_ned(output, eval_output)
 
-    eval = 'data_resources/evaluation/large_eval_checked.json'
+    eval = 'data_resources/ned/evaluation/large_eval_checked.json'
     output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
     evaluate_ned(output, eval_output)
@@ -35,7 +35,8 @@ def test_ne():
 
 
 def remove_all_articles():
-    logger.info('Deleting all old data')
+    pass
+    # logger.info('Deleting all old data')
     # # Remove all verifications
     # Verification.query.delete()
     # # Remove all linkings

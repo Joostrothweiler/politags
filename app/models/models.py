@@ -1,10 +1,9 @@
+import datetime
+
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import backref
+from sqlalchemy_utils import generic_relationship
 
 from app import db
-import datetime
-from sqlalchemy.dialects import postgresql
-from sqlalchemy_utils import generic_relationship
 
 
 # This file defines all the different models we use.
@@ -21,11 +20,48 @@ def same_as(column_name):
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.String(200), primary_key=True)
+    sentiment_polarity = db.Column(db.Float(), default=None, nullable=True)
+    sentiment_subjectivity = db.Column(db.Float(), default=None, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
     entities = db.relationship('Entity')
     topics = db.relationship('ArticleTopic ', back_populates='article')
+
+    @hybrid_property
+    def sentiment(self):
+        if self.sentiment_polarity == None:
+            sentiment_polarity_description = 'Onbekend'
+        elif self.sentiment_polarity < -0.6:
+            sentiment_polarity_description = 'Erg negatief'
+        elif self.sentiment_polarity < -0.2:
+            sentiment_polarity_description = 'Negatief'
+        elif self.sentiment_polarity < 0.2:
+            sentiment_polarity_description = 'Neutraal'
+        elif self.sentiment_polarity < 0.6:
+            sentiment_polarity_description = 'Positief'
+        elif self.sentiment_polarity >= 0.6:
+            sentiment_polarity_description = 'Erg positief'
+
+        if self.sentiment_subjectivity == None:
+            sentiment_subjectivity_description = 'Onbekend'
+        elif self.sentiment_subjectivity < 0.3:
+            sentiment_subjectivity_description = 'Objectief'
+        elif self.sentiment_subjectivity < 0.6:
+            sentiment_subjectivity_description = 'Subjectief'
+        elif self.sentiment_subjectivity >= 0.6:
+            sentiment_subjectivity_description = 'Erg subjectief'
+
+        return {
+            'polarity': {
+                'score': self.sentiment_polarity,
+                'description': sentiment_polarity_description
+            },
+            'subjectivity': {
+                'score': self.sentiment_subjectivity,
+                'description': sentiment_subjectivity_description
+            }
+        }
 
 
 class ArticleTopic(db.Model):
@@ -193,6 +229,19 @@ class Politician(db.Model):
     @hybrid_property
     def full_name(self):
         return self.initials + ' ' + self.last_name
+
+    @hybrid_property
+    def gender(self):
+        titles = self.title.lower().split(' ')
+        male_titles = ['dhr.', 'jhr.']
+        female_titles = ['mw.']
+
+        if len(list(set(titles) & set(male_titles))) > len(list(set(titles) & set(female_titles))):
+            return 'male'
+        elif len(list(set(titles) & set(female_titles))) > len(list(set(titles) & set(male_titles))):
+            return 'female'
+        else:
+            return 'unknown'
 
     # API Representation
     def as_dict(self):

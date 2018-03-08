@@ -5,6 +5,7 @@ from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
 from app.models.models import Article, EntityLinking, ArticleTopic
 from app.modules.enrichment.named_entities.disambiguation import named_entity_disambiguation
 from app.modules.enrichment.named_entities.recognition import named_entity_recognition
+from app.modules.enrichment.sentiment.score import compute_sentiment
 from app.modules.enrichment.topics.similarity import compute_most_similar_topic
 from app.settings import NED_CUTOFF_THRESHOLD, TOPIC_CUTOFF_THRESHOLD
 
@@ -40,6 +41,7 @@ def enrich_article(article: Article, document: dict):
     named_entity_recognition(article, document)
     named_entity_disambiguation(article, document)
     compute_most_similar_topic(article, document)
+    compute_sentiment(article, document)
 
 
 def enrichment_response(article: Article) -> dict:
@@ -71,5 +73,6 @@ def enrichment_response(article: Article) -> dict:
         'article_id': article.id,
         'parties': parties,
         'politicians': politicians,
-        'topics': [article_topic.topic.as_dict() for article_topic in article_topics]
+        'topics': [article_topic.topic.as_dict() for article_topic in article_topics],
+        'sentiment' : article.sentiment
     }
