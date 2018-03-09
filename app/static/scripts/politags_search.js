@@ -102,7 +102,7 @@ function getQuestions(articleObject, element) {
 
                 initialTopics[articleObject['id']] = response['topics'];
 
-                fillSelect2(initialTopics[articleObject['id']])
+                fillSelect2(initialTopics[articleObject['id']], articleObject['id'])
             }
             else if (LOGGING) {
                 console.log("topic question already answered");
@@ -173,7 +173,7 @@ function postTopicVerification(postedTopics, articleId) {
             for (let i=0; i<topicResponse.length; i++) {
                updateCounters()
             }
-         showTopicFeedback()
+         showTopicFeedback(articleId)
         },
         error: function (error) {
             if (LOGGING) {
@@ -189,11 +189,11 @@ function postTopicVerification(postedTopics, articleId) {
  * @param topics: topics for the select to be filled with
  */
 function fillSelect2(topics, articleId) {
-    $('.select2').select2(
+    $('#'+ articleId +'.select2').select2(
         {
-            data: topics,
             theme: 'bootstrap',
-            width: 'element'
+            width: 'element',
+            data: topics
         }
     )
 }
@@ -341,12 +341,12 @@ function showEntityFeedback() {
 /**
  * This function performs all the actions to show feedback when a topic question is responded to
  */
-function showTopicFeedback() {
-    $('#topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+function showTopicFeedback(articleId) {
+    $('#'+ articleId +'.topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
         '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>');
 
     setTimeout(function () {
-        $('#topic_container').slideUp("swing", function () {
+        $('#'+ articleId +'.topic_container').slideUp("swing", function () {
             $(this).remove()
         })
     }, 4000)
@@ -358,10 +358,10 @@ function showTopicFeedback() {
  */
 function fillTopicContainer(articleId) {
     $('#'+ articleId +'.topic_container').html(
-        '    <div id="topic-content">\n' +
+        '    <div class="topic-content" id="'+ articleId +'">\n' +
         '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
         '        <div class="input-group">\n' +
-        '            <select class="select2 form-control" id="'+ articleId + '" name="topics[]" multiple="multiple">\n' +
+        '            <select class="select2 form-control" id="'+ articleId + '" name="topics[]" multiple="multiple" style="height: 32px">\n' +
         '            </select>\n' +
         '            <span class="input-group-btn">\n' +
         '                <button class="btn btn-default save" id="'+ articleId +'" type="button" style="height: 34px">Opslaan</button>\n' +
@@ -525,14 +525,15 @@ $('.collapse').on('shown.bs.collapse', function () {
     let articleElementId = 'description-collapse-' + articleId
     let articleElement = document.getElementById(articleElementId)
 
-    $('#'+articleElementId).after(
-        '<div class="topic_container" id="'+ articleId +'" style="text-align: center"></div>'
-    )
+    if (!$('#'+ articleId +'.topic_container').length) {
+        $('#' + articleElementId).append(
+            '<div class="topic_container" id="'+ articleId +'" style="text-align: center"></div>'
+        )
+        fillTopicContainer(articleId);
+        initializeSelect2()
 
-    fillTopicContainer(articleId);
-    initializeSelect2()
-
-    getQuestions(articleObject, articleElement)
+        getQuestions(articleObject, articleElement)
+    }
 })
 
 
@@ -566,12 +567,4 @@ function initializeSelect2 () {
             width:'300px'
         });
     });
-
-    $('.select2').select2(
-        {
-            theme: 'bootstrap',
-            width: 'element'
-        }
-    )
-
 }
