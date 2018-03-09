@@ -69,6 +69,23 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     return api_response
 
 
+def calculate_verifications(cookie_id: str) -> dict:
+    count_verifications = Verification.query.filter(Verification.response != None).count()
+    count_verifications_personal = Verification.query.filter(
+        and_(Verification.cookie_id == cookie_id, Verification.response != None)).count()
+    count_verifications_today = Verification.query.filter(
+        and_(Verification.cookie_id == cookie_id, cast(Verification.created_at, Date) == date.today(),
+             Verification.response != None)).count()
+
+    api_response = {
+        'count_verifications': count_verifications,
+        'count_verifications_personal': count_verifications_personal,
+        'count_verifications_today': count_verifications_today,
+    }
+
+    return api_response
+
+
 def find_linkings(entities: list) -> list:
     """
     finds all linkings to entities that were saved to the database by the entities module

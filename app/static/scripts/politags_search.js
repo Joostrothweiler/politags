@@ -2,73 +2,70 @@
 
 const LOGGING = true
 
-let article = document.getElementById("article_container");
-
-let articleObject =
-    {
-        "date": "2017-12-01T00:00:00",
-        "date_granularity": 12,
-        "description": "<div class=\"node-content clearfix\"> &#13;\n  &#13;\n\t <p>Afgelopen dinsdag besloot de gemeenteraad om eindelijk een fatsoenlijk tarief te gaan betalen voor de huishoudelijke zorg.<br/>\nAlle gemeenten moeten per 1 april 2018 aan thuiszorgorganisaties het in de cao geregelde loon vergoeden van de bij hen werkende thuiszorgmedewerkers.</p>\n<p>Dankzij talrijke acties in het hele land&#160; - ook in Amersfoort met steun vanuit de lokale SP-afdeling -&#160; is dit resultaat bereikt:&#160; eindelijk &#8220;loon naar werken!&#8220;.</p>\n<p>SP-raadslid Bets Beltman maakte tijdens de raadsvergadering van de gelegenheid gebruik om de thuiszorg-medewerkers in Amersfoort te feliciteren met hun succes. Dit werd haar door de andere partijen niet echt in dank afgenomen &#8211; het was toch &#8216;maar een hamerstuk &#8216; en&#160; zij wilden liever wat vroeger naar huis&#8230;.</p>\n<p>Ook de wethouder, Fleur Imming van de PvdA,&#160; hield zich stil.</p>\n         <div class=\"zie-ook\">&#13;\n      <strong>Zie ook:</strong>&#13;\n      <ul>&#13;\n                            <li><a href=\"/dossier/thuiszorg\">Dossier: Thuiszorg</a></li>&#13;\n              </ul>&#13;\n    </div>&#13;\n    </div>&#13;\n&#13;\n\t\t\n",
-        "enrichments": {},
-        "location": "Amersfoort",
-        "id": "4e8f2c46403d40023c701c94455eb7c502c16593",
-        "meta": {
-            "pfl_url": "https://api.poliflw.nl/v0/cda_archives_vaals/4e8f2c46403d40023c701c94455eb7c502c16593",
-            "collection": "SP",
-            "original_object_id": "http://amersfoort.sp.nl/nieuws/2017/12/succes-thuiszorg-acties-ook-in-amersfoort-verzilverd",
-            "original_object_urls": {
-                "html": "http://amersfoort.sp.nl/nieuws/2017/12/succes-thuiszorg-acties-ook-in-amersfoort-verzilverd"
-            },
-            "processing_finished": "2017-12-05T20:56:11.729632",
-            "processing_started": "2017-12-05T20:24:15.921745",
-            "rights": "Undefined",
-            "source_id": "sp_archives_amersfoort"
-        },
-        "parties": [
-            "SP"
-        ],
-        "source": "Partij nieuws",
-        "title": "SUCCES THUISZORG-ACTIES OOK IN AMERSFOORT VERZILVERD!",
-        "type": "Partij"
-    };
-
-
-let initialTopics;
-
-$('.js-example').select2 (
-    {
-        width: 'element',
-        theme: 'bootstrap'
-    }
-);
-
-$('.js-example').on('click' , function() {
- $('select[data-customize-setting-link]').select2("close")
-} );
-
-$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
-    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
-
-    Search.prototype.searchRemoveChoice = function () {
-        oldRemoveChoice.apply(this, arguments);
-        this.$search.val('');
-    };
-
-    $('#test').select2({
-        width:'300px'
-    });
-});
-
+let initialTopics = {}
 
 //On opening the website we call the API to receive the question
-$(getQuestion());
+// $(getQuestions());
+$(getCounters())
+
+$('#counter_container').html(
+    '    <div class="col-sm-2"></div>\n' +
+    '    <div class="col-sm-8">\n' +
+    '        <div class="col-sm-4">\n' +
+    '            <h3><span id="response-counter-today"></span>&nbsp<i class="fa fa-calendar-o text-danger"></i></h3>\n' +
+    '            <p>Verificaties vandaag door jou gegeven!</p>\n' +
+    '        </div>\n' +
+    '        <div class="col-sm-4 single_counter">\n' +
+    '            <h3><span id="response-counter-personal"></span>&nbsp<i class="fa fa-star-o text-danger"></i></h3>\n' +
+    '            <p>Verificaties totaal door jou gegeven!</p>\n' +
+    '        </div>\n' +
+    '        <div class="col-sm-4 single_counter">\n' +
+    '            <h3><span id="response-counter-total"></span>&nbsp<i class="fa fa-heart-o text-danger"></i></h3>\n' +
+    '            <p>Verificaties totaal door community gegeven!</p>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="col-sm-2"></div>')
+
+/**
+ * Gets the counter values and fills them in.
+ */
+function getCounters() {
+    let apiObject = {}
+    addCookieIdToObject(apiObject)
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "http://localhost:5555/api/counters",
+        data: JSON.stringify(apiObject),
+
+        success: function (response) {
+            if (LOGGING) {
+                console.log("the API response returned by Politags:")
+                console.log(response)
+            }
+
+            let countResponsesTotal = response['count_verifications'];
+            let countResponsesPersonal = response['count_verifications_personal'];
+            let countResponsesToday = response['count_verifications_today'];
+            updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday);
+            },
+
+        error: function (error) {
+            if (LOGGING) {
+                console.log(error)
+            }
+        }
+    })
+}
 
 
 /**
  * Gets the question for the current article by calling the Politags API and updates html accordingly
  */
-function getQuestion() {
+function getQuestions(articleObject, element) {
     let apiObject = addCookieIdToObject(articleObject);
+    console.log(element)
 
     $.ajax({
         type: "POST",
@@ -94,7 +91,7 @@ function getQuestion() {
                 let possibleAnswers = response['possible_answers'];
                 let entityText = response['text'];
 
-                highlightEntity(article, entityText, questionLinkingId);
+                highlightEntity(element, entityText, questionLinkingId);
                 renderQuestion(question, questionLinkingId, possibleAnswers)
             }
             else if (LOGGING) {
@@ -102,11 +99,10 @@ function getQuestion() {
             }
 
             if (response['topic_response'] == false) {
-                fillTopicContainer();
 
-                initialTopics = response['topics'];
+                initialTopics[articleObject['id']] = response['topics'];
 
-                fillSelect2(initialTopics)
+                fillSelect2(initialTopics[articleObject['id']])
             }
             else if (LOGGING) {
                 console.log("topic question already answered");
@@ -159,8 +155,8 @@ function postEntityVerification(response, questionLinkingId) {
  * @param: response: the response to a question
  * @param: questionLinkingId: the question that response answers
  */
-function postTopicVerification(postedTopics) {
-    let topicResponse = generateTopicResponse(initialTopics, postedTopics);
+function postTopicVerification(postedTopics, articleId) {
+    let topicResponse = generateTopicResponse(initialTopics[articleId], postedTopics);
 
     let response = {
         "topic_response": topicResponse
@@ -171,7 +167,7 @@ function postTopicVerification(postedTopics) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:5555/api/topics/" + articleObject.id,
+        url: "http://localhost:5555/api/topics/" + articleId,
         data: JSON.stringify(postObject),
         success: function () {
             for (let i=0; i<topicResponse.length; i++) {
@@ -192,8 +188,8 @@ function postTopicVerification(postedTopics) {
  * Adds a list op topics to the select2 item
  * @param topics: topics for the select to be filled with
  */
-function fillSelect2(topics) {
-    $('.js-example').select2(
+function fillSelect2(topics, articleId) {
+    $('.select2').select2(
         {
             data: topics,
             theme: 'bootstrap',
@@ -360,15 +356,15 @@ function showTopicFeedback() {
 /**
  * This function fills the topic contain
  */
-function fillTopicContainer() {
-    $('#topic_container').html(
+function fillTopicContainer(articleId) {
+    $('#'+ articleId +'.topic_container').html(
         '    <div id="topic-content">\n' +
         '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
         '        <div class="input-group">\n' +
-        '            <select class="js-example form-control" name="topics[]" multiple="multiple">\n' +
+        '            <select class="select2 form-control" id="'+ articleId + '" name="topics[]" multiple="multiple">\n' +
         '            </select>\n' +
         '            <span class="input-group-btn">\n' +
-        '                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
+        '                <button class="btn btn-default save" id="'+ articleId +'" type="button" style="height: 34px">Opslaan</button>\n' +
         '            </span>\n' +
         '        </div>\n' +
         '    </div>\n'
@@ -508,17 +504,74 @@ $('body').on('click', '.responseButton', function () {
 /**
  * This piece of code registers a click on the submit button for topics
  */
-$('body').on('click', '#save', function () {
-    let postedTopics = $('.js-example').select2('data');
+$('body').on('click', '.save', function () {
+    let articleId = this.id
+    let postedTopics = $('#'+ articleId + '.select2').select2('data')
     if (LOGGING) {
         console.log("Topics that are sent to Politags:");
         console.dir(postedTopics);
     }
 
-    postTopicVerification(postedTopics)
+    postTopicVerification(postedTopics, articleId)
     }
 );
 
 
+$('.collapse').on('shown.bs.collapse', function () {
+    let id = this.id.split("-")
+    let articleId = id[id.length-1]
+    let articleObject = findArticleInObject(articleId)
+
+    let articleElementId = 'description-collapse-' + articleId
+    let articleElement = document.getElementById(articleElementId)
+
+    $('#'+articleElementId).after(
+        '<div class="topic_container" id="'+ articleId +'" style="text-align: center"></div>'
+    )
+
+    fillTopicContainer(articleId);
+    initializeSelect2()
+
+    getQuestions(articleObject, articleElement)
+})
 
 
+/**
+ * this function finds the right article in articleObjects
+ * @param articleId: id of the article
+ */
+function findArticleInObject(articleId) {
+    for (let i =0; i<articleObjects.length; i++) {
+        if (articleObjects[i].id == articleId) {
+            return articleObjects[i]
+        }
+    }
+}
+
+
+function initializeSelect2 () {
+    $('.select2').on('click' , function() {
+        $('select[data-customize-setting-link]').select2("close")
+    } );
+
+    $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+        var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+
+        Search.prototype.searchRemoveChoice = function () {
+            oldRemoveChoice.apply(this, arguments);
+            this.$search.val('');
+        };
+
+        $('#test').select2({
+            width:'300px'
+        });
+    });
+
+    $('.select2').select2(
+        {
+            theme: 'bootstrap',
+            width: 'element'
+        }
+    )
+
+}
