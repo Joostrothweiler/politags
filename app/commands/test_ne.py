@@ -27,7 +27,7 @@ def test_ne():
     # eval_output = json.load(open(eval))
     # evaluate_ned(output, eval_output)
 
-    eval = 'data_resources/ned/evaluation/large_eval_checked.json'
+    eval = 'data_resources/ned/evaluation/large_eval_checked_new.json'
     output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
     evaluate_ned(output, eval_output)
