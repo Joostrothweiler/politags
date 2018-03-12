@@ -4,11 +4,26 @@ const LOGGING = true
 
 let initialTopics = {}
 
-//On opening the website we call the API to receive the question
-// $(getQuestions());
+//On opening the website we call the counters API to receive the counter numbers
 $(getCounters())
 
-$('#counter_container').html(
+//Initialize select2 settings
+$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+
+    Search.prototype.searchRemoveChoice = function () {
+        oldRemoveChoice.apply(this, arguments);
+        this.$search.val('');
+    };
+
+    $('#test').select2({
+        width:'300px'
+    });
+});
+
+$('#search').after(
+    '<section id="counters">\n' +
+    '   <div class="row" id="counter_container" style="text-align: center">\n' +
     '    <div class="col-sm-2"></div>\n' +
     '    <div class="col-sm-8">\n' +
     '        <div class="col-sm-4">\n' +
@@ -24,7 +39,9 @@ $('#counter_container').html(
     '            <p>Verificaties totaal door community gegeven!</p>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '    <div class="col-sm-2"></div>')
+    '    <div class="col-sm-2"></div>' +
+    '    </div>' +
+    '</section>')
 
 /**
  * Gets the counter values and fills them in.
@@ -63,9 +80,9 @@ function getCounters() {
 /**
  * Gets the question for the current article by calling the Politags API and updates html accordingly
  */
-function getQuestions(articleObject, element) {
+function getQuestions(articleObject, element, articleElementId) {
     let apiObject = addCookieIdToObject(articleObject);
-    console.log(element)
+    let articleId = articleObject['id']
 
     $.ajax({
         type: "POST",
@@ -79,11 +96,6 @@ function getQuestions(articleObject, element) {
                 console.log(response)
             }
 
-            let countResponsesTotal = response['count_verifications'];
-            let countResponsesPersonal = response['count_verifications_personal'];
-            let countResponsesToday = response['count_verifications_today'];
-            updateCounters(countResponsesTotal, countResponsesPersonal, countResponsesToday);
-
             if ($.isEmptyObject(response['error']) === true) {
 
                 let question = response['question'];
@@ -91,8 +103,10 @@ function getQuestions(articleObject, element) {
                 let possibleAnswers = response['possible_answers'];
                 let entityText = response['text'];
 
-                highlightEntity(element, entityText, questionLinkingId);
-                renderQuestion(question, questionLinkingId, possibleAnswers)
+                if(!$('#'+ questionLinkingId).length) {
+                    highlightEntity(element, entityText, questionLinkingId);
+                    renderEntityQuestion(question, questionLinkingId, possibleAnswers)
+                }
             }
             else if (LOGGING) {
                 console.log(response['error'])
@@ -100,13 +114,22 @@ function getQuestions(articleObject, element) {
 
             if (response['topic_response'] == false) {
 
-                initialTopics[articleObject['id']] = response['topics'];
+                initialTopics[articleId] = response['topics'];
 
-                fillSelect2(initialTopics[articleObject['id']], articleObject['id'])
+                if (!$('#' + articleId + '.topic_container').length) {
+                    $('#' + articleElementId).append(
+                        '<div class="topic_container" id="' + articleId + '" style="text-align: center"></div>'
+                    )
+                    fillTopicContainer(articleId);
+                    initializeSelect2()
+                    fillSelect2(initialTopics[articleId], articleId)
+                }
             }
-            else if (LOGGING) {
-                console.log("topic question already answered");
-                deleteTopicQuestion()
+            else {
+                if (LOGGING) {
+                    console.log("topic question already answered");
+                }
+                deleteTopicQuestion(articleId)
             }
 
         },
@@ -139,7 +162,7 @@ function postEntityVerification(response, questionLinkingId) {
                 console.dir(response);
             }
             updateCounters();
-            showEntityFeedback()
+            showEntityFeedback(questionLinkingId)
         },
         error: function (error) {
             if (LOGGING) {
@@ -195,40 +218,6 @@ function fillSelect2(topics, articleId) {
             width: 'element',
             data: topics
         }
-    )
-}
-
-
-/**
- * This function highlights an entity in a given html element and saves the question we want to ask for this entity
- * @param: element: the element in which we want to highlight the entity
- * @param: entity: the entity we want to highlight
- * @param: questionLinkingId: the questionLinkingId we want to store in the highlight so we know later on where to render the question
- */
-function highlightEntity(element, entity, questionLinkingId) {
-    let regexp = new RegExp(entity);
-    let replace = '<mark id="' + questionLinkingId + '" style="background-color: transparent !important;\n' +
-        '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
-        '            border-radius: 5px;"><strong>' + entity + '</strong></mark>';
-    element.innerHTML = element.innerHTML.replace(regexp, replace)
-}
-
-
-/**
- * This function renders a question in the html and presents the possible answers
- * @param: question: the question and its metadata
- * @param: questionLinkingId: the id for the question
- * @param: possibleAnswers: the possible answers for this question
- */
-function renderQuestion(question, questionLinkingId, possibleAnswers) {
-    let buttonsHtml = generatePolarButtons(questionLinkingId, possibleAnswers);
-
-    $('#' + questionLinkingId).parent().after(
-        '<div id = "question" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
-        '   <div id="text" class="panel-body">' + question +
-        '   </div>' +
-        buttonsHtml +
-        '</div>'
     )
 }
 
@@ -305,16 +294,53 @@ function blinkCalendar() {
 
 
 /**
+ * This function highlights an entity in a given html element and saves the question we want to ask for this entity
+ * @param: element: the element in which we want to highlight the entity
+ * @param: entity: the entity we want to highlight
+ * @param: questionLinkingId: the questionLinkingId we want to store in the highlight so we know later on where to render the question
+ */
+function highlightEntity(element, entity, questionLinkingId) {
+    let regexp = new RegExp(entity);
+    let replace = '<mark id="'+ questionLinkingId +'" class="mark" style="background-color: transparent !important;\n' +
+        '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
+        '            border-radius: 5px;"><strong id="'+ questionLinkingId +'" class="strong">' + entity + '</strong></mark>';
+
+    element.innerHTML = element.innerHTML.replace(regexp, replace)
+}
+
+
+/**
+ * This function renders a question in the html and presents the possible answers
+ * @param: question: the question and its metadata
+ * @param: questionLinkingId: the id for the question
+ * @param: possibleAnswers: the possible answers for this question
+ */
+function renderEntityQuestion(question, questionLinkingId, possibleAnswers) {
+        let buttonsHtml = generatePolarButtons(questionLinkingId, possibleAnswers);
+
+        $('#' + questionLinkingId).parent().after(
+            '<div id = "' + questionLinkingId + '" class="entity-question panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+            '   <div id="' + questionLinkingId + '" class="text panel-body">' + question +
+            '   </div>' +
+            '   <span id ="' + questionLinkingId + '" class="buttons">' +
+            buttonsHtml +
+            '   </span>' +
+            '</div>'
+        )
+}
+
+
+/**
  * This function generates the HTML buttons for a polar question
- * @param: questionId: id of the question
+ * @param: questionLinkingId: id of the question
  * @param: possibleAnswers: the possible answers one can pass to the politags api
  */
-function generatePolarButtons(questionId, possibleAnswers) {
+function generatePolarButtons(questionLinkingId, possibleAnswers) {
     let buttonsHtml = '';
 
-    buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
-    buttonsHtml += '<button id=' + possibleAnswers[1]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-danger responseButton">NEE</button>\n';
-    buttonsHtml += '<button id=' + possibleAnswers[2]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-default responseButton">WEET IK NIET</button>\n';
+    buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionLinkingId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
+    buttonsHtml += '<button id=' + possibleAnswers[1]['id'] + ' question_id=' + questionLinkingId + ' type="button" class="btn btn-danger responseButton">NEE</button>\n';
+    buttonsHtml += '<button id=' + possibleAnswers[2]['id'] + ' question_id=' + questionLinkingId + ' type="button" class="btn btn-default responseButton">WEET IK NIET</button>\n';
 
 
     return buttonsHtml
@@ -324,15 +350,15 @@ function generatePolarButtons(questionId, possibleAnswers) {
 /**
  * This function performs all the actions to show feedback when an entity question is responded to
  */
-function showEntityFeedback() {
-    $('#question').removeClass('panel-danger').addClass('panel-success');
-    $('.responseButton').remove();
-    $('#text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">');
+function showEntityFeedback(questionLinkingId) {
+    $('#'+ questionLinkingId +'.entity-question').removeClass('panel-danger').addClass('panel-success');
+    $('#'+ questionLinkingId +'.buttons').remove();
+    $('#'+ questionLinkingId +'.text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">')
 
     setTimeout(function () {
-        $('mark').contents().unwrap();
-        $('strong').contents().unwrap();
-        $('#question').slideUp("swing", function () {
+        $('#'+ questionLinkingId +'.mark').contents().unwrap();
+        $('#'+ questionLinkingId +'.strong').contents().unwrap();
+        $('#'+ questionLinkingId +'.entity-question').slideUp("swing", function () {
             $(this).remove()
         })
     }, 4000)
@@ -343,7 +369,7 @@ function showEntityFeedback() {
  */
 function showTopicFeedback(articleId) {
     $('#'+ articleId +'.topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
-        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>');
+        '<div class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar! </div>' + '<p></p><p></p><div><i class="fa fa-heart-o fa-2x text-danger"></div>')
 
     setTimeout(function () {
         $('#'+ articleId +'.topic_container').slideUp("swing", function () {
@@ -358,14 +384,14 @@ function showTopicFeedback(articleId) {
  */
 function fillTopicContainer(articleId) {
     $('#'+ articleId +'.topic_container').html(
-        '    <div class="topic-content" id="'+ articleId +'">\n' +
-        '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
-        '        <div class="input-group">\n' +
+        '    <div class="topic-content panel panel-danger" id="'+ articleId +'" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px"">\n' +
+        '        <div class="panel-body">\n' +
+        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en toevoegen\n</p>' +
         '            <select class="select2 form-control" id="'+ articleId + '" name="topics[]" multiple="multiple" style="height: 32px">\n' +
         '            </select>\n' +
-        '            <span class="input-group-btn">\n' +
-        '                <button class="btn btn-default save" id="'+ articleId +'" type="button" style="height: 34px">Opslaan</button>\n' +
-        '            </span>\n' +
+        '        </div>\n' +
+        '        <div>' +
+        '            <button class="btn btn-success save" id="'+ articleId +'" type="button" style="height: 34px">Opslaan</button>\n' +
         '        </div>\n' +
         '    </div>\n'
     )
@@ -478,8 +504,8 @@ function generateTopicResponse(initialTopics, postedTopics) {
 }
 
 
-function deleteTopicQuestion() {
-    $('#topic_container').remove()
+function deleteTopicQuestion(articleId) {
+    $('#'+ articleId +'.topic_container').remove()
 }
 
 
@@ -517,6 +543,9 @@ $('body').on('click', '.save', function () {
 );
 
 
+/**
+ * This piece of code checks for a click on the down arrow next to an article
+ */
 $('.collapse').on('shown.bs.collapse', function () {
     let id = this.id.split("-")
     let articleId = id[id.length-1]
@@ -525,15 +554,7 @@ $('.collapse').on('shown.bs.collapse', function () {
     let articleElementId = 'description-collapse-' + articleId
     let articleElement = document.getElementById(articleElementId)
 
-    if (!$('#'+ articleId +'.topic_container').length) {
-        $('#' + articleElementId).append(
-            '<div class="topic_container" id="'+ articleId +'" style="text-align: center"></div>'
-        )
-        fillTopicContainer(articleId);
-        initializeSelect2()
-
-        getQuestions(articleObject, articleElement)
-    }
+    getQuestions(articleObject, articleElement, articleElementId)
 })
 
 
@@ -554,17 +575,4 @@ function initializeSelect2 () {
     $('.select2').on('click' , function() {
         $('select[data-customize-setting-link]').select2("close")
     } );
-
-    $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
-        var oldRemoveChoice = Search.prototype.searchRemoveChoice;
-
-        Search.prototype.searchRemoveChoice = function () {
-            oldRemoveChoice.apply(this, arguments);
-            this.$search.val('');
-        };
-
-        $('#test').select2({
-            width:'300px'
-        });
-    });
 }

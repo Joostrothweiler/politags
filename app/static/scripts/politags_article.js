@@ -35,6 +35,7 @@ let articleObject =
 
 let initialTopics;
 
+
 $('#counter_container').html(
     '    <div class="col-sm-2"></div>\n' +
     '    <div class="col-sm-8">\n' +
@@ -364,8 +365,8 @@ function showEntityFeedback() {
  * This function performs all the actions to show feedback when a topic question is responded to
  */
 function showTopicFeedback() {
-    $('#topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
-        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>');
+    $('.topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>' +  '<p></p><p></p><div><i class="fa fa-heart-o fa-2x text-danger"></div>');
 
     setTimeout(function () {
         $('#topic_container').slideUp("swing", function () {
@@ -380,14 +381,14 @@ function showTopicFeedback() {
  */
 function fillTopicContainer() {
     $('#topic_container').html(
-        '    <div id="topic-content">\n' +
-        '        <h4>Wat is het onderwerp van het bovenstaande artikel?</h4>\n' +
-        '        <div class="input-group">\n' +
-        '            <select class="select2 form-control" name="topics[]" multiple="multiple">\n' +
+        '    <div class="topic-content panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px"">\n' +
+       '        <div class="panel-body">\n' +
+        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en toevoegen\n</p>' +
+        '            <select id="select2" class="select2 form-control" name="topics[]" multiple="multiple" style="height: 32px">\n' +
         '            </select>\n' +
-        '            <span class="input-group-btn">\n' +
-        '                <button class="btn btn-default" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
-        '            </span>\n' +
+        '        </div>\n' +
+        '        <div>' +
+        '            <button class="btn btn-success" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
         '        </div>\n' +
         '    </div>\n'
     )
@@ -527,7 +528,7 @@ $('body').on('click', '.responseButton', function () {
  * This piece of code registers a click on the submit button for topics
  */
 $('body').on('click', '#save', function () {
-    let postedTopics = $('.select2').select2('data');
+    let postedTopics = $('#select2').select2('data');
     if (LOGGING) {
         console.log("Topics that are sent to Politags:");
         console.dir(postedTopics);

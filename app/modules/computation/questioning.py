@@ -46,13 +46,13 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     }
 
     if not entity_linkings:
-        api_response['error'] = 'no linkings for entities in this article'
+        api_response['error'] = 'no entity linkings for entities in this article'
         return api_response
 
     next_question_linking = find_next_question_linking(entities, cookie_id)
 
     if not next_question_linking:
-        api_response['error'] = 'no question found or left for this article'
+        api_response['error'] = 'no entity question found or left for this article'
         return api_response
 
     add_verification_to_database(cookie_id, next_question_linking)
