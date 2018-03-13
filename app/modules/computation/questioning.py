@@ -34,7 +34,7 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     entities = article.entities
     entity_linkings = find_linkings(entities)
 
-    topics = generate_topics_json(article)
+    topics = generate_topics_json(article, cookie_id)
     topic_response = find_topic_response(cookie_id, article)
 
     api_response = {
@@ -191,11 +191,21 @@ def process_topic_verification(article_id: str, apidoc: dict):
         if not article_topic:
             article_topic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0,
                                          updated_certainty=1)
+
             db.session.add(article_topic)
             db.session.commit()
 
-        verification = Verification(verifiable_object=article_topic, response=topic["response"], cookie_id=cookie_id)
-        db.session.add(verification)
+            article_topic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
+
+            verification = Verification(verifiable_object=article_topic, response=topic["response"],
+                                        cookie_id=cookie_id)
+            db.session.add(verification)
+            db.session.commit
+
+        else:
+            verification = Verification.query.filter(and_(Verification.verifiable_object == article_topic, Verification.cookie_id == cookie_id)).first()
+            verification.response = topic["response"]
+            db.session.add(verification)
 
         update_topic_certainty(article_topic)
 
@@ -268,7 +278,7 @@ def update_poliflw_entities(article: Article):
     requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
 
 
-def generate_topics_json(article: Article) -> list:
+def generate_topics_json(article: Article, cookie_id: str) -> list:
     """
     generates the topics that belong to an article to be shown in the topic question
     :param article: article
@@ -283,8 +293,18 @@ def generate_topics_json(article: Article) -> list:
 
         selected = False
         if articletopic:
-            if articletopic.updated_certainty > 0.1:
+
+            if articletopic.updated_certainty > 0:
                 selected = True
+
+                verification = Verification.query.filter(
+                    and_(Verification.verifiable_object == articletopic, cookie_id == cookie_id)).first()
+
+                if not verification:
+                    verification = Verification(verifiable_object=articletopic, response=None,
+                                                cookie_id=cookie_id)
+                    db.session.add(verification)
+                    db.session.commit()
 
         topicobject = {
             "id": topic.id,
@@ -293,6 +313,7 @@ def generate_topics_json(article: Article) -> list:
         }
 
         topicsarray.append(topicobject)
+        db.session.commit()
 
     return topicsarray
 
@@ -308,7 +329,7 @@ def find_topic_response(cookie_id: str, article: Article) -> bool:
 
     article_topics = article.topics
 
-    user_verifications = Verification.query.filter(Verification.cookie_id == cookie_id)
+    user_verifications = Verification.query.filter(and_(Verification.cookie_id == cookie_id, Verification.response != None)).all()
 
     for user_verification in user_verifications:
         if user_verification.verifiable_object in article_topics:

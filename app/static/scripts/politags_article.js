@@ -366,7 +366,7 @@ function showEntityFeedback() {
  */
 function showTopicFeedback() {
     $('.topic-content').replaceWith('<div class="panel panel-success" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
-        '<div id="text" class="panel-body">' + 'Awesome! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>' +  '<p></p><p></p><div><i class="fa fa-heart-o fa-2x text-danger"></div>');
+        '<div id="text" class="panel-body">' + 'Bedankt! Samen maken we politiek nieuws beter doorzoekbaar!' + '</div>' +  '<p></p><p></p><div><i class="fa fa-heart-o fa-2x text-danger"></div>');
 
     setTimeout(function () {
         $('#topic_container').slideUp("swing", function () {
@@ -383,12 +383,12 @@ function fillTopicContainer() {
     $('#topic_container').html(
         '    <div class="topic-content panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px"">\n' +
        '        <div class="panel-body">\n' +
-        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en toevoegen\n</p>' +
+        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en toevoegen.\n</p>' +
         '            <select id="select2" class="select2 form-control" name="topics[]" multiple="multiple" style="height: 32px">\n' +
         '            </select>\n' +
         '        </div>\n' +
         '        <div>' +
-        '            <button class="btn btn-success" id="save" type="button" style="height: 34px">Opslaan</button>\n' +
+        '            <button class="btn btn-success" id="save" type="button" style="height: 34px">OPSLAAN</button>\n' +
         '        </div>\n' +
         '    </div>\n'
     )
