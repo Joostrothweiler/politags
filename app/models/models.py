@@ -217,31 +217,16 @@ class Politician(db.Model):
     title = db.Column(db.String(20), nullable=False, server_default=u'')
     initials = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
-    given_name = db.Column(db.String(50), nullable=False, server_default=u'')
     last_name = db.Column(db.String(100), nullable=False)
-    suffix = db.Column(db.String(20), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
-    department = db.Column(db.String(200), nullable=False, server_default=u'')
     municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
+    gender = db.Column(db.String(20), nullable=False, server_default='unknown')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     @hybrid_property
     def full_name(self):
         return self.initials + ' ' + self.last_name
-
-    @hybrid_property
-    def gender(self):
-        titles = self.title.lower().split(' ')
-        male_titles = ['dhr.', 'jhr.']
-        female_titles = ['mw.']
-
-        if len(list(set(titles) & set(male_titles))) > len(list(set(titles) & set(female_titles))):
-            return 'male'
-        elif len(list(set(titles) & set(female_titles))) > len(list(set(titles) & set(male_titles))):
-            return 'female'
-        else:
-            return 'unknown'
 
     # API Representation
     def as_dict(self):
@@ -251,7 +236,6 @@ class Politician(db.Model):
             'title': self.title,
             'initials': self.initials,
             'last_name': self.last_name,
-            'suffix': self.suffix,
             'party': self.party,
             'municipality': self.municipality,
             'role': self.role,

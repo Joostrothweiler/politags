@@ -9,24 +9,20 @@ logger = logging.getLogger('disambiguation_features')
 
 def f_name_similarity(mention, candidate):
     sim_last = string_similarity(candidate.last_name, mention)
-    sim_given = string_similarity((candidate.given_name + ' ' + candidate.last_name), mention)
     sim_first = string_similarity((candidate.first_name + ' ' + candidate.last_name), mention)
     sim_full = string_similarity(candidate.full_name, mention)
-    return max(sim_first, sim_last, sim_given, sim_full)
+    return max(sim_first, sim_last, sim_full)
 
 
 def f_who_name_similarity(mention, candidate):
-    sim_given = who.ratio(mention, (candidate.given_name + ' ' + candidate.last_name)) / 100
     sim_first = who.ratio(mention, (candidate.first_name + ' ' + candidate.last_name)) / 100
     sim_initials = who.ratio(mention, candidate.full_name) / 100
-    return max(sim_given, sim_first, sim_initials)
+    return max(sim_first, sim_initials)
 
 
 def f_first_name_similarity(mention, candidate):
     sim = 0
     if len(candidate.first_name) > 1 and mention.split(' ')[0].lower() == candidate.first_name.lower():
-        sim = 1
-    if len(candidate.given_name) > 1 and mention.split(' ')[0].lower() == candidate.given_name.lower():
         sim = 1
     return sim
 
