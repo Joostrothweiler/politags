@@ -20,8 +20,8 @@ def init_nlp():
     global nlp
     politicians = []
     parties = []
-    for politician in Politician.query.filter(func.length(Politician.first_name) > 1).all():
-        politicians.append(politician.first_name + ' ' + politician.last_name)
+    # for politician in Politician.query.filter(func.length(Politician.first_name) > 1).all():
+    #     politicians.append(politician.first_name + ' ' + politician.last_name)
 
     nlp = nl_core_news_sm.load()
     politician_pipe = PoliticianRecognizer(nlp, politicians)

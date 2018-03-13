@@ -40,10 +40,14 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
+    logger.info(entity.text)
+
     result = []
 
     for candidate in candidates:
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
+        logger.info(candidate.full_name)
+        logger.info(candidate_fv)
         candidate_fv[1] = 30 * candidate_fv[1]
         candidate_fv[2] = 100 * candidate_fv[2]
         candidate_fv[4] = 50 * candidate_fv[4]
@@ -112,6 +116,10 @@ def get_candidate_politicians(entity: Entity) -> list:
     name = entity.text
     name_array = entity.text.split(' ')
     candidates = []
+
+    full_name_candidates = Politician.query.filter(Politician.full_name_given == name).all()
+    if len(full_name_candidates) > 0:
+        return full_name_candidates
 
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)

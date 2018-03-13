@@ -27,7 +27,7 @@ def test_ne():
     # eval_output = json.load(open(eval))
     # evaluate_ned(output, eval_output)
 
-    eval = 'data_resources/ned/evaluation/large_eval_checked_new.json'
+    eval = 'data_resources/ned/evaluation/large_eval_checked.json'
     output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
     evaluate_ned(output, eval_output)
@@ -57,6 +57,7 @@ def process_evaluation_input(input):
         article = fetch_single_document(eval_item['article_id'])
         simple_doc = translate_doc(article)
         res = process_document(simple_doc)
+        logger.info('Processed article {}'.format(simple_doc['id']))
         output['items'].append(res)
 
     logger.info('Number of articles processing: {}'.format(len(output['items'])))

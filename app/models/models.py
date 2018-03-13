@@ -213,7 +213,7 @@ class Party(db.Model):
 class Politician(db.Model):
     __tablename__ = 'politicians'
     id = db.Column(db.Integer(), primary_key=True)
-    system_id = db.Column(db.Integer(), unique=True)
+    system_id = db.Column(db.BigInteger(), unique=True)
     title = db.Column(db.String(20), nullable=False, server_default=u'')
     initials = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
@@ -227,6 +227,10 @@ class Politician(db.Model):
     @hybrid_property
     def full_name(self):
         return self.initials + ' ' + self.last_name
+
+    @hybrid_property
+    def full_name_given(self):
+        return self.first_name + self.last_name
 
     # API Representation
     def as_dict(self):
