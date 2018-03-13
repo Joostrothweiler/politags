@@ -48,10 +48,10 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
         logger.info(candidate.full_name)
         logger.info(candidate_fv)
-        candidate_fv[1] = 30 * candidate_fv[1]
+        candidate_fv[1] = 100 * candidate_fv[1]
         candidate_fv[2] = 100 * candidate_fv[2]
-        candidate_fv[4] = 50 * candidate_fv[4]
-        candidate_fv[6] = 50 * candidate_fv[6]
+        candidate_fv[4] = 30 * candidate_fv[4]
+        candidate_fv[6] = 30 * candidate_fv[6]
         candidate_fv[8] = 10 * candidate_fv[8]
 
         result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
@@ -102,7 +102,8 @@ def compute_politician_certainty(candidate_feature_vector: list) -> float:
     :return: Certainty (float).
     """
     # TODO: Compute an actual certainty measure here instead of writing f_who_name. Should be result of active learning classifier.
-    return min(candidate_feature_vector[3], 0.95)
+    score = max(candidate_feature_vector[0], candidate_feature_vector[3])
+    return min(score, 0.95)
 
 
 def get_candidate_politicians(entity: Entity) -> list:
