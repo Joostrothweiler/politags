@@ -1,6 +1,6 @@
 "use strict"
 
-const LOGGING = false
+const LOGGING = true
 
 let initialTopics = {}
 

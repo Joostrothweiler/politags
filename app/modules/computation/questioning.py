@@ -256,8 +256,16 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
 
     if response == entity_linking.linkable_object.id:
         entity_linking.updated_certainty = min(entity_linking.updated_certainty + LEARNING_RATE, 1)
-        # add poliFLW call here
-        # update_poliflw_entities(article)
+
+        if entity_linking.updated_certainty + LEARNING_RATE >= 1:
+            entity_linking.updated_certainty = 1
+            disable_remaining_linkings(entity_linking)
+
+            # add poliFLW call here
+            # update_poliflw_entities(article)
+        else:
+            entity_linking.updated_certainty = entity_linking.updated_certainty + LEARNING_RATE
+
     elif response == -1:
         if entity_linking.updated_certainty - LEARNING_RATE < 0.5:
             entity_linking.updated_certainty = 0
@@ -267,6 +275,23 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             entity_linking.updated_certainty -= LEARNING_RATE
     else:
         pass
+
+
+def disable_remaining_linkings(entity_linking: EntityLinking):
+    """
+    Disables all remaining entity linkins when one is set to 1 certainty
+    :param entity_linking: the confirmed linking
+    """
+    entity = entity_linking.entity
+    linkable_object = entity_linking.linkable_object
+    remaining_linkings = EntityLinking.query.filter(
+        and_(EntityLinking.entity == entity, EntityLinking.linkable_object != linkable_object)).all()
+
+    for remaining_linking in remaining_linkings:
+        remaining_linking.updated_certainty = 0
+
+    db.session.commit()
+
 
 
 def update_poliflw_entities(article: Article):
