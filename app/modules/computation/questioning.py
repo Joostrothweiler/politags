@@ -109,6 +109,8 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
     :return: next_question_linking: the linking and next question to ask
     """
 
+    LOWER_CERTAINTY_BOUNDARY = 0.5
+
     current_maximum_certainty = 0
     next_question_linking = None
 
@@ -118,7 +120,7 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
 
         if not certain_linking_exists:
             for linking in entity.linkings:
-                if linking.updated_certainty >= current_maximum_certainty and 0.5 <= linking.updated_certainty < 1:
+                if linking.updated_certainty >= current_maximum_certainty and LOWER_CERTAINTY_BOUNDARY < linking.updated_certainty < 1:
                     verification = Verification.query.filter(
                         and_(Verification.cookie_id == cookie_id, Verification.verifiable_object == linking)).first()
                     if verification is None or verification.response is None:

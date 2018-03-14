@@ -383,7 +383,7 @@ function fillTopicContainer() {
     $('#topic_container').html(
         '    <div class="topic-content panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px"">\n' +
        '        <div class="panel-body">\n' +
-        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en toevoegen.\n</p>' +
+        '        <p>Klopt het onderwerp van dit artikel? U kunt verwijderen en/of toevoegen.\n</p>' +
         '            <select id="select2" class="select2 form-control" name="topics[]" multiple="multiple" style="height: 32px">\n' +
         '            </select>\n' +
         '        </div>\n' +
