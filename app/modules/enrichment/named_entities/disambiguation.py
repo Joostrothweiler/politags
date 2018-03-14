@@ -52,7 +52,7 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
         score = np.sum(candidate_fv)
 
-        if score > 12:
+        if score > 10:
             result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': score}
             result.append(result_object)
 
@@ -66,12 +66,9 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
         result.remove(min_obj)
 
-    logger.info('Entity: \t\t{}'.format(entity.text))
-
     for obj in result:
         candidate = obj['candidate']
         candidate_fv = obj['feature_vector']
-        logger.info('Storing: \t{}\t{}\t{}'.format(candidate.system_id, candidate.full_name, obj['score']))
         store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
 
 

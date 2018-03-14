@@ -160,11 +160,19 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
             eval_count_simple += 1
 
     # Hoe veel die die heeft gevonden zijn correct (PRECISION)
+    found_system_ids = [obj['system_id'] for obj in output_item_politicians]
+    wrongly_found_system_ids = []
+    unfound_system_ids = [obj['system_id'] for obj in eval_item_politicians]
+
     if len(output_item_politicians) > 0:
         for op in output_item_politicians:
+            correct = False
             for ep in eval_item_politicians:
                 if op['system_id'] == ep['system_id']:
                     precision_count += 1
+                    correct = True
+            if not correct:
+                wrongly_found_system_ids.append(op['system_id'])
         precision_ratio = precision_count / len(output_item_politicians)
     else:
         precision_ratio = 1.0
@@ -175,9 +183,15 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
             for op in output_item_politicians:
                 if op['system_id'] == ep['system_id']:
                     recall_count += 1
+                    unfound_system_ids.remove(ep['system_id'])
         recall_ratio = recall_count / eval_count_simple
     else:
         recall_ratio = 1.0
+
+    logger.info('-')
+    logger.info('FOUND: {}'.format(found_system_ids))
+    logger.info('WRONG: {}'.format(wrongly_found_system_ids))
+    logger.info('LEFT UNFOUND: {}'.format(unfound_system_ids))
 
     res = {
         'output_count': len(output_item_politicians),
