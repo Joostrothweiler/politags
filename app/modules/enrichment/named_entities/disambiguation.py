@@ -44,15 +44,20 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for candidate in candidates:
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        candidate_fv[1] = 10 * candidate_fv[1]
+        candidate_fv[1] = 50 * candidate_fv[1]
         candidate_fv[2] = 200 * candidate_fv[2]
-        candidate_fv[4] = 50 * candidate_fv[4]
-        candidate_fv[6] = 50 * candidate_fv[6]
+        candidate_fv[4] = 300 * candidate_fv[4]
+        candidate_fv[6] = 100 * candidate_fv[6]
         candidate_fv[8] = 10 * candidate_fv[8]
 
         score = np.sum(candidate_fv)
 
-        if score > 10:
+        if candidate.last_name == 'van Dalen':
+            logger.info(candidate.system_id)
+            logger.info(candidate_fv)
+            logger.info(score)
+
+        if score > 100:
             result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': score}
             result.append(result_object)
 

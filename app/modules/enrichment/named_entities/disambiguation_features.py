@@ -8,11 +8,16 @@ logger = logging.getLogger('disambiguation_features')
 
 
 def f_name_similarity(mention, candidate):
-    # TODO INCORPORATE last_name_array
-    sim_last = string_similarity(candidate.last_name, mention)
-    sim_first = string_similarity((candidate.first_name + ' ' + candidate.last_name), mention)
-    sim_full = string_similarity(candidate.full_name, mention)
-    return max(sim_first, sim_last, sim_full)
+    last_names = candidate.last_name_array
+    score = 0
+
+    for last_name in last_names:
+        sim_last = string_similarity(last_name, mention)
+        sim_first = string_similarity((candidate.first_name + ' ' + last_name), mention)
+        sim_full = string_similarity(candidate.full_name, mention)
+        score =  max(sim_first, sim_last, sim_full)
+
+    return score
 
 
 def f_who_name_similarity(mention, candidate):

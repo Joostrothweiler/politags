@@ -6,6 +6,8 @@ import os
 
 # DO NOT use "DEBUG = True" in production environments
 DEBUG = True
+PRODUCTION_ENVIRONMENT = False
+ALWAYS_PROCESS_ARTICLE_AGAIN = False
 LOGGING_LEVEL=logging.INFO
 
 # DO NOT use Unsecure Secrets in production environments
@@ -27,4 +29,3 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False    # Avoids a SQLAlchemy Warning
 PFL_USER = 'someuser'
 PFL_PASSWORD = 'secretpassword'
 
-ALWAYS_PROCESS_ARTICLE_AGAIN = False

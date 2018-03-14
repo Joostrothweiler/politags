@@ -3,6 +3,8 @@ import logging
 
 from flask_script import Command
 
+from app.local_settings import PRODUCTION_ENVIRONMENT
+from app.models.models import Verification, EntityLinking, Entity, Article, ArticleTopic
 from app.modules.common.utils import translate_doc
 from app.modules.enrichment.controller import process_document
 from app.modules.poliflow.fetch import fetch_single_document
@@ -19,7 +21,8 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    remove_all_articles()
+    if PRODUCTION_ENVIRONMENT == False:
+        remove_all_articles()
 
     # input = 'data_resources/ned/evaluation/van_dijk_input.json'
     # output = process_evaluation_input(input)
@@ -35,16 +38,17 @@ def test_ne():
 
 
 def remove_all_articles():
-    pass
-    # logger.info('Deleting all old data')
-    # # Remove all verifications
-    # Verification.query.delete()
-    # # Remove all linkings
-    # EntityLinking.query.delete()
-    # # Remove all entities
-    # Entity.query.delete()
-    # # Remove all articles
-    # Article.query.delete()
+    logger.info('Deleting all old data')
+    # Remove all verifications
+    Verification.query.delete()
+    # Remove all linkings
+    EntityLinking.query.delete()
+    # Remove all entities
+    Entity.query.delete()
+    # Remove topic linkings
+    ArticleTopic.query.delete()
+    # Remove all articles
+    Article.query.delete()
 
 
 def process_evaluation_input(input):
