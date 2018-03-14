@@ -22,7 +22,6 @@ def upgrade():
     op.drop_column('politicians', 'suffix')
     op.drop_column('politicians', 'department')
     op.drop_column('politicians', 'given_name')
-    op.alter_column('politicians', 'system_id', existing_type=sa.Integer(), type_=sa.BigInteger())
     # ### end Alembic commands ###
 
 
@@ -32,5 +31,4 @@ def downgrade():
     op.add_column('politicians', sa.Column('department', sa.VARCHAR(length=200), server_default=sa.text("''::character varying"), autoincrement=False, nullable=False))
     op.add_column('politicians', sa.Column('suffix', sa.VARCHAR(length=20), server_default=sa.text("''::character varying"), autoincrement=False, nullable=False))
     op.drop_column('politicians', 'gender')
-    op.alter_column('politicians', 'system_id', existing_type=sa.BigInteger(), type_=sa.Integer())
     # ### end Alembic commands ###
