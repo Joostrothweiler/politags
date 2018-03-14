@@ -232,6 +232,12 @@ class Politician(db.Model):
     def full_name_given(self):
         return self.first_name + self.last_name
 
+    @hybrid_property
+    def last_name_array(self):
+        last_name = str(self.last_name)
+        names = last_name.split('-')
+        return [name.strip() for name in names]
+
     # API Representation
     def as_dict(self):
         return {

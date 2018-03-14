@@ -894,6 +894,14 @@
       ],
       "politicians": [
         {
+          "system_id": 999999999,
+          "full_name": "Adriaan Koenders"
+        },
+        {
+          "system_id": 728457,
+          "full_name": "S.A.M. Dijksma"
+        },
+        {
           "system_id": 251470,
           "full_name": "Marianne Thieme"
         }
@@ -922,7 +930,12 @@
     {
       "article_id": "a4b3bc6540061e616ae24fce504abc2a23f1df89",
       "parties": [],
-      "politicians": []
+      "politicians": [
+        {
+          "system_id": 728457,
+          "full_name": "S.A.M. Dijksma"
+        }
+      ]
     },
     {
       "article_id": "db2b0b4d8c4e7293605d9c43337a9932fd232e86",
@@ -2570,7 +2583,7 @@
           "last_name": "Mikkers",
           "suffix": "",
           "party": "VVD",
-          "municipality": "Gemeente 's-Hertogenbosch",
+          "municipality": "Gemeente s-Hertogenbosch",
           "role": "Burgemeester"
         }
       ]
@@ -2613,7 +2626,7 @@
           "first_name": "P.H.M.",
           "last_name": "den Ouden",
           "suffix": "",
-          "party": "Samenwerking '95",
+          "party": "Samenwerking 95",
           "municipality": "Gemeente Haaren",
           "role": "Fractievoorzitter"
         }
@@ -2700,7 +2713,7 @@
           "last_name": "Kahya",
           "suffix": "",
           "party": "GroenLinks",
-          "municipality": "Gemeente 's-Hertogenbosch",
+          "municipality": "Gemeente s-Hertogenbosch",
           "role": "Fractievoorzitter"
         }
       ]
@@ -2829,7 +2842,7 @@
           "first_name": "P.H.M.",
           "last_name": "den Ouden",
           "suffix": "",
-          "party": "Samenwerking '95",
+          "party": "Samenwerking 95",
           "municipality": "Gemeente Haaren",
           "role": "Fractievoorzitter"
         }

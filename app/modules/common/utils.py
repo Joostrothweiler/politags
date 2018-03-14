@@ -126,7 +126,7 @@ def entity_text_has_valid_length(entity) -> bool:
     :return: Boolean whether entity has valid text length.
     """
     if entity and entity.text:
-        return pure_len(entity.text) > 1 and len(entity.text) < 50
+        return pure_len(entity.text) > 2 and len(entity.text) < 50
     return False
 
 

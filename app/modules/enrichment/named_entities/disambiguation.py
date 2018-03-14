@@ -1,6 +1,6 @@
 import logging
 import numpy as np
-from sqlalchemy import or_, func
+from sqlalchemy import or_, func, and_
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity, Article
@@ -19,7 +19,7 @@ def named_entity_disambiguation(article : Article, document: dict):
     :param entities: entities found in document.
     :param document: simple doc from API.
     """
-    entities = article.entities
+    entities = Entity.query.filter(Entity.article_id == article.id).filter(func.length(Entity.text) > 1).all()
 
     for entity in entities:
         if entity.label == 'PER':
@@ -40,22 +40,21 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     FLOAT_INF = float('inf')
 
     candidates = get_candidate_politicians(entity)
-    logger.info(entity.text)
-
     result = []
 
     for candidate in candidates:
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        logger.info(candidate.full_name)
-        logger.info(candidate_fv)
-        candidate_fv[1] = 100 * candidate_fv[1]
-        candidate_fv[2] = 100 * candidate_fv[2]
-        candidate_fv[4] = 30 * candidate_fv[4]
-        candidate_fv[6] = 30 * candidate_fv[6]
+        candidate_fv[1] = 10 * candidate_fv[1]
+        candidate_fv[2] = 200 * candidate_fv[2]
+        candidate_fv[4] = 50 * candidate_fv[4]
+        candidate_fv[6] = 50 * candidate_fv[6]
         candidate_fv[8] = 10 * candidate_fv[8]
 
-        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
-        result.append(result_object)
+        score = np.sum(candidate_fv)
+
+        if score > 12:
+            result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': score}
+            result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
@@ -67,9 +66,12 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
         result.remove(min_obj)
 
+    logger.info('Entity: \t\t{}'.format(entity.text))
+
     for obj in result:
         candidate = obj['candidate']
         candidate_fv = obj['feature_vector']
+        logger.info('Storing: \t{}\t{}\t{}'.format(candidate.system_id, candidate.full_name, obj['score']))
         store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
 
 
@@ -102,8 +104,7 @@ def compute_politician_certainty(candidate_feature_vector: list) -> float:
     :return: Certainty (float).
     """
     # TODO: Compute an actual certainty measure here instead of writing f_who_name. Should be result of active learning classifier.
-    score = max(candidate_feature_vector[0], candidate_feature_vector[3])
-    return min(score, 0.95)
+    return min(candidate_feature_vector[3], 0.95)
 
 
 def get_candidate_politicians(entity: Entity) -> list:
@@ -118,13 +119,21 @@ def get_candidate_politicians(entity: Entity) -> list:
     name_array = entity.text.split(' ')
     candidates = []
 
-    full_name_candidates = Politician.query.filter(Politician.full_name_given == name).all()
-    if len(full_name_candidates) > 0:
-        return full_name_candidates
-
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)
-        candidates = Politician.query.filter(func.lower(Politician.last_name) == func.lower(name)).all()
+        # TODO: Figure out something to deal with names that include dashes (Van der Lee - van der Haagen)
+        # candidates = Politician.query.filter(Politician.last_name_array.has(func.lower(name))).all()
+
+        candidates = Politician.query.filter(or_(
+                                                Politician.last_name == name,
+                                                and_(
+                                                    Politician.last_name.contains('-'),
+                                                    Politician.last_name.contains(name)
+                                                    )
+                                                )).all()
+
+        # filter: (last name same) OR (last name contains - and contains name)
+
         name_array.pop(0)
 
     # If no candidates found based on exact matches so far, take LAST PART OF NAME and look for this one.

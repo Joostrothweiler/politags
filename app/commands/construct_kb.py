@@ -43,9 +43,7 @@ def standardize_party_name(party):
         {'synonym': 'PvdA-GroenLinks', 'standardized': 'PvdA/GroenLinks'},
         {'synonym': 'Lokale Politieke Federatie Westland', 'standardized': 'LPF Westland'},
         {'synonym': 'GemeenteBelang Westland (GBW)', 'standardized': 'GemeenteBelang Westland'},
-        {'synonym': '', 'standardized': ''},
-        {'synonym': '', 'standardized': ''},
-        {'synonym': '', 'standardized': ''}
+        {'synonym': 'PvdD', 'standardized': 'Partij voor de Dieren'},
     ]
 
     for obj in synonyms:
@@ -119,7 +117,7 @@ def save_new_politicians_file(data):
 
 
 def clean_politician_data_using_candidates_file(politician, candidates):
-    politician['gender'] = guess_gender(politician['title'])
+    politician['gender'] = standardize_gender(guess_gender(politician['title']))
     for candidate in candidates:
         if candidate['initials'].lower() == politician['initials'].lower() \
                 and candidate['last_name'].lower() == politician['last_name'].lower() \
@@ -129,9 +127,8 @@ def clean_politician_data_using_candidates_file(politician, candidates):
             politician['given_name'] = candidate['given_name']
             politician['party'] = standardize_party_name(candidate['party'])
 
-            if guess_gender(politician['title']) in ['m', 'v']:
-                politician['gender'] = standardize_gender(guess_gender(politician['title']))
-            else:
+            if standardize_gender(candidate['gender']) in ['male', 'female']:
                 politician['gender'] = standardize_gender(candidate['gender'])
 
+    logger.info([politician['title'], politician['gender']])
     return politician

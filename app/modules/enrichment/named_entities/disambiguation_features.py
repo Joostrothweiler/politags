@@ -21,11 +21,14 @@ def f_who_name_similarity(mention, candidate):
 
 
 def f_first_name_similarity(mention, candidate):
-    sim = 0
-    if len(candidate.first_name) > 1 and mention.split(' ')[0].lower() == candidate.first_name.lower():
-        sim = 1
-    return sim
+    mention_names = mention.lower().split(' ')
+    candidate_first_names = candidate.first_name.lower().split(' ')
 
+    sim = 0
+    for name in mention_names:
+        if name in candidate_first_names:
+            sim = 1
+    return sim
 
 def f_initials_similarity(mention, candidate):
     parts_of_mention_name = mention[0].lower()
