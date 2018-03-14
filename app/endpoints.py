@@ -3,7 +3,7 @@ import json
 from flask import jsonify
 
 from app.modules.common.utils import translate_doc
-from app.modules.computation.questioning import generate_questions, process_entity_verification, process_topic_verification
+from app.modules.computation.questioning import generate_questions, process_entity_verification, process_topic_verification, calculate_verifications
 from app.modules.enrichment.controller import process_document
 from app.modules.knowledge_base.api import find_politician, find_party
 
@@ -43,6 +43,12 @@ def post_article_question(data):
     res = generate_questions(simple_doc, cookie_id)
     return jsonify(res)
 
+# Handling the counter numbers when poliflw asks for the totals
+def post_counters(data):
+    doc = json.loads(data)
+    cookie_id = doc['cookie_id']
+    res = calculate_verifications(cookie_id)
+    return jsonify(res)
 
 # Handling the response of a question using a post request from poliflw.
 def post_question_response(entity_linking_id, data):

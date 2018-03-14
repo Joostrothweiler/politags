@@ -49,8 +49,11 @@ def create_app(extra_config_settings={}):
 
     @app.route('/api/articles/questions', methods=['POST'])
     def articles_questions():
-        # return request.data
         return post_article_question(request.data)
+
+    @app.route('/api/counters', methods=['POST'])
+    def counters():
+        return post_counters(request.data)
 
     @app.route('/api/questions/<string:entity_linking_id>', methods=['POST'])
     def questions_response(entity_linking_id):
@@ -61,7 +64,11 @@ def create_app(extra_config_settings={}):
         return post_topics_response(article_id, request.data)
 
     @app.route('/article', methods=['GET'])
-    def render_html():
+    def render_article():
         return render_template('index.html')
+
+    @app.route('/search', methods=['GET'])
+    def render_search():
+        return render_template('search.html')
 
     return app
