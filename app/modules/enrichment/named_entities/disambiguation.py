@@ -117,32 +117,20 @@ def get_candidate_politicians(entity: Entity) -> list:
     """
     # Possible entity_texts: Jeroen, J. van der Maat, Jeroen van der Maat, van der Maat
     # Match on last name in database: van der Maat
-    name = entity.text
     name_array = entity.text.split(' ')
     candidates = []
 
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)
-        # TODO: Figure out something to deal with names that include dashes (Van der Lee - van der Haagen)
-        # candidates = Politician.query.filter(Politician.last_name_array.has(func.lower(name))).all()
 
         candidates = Politician.query.filter(or_(
-                                                Politician.last_name == name,
+                                                func.lower(Politician.last_name) == func.lower(entity.text),
                                                 and_(
                                                     Politician.last_name.contains('-'),
-                                                    Politician.last_name.contains(name)
+                                                    func.lower(Politician.last_name).contains(func.lower(name))
                                                     )
                                                 )).all()
-
-        # filter: (last name same) OR (last name contains - and contains name)
-
         name_array.pop(0)
-
-    # If no candidates found based on exact matches so far, take LAST PART OF NAME and look for this one.
-    # if len(candidates) == 0:
-    #     candidates = Politician.query.filter(
-    #         or_(func.lower(Politician.last_name).contains(func.lower(name)),
-    #             func.lower(Politician.last_name).contains(func.lower(name)))).all()
 
     return candidates
 

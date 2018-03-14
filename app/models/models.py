@@ -135,26 +135,21 @@ class EntityLinking(db.Model):
         question_string = ""
 
         if self.linkable_type == "Politician":
-
             politician = self.linkable_object
-
             if politician.role and politician.municipality:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.role,
                     politician.municipality)
             elif politician.role:
-                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.role)
             else:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.municipality)
 
@@ -229,8 +224,13 @@ class Politician(db.Model):
         return self.initials + ' ' + self.last_name
 
     @hybrid_property
-    def full_name_given(self):
-        return self.first_name + self.last_name
+    def full_name_long(self):
+        if self.title and self.initials and self.first_name:
+            return '{} {} ({}) {}'.format(self.title, self.initials, self.first_name, self.last_name)
+        elif self.title and self.initials:
+            return '{} {} {}'.format(self.title, self.initials, self.last_name)
+        else:
+            return self.full_name
 
     @hybrid_property
     def last_name_array(self):

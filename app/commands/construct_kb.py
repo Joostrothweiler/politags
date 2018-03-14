@@ -64,7 +64,7 @@ def standardize_gender(gender):
 
 def guess_gender(title):
     titles = title.lower().split(' ')
-    male_titles = ['dhr.', 'jhr.', 'mr']
+    male_titles = ['dhr.', 'jhr.', 'mr.']
     female_titles = ['mw.']
 
     if len(list(set(titles) & set(male_titles))) > len(list(set(titles) & set(female_titles))):
