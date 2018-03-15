@@ -130,5 +130,5 @@ def clean_politician_data_using_candidates_file(politician, candidates):
             if standardize_gender(candidate['gender']) in ['male', 'female']:
                 politician['gender'] = standardize_gender(candidate['gender'])
 
-    logger.info([politician['title'], politician['gender']])
+    # logger.info([politician['title'], politician['gender']])
     return politician
