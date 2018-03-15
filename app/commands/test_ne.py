@@ -24,12 +24,6 @@ def test_ne():
     if not PRODUCTION_ENVIRONMENT:
         remove_all_articles()
 
-    # input = 'data_resources/ned/evaluation/van_dijk_input.json'
-    # output = process_evaluation_input(input)
-    # eval = 'data_resources/ned/evaluation/van_dijk_eval.json'
-    # eval_output = json.load(open(eval))
-    # evaluate_ned(output, eval_output)
-
     eval = 'data_resources/ned/evaluation/large_eval_checked.json'
     output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
@@ -38,16 +32,16 @@ def test_ne():
 
 def remove_all_articles():
     logger.info('Deleting all old data')
-    # Remove all verifications
-    Verification.query.delete()
-    # Remove all linkings
-    EntityLinking.query.delete()
-    # Remove all entities
-    Entity.query.delete()
-    # Remove topic linkings
-    ArticleTopic.query.delete()
-    # Remove all articles
-    Article.query.delete()
+    # # Remove all verifications
+    # Verification.query.delete()
+    # # Remove all linkings
+    # EntityLinking.query.delete()
+    # # Remove all entities
+    # Entity.query.delete()
+    # # Remove topic linkings
+    # ArticleTopic.query.delete()
+    # # Remove all articles
+    # Article.query.delete()
 
 
 def process_evaluation_input(input):
