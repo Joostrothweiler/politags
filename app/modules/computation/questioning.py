@@ -232,6 +232,8 @@ def update_topic_certainty(article_topic: ArticleTopic):
 
     sum_of_verifications = positive_verifications_count - negative_verifications_count
 
+    previous_topic_certainty = article_topic.updated_certainty
+
     if article_topic.initial_certainty != 0:
         sum_of_verifications += 2
 
@@ -239,6 +241,10 @@ def update_topic_certainty(article_topic: ArticleTopic):
         article_topic.updated_certainty = 1
     else:
         article_topic.updated_certainty = 0
+
+    # call to PoliFLW to change
+    # if article_topic.updated_certainty != previous_topic_certainty:
+    #     update_poliflw_article(article_topic.article)
 
 
 def update_linking_certainty(entity_linking: EntityLinking, response: int):
@@ -259,7 +265,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             disable_remaining_linkings(entity_linking)
 
             # add poliFLW call here
-            # update_poliflw_entities(article)
+            # update_poliflw_article(article)
         else:
             entity_linking.updated_certainty = entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE
 
@@ -267,7 +273,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
         if entity_linking.updated_certainty - NED_ENTITY_LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
-            # update_poliflw_entities(article)
+            # update_poliflw_article(article)
         else:
             entity_linking.updated_certainty -= NED_ENTITY_LEARNING_RATE
     else:
@@ -288,18 +294,6 @@ def disable_remaining_linkings(entity_linking: EntityLinking):
         remaining_linking.updated_certainty = 0
 
     db.session.commit()
-
-
-
-def update_poliflw_entities(article: Article):
-    """
-    :param article: article to update metadata for
-    """
-
-    # fill in correct url here
-    url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
-    jsonupdate = enrichment_response(article)
-    requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
 
 
 def generate_topics_json(article: Article, cookie_id: str) -> list:
@@ -360,3 +354,14 @@ def find_topic_response(cookie_id: str, article: Article) -> bool:
             topic_response = True
 
     return topic_response
+
+
+def update_poliflw_article(article: Article):
+    """
+    :param article: article to update metadata for
+    """
+
+    # fill in correct url here
+    url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
+    jsonupdate = enrichment_response(article)
+    requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
