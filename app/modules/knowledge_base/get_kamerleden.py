@@ -74,8 +74,7 @@ def get_all_current_members_of_chamber():
                           fractielid_xml.xpath('/default:feed/default:entry/default:link[@title="Fractie"]/@href',
                                                namespaces=ns)[0]
             fractie_xml = etree.XML(session.get(fractie_url).text.encode('utf-8'))
-            logger.info(fractie_xml)
-
+            # logger.info(fractie_xml)
             # Retrieve partij naam and afkorting of kamerlid
             for entry_property in fractie_xml.xpath('//default:content/m:properties', namespaces=ns):
                 for value in values_fractie:
