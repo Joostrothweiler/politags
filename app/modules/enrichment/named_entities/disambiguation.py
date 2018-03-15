@@ -44,37 +44,23 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for candidate in candidates:
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        candidate_fv[1] = 50 * candidate_fv[1]
-        candidate_fv[2] = 200 * candidate_fv[2]
-        candidate_fv[4] = 300 * candidate_fv[4]
-        candidate_fv[6] = 100 * candidate_fv[6]
-        candidate_fv[8] = 10 * candidate_fv[8]
+        certainty = compute_politician_certainty(candidate_fv)
 
-        score = np.sum(candidate_fv)
-
-        if candidate.last_name == 'van Dalen':
-            logger.info(candidate.system_id)
-            logger.info(candidate_fv)
-            logger.info(score)
-
-        if score > 100:
-            result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': score}
-            result.append(result_object)
+        result_object = {'candidate': candidate, 'certainty': certainty}
+        result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
         min_obj = None
         for obj in result:
-            if obj['score'] < min_score:
-                min_score = obj['score']
+            if obj['certainty'] < min_score:
+                min_score = obj['certainty']
                 min_obj = obj
 
         result.remove(min_obj)
 
     for obj in result:
-        candidate = obj['candidate']
-        candidate_fv = obj['feature_vector']
-        store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
+        store_entity_linking(entity, obj['candidate'], obj['certainty'])
 
 
 def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
@@ -99,14 +85,17 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     return [f_name, f_initials, f_first_name, f_who_name, f_location, f_role, f_party, f_context, f_gender]
 
 
-def compute_politician_certainty(candidate_feature_vector: list) -> float:
+def compute_politician_certainty(candidate_fv: list) -> float:
     """
     Compute the certainty of a linking based on the feature vector.
     :param candidate_feature_vector: A feature vector representing the relation between a entity, document and linking.
     :return: Certainty (float).
     """
-    # TODO: Compute an actual certainty measure here instead of writing f_who_name. Should be result of active learning classifier.
-    return min(candidate_feature_vector[3], 0.95)
+    weights = [1,5,5,2,5,1,10,1,1]
+    certainty_sum = np.sum(np.multiply(weights, candidate_fv))
+    certainty = certainty_sum / np.sum(weights)
+    logger.info(certainty)
+    return min(certainty, 0.95)
 
 
 def get_candidate_politicians(entity: Entity) -> list:
@@ -124,10 +113,10 @@ def get_candidate_politicians(entity: Entity) -> list:
         name = ' '.join(name_array)
 
         candidates = Politician.query.filter(or_(
-                                                func.lower(Politician.last_name) == func.lower(entity.text),
+                                                Politician.last_name == name,
                                                 and_(
                                                     Politician.last_name.contains('-'),
-                                                    func.lower(Politician.last_name).contains(func.lower(name))
+                                                    Politician.last_name.contains(name)
                                                     )
                                                 )).all()
         name_array.pop(0)

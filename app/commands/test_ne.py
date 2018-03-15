@@ -21,7 +21,7 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    if PRODUCTION_ENVIRONMENT == False:
+    if not PRODUCTION_ENVIRONMENT:
         remove_all_articles()
 
     # input = 'data_resources/ned/evaluation/van_dijk_input.json'
@@ -34,7 +34,6 @@ def test_ne():
     output = process_evaluation_input(eval)
     eval_output = json.load(open(eval))
     evaluate_ned(output, eval_output)
-
 
 
 def remove_all_articles():
@@ -66,6 +65,7 @@ def process_evaluation_input(input):
 
     logger.info('Number of articles processing: {}'.format(len(output['items'])))
     return output
+
 
 def evaluate_ned(output, eval_output):
     party_scores = []
@@ -112,7 +112,6 @@ def final_scorer(party_scores, politician_scores):
         logger.info('Politician Precision: {}'.format(politician_precision_count / politician_output_count))
     if politician_eval_count > 0:
         logger.info('Politician Recall: {}'.format(politician_recall_count / politician_eval_count))
-
 
 
 def party_scorer(output_item_parties, eval_item_parties):

@@ -37,10 +37,10 @@ def f_first_name_similarity(mention, candidate):
     return sim
 
 def f_initials_similarity(mention, candidate):
-    parts_of_mention_name = mention[0].lower()
-    first_letter_candidate = candidate.initials.split('.')[0].lower()
+    first_letter_mention = mention[0].lower()
+    first_letter_candidate = candidate.initials[0].lower()
 
-    if parts_of_mention_name[0] == first_letter_candidate:
+    if first_letter_mention == first_letter_candidate:
         return 1
     else:
         return 0
