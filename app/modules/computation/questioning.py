@@ -243,8 +243,8 @@ def update_topic_certainty(article_topic: ArticleTopic):
         article_topic.updated_certainty = 0
 
     # call to PoliFLW to change
-    # if article_topic.updated_certainty != previous_topic_certainty:
-    #     update_poliflw_article(article_topic.article)
+    if article_topic.updated_certainty != previous_topic_certainty:
+        update_poliflw_article(article_topic.article)
 
 
 def update_linking_certainty(entity_linking: EntityLinking, response: int):
@@ -265,7 +265,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             disable_remaining_linkings(entity_linking)
 
             # add poliFLW call here
-            # update_poliflw_article(article)
+            update_poliflw_article(article)
         else:
             entity_linking.updated_certainty = entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE
 
@@ -273,7 +273,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
         if entity_linking.updated_certainty - NED_ENTITY_LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
-            # update_poliflw_article(article)
+            update_poliflw_article(article)
         else:
             entity_linking.updated_certainty -= NED_ENTITY_LEARNING_RATE
     else:
@@ -362,6 +362,6 @@ def update_poliflw_article(article: Article):
     """
 
     # fill in correct url here
-    url_string = 'https://api.poliflw.nl/v0/combined_index/{}'.format(article.id)
+    url_string = 'https://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
     jsonupdate = enrichment_response(article)
-    requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
+    requests.post(url_string, jsonupdate)
