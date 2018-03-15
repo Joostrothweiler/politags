@@ -1,6 +1,6 @@
 import logging
 import numpy as np
-from sqlalchemy import or_, func
+from sqlalchemy import or_, func, and_
 
 from app import db
 from app.models.models import Politician, Party, EntityLinking, Entity, Article
@@ -19,7 +19,7 @@ def named_entity_disambiguation(article : Article, document: dict):
     :param entities: entities found in document.
     :param document: simple doc from API.
     """
-    entities = article.entities
+    entities = Entity.query.filter(Entity.article_id == article.id).filter(func.length(Entity.text) > 1).all()
 
     for entity in entities:
         if entity.label == 'PER':
@@ -44,29 +44,23 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
 
     for candidate in candidates:
         candidate_fv = compute_politician_feature_vector(document, doc_entities, entity, candidate)
-        candidate_fv[1] = 30 * candidate_fv[1]
-        candidate_fv[2] = 100 * candidate_fv[2]
-        candidate_fv[4] = 50 * candidate_fv[4]
-        candidate_fv[6] = 50 * candidate_fv[6]
-        candidate_fv[8] = 10 * candidate_fv[8]
+        certainty = compute_politician_certainty(candidate_fv)
 
-        result_object = {'candidate': candidate, 'feature_vector': candidate_fv, 'score': np.sum(candidate_fv)}
+        result_object = {'candidate': candidate, 'certainty': certainty}
         result.append(result_object)
 
     while len(result) > MAX_NUMBER_OF_LINKINGS:
         min_score = FLOAT_INF
         min_obj = None
         for obj in result:
-            if obj['score'] < min_score:
-                min_score = obj['score']
+            if obj['certainty'] < min_score:
+                min_score = obj['certainty']
                 min_obj = obj
 
         result.remove(min_obj)
 
     for obj in result:
-        candidate = obj['candidate']
-        candidate_fv = obj['feature_vector']
-        store_entity_linking(entity, candidate, compute_politician_certainty(candidate_fv))
+        store_entity_linking(entity, obj['candidate'], obj['certainty'])
 
 
 def compute_politician_feature_vector(document: dict, doc_entities: list, entity: Entity, candidate: Politician):
@@ -91,14 +85,17 @@ def compute_politician_feature_vector(document: dict, doc_entities: list, entity
     return [f_name, f_initials, f_first_name, f_who_name, f_location, f_role, f_party, f_context, f_gender]
 
 
-def compute_politician_certainty(candidate_feature_vector: list) -> float:
+def compute_politician_certainty(candidate_fv: list) -> float:
     """
     Compute the certainty of a linking based on the feature vector.
     :param candidate_feature_vector: A feature vector representing the relation between a entity, document and linking.
     :return: Certainty (float).
     """
-    # TODO: Compute an actual certainty measure here instead of writing f_who_name. Should be result of active learning classifier.
-    return min(candidate_feature_vector[3], 0.95)
+    weights = [1,5,5,2,5,1,10,1,1]
+    certainty_sum = np.sum(np.multiply(weights, candidate_fv))
+    certainty = certainty_sum / np.sum(weights)
+    logger.info(certainty)
+    return min(certainty, 0.95)
 
 
 def get_candidate_politicians(entity: Entity) -> list:
@@ -109,20 +106,20 @@ def get_candidate_politicians(entity: Entity) -> list:
     """
     # Possible entity_texts: Jeroen, J. van der Maat, Jeroen van der Maat, van der Maat
     # Match on last name in database: van der Maat
-    name = entity.text
     name_array = entity.text.split(' ')
     candidates = []
 
     while len(candidates) == 0 and len(name_array) > 0:
         name = ' '.join(name_array)
-        candidates = Politician.query.filter(func.lower(Politician.last_name) == func.lower(name)).all()
-        name_array.pop(0)
 
-    # If no candidates found based on exact matches so far, take LAST PART OF NAME and look for this one.
-    # if len(candidates) == 0:
-    #     candidates = Politician.query.filter(
-    #         or_(func.lower(Politician.last_name).contains(func.lower(name)),
-    #             func.lower(Politician.last_name).contains(func.lower(name)))).all()
+        candidates = Politician.query.filter(or_(
+                                                Politician.last_name == name,
+                                                and_(
+                                                    Politician.last_name.contains('-'),
+                                                    Politician.last_name.contains(name)
+                                                    )
+                                                )).all()
+        name_array.pop(0)
 
     return candidates
 

@@ -67,7 +67,7 @@ def enrichment_response(article: Article) -> dict:
                     politicians.append(top_linking.linkable_object.as_dict())
 
     article_topics = ArticleTopic.query.filter(ArticleTopic.article == article).filter(
-        ArticleTopic.initial_certainty > TOPIC_CUTOFF_THRESHOLD).all()
+        ArticleTopic.updated_certainty > TOPIC_CUTOFF_THRESHOLD).all()
 
     return {
         'article_id': article.id,

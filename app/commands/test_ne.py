@@ -3,6 +3,8 @@ import logging
 
 from flask_script import Command
 
+from app.local_settings import PRODUCTION_ENVIRONMENT
+from app.models.models import Verification, EntityLinking, Entity, Article, ArticleTopic
 from app.modules.common.utils import translate_doc
 from app.modules.enrichment.controller import process_document
 from app.modules.poliflow.fetch import fetch_single_document
@@ -19,13 +21,8 @@ class TestNeCommand(Command):
 
 def test_ne():
     """ Test Named Entity Algorithms."""
-    remove_all_articles()
-
-    # input = 'data_resources/ned/evaluation/van_dijk_input.json'
-    # output = process_evaluation_input(input)
-    # eval = 'data_resources/ned/evaluation/van_dijk_eval.json'
-    # eval_output = json.load(open(eval))
-    # evaluate_ned(output, eval_output)
+    if not PRODUCTION_ENVIRONMENT:
+        remove_all_articles()
 
     eval = 'data_resources/ned/evaluation/large_eval_checked.json'
     output = process_evaluation_input(eval)
@@ -33,16 +30,16 @@ def test_ne():
     evaluate_ned(output, eval_output)
 
 
-
 def remove_all_articles():
-    pass
-    # logger.info('Deleting all old data')
+    logger.info('Deleting all old data')
     # # Remove all verifications
     # Verification.query.delete()
     # # Remove all linkings
     # EntityLinking.query.delete()
     # # Remove all entities
     # Entity.query.delete()
+    # # Remove topic linkings
+    # ArticleTopic.query.delete()
     # # Remove all articles
     # Article.query.delete()
 
@@ -57,10 +54,12 @@ def process_evaluation_input(input):
         article = fetch_single_document(eval_item['article_id'])
         simple_doc = translate_doc(article)
         res = process_document(simple_doc)
+        logger.info('Processed article {}'.format(simple_doc['id']))
         output['items'].append(res)
 
     logger.info('Number of articles processing: {}'.format(len(output['items'])))
     return output
+
 
 def evaluate_ned(output, eval_output):
     party_scores = []
@@ -107,7 +106,6 @@ def final_scorer(party_scores, politician_scores):
         logger.info('Politician Precision: {}'.format(politician_precision_count / politician_output_count))
     if politician_eval_count > 0:
         logger.info('Politician Recall: {}'.format(politician_recall_count / politician_eval_count))
-
 
 
 def party_scorer(output_item_parties, eval_item_parties):
@@ -159,11 +157,19 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
             eval_count_simple += 1
 
     # Hoe veel die die heeft gevonden zijn correct (PRECISION)
+    found_system_ids = [obj['system_id'] for obj in output_item_politicians]
+    wrongly_found_system_ids = []
+    unfound_system_ids = [obj['system_id'] for obj in eval_item_politicians]
+
     if len(output_item_politicians) > 0:
         for op in output_item_politicians:
+            correct = False
             for ep in eval_item_politicians:
                 if op['system_id'] == ep['system_id']:
                     precision_count += 1
+                    correct = True
+            if not correct:
+                wrongly_found_system_ids.append(op['system_id'])
         precision_ratio = precision_count / len(output_item_politicians)
     else:
         precision_ratio = 1.0
@@ -174,9 +180,15 @@ def politician_scorer(output_item_politicians, eval_item_politicians):
             for op in output_item_politicians:
                 if op['system_id'] == ep['system_id']:
                     recall_count += 1
+                    unfound_system_ids.remove(ep['system_id'])
         recall_ratio = recall_count / eval_count_simple
     else:
         recall_ratio = 1.0
+
+    logger.info('-')
+    logger.info('FOUND: {}'.format(found_system_ids))
+    logger.info('WRONG: {}'.format(wrongly_found_system_ids))
+    logger.info('LEFT UNFOUND: {}'.format(unfound_system_ids))
 
     res = {
         'output_count': len(output_item_politicians),

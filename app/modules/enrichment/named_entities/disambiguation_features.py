@@ -8,34 +8,39 @@ logger = logging.getLogger('disambiguation_features')
 
 
 def f_name_similarity(mention, candidate):
-    sim_last = string_similarity(candidate.last_name, mention)
-    sim_given = string_similarity((candidate.given_name + ' ' + candidate.last_name), mention)
-    sim_first = string_similarity((candidate.first_name + ' ' + candidate.last_name), mention)
-    sim_full = string_similarity(candidate.full_name, mention)
-    return max(sim_first, sim_last, sim_given, sim_full)
+    last_names = candidate.last_name_array
+    score = 0
+
+    for last_name in last_names:
+        sim_last = string_similarity(last_name, mention)
+        sim_first = string_similarity((candidate.first_name + ' ' + last_name), mention)
+        sim_full = string_similarity(candidate.full_name, mention)
+        score =  max(sim_first, sim_last, sim_full)
+
+    return score
 
 
 def f_who_name_similarity(mention, candidate):
-    sim_given = who.ratio(mention, (candidate.given_name + ' ' + candidate.last_name)) / 100
     sim_first = who.ratio(mention, (candidate.first_name + ' ' + candidate.last_name)) / 100
     sim_initials = who.ratio(mention, candidate.full_name) / 100
-    return max(sim_given, sim_first, sim_initials)
+    return max(sim_first, sim_initials)
 
 
 def f_first_name_similarity(mention, candidate):
+    mention_names = mention.lower().split(' ')
+    candidate_first_names = candidate.first_name.lower().split(' ')
+
     sim = 0
-    if len(candidate.first_name) > 1 and mention.split(' ')[0].lower() == candidate.first_name.lower():
-        sim = 1
-    if len(candidate.given_name) > 1 and mention.split(' ')[0].lower() == candidate.given_name.lower():
-        sim = 1
+    for name in mention_names:
+        if name in candidate_first_names:
+            sim = 1
     return sim
 
-
 def f_initials_similarity(mention, candidate):
-    parts_of_mention_name = mention[0].lower()
-    first_letter_candidate = candidate.initials.split('.')[0].lower()
+    first_letter_mention = mention[0].lower()
+    first_letter_candidate = candidate.initials[0].lower()
 
-    if parts_of_mention_name[0] == first_letter_candidate:
+    if first_letter_mention == first_letter_candidate:
         return 1
     else:
         return 0
@@ -76,12 +81,7 @@ def f_gender_similarity(mention, candidate):
     mention_first_name = mention.split(' ')[0]
     mention_gender = gender_detector.get_gender(mention_first_name)
     candidate_gender = candidate.gender
-    # logger.info(
-    #     'Mention first name: {}, Mention gender: {}, Candidate: {} {}, Candidate gender: {}'.format(mention_first_name,
-    #                                                                                                 mention_gender,
-    #                                                                                                 candidate.title,
-    #                                                                                                 candidate.full_name,
-    #                                                                                                 candidate_gender))
+
     if mention_gender == 'unknown' or candidate_gender == 'unknown':
         return 0
     elif mention_gender == 'andy':

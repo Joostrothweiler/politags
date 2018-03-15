@@ -1,5 +1,7 @@
 from lxml import etree
 import requests
+import logging
+logger = logging.getLogger("get_kamerleden")
 
 from app.modules.common.utils import string2numeric_hash
 
@@ -55,6 +57,7 @@ def get_all_current_members_of_chamber():
             # Retrieve information about the function within the fractie of
             # this kamerlid
             fractielid_xml = etree.XML(session.get(person_id + '/Fractielid').text.encode('utf-8'))
+
             # A person can have multiple entries as fractielid, e.g., when
             # they changed parties or when they left their function for a
             # while. We only take the most recent entry for now.
@@ -71,7 +74,7 @@ def get_all_current_members_of_chamber():
                           fractielid_xml.xpath('/default:feed/default:entry/default:link[@title="Fractie"]/@href',
                                                namespaces=ns)[0]
             fractie_xml = etree.XML(session.get(fractie_url).text.encode('utf-8'))
-
+            # logger.info(fractie_xml)
             # Retrieve partij naam and afkorting of kamerlid
             for entry_property in fractie_xml.xpath('//default:content/m:properties', namespaces=ns):
                 for value in values_fractie:

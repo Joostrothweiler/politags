@@ -135,26 +135,21 @@ class EntityLinking(db.Model):
         question_string = ""
 
         if self.linkable_type == "Politician":
-
             politician = self.linkable_object
-
             if politician.role and politician.municipality:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}, {}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.role,
                     politician.municipality)
             elif politician.role:
-                question_string = 'Wordt {} <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}, ({})</strong> van <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.role)
             else:
-                question_string = 'Wordt {} <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
-                    politician.title,
-                    politician.full_name,
+                question_string = 'Wordt <strong>{}</strong> van <strong>{}</strong> in <strong>{}</strong> hier genoemd?'.format(
+                    politician.full_name_long,
                     politician.party,
                     politician.municipality)
 
@@ -217,13 +212,11 @@ class Politician(db.Model):
     title = db.Column(db.String(20), nullable=False, server_default=u'')
     initials = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
-    given_name = db.Column(db.String(50), nullable=False, server_default=u'')
     last_name = db.Column(db.String(100), nullable=False)
-    suffix = db.Column(db.String(20), nullable=False, server_default=u'')
     party = db.Column(db.String(100), nullable=False, server_default=u'')
-    department = db.Column(db.String(200), nullable=False, server_default=u'')
     municipality = db.Column(db.String(100), nullable=False, server_default=u'')
     role = db.Column(db.String(100), nullable=False, server_default=u'')
+    gender = db.Column(db.String(20), nullable=False, server_default='unknown')
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     @hybrid_property
@@ -231,17 +224,19 @@ class Politician(db.Model):
         return self.initials + ' ' + self.last_name
 
     @hybrid_property
-    def gender(self):
-        titles = self.title.lower().split(' ')
-        male_titles = ['dhr.', 'jhr.']
-        female_titles = ['mw.']
-
-        if len(list(set(titles) & set(male_titles))) > len(list(set(titles) & set(female_titles))):
-            return 'male'
-        elif len(list(set(titles) & set(female_titles))) > len(list(set(titles) & set(male_titles))):
-            return 'female'
+    def full_name_long(self):
+        if self.title and self.initials and self.first_name:
+            return '{} {} ({}) {}'.format(self.title, self.initials, self.first_name, self.last_name)
+        elif self.title and self.initials:
+            return '{} {} {}'.format(self.title, self.initials, self.last_name)
         else:
-            return 'unknown'
+            return self.full_name
+
+    @hybrid_property
+    def last_name_array(self):
+        last_name = str(self.last_name)
+        names = last_name.split('-')
+        return [name.strip() for name in names]
 
     # API Representation
     def as_dict(self):
@@ -251,7 +246,8 @@ class Politician(db.Model):
             'title': self.title,
             'initials': self.initials,
             'last_name': self.last_name,
-            'suffix': self.suffix,
+            'full_name' : self.full_name,
+            'full_name_long' : self.full_name_long,
             'party': self.party,
             'municipality': self.municipality,
             'role': self.role,

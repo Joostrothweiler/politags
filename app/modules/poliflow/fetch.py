@@ -1,8 +1,10 @@
 import requests
 import json
+import logging
 
 from app.local_settings import PFL_USER, PFL_PASSWORD
 
+logger = logging.getLogger('fetch')
 
 def fetch_data(size):
     documents = []
