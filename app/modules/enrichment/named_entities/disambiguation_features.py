@@ -81,12 +81,7 @@ def f_gender_similarity(mention, candidate):
     mention_first_name = mention.split(' ')[0]
     mention_gender = gender_detector.get_gender(mention_first_name)
     candidate_gender = candidate.gender
-    # logger.info(
-    #     'Mention first name: {}, Mention gender: {}, Candidate: {} {}, Candidate gender: {}'.format(mention_first_name,
-    #                                                                                                 mention_gender,
-    #                                                                                                 candidate.title,
-    #                                                                                                 candidate.full_name,
-    #                                                                                                 candidate_gender))
+
     if mention_gender == 'unknown' or candidate_gender == 'unknown':
         return 0
     elif mention_gender == 'andy':
