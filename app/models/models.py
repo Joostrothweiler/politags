@@ -208,7 +208,7 @@ class Party(db.Model):
 class Politician(db.Model):
     __tablename__ = 'politicians'
     id = db.Column(db.Integer(), primary_key=True)
-    system_id = db.Column(db.BigInteger(), unique=True)
+    system_id = db.Column(db.Integer(), unique=True)
     title = db.Column(db.String(20), nullable=False, server_default=u'')
     initials = db.Column(db.String(20), nullable=False, server_default=u'')
     first_name = db.Column(db.String(50), nullable=False, server_default=u'')
