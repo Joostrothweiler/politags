@@ -109,14 +109,14 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
     :return: next_question_linking: the linking and next question to ask
     """
 
-    LOWER_CERTAINTY_BOUNDARY = 0.5
+    LOWER_CERTAINTY_BOUNDARY = 0.1
 
     current_maximum_certainty = 0
     next_question_linking = None
 
     for entity in entities:
         certain_linking_exists = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
-            EntityLinking.initial_certainty == 1).first()
+            EntityLinking.updated_certainty == 1).first()
 
         if not certain_linking_exists:
             for linking in entity.linkings:
@@ -225,7 +225,6 @@ def update_topic_certainty(article_topic: ArticleTopic):
     :param article_topic: the article_topic linking
     """
 
-
     positive_verifications_count = Verification.query.filter(
         and_(Verification.verifiable_object == article_topic, Verification.response == article_topic.topic_id)).count()
     negative_verifications_count = Verification.query.filter(
@@ -234,7 +233,7 @@ def update_topic_certainty(article_topic: ArticleTopic):
     sum_of_verifications = positive_verifications_count - negative_verifications_count
 
     if article_topic.initial_certainty != 0:
-        sum_of_verifications += 1
+        sum_of_verifications += 2
 
     if sum_of_verifications > 0:
         article_topic.updated_certainty = 1
@@ -267,7 +266,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             entity_linking.updated_certainty = entity_linking.updated_certainty + LEARNING_RATE
 
     elif response == -1:
-        if entity_linking.updated_certainty - LEARNING_RATE < 0.5:
+        if entity_linking.updated_certainty - LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
             # update_poliflw_entities(article)
