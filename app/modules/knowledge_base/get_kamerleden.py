@@ -90,6 +90,9 @@ def get_all_current_members_of_chamber():
             else:
                 last_name = new_item[4].strip()
 
+            if 'oban' in last_name:
+                logger.info(new_item)
+
             data.append({
                 'system_id': string2numeric_hash(new_item[0]),
                 'title': new_item[1].strip(),

@@ -1,6 +1,9 @@
 from lxml import etree
 import re
 import requests
+import logging
+
+logger = logging.getLogger('get_almanak')
 
 from app.modules.common.utils import parse_human_name
 
@@ -24,7 +27,7 @@ def get_all_current_ministers():
                 # far the last one has always been the actual one in office
                 system_id = \
                     role.xpath('p:medewerkers/p:medewerker/p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
-                politician_name = role.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1]
+                politician_name = role.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1].encode('utf-8')
 
                 human_name = parse_human_name(politician_name)
                 politicians.append({
@@ -73,6 +76,9 @@ def get_all_current_local_politicians():
                     party = ''
 
                 human_name = parse_human_name(full_name)
+
+                if 'oban' in human_name['last_name']:
+                    logger.info(human_name)
 
                 politicians.append({
                     'system_id': system_id.strip(),

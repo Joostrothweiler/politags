@@ -76,15 +76,14 @@ def guess_gender(title):
 
 
 def get_politicians_from_archive():
-    logger.info('Updating knowledge base')
-    logger.info('Initializing politicians (and update)')
+    logger.info('Updating politicians_enriched.csv file')
 
     data = []
     # Fetch data from almanak and members of chamber chamber
-    for person in get_all_current_members_of_chamber():
+    for person in get_all_current_local_politicians():
         data.append(person)
 
-    for person in get_all_current_local_politicians():
+    for person in get_all_current_members_of_chamber():
         data.append(person)
 
     for person in get_all_current_ministers():
@@ -122,7 +121,8 @@ def clean_politician_data_using_candidates_file(politician, candidates):
         if candidate['initials'].lower() == politician['initials'].lower() \
                 and candidate['last_name'].lower() == politician['last_name'].lower() \
                 and candidate['municipality'].lower() == politician['municipality'].lower() \
-                and standardize_party_name(candidate['party']).lower() == standardize_party_name(politician['party']).lower():
+                and standardize_party_name(candidate['party']).lower() == standardize_party_name(
+            politician['party']).lower():
 
             politician['given_name'] = candidate['given_name']
             politician['party'] = standardize_party_name(candidate['party'])

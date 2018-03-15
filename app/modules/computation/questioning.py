@@ -9,6 +9,8 @@ from app.local_settings import PFL_PASSWORD, PFL_USER
 from app.modules.enrichment.controller import enrichment_response
 from datetime import date
 from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
+from app.settings import NED_ENTITY_LEARNING_RATE, NED_QUESTION_CUTOFF_THRESHOLD
+
 
 def generate_questions(apidict: dict, cookie_id: str) -> dict:
     """
@@ -109,8 +111,6 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
     :return: next_question_linking: the linking and next question to ask
     """
 
-    LOWER_CERTAINTY_BOUNDARY = 0.1
-
     current_maximum_certainty = 0
     next_question_linking = None
 
@@ -120,7 +120,7 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
 
         if not certain_linking_exists:
             for linking in entity.linkings:
-                if linking.updated_certainty >= current_maximum_certainty and LOWER_CERTAINTY_BOUNDARY < linking.updated_certainty < 1:
+                if linking.updated_certainty >= current_maximum_certainty and NED_QUESTION_CUTOFF_THRESHOLD < linking.updated_certainty < 1:
                     verification = Verification.query.filter(
                         and_(Verification.cookie_id == cookie_id, Verification.verifiable_object == linking)).first()
                     if verification is None or verification.response is None:
@@ -247,31 +247,29 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
     :param entity_linking: question that was answered
     :param response: response that was given
     :updated_certainty: certainty in the database that we update, this is different from the initial_certainty
-    :LEARNING_RATE: the amount with with we want to update the certainty for each response
+    :NED_ENTITY_LEARNING_RATE: the amount with with we want to update the certainty for each response
     """
-
-    LEARNING_RATE = 0.05
     # article = entity_linking.entity.article
 
     if response == entity_linking.linkable_object.id:
-        entity_linking.updated_certainty = min(entity_linking.updated_certainty + LEARNING_RATE, 1)
+        entity_linking.updated_certainty = min(entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE, 1)
 
-        if entity_linking.updated_certainty + LEARNING_RATE >= 1:
+        if entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE >= 1:
             entity_linking.updated_certainty = 1
             disable_remaining_linkings(entity_linking)
 
             # add poliFLW call here
             # update_poliflw_entities(article)
         else:
-            entity_linking.updated_certainty = entity_linking.updated_certainty + LEARNING_RATE
+            entity_linking.updated_certainty = entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE
 
     elif response == -1:
-        if entity_linking.updated_certainty - LEARNING_RATE < 0.01:
+        if entity_linking.updated_certainty - NED_ENTITY_LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
             # update_poliflw_entities(article)
         else:
-            entity_linking.updated_certainty -= LEARNING_RATE
+            entity_linking.updated_certainty -= NED_ENTITY_LEARNING_RATE
     else:
         pass
 
