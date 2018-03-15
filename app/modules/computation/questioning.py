@@ -34,7 +34,7 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     entities = article.entities
     entity_linkings = find_linkings(entities)
 
-    topics = generate_topics_json(article)
+    topics = generate_topics_json(article, cookie_id)
     topic_response = find_topic_response(cookie_id, article)
 
     api_response = {
@@ -46,13 +46,13 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     }
 
     if not entity_linkings:
-        api_response['error'] = 'no linkings for entities in this article'
+        api_response['error'] = 'no entity linkings for entities in this article'
         return api_response
 
     next_question_linking = find_next_question_linking(entities, cookie_id)
 
     if not next_question_linking:
-        api_response['error'] = 'no question found or left for this article'
+        api_response['error'] = 'no entity question found or left for this article'
         return api_response
 
     add_verification_to_database(cookie_id, next_question_linking)
@@ -65,6 +65,23 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     api_response['end_pos'] = next_question_linking.entity.end_pos
     api_response['certainty'] = next_question_linking.updated_certainty
     api_response['possible_answers'] = next_question_linking.possible_answers
+
+    return api_response
+
+
+def calculate_verifications(cookie_id: str) -> dict:
+    count_verifications = Verification.query.filter(Verification.response != None).count()
+    count_verifications_personal = Verification.query.filter(
+        and_(Verification.cookie_id == cookie_id, Verification.response != None)).count()
+    count_verifications_today = Verification.query.filter(
+        and_(Verification.cookie_id == cookie_id, cast(Verification.created_at, Date) == date.today(),
+             Verification.response != None)).count()
+
+    api_response = {
+        'count_verifications': count_verifications,
+        'count_verifications_personal': count_verifications_personal,
+        'count_verifications_today': count_verifications_today,
+    }
 
     return api_response
 
@@ -92,16 +109,18 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
     :return: next_question_linking: the linking and next question to ask
     """
 
+    LOWER_CERTAINTY_BOUNDARY = 0.1
+
     current_maximum_certainty = 0
     next_question_linking = None
 
     for entity in entities:
         certain_linking_exists = EntityLinking.query.filter(EntityLinking.entity == entity).filter(
-            EntityLinking.initial_certainty == 1).first()
+            EntityLinking.updated_certainty == 1).first()
 
         if not certain_linking_exists:
             for linking in entity.linkings:
-                if linking.updated_certainty >= current_maximum_certainty and 0.5 <= linking.updated_certainty < 1:
+                if linking.updated_certainty >= current_maximum_certainty and LOWER_CERTAINTY_BOUNDARY < linking.updated_certainty < 1:
                     verification = Verification.query.filter(
                         and_(Verification.cookie_id == cookie_id, Verification.verifiable_object == linking)).first()
                     if verification is None or verification.response is None:
@@ -174,11 +193,21 @@ def process_topic_verification(article_id: str, apidoc: dict):
         if not article_topic:
             article_topic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0,
                                          updated_certainty=1)
+
             db.session.add(article_topic)
             db.session.commit()
 
-        verification = Verification(verifiable_object=article_topic, response=topic["response"], cookie_id=cookie_id)
-        db.session.add(verification)
+            article_topic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
+
+            verification = Verification(verifiable_object=article_topic, response=topic["response"],
+                                        cookie_id=cookie_id)
+            db.session.add(verification)
+            db.session.commit
+
+        else:
+            verification = Verification.query.filter(and_(Verification.verifiable_object == article_topic, Verification.cookie_id == cookie_id)).first()
+            verification.response = topic["response"]
+            db.session.add(verification)
 
         update_topic_certainty(article_topic)
 
@@ -196,7 +225,6 @@ def update_topic_certainty(article_topic: ArticleTopic):
     :param article_topic: the article_topic linking
     """
 
-
     positive_verifications_count = Verification.query.filter(
         and_(Verification.verifiable_object == article_topic, Verification.response == article_topic.topic_id)).count()
     negative_verifications_count = Verification.query.filter(
@@ -205,7 +233,7 @@ def update_topic_certainty(article_topic: ArticleTopic):
     sum_of_verifications = positive_verifications_count - negative_verifications_count
 
     if article_topic.initial_certainty != 0:
-        sum_of_verifications += 1
+        sum_of_verifications += 2
 
     if sum_of_verifications > 0:
         article_topic.updated_certainty = 1
@@ -227,10 +255,18 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
 
     if response == entity_linking.linkable_object.id:
         entity_linking.updated_certainty = min(entity_linking.updated_certainty + LEARNING_RATE, 1)
-        # add poliFLW call here
-        # update_poliflw_entities(article)
+
+        if entity_linking.updated_certainty + LEARNING_RATE >= 1:
+            entity_linking.updated_certainty = 1
+            disable_remaining_linkings(entity_linking)
+
+            # add poliFLW call here
+            # update_poliflw_entities(article)
+        else:
+            entity_linking.updated_certainty = entity_linking.updated_certainty + LEARNING_RATE
+
     elif response == -1:
-        if entity_linking.updated_certainty - LEARNING_RATE < 0.5:
+        if entity_linking.updated_certainty - LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
             # add poliFLW call here
             # update_poliflw_entities(article)
@@ -238,6 +274,23 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             entity_linking.updated_certainty -= LEARNING_RATE
     else:
         pass
+
+
+def disable_remaining_linkings(entity_linking: EntityLinking):
+    """
+    Disables all remaining entity linkins when one is set to 1 certainty
+    :param entity_linking: the confirmed linking
+    """
+    entity = entity_linking.entity
+    linkable_object = entity_linking.linkable_object
+    remaining_linkings = EntityLinking.query.filter(
+        and_(EntityLinking.entity == entity, EntityLinking.linkable_object != linkable_object)).all()
+
+    for remaining_linking in remaining_linkings:
+        remaining_linking.updated_certainty = 0
+
+    db.session.commit()
+
 
 
 def update_poliflw_entities(article: Article):
@@ -251,7 +304,7 @@ def update_poliflw_entities(article: Article):
     requests.post(url_string, jsonupdate, auth=(PFL_USER, PFL_PASSWORD))
 
 
-def generate_topics_json(article: Article) -> list:
+def generate_topics_json(article: Article, cookie_id: str) -> list:
     """
     generates the topics that belong to an article to be shown in the topic question
     :param article: article
@@ -266,8 +319,18 @@ def generate_topics_json(article: Article) -> list:
 
         selected = False
         if articletopic:
-            if articletopic.updated_certainty > 0.1:
+
+            if articletopic.updated_certainty > 0:
                 selected = True
+
+                verification = Verification.query.filter(
+                    and_(Verification.verifiable_object == articletopic, cookie_id == cookie_id)).first()
+
+                if not verification:
+                    verification = Verification(verifiable_object=articletopic, response=None,
+                                                cookie_id=cookie_id)
+                    db.session.add(verification)
+                    db.session.commit()
 
         topicobject = {
             "id": topic.id,
@@ -276,6 +339,7 @@ def generate_topics_json(article: Article) -> list:
         }
 
         topicsarray.append(topicobject)
+        db.session.commit()
 
     return topicsarray
 
@@ -291,7 +355,7 @@ def find_topic_response(cookie_id: str, article: Article) -> bool:
 
     article_topics = article.topics
 
-    user_verifications = Verification.query.filter(Verification.cookie_id == cookie_id)
+    user_verifications = Verification.query.filter(and_(Verification.cookie_id == cookie_id, Verification.response != None)).all()
 
     for user_verification in user_verifications:
         if user_verification.verifiable_object in article_topics:
