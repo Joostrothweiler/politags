@@ -27,14 +27,16 @@ def get_all_current_ministers():
                 # far the last one has always been the actual one in office
                 system_id = \
                     role.xpath('p:medewerkers/p:medewerker/p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
-                politician_name = role.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1].encode('utf-8')
+                politician_name = role.xpath('p:medewerkers/p:medewerker/p:naam/text()', namespaces=xml.nsmap)[-1]
+
 
                 human_name = parse_human_name(politician_name)
+                last_name = human_name['last_name'].encode('latin1').decode('utf8')
                 politicians.append({
                     'system_id': system_id.strip(),
                     'title': human_name['title'].strip(),
                     'initials': human_name['first_name'].strip(),
-                    'last_name': human_name['last_name'].strip(),
+                    'last_name': last_name.strip(),
                     'suffix': human_name['suffix'].strip(),
                     'role': role_name.strip(),
                     'department': department.strip(),
@@ -67,7 +69,7 @@ def get_all_current_local_politicians():
             role_name = role.xpath('p:naam/text()', namespaces=xml.nsmap)[0]
             for politician in role.xpath('./p:medewerkers/p:medewerker', namespaces=xml.nsmap):
                 system_id = politician.xpath('./p:systemId/p:systemId/text()', namespaces=xml.nsmap)[-1]
-                full_name = politician.xpath('./p:naam/text()', namespaces=xml.nsmap)[-1]
+                full_name = politician.xpath('./p:naam/text()', namespaces=xml.nsmap)[-1].encode('utf-8')
                 party = politician.xpath('./p:partij/text()', namespaces=xml.nsmap)
                 # Not every medewerker belongs to a political party
                 if party:
@@ -76,16 +78,13 @@ def get_all_current_local_politicians():
                     party = ''
 
                 human_name = parse_human_name(full_name)
-
-                if 'oban' in human_name['last_name']:
-                    logger.info(human_name)
-
+                last_name = human_name['last_name'].encode('latin1').decode('utf8')
                 politicians.append({
                     'system_id': system_id.strip(),
                     'title': human_name['title'].strip(),
                     'first_name': '',
                     'initials': human_name['first_name'].strip(),
-                    'last_name': human_name['last_name'].strip(),
+                    'last_name': last_name.strip(),
                     'suffix': human_name['suffix'].strip(),
                     'party': party.strip(),
                     'municipality': municipality_abbreviation.strip(),
