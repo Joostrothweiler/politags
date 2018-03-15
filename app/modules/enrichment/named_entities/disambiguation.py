@@ -94,7 +94,6 @@ def compute_politician_certainty(candidate_fv: list) -> float:
     weights = [1,5,5,2,5,1,10,1,1]
     certainty_sum = np.sum(np.multiply(weights, candidate_fv))
     certainty = certainty_sum / np.sum(weights)
-    logger.info(certainty)
     return min(certainty, 0.95)
 
 
