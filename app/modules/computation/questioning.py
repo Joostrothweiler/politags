@@ -1,5 +1,6 @@
 import requests
 import logging
+import json
 
 from app.models.models import Article
 from app import db
@@ -373,9 +374,8 @@ def update_poliflw_article(article: Article):
     :param article: article to update metadata for
     """
     try:
-        url_string = 'https://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
-        json_update = enrichment_response(article)
-        requests.post(url_string, json_update)
+        url_string = 'http://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
+        json_update = json.loads(enrichment_response(article))
+        requests.post(url_string, json.dumps({'doc': json_update}))
     except requests.exceptions.RequestException as e:
         logger.error('Failed to update poliflow article: {}'.format(e))
-
