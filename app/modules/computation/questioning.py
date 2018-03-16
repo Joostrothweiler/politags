@@ -5,7 +5,6 @@ from app import db
 from app.models.models import EntityLinking, Verification, Topic, ArticleTopic
 from app.modules.enrichment.controller import process_document
 from sqlalchemy import and_, Date, cast
-from app.local_settings import PFL_PASSWORD, PFL_USER
 from app.modules.enrichment.controller import enrichment_response
 from datetime import date
 from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
@@ -13,19 +12,19 @@ from app.settings import NED_ENTITY_LEARNING_RATE, NED_QUESTION_CUTOFF_THRESHOLD
 from app.local_settings import PRODUCTION_ENVIRONMENT
 
 
-def generate_questions(apidict: dict, cookie_id: str) -> dict:
+def generate_questions(api_doc: dict, cookie_id: str) -> dict:
     """
     Generate a question for an article in PoliFLW
-    :param apidict: POST dict posted by PoliFLW
+    :param api_doc: POST dict posted by PoliFLW
     :param cookie_id: cookie_id of the person visiting the website
     :return: the questions and their metadata
     """
 
-    article = Article.query.filter(Article.id == apidict['id']).first()
+    article = Article.query.filter(Article.id == api_doc['id']).first()
 
     if not article or ALWAYS_PROCESS_ARTICLE_AGAIN:
-        process_document(apidict)
-        article = Article.query.filter(Article.id == apidict['id']).first()
+        process_document(api_doc)
+        article = Article.query.filter(Article.id == api_doc['id']).first()
 
     count_verifications = Verification.query.filter(Verification.response != None).count()
     count_verifications_personal = Verification.query.filter(
@@ -132,6 +131,7 @@ def find_next_question_linking(entities: list, cookie_id: str) -> EntityLinking:
     return next_question_linking
 
 
+# FIXME: This can also work for article_topcic verifications, not only for entity_linkings.
 def add_verification_to_database(cookie_id: str, entity_linking: EntityLinking):
     """
     Adds a verification to the database for a certain entity linking and cookie_id
@@ -147,16 +147,16 @@ def add_verification_to_database(cookie_id: str, entity_linking: EntityLinking):
         db.session.commit()
 
 
-def process_entity_verification(entity_linking_id: int, apidoc: dict):
+def process_entity_verification(entity_linking_id: int, api_doc: dict):
     """
     Processes a polar verification to a question given by a PoliFLW reader
     :param entity_linking_id: the linking to which the verification was given
-    :param apidoc: the api object of the verification, containing useful information
+    :param api_doc: the api object of the verification, containing useful information
     :return:
     """
 
-    answer_id = int(apidoc["response_id"])
-    cookie_id = apidoc["cookie_id"]
+    answer_id = int(api_doc["response_id"])
+    cookie_id = api_doc["cookie_id"]
 
     entity_linking = EntityLinking.query.filter(EntityLinking.id == entity_linking_id).first()
     update_linking_certainty(entity_linking, answer_id)
@@ -172,52 +172,61 @@ def process_entity_verification(entity_linking_id: int, apidoc: dict):
         'message': 'response successfully recorded',
         'response': answer_id,
         'cookie_id': cookie_id,
-        'grount truth id': entity_linking.linkable_object.id
+        'ground_truth_id': entity_linking.linkable_object.id
     }
 
 
-def process_topic_verification(article_id: str, apidoc: dict):
+def process_topic_verification(article_id: str, api_doc: dict):
     """
     Processes a topic verification given by a PoliFLW reader
     :param article_id: the id of the article the reader was reading
-    :param apidoc: the apidoc of the verification
+    :param api_doc: the api_doc of the verification
     :return:
     """
 
-    cookie_id = apidoc["cookie_id"]
-
-    topic_response = apidoc["topic_response"]
-
+    cookie_id = api_doc["cookie_id"]
+    topic_response = api_doc["topic_response"]
+    topic_id_list = []
+    # A topic response contains a list of topics submitted. Loop over these and process each
     for topic in topic_response:
-        article_topic = ArticleTopic.query.filter(
-            and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
-
-        if not article_topic:
-            article_topic = ArticleTopic(article_id=article_id, topic_id=topic["id"], initial_certainty=0,
+        article_topic = ArticleTopic.query.filter(ArticleTopic.article_id == article_id)\
+                                          .filter(ArticleTopic.topic_id == topic["id"])\
+                                          .first()
+        # If the article_topic already exists, update the verification
+        if article_topic:
+            verification = Verification.query.filter(Verification.verifiable_object == article_topic)\
+                                             .filter(Verification.cookie_id == cookie_id)\
+                                             .first()
+            # Our system should always have created a verification if the question was presented to the user.
+            # This assertion is used to make sure that this verification actually exists. Otherwise we have a bug.
+            assert verification
+            # Update the verification - set the actual response
+            verification.response = topic["response"]
+            db.session.add(verification)
+            db.session.commit()
+        # Otherwise, create a new article_topic and verification
+        else:
+            article_topic = ArticleTopic(article_id=article_id,
+                                         topic_id=topic["id"],
+                                         initial_certainty=0,
                                          updated_certainty=1)
-
             db.session.add(article_topic)
             db.session.commit()
 
-            article_topic = ArticleTopic.query.filter(and_(ArticleTopic.article_id == article_id, ArticleTopic.topic_id == topic["id"])).first()
-
-            verification = Verification(verifiable_object=article_topic, response=topic["response"],
+            verification = Verification(verifiable_object=article_topic,
+                                        response=topic["response"],
                                         cookie_id=cookie_id)
             db.session.add(verification)
-            db.session.commit
+            db.session.commit()
 
-        else:
-            verification = Verification.query.filter(and_(Verification.verifiable_object == article_topic, Verification.cookie_id == cookie_id)).first()
-            verification.response = topic["response"]
-            db.session.add(verification)
-
+        # Add topic id to topic_id_list for api response
+        topic_id_list.append(article_topic.topic_id)
+        # Update article_topic certainty in database
         update_topic_certainty(article_topic)
-
-        db.session.commit()
 
     return {
         'message': 'topics successfully recorded',
-        'article_topic': article_topic.topic_id
+        'article_topic': topic_id_list
     }
 
 
@@ -240,9 +249,12 @@ def update_topic_certainty(article_topic: ArticleTopic):
         sum_of_verifications += 2
 
     if sum_of_verifications > 0:
-        article_topic.updated_certainty = 1
+        article_topic.updated_certainty = 1.0
     else:
-        article_topic.updated_certainty = 0
+        article_topic.updated_certainty = 0.0
+
+    db.session.add(article_topic)
+    db.session.commit()
 
     # call to PoliFLW to change
     if article_topic.updated_certainty != previous_topic_certainty and PRODUCTION_ENVIRONMENT:
@@ -265,22 +277,20 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
         if entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE >= 1:
             entity_linking.updated_certainty = 1
             disable_remaining_linkings(entity_linking)
-
-            if PRODUCTION_ENVIRONMENT:
-                update_poliflw_article(article)
         else:
             entity_linking.updated_certainty = entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE
-
     elif response == -1:
         if entity_linking.updated_certainty - NED_ENTITY_LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
-
-            if PRODUCTION_ENVIRONMENT:
-                update_poliflw_article(article)
         else:
             entity_linking.updated_certainty -= NED_ENTITY_LEARNING_RATE
-    else:
-        pass
+
+    # Save certainty update to database.
+    db.session.add(entity_linking)
+    db.session.commit()
+    # There is always an update made, so if in production environment we can update poliflow accordingly.
+    if PRODUCTION_ENVIRONMENT:
+        update_poliflw_article(article)
 
 
 def disable_remaining_linkings(entity_linking: EntityLinking):
@@ -295,7 +305,7 @@ def disable_remaining_linkings(entity_linking: EntityLinking):
 
     for remaining_linking in remaining_linkings:
         remaining_linking.updated_certainty = 0
-
+        db.session.add(remaining_linking)
     db.session.commit()
 
 
@@ -307,34 +317,33 @@ def generate_topics_json(article: Article, cookie_id: str) -> list:
     """
 
     topics = Topic.query.all()
-    topicsarray = []
+    topics_array = []
     for topic in topics:
-        articletopic = ArticleTopic.query.filter(
-            and_(ArticleTopic.article == article, ArticleTopic.topic == topic)).first()
+        article_topic = ArticleTopic.query.filter(ArticleTopic.article == article).filter(ArticleTopic.topic == topic).first()
 
         selected = False
-        if articletopic:
+        if article_topic:
 
-            if articletopic.updated_certainty > 0:
+            if article_topic.updated_certainty > 0:
                 selected = True
 
                 verification = Verification.query.filter(
-                    and_(Verification.verifiable_object == articletopic, cookie_id == cookie_id)).first()
+                    and_(Verification.verifiable_object == article_topic, cookie_id == cookie_id)).first()
 
                 if not verification:
-                    verification = Verification(verifiable_object=articletopic, cookie_id=cookie_id)
+                    verification = Verification(verifiable_object=article_topic, cookie_id=cookie_id)
                     db.session.add(verification)
                     db.session.commit()
 
-        topicobject = {
+        topic_object = {
             "id": topic.id,
             "text": topic.name,
             "selected": selected
         }
 
-        topicsarray.append(topicobject)
+        topics_array.append(topic_object)
 
-    return topicsarray
+    return topics_array
 
 
 def find_topic_response(cookie_id: str, article: Article) -> bool:
@@ -345,10 +354,10 @@ def find_topic_response(cookie_id: str, article: Article) -> bool:
     :return: boolean if there's a response given by this user
     """
     topic_response = False
-
     article_topics = article.topics
-
-    user_verifications = Verification.query.filter(and_(Verification.cookie_id == cookie_id, Verification.response != None)).all()
+    user_verifications = Verification.query.filter(Verification.cookie_id == cookie_id)\
+                                           .filter(Verification.response != None)\
+                                           .all()
 
     for user_verification in user_verifications:
         if user_verification.verifiable_object in article_topics:
@@ -361,8 +370,6 @@ def update_poliflw_article(article: Article):
     """
     :param article: article to update metadata for
     """
-
-    # fill in correct url here
     url_string = 'https://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
-    jsonupdate = enrichment_response(article)
-    requests.post(url_string, jsonupdate)
+    json_update = enrichment_response(article)
+    requests.post(url_string, json_update)
