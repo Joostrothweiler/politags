@@ -44,7 +44,7 @@ def insert_article_topic_linking(article: Article, topic: Topic, certainty: floa
 
     if existing_linking:
         existing_linking.initial_certainty = certainty
-        existing_linking.updated_certainty = certainty
+        db.session.add(existing_linking)
     elif topic:
         new_linking = ArticleTopic(article=article, topic=topic, initial_certainty=certainty)
         db.session.add(new_linking)

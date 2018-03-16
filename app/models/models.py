@@ -227,6 +227,8 @@ class Politician(db.Model):
     def full_name_long(self):
         if self.title and self.initials and self.first_name:
             return '{} {} ({}) {}'.format(self.title, self.initials, self.first_name, self.last_name)
+        elif self.initials and self.first_name:
+            return '{} ({}) {}'.format(self.initials, self.first_name, self.last_name)
         elif self.title and self.initials:
             return '{} {} {}'.format(self.title, self.initials, self.last_name)
         else:
