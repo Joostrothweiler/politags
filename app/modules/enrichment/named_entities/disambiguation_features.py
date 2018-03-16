@@ -60,10 +60,10 @@ def f_role_in_document(document, candidate):
 
 
 def f_party_similarity(document, candidate):
-    candidate_parties = candidate.party.lower().split('/')
+    candidate_parties = [x.lower().strip() for x in candidate.party.split('/')]
     sim = 0
     if len(document['parties']) > 0:
-        document_parties = [x.lower() for x in document['parties']]
+        document_parties = [x.lower().strip() for x in document['parties']]
         for candidate_party in candidate_parties:
             if candidate_party in document_parties:
                 sim = 1.0
