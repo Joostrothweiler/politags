@@ -330,8 +330,9 @@ def generate_topics_json(article: Article, cookie_id: str) -> list:
             if article_topic.updated_certainty > 0:
                 selected = True
 
-                verification = Verification.query.filter(
-                    and_(Verification.verifiable_object == article_topic, cookie_id == cookie_id)).first()
+                verification = None
+                verification = Verification.query.filter(Verification.verifiable_object == article_topic)\
+                                                .filter(cookie_id == cookie_id).first()
 
                 if not verification:
                     verification = Verification(verifiable_object=article_topic, cookie_id=cookie_id)
