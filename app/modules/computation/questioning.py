@@ -1,4 +1,5 @@
 import requests
+import logging
 
 from app.models.models import Article
 from app import db
@@ -9,8 +10,9 @@ from app.modules.enrichment.controller import enrichment_response
 from datetime import date
 from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
 from app.settings import NED_ENTITY_LEARNING_RATE, NED_QUESTION_CUTOFF_THRESHOLD
-from app.local_settings import PRODUCTION_ENVIRONMENT
+from app.local_settings import UPDATE_POLIFLOW_BASED_ON_DB
 
+logger = logging.getLogger('questioning')
 
 def generate_questions(api_doc: dict, cookie_id: str) -> dict:
     """
@@ -257,7 +259,7 @@ def update_topic_certainty(article_topic: ArticleTopic):
     db.session.commit()
 
     # call to PoliFLW to change
-    if article_topic.updated_certainty != previous_topic_certainty and PRODUCTION_ENVIRONMENT:
+    if article_topic.updated_certainty != previous_topic_certainty and UPDATE_POLIFLOW_BASED_ON_DB:
         update_poliflw_article(article_topic.article)
 
 
@@ -289,7 +291,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
     db.session.add(entity_linking)
     db.session.commit()
     # There is always an update made, so if in production environment we can update poliflow accordingly.
-    if PRODUCTION_ENVIRONMENT:
+    if UPDATE_POLIFLOW_BASED_ON_DB:
         update_poliflw_article(article)
 
 
@@ -370,6 +372,10 @@ def update_poliflw_article(article: Article):
     """
     :param article: article to update metadata for
     """
-    url_string = 'https://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
-    json_update = enrichment_response(article)
-    requests.post(url_string, json_update)
+    try:
+        url_string = 'https://elasticsearch:9200/pfl_combined_index/item/{}/_update'.format(article.id)
+        json_update = enrichment_response(article)
+        requests.post(url_string, json_update)
+    except requests.exceptions.RequestException as e:
+        logger.error('Failed to update poliflow article: {}'.format(e))
+
