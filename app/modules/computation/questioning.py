@@ -10,6 +10,7 @@ from app.modules.enrichment.controller import enrichment_response
 from datetime import date
 from app.local_settings import ALWAYS_PROCESS_ARTICLE_AGAIN
 from app.settings import NED_ENTITY_LEARNING_RATE, NED_QUESTION_CUTOFF_THRESHOLD
+from app.local_settings import PRODUCTION_ENVIRONMENT
 
 
 def generate_questions(apidict: dict, cookie_id: str) -> dict:
@@ -244,7 +245,7 @@ def update_topic_certainty(article_topic: ArticleTopic):
         article_topic.updated_certainty = 0
 
     # call to PoliFLW to change
-    if article_topic.updated_certainty != previous_topic_certainty:
+    if article_topic.updated_certainty != previous_topic_certainty and PRODUCTION_ENVIRONMENT:
         update_poliflw_article(article_topic.article)
 
 
@@ -256,7 +257,7 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
     :updated_certainty: certainty in the database that we update, this is different from the initial_certainty
     :NED_ENTITY_LEARNING_RATE: the amount with with we want to update the certainty for each response
     """
-    # article = entity_linking.entity.article
+    article = entity_linking.entity.article
 
     if response == entity_linking.linkable_object.id:
         entity_linking.updated_certainty = min(entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE, 1)
@@ -265,16 +266,17 @@ def update_linking_certainty(entity_linking: EntityLinking, response: int):
             entity_linking.updated_certainty = 1
             disable_remaining_linkings(entity_linking)
 
-            # add poliFLW call here
-            update_poliflw_article(article)
+            if PRODUCTION_ENVIRONMENT:
+                update_poliflw_article(article)
         else:
             entity_linking.updated_certainty = entity_linking.updated_certainty + NED_ENTITY_LEARNING_RATE
 
     elif response == -1:
         if entity_linking.updated_certainty - NED_ENTITY_LEARNING_RATE < 0.01:
             entity_linking.updated_certainty = 0
-            # add poliFLW call here
-            update_poliflw_article(article)
+
+            if PRODUCTION_ENVIRONMENT:
+                update_poliflw_article(article)
         else:
             entity_linking.updated_certainty -= NED_ENTITY_LEARNING_RATE
     else:
