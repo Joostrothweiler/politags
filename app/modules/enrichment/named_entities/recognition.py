@@ -4,7 +4,8 @@ import nl_core_news_sm
 from sqlalchemy import func
 
 from app import db
-from app.models.models import Entity, Article, Politician
+from app.local_settings import PHRASEMATCHERS_IN_USE
+from app.models.models import Entity, Article, Politician, Party
 from app.modules.common.utils import entity_text_has_valid_length
 from app.modules.enrichment.named_entities.spacy.pipelines import PoliticianRecognizer, PartyRecognizer
 
@@ -20,8 +21,16 @@ def init_nlp():
     global nlp
     politicians = []
     parties = []
-    # for politician in Politician.query.filter(func.length(Politician.first_name) > 1).all():
-    #     politicians.append(politician.first_name + ' ' + politician.last_name)
+    # If this app is deployed in production, add politicians (if first name available) and parties with full names.
+    if PHRASEMATCHERS_IN_USE:
+        for politician in Politician.query.filter(func.length(Politician.first_name) > 1).all():
+            politicians.append(politician.first_name + ' ' + politician.last_name)
+
+        for party in Party.query.all():
+            if party.name:
+                parties.append(party.name)
+            if party.abbreviation:
+                parties.append(party.abbreviation)
 
     nlp = nl_core_news_sm.load()
     politician_pipe = PoliticianRecognizer(nlp, politicians)
