@@ -67,6 +67,7 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     api_response['end_pos'] = next_question_linking.entity.end_pos
     api_response['certainty'] = next_question_linking.updated_certainty
     api_response['possible_answers'] = next_question_linking.possible_answers
+    api_response['cookie_id'] = cookie_id
 
     return api_response
 
@@ -319,8 +320,7 @@ def generate_topics_json(article: Article, cookie_id: str) -> list:
                     and_(Verification.verifiable_object == articletopic, cookie_id == cookie_id)).first()
 
                 if not verification:
-                    verification = Verification(verifiable_object=articletopic, response=None,
-                                                cookie_id=cookie_id)
+                    verification = Verification(verifiable_object=articletopic, cookie_id=cookie_id)
                     db.session.add(verification)
                     db.session.commit()
 
@@ -331,7 +331,6 @@ def generate_topics_json(article: Article, cookie_id: str) -> list:
         }
 
         topicsarray.append(topicobject)
-        db.session.commit()
 
     return topicsarray
 

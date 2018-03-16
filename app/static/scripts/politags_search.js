@@ -409,7 +409,7 @@ function setCookie(cookieName, cookieValue, expiryDays) {
     var date = new Date();
     date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + date.toUTCString();
-    document.cookie = cookieName + "=" + cookieValue + ";" + expires
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/"
 }
 
 
@@ -442,6 +442,7 @@ function getCookieId() {
     var id = getCookie("id");
     if (id === "") {
         setCookie("id", uuidv4(), 10000);
+        id = getCookie("id")
     }
     return id
 }
