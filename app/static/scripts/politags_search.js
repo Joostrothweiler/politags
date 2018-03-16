@@ -442,6 +442,7 @@ function getCookieId() {
     var id = getCookie("id");
     if (id === "") {
         setCookie("id", uuidv4(), 10000);
+        id = getCookie("id")
     }
     return id
 }
