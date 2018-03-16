@@ -45,7 +45,8 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
         'count_verifications_personal': count_verifications_personal,
         'count_verifications_today': count_verifications_today,
         'topics': topics,
-        'topic_response': topic_response
+        'topic_response': topic_response,
+        'cookie_id': cookie_id
     }
 
     if not entity_linkings:
@@ -68,7 +69,6 @@ def generate_questions(apidict: dict, cookie_id: str) -> dict:
     api_response['end_pos'] = next_question_linking.entity.end_pos
     api_response['certainty'] = next_question_linking.updated_certainty
     api_response['possible_answers'] = next_question_linking.possible_answers
-    api_response['cookie_id'] = cookie_id
 
     return api_response
 
