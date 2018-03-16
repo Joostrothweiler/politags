@@ -18,11 +18,14 @@ class ConstructKbCommand(Command):
 
 
 def standardize_party_name(party):
+    party = party.strip()
     synonyms = [
         {'synonym': 'Christen Democratisch Appel (CDA)', 'standardized': 'CDA'},
         {'synonym': 'Partij van de Arbeid (P.v.d.A.)', 'standardized': 'PvdA'},
         {'synonym': 'Partij van de Arbeid (P.v.d.A)', 'standardized': 'PvdA'},
         {'synonym': 'Democraten 66 (D66)', 'standardized': 'D66'},
+        {'synonym': 'D66/GROENLINKS', 'standardized' : 'D66/GroenLinks'},
+        {'synonym': 'Groen Links / Progressief Ede', 'standardized' : 'GroenLinks/Progressief Ede'},
         {'synonym': 'SP (Socialistische Partij)', 'standardized': 'SP'},
         {'synonym': 'Staatkundig Gereformeerde Partij (SGP)', 'standardized': 'SGP'},
         {'synonym': 'GROENLINKS', 'standardized': 'GroenLinks'},
@@ -34,16 +37,19 @@ def standardize_party_name(party):
         {'synonym': 'Combinatie Gemeentebelangen', 'standardized': 'Gemeentebelangen'},
         {'synonym': 'ChristenUnie/SGP', 'standardized': 'SGP/ChristenUnie'},
         {'synonym': 'ChristenUnie-SGP', 'standardized': 'SGP/ChristenUnie'},
+        {'synonym': 'Christenunie-SGP', 'standardized': 'SGP/ChristenUnie'},
         {'synonym': 'SGP-ChristenUnie', 'standardized': 'SGP/ChristenUnie'},
         {'synonym': 'Christenunie', 'standardized': 'ChristenUnie'},
+        {'synonym': 'CU', 'standardized': 'ChristenUnie'},
         {'synonym': 'PVDA/GroenLinks', 'standardized': 'PvdA/GroenLinks'},
         {'synonym': 'PvdA/GROENLINKS', 'standardized': 'PvdA/GroenLinks'},
         {'synonym': 'PvdA-GROENLINKS', 'standardized': 'PvdA/GroenLinks'},
         {'synonym': 'PvdA-Groenlinks', 'standardized': 'PvdA/GroenLinks'},
         {'synonym': 'PvdA-GroenLinks', 'standardized': 'PvdA/GroenLinks'},
+        {'synonym': 'PvdA - GroenLinks - Lokaal Sociaal', 'standardized' : 'PvdA/GroenLinks/Lokaal Sociaal'},
         {'synonym': 'Lokale Politieke Federatie Westland', 'standardized': 'LPF Westland'},
         {'synonym': 'GemeenteBelang Westland (GBW)', 'standardized': 'GemeenteBelang Westland'},
-        {'synonym': 'PvdD', 'standardized': 'Partij voor de Dieren'},
+        {'synonym': 'PvdD', 'standardized': 'Partij voor de Dieren'}
     ]
 
     for obj in synonyms:
@@ -97,7 +103,9 @@ def get_politicians_from_archive():
             candidates.append(candidate)
 
     for person in data:
+        person['party'] = standardize_party_name(person['party'])
         person = clean_politician_data_using_candidates_file(person, candidates)
+
 
     save_new_politicians_file(data)
     logger.info('Done')

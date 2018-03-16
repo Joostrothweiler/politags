@@ -8,6 +8,7 @@ import os
 DEBUG = True
 PRODUCTION_ENVIRONMENT = False
 ALWAYS_PROCESS_ARTICLE_AGAIN = False
+PHRASEMATCHERS_IN_USE = True
 LOGGING_LEVEL=logging.INFO
 
 # DO NOT use Unsecure Secrets in production environments

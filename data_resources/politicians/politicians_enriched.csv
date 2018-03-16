@@ -92,7 +92,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 130135,Dhr.,D.,,,Klok,,CDA,,Nissewaard,Raadslid,male
 130136,Dhr.,K.,,,Ramlal,,CDA,,Nissewaard,Raadslid,male
 130425,Dhr.,B.J.,,Bernard,Tebrugge,,SGP/ChristenUnie,,Nissewaard,Raadslid,male
-130426,Dhr.,J.,,,Vroombout,,ChristenUnie/SGP,,Nissewaard,Raadslid,male
+130426,Dhr.,J.,,,Vroombout,,SGP/ChristenUnie,,Nissewaard,Raadslid,male
 135239,Dhr.,D.S.,,,Wiering,,D66,,Nissewaard,Raadslid,male
 130140,Mw.,E.J.,,Ellen,Slachter,,D66,,Nissewaard,Raadslid,female
 135150,Mw.,M.L.,,Mia,Sliwinski,,Forza! Nissewaard,,Nissewaard,Raadslid,female
@@ -435,7 +435,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 122170,Mw.,I.E.,,Inge,Mous,,CDA,,Dordrecht,Raadslid,female
 74834,Dhr.,B.,,Bert,Staat,,SGP/ChristenUnie,,Dordrecht,Raadslid,male
 129261,Dhr.,J.D.,,Joost,Veldman,,SGP/ChristenUnie,,Dordrecht,Raadslid,male
-83315,Mw.,S.L.,,,Catsburg-Schenkel,,ChristenUnie/SGP,,Dordrecht,Raadslid,female
+83315,Mw.,S.L.,,,Catsburg-Schenkel,,SGP/ChristenUnie,,Dordrecht,Raadslid,female
 122171,Dhr.,J.R.J.,,Johan,Reumers,,D66,,Dordrecht,Raadslid,male
 22075825,Dhr.,K.A.,,,Hofman,,D66,,Dordrecht,Raadslid,male
 106896,Dhr.,P.J.T.,,Paul,Tiebosch,,D66,,Dordrecht,Raadslid,male
@@ -1000,7 +1000,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 123106,Dhr.,G.J.,,Gerjan,Bossenbroek,,SGP/ChristenUnie,,Zwijndrecht,Raadslid,male
 78774,Dhr.,M.M.,,Marius,Schenkel,,SGP/ChristenUnie,,Zwijndrecht,Raadslid,male
 126916,Dhr.,R.,,Reinier,van Hartingsveldt,,SGP/ChristenUnie,,Zwijndrecht,Raadslid,male
-126917,Mw.,K.L.,,,van Utrecht-Schuurman,,ChristenUnie/SGP,,Zwijndrecht,Raadslid,female
+126917,Mw.,K.L.,,,van Utrecht-Schuurman,,SGP/ChristenUnie,,Zwijndrecht,Raadslid,female
 83874,Dhr.,W.,,Wim,van der Does,,D66,,Zwijndrecht,Raadslid,male
 78776,Mw.,M.,,,Pater,,D66,,Zwijndrecht,Raadslid,female
 123110,Mw.,S.K.,,Sabine,Schipper,,D66,,Zwijndrecht,Raadslid,female
@@ -1014,7 +1014,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 127083,Dhr.,F.,,,Hartmeijer,,Zwijndrechtse Plus Partij,,Zwijndrecht,Raadslid,male
 124751,Mw.,E.,,Evelien,van der Linden,,Zwijndrechtse Plus Partij,,Zwijndrecht,Raadslid,female
 134896,Mw.,J.E.T.M.,,,van Dongen,,Algemeen Belang Zwijndrecht,,Zwijndrecht,Wethouder,female
-84413,Dhr.,A.T.,,,Kamsteeg,,ChristenUnie/SGP,,Zwijndrecht,Wethouder,male
+84413,Dhr.,A.T.,,,Kamsteeg,,SGP/ChristenUnie,,Zwijndrecht,Wethouder,male
 124752,Mw.,J.,,,de Witte,,D66,,Zwijndrecht,Wethouder,female
 124820,Dhr.,R.,,Robert,Kreukniet,,VVD,,Zwijndrecht,Wethouder,male
 133291,Mw. mr.,E.G.E.M.,,,Bloemen LLM,,CDA,,Zoeterwoude,Burgemeester,female
@@ -1181,7 +1181,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 130185,Dhr.,R.,,,Meerhof,,PvdA,,Oostzaan,Burgemeester,male
 131969,Dhr.,J.,,Jan,Ras,,CDA,,Oostzaan,Fractievoorzitter,male
 135297,Mw.,J.C.,,Joke,van der Blom,,D66,,Oostzaan,Fractievoorzitter,female
-121557,Mw.,M.C.J.,,,Bisseling,,Gemeente Belangen,,Oostzaan,Fractievoorzitter,female
+121557,Mw.,M.C.J.,,,Bisseling,,Gemeentebelangen,,Oostzaan,Fractievoorzitter,female
 121558,Dhr.,A.C.,,Bert,Jongert,,GroenLinks,,Oostzaan,Fractievoorzitter,male
 121559,Dhr.,P.G.M.,,Peter,de Wit,,PvdA,,Oostzaan,Fractievoorzitter,male
 128285,Dhr. drs.,J.H.M.,,Joop,Klinkhamer,,GroenLinks,,Oostzaan,Locoburgemeester,male
@@ -1190,7 +1190,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 80865,Dhr.,T.,,Teun,Flens,,CDA,,Oostzaan,Raadslid,male
 135298,Dhr.,M.,,Marco,Olij,,D66,,Oostzaan,Raadslid,male
 117071,Mw.,J.C.,,Joke,van der Blom,,D66,,Oostzaan,Raadslid,female
-121563,Mw.,M.C.J.,,,Bisseling,,Gemeente Belangen,,Oostzaan,Raadslid,female
+121563,Mw.,M.C.J.,,,Bisseling,,Gemeentebelangen,,Oostzaan,Raadslid,female
 92758,Dhr.,A.C.,,Bert,Jongert,,GroenLinks,,Oostzaan,Raadslid,male
 80868,Dhr.,A.F.B.,,Arjen,Ronner,,GroenLinks,,Oostzaan,Raadslid,male
 131325,Mw.,C.,,Cindy,de Boer,,GroenLinks,,Oostzaan,Raadslid,female
@@ -1676,7 +1676,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 118695,Dhr.,R.T.,,,Metz,,VVD,,Soest,Burgemeester,male
 112393,Dhr.,J.A.,,Johan,Baks,,Burgerbelangen Soest-Soesterberg,,Soest,Fractievoorzitter,male
 126662,Dhr.,P.,,Peter,Lucas,,CDA,,Soest,Fractievoorzitter,male
-134456,Dhr.,H.E.,,,Dijkhuizen,,Christenunie-SGP,,Soest,Fractievoorzitter,male
+134456,Dhr.,H.E.,,Harrie,Dijkhuizen,,SGP/ChristenUnie,,Soest,Fractievoorzitter,male
 128154,Mw.,Y.C.M.,,Yolande,Gastelaars,,Democraten Soest Natuurlijk,,Soest,Fractievoorzitter,female
 126663,Dhr.,R.J.,,Rolf-Jan,Sielcken,,D66,,Soest,Fractievoorzitter,male
 121470,Dhr.,H.L.,,Harry,Witte,,Gemeentebelangen Groen Soest,,Soest,Fractievoorzitter,male
@@ -1692,8 +1692,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 77308,Dhr.,P.,,Peter,Lucas,,CDA,,Soest,Raadslid,male
 126665,Dhr.,R.F.,,,van der Woud,,CDA,,Soest,Raadslid,male
 121474,Dhr.,R.P.O.,,Raymond,Kramer,,CDA,,Soest,Raadslid,male
-134458,Dhr.,H.E.,,,Dijkhuizen,,Christenunie-SGP,,Soest,Raadslid,male
-134661,Dhr.,J.J.,,,Balfoort,,Christenunie-SGP,,Soest,Raadslid,male
+134458,Dhr.,H.E.,,Harrie,Dijkhuizen,,SGP/ChristenUnie,,Soest,Raadslid,male
+134661,Dhr.,J.J.,,,Balfoort,,SGP/ChristenUnie,,Soest,Raadslid,male
 119287,Mw.,Y.C.M.,,Yolande,Gastelaars,,Democraten Soest Natuurlijk,,Soest,Raadslid,female
 121478,Dhr.,A.,,,Van der Hulst,,D66,,Soest,Raadslid,male
 77311,Dhr.,J.,,,van Tol,,D66,,Soest,Raadslid,male
@@ -1962,7 +1962,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 131635,Dhr.,A.,,,de Lange,,CDA,,Rheden,Fractievoorzitter,male
 85687,Dhr.,H.,,,Witteveen,,ChristenUnie,,Rheden,Fractievoorzitter,male
 132290,Dhr.,T.A.F.A.,,,Klomberg,,D66,,Rheden,Fractievoorzitter,male
-84764,Dhr.,G.D.P.,,,Jochemsen,,GemeenteBelangen,,Rheden,Fractievoorzitter,male
+84764,Dhr.,G.D.P.,,,Jochemsen,,Gemeentebelangen,,Rheden,Fractievoorzitter,male
 128909,Dhr.,R.,,,Oei,,GroenLinks,,Rheden,Fractievoorzitter,male
 128458,Mw.,M.M.H.,,,Rook,,Groep Pieper/Rook,,Rheden,Fractievoorzitter,female
 129993,Mw.,G.,,,Hofstede,,PvdA,,Rheden,Fractievoorzitter,female
@@ -1980,7 +1980,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 73048,Dhr.,T.A.F.A.,,,Klomberg,,D66,,Rheden,Raadslid,male
 73049,Mw.,A.J.,,,Spaargaren,,D66,,Rheden,Raadslid,female
 21917631,Mw.,M.W.,,,Willemen-Pennings,,D66,,Rheden,Raadslid,female
-38027,Dhr.,G.D.P.,,,Jochemsen,,GemeenteBelangen,,Rheden,Raadslid,male
+38027,Dhr.,G.D.P.,,,Jochemsen,,Gemeentebelangen,,Rheden,Raadslid,male
 128910,Dhr.,R.,,,Oei,,GroenLinks,,Rheden,Raadslid,male
 128989,Dhr.,T.,,,Endeveld,,GroenLinks,,Rheden,Raadslid,male
 84768,Mw.,M.M.H.,,,Rook,,Groep Pieper/Rook,,Rheden,Raadslid,female
@@ -2607,6 +2607,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 131258,Dhr.,M.,,,van Bostelen,,CDA,,Appingedam,Wethouder,male
 37168,Mw.,A.,,,Usmany-Dallinga,,Gemeentebelangen,,Appingedam,Wethouder,female
 23642835,,VACANT,,,,,,,Langedijk,Burgemeester,unknown
+24110336,Mw.,L.A.M.,,,Kompier,,PvdA,,Langedijk,Burgemeester waarnemend,female
 130841,Mw.,A.M.,,Marian,Schuijt,,CDA,,Langedijk,Fractievoorzitter,female
 122562,Dhr.,W.,,Willem,Nugteren,,ChristenUnie,,Langedijk,Fractievoorzitter,male
 77942,Dhr.,G.J.E.,,Ger,Nijman,,Dorpsbelang Langedijk,,Langedijk,Fractievoorzitter,male
@@ -3198,7 +3199,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124816,Mw.,C.,,Conny,Huisman,,CDA,,Westland,Raadslid,female
 84292,Mw.,C.C.M.,,,Zwinkels-de Jong,,CDA,,Westland,Raadslid,female
 120125,Mw.,J.,,,Vermeer-de Smit,,CDA,,Westland,Raadslid,female
-120127,Dhr.,D.,,,de Heer,,ChristenUnie/SGP,,Westland,Raadslid,male
+120127,Dhr.,D.,,,de Heer,,SGP/ChristenUnie,,Westland,Raadslid,male
 85263,Dhr.,L.K.,,Leen,Snijders,,SGP/ChristenUnie,,Westland,Raadslid,male
 120128,Dhr.,M.,,Maxim,van Ooijen,,D66,,Westland,Raadslid,male
 76129,Mw.,T.J.D.,,Tamara,van Riet,,D66,,Westland,Raadslid,female
@@ -3600,7 +3601,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 77419,Mw. mr. drs.,J.H.,,Jessica ,Prins,,VVD,,Huizen,Raadslid,female
 20268616,Dhr.,P.W.J.,,,Veldhuisen,,,,Huizen,Secretaris,male
 35855,Mw. mr. drs.,J.,,Janny ,Bakker-Klein,,CDA,,Huizen,Wethouder,female
-134482,Mw.,M.,,,Verhage-van Kooten,,ChristenUnie/SGP,,Huizen,Wethouder,female
+134482,Mw.,M.,,,Verhage-van Kooten,,SGP/ChristenUnie,,Huizen,Wethouder,female
 124193,Mw. drs.,M.L.C.,,Marlous ,Verbeek,,D66,,Huizen,Wethouder,female
 124194,Dhr.,G.E.H.,,Gerrit ,Pas,,GroenLinks,,Huizen,Wethouder,male
 20268494,Dhr. mr.,S.C.C.M.,,,Potters,,VVD,,De Bilt,Burgemeester,male
@@ -4160,7 +4161,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 134565,Mw.,J.H.M.,,,Hermans-Vloedbeld,,VVD,,Oud-Beijerland,Burgemeester waarnemend,female
 126754,Dhr.,R.J.M.,,,Veelenturf,,BINT,,Oud-Beijerland,Fractievoorzitter,male
 134189,Dhr.,A.,,,Valkenburg,,CDA,,Oud-Beijerland,Fractievoorzitter,male
-126891,Mw.,A.F.,,,Vervelde-Tuk,,ChristenUnie/SGP,,Oud-Beijerland,Fractievoorzitter,female
+126891,Mw.,A.F.,,,Vervelde-Tuk,,SGP/ChristenUnie,,Oud-Beijerland,Fractievoorzitter,female
 85216,Dhr.,M.R.R.S.,,,Pahladsingh,,D66,,Oud-Beijerland,Fractievoorzitter,male
 113447,Mw.,S.,,,Hol,,GroenLinks,,Oud-Beijerland,Fractievoorzitter,female
 85218,Dhr.,I.K.,,,Mahadew,,PvdA,,Oud-Beijerland,Fractievoorzitter,male
@@ -4173,11 +4174,11 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 80783,Dhr.,R.J.M.,,,Veelenturf,,BINT,,Oud-Beijerland,Raadslid,male
 133384,Dhr.,A.,,,de Vries,,CDA,,Oud-Beijerland,Raadslid,male
 126761,Dhr.,A.,,,Valkenburg,,CDA,,Oud-Beijerland,Raadslid,male
-126892,Dhr.,C.H.,,,van Pelt,,ChristenUnie/SGP,,Oud-Beijerland,Raadslid,male
-126893,Dhr. dr.,P.,,,Meijer,,ChristenUnie/SGP,,Oud-Beijerland,Raadslid,male
-126894,Dhr.,M.G.,,,Vis,,ChristenUnie/SGP,,Oud-Beijerland,Raadslid,male
-126895,Dhr.,P.,,,Mourits,,ChristenUnie/SGP,,Oud-Beijerland,Raadslid,male
-126896,Mw.,A.F.,,,Vervelde-Tuk,,ChristenUnie/SGP,,Oud-Beijerland,Raadslid,female
+126892,Dhr.,C.H.,,,van Pelt,,SGP/ChristenUnie,,Oud-Beijerland,Raadslid,male
+126893,Dhr. dr.,P.,,,Meijer,,SGP/ChristenUnie,,Oud-Beijerland,Raadslid,male
+126894,Dhr.,M.G.,,,Vis,,SGP/ChristenUnie,,Oud-Beijerland,Raadslid,male
+126895,Dhr.,P.,,,Mourits,,SGP/ChristenUnie,,Oud-Beijerland,Raadslid,male
+126896,Mw.,A.F.,,,Vervelde-Tuk,,SGP/ChristenUnie,,Oud-Beijerland,Raadslid,female
 80789,Dhr.,M.R.R.S.,,,Pahladsingh,,D66,,Oud-Beijerland,Raadslid,male
 80790,Mw.,E.C.,,,Rood,,D66,,Oud-Beijerland,Raadslid,female
 126762,Mw.,M.,,,de Bas,,D66,,Oud-Beijerland,Raadslid,female
@@ -4188,7 +4189,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 20267629,Dhr.,R.S.M.,,,Heintjes,,,,Oud-Beijerland,Secretaris,male
 131907,Dhr.,H.,,,van Waveren,,BINT,,Oud-Beijerland,Wethouder,male
 78677,Mw.,D.M.,,,van der Werf-Weeda,,CDA,,Oud-Beijerland,Wethouder,female
-134217,Dhr. drs.,P.J.,,,van Leenen,,ChristenUnie/SGP,,Oud-Beijerland,Wethouder,male
+134217,Dhr. drs.,P.J.,,,van Leenen,,SGP/ChristenUnie,,Oud-Beijerland,Wethouder,male
 132591,Dhr.,R.P.,,,van den Belt,MBA,VVD,,Steenbergen,Burgemeester,male
 125654,Dhr.,J.H.F.,,Jeroen,Weerdenburg,,CDA,,Steenbergen,Fractievoorzitter,male
 126234,Dhr.,M.H.C.M.,,Michel,Lambers,,De Volkspartij,,Steenbergen,Fractievoorzitter,male
@@ -5039,7 +5040,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 134528,Dhr.,J.,,,Struik,,Ambacht Uw Belang,,Hendrik-Ido-Ambacht,Fractievoorzitter,male
 126454,Dhr.,,,,van Die,,CDA,,Hendrik-Ido-Ambacht,Fractievoorzitter,male
 126516,Mw.,M.C.G.,,,Gommans - Dane,,D66,,Hendrik-Ido-Ambacht,Fractievoorzitter,female
-126455,Mw.,M.N.P.,,,Vogelaar- Korpershoek,,Gemeente Belangen,,Hendrik-Ido-Ambacht,Fractievoorzitter,female
+126455,Mw.,M.N.P.,,,Vogelaar- Korpershoek,,Gemeentebelangen,,Hendrik-Ido-Ambacht,Fractievoorzitter,female
 134514,Dhr.,E.,,Bert,van der Wulp,,PvdA,,Hendrik-Ido-Ambacht,Fractievoorzitter,male
 134529,Dhr.,L.P.,,Leo,Platschorre,,SGP/ChristenUnie,,Hendrik-Ido-Ambacht,Fractievoorzitter,male
 134530,Dhr.,O.,,Oene,Doevendans,,VVD,,Hendrik-Ido-Ambacht,Fractievoorzitter,male
@@ -5053,9 +5054,9 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 131591,Mw. drs.,W.P.,,,van der Hee-Pasterkamp,,CDA,,Hendrik-Ido-Ambacht,Raadslid,female
 126521,Dhr.,M.,,Marcel,de Groot,,D66,,Hendrik-Ido-Ambacht,Raadslid,male
 126522,Mw.,M.C.G.,,,Gommans - Dane,,D66,,Hendrik-Ido-Ambacht,Raadslid,female
-76995,Dhr.,A.,,,Cramer,,Gemeente Belangen,,Hendrik-Ido-Ambacht,Raadslid,male
+76995,Dhr.,A.,,,Cramer,,Gemeentebelangen,,Hendrik-Ido-Ambacht,Raadslid,male
 131592,Dhr.,M.B.,,Marien,Braber,,Gemeentebelangen,,Hendrik-Ido-Ambacht,Raadslid,male
-126462,Mw.,M.N.P.,,,Vogelaar- Korpershoek,,Gemeente Belangen,,Hendrik-Ido-Ambacht,Raadslid,female
+126462,Mw.,M.N.P.,,,Vogelaar- Korpershoek,,Gemeentebelangen,,Hendrik-Ido-Ambacht,Raadslid,female
 131593,Dhr.,E.,,Bert,van der Wulp,,PvdA,,Hendrik-Ido-Ambacht,Raadslid,male
 134531,Dhr.,M.J.H.,,Maarten,van den Heuvel,,PvdA,,Hendrik-Ido-Ambacht,Raadslid,male
 134532,Dhr.,B.P.,,Bart,van Ginkel,,SGP/ChristenUnie,,Hendrik-Ido-Ambacht,Raadslid,male
@@ -6120,7 +6121,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 120651,Dhr.,A.G.M.,,Ton,van Beers,,Arnhemse Ouderen Partij,,Arnhem,Raadslid,male
 119862,Dhr.,H.,,,Montfrooy,,CDA,,Arnhem,Raadslid,male
 122152,Dhr. mr.,G.A.,,Gerben,Karssenberg,,CDA,,Arnhem,Raadslid,male
-131836,Mw.,C.K.,,,Van Dillen - Koorn,,CDA,,Arnhem,Raadslid,female
+131836,Mw.,C.K.,,Klaartje,van Dillen-Koorn,,CDA,,Arnhem,Raadslid,female
 122153,Dhr.,D.,,Daniël,Becker,,ChristenUnie,,Arnhem,Raadslid,male
 75618,Mw.,A.P.,,,Plieger-Bos,,ChristenUnie,,Arnhem,Raadslid,female
 110846,Dhr.,H.E.,,Hans,de Vroome,,D66,,Arnhem,Raadslid,male
@@ -6201,11 +6202,11 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 135545,Dhr.,A.B.I.M.,,,Vos de Wael,,Fractie Alexander Vos de Wael,,Ede,Fractievoorzitter,male
 135546,Dhr.,R.,,,Görgülü,,Fractie GÃ¶rgÃ¼lÃ¼,,Ede,Fractievoorzitter,male
 111682,Dhr.,P.,,Peter,de Pater,,Gemeentebelangen,,Ede,Fractievoorzitter,male
-120305,Mw.,E.T.M.,,,Out,,Groen Links / Progressief Ede,,Ede,Fractievoorzitter,female
+120305,Mw.,E.T.M.,,,Out,,GroenLinks/Progressief Ede,,Ede,Fractievoorzitter,female
 21541915,Dhr.,H.,,,Buikema,,PvdA,,Ede,Fractievoorzitter,male
 133703,Dhr.,N.M.,,Nico,van der Poel,,SGP,,Ede,Fractievoorzitter,male
 21645452,Mw.,H.N.,,Hester,Veltman-Kamp,,VVD,,Ede,Fractievoorzitter,female
-128016,Mw.,G.,,,Ligtelijn-Bruins,,GemeenteBelangen,,Ede,Locoburgemeester,female
+128016,Mw.,G.,,,Ligtelijn-Bruins,,Gemeentebelangen,,Ede,Locoburgemeester,female
 20264295,Dhr.,G.H.,,,Hagelstein,,,,Ede,Raadsgriffier,male
 80607,Dhr.,B.R.,,Ruben,van Druiten,,Burgerbelangen,,Ede,Raadslid,male
 120306,Mw.,N.A.,,Natasja,Peters,,Burgerbelangen,,Ede,Raadslid,female
@@ -6232,8 +6233,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124507,Mw.,E.G.,,Ellen,Wijnsouw,,Gemeentebelangen,,Ede,Raadslid,female
 129414,Mw.,G.,,Gabriëlle,Hazeleger,,Gemeentebelangen,,Ede,Raadslid,female
 80625,Mw.,M.A.,,Jet,Verhoeff,,Gemeentebelangen,,Ede,Raadslid,female
-132381,Dhr.,P.G.,,,van den Berg,,Groen Links / Progressief Ede,,Ede,Raadslid,male
-120315,Mw.,E.T.M.,,,Out,,Groen Links / Progressief Ede,,Ede,Raadslid,female
+132381,Dhr.,P.G.,,,van den Berg,,GroenLinks/Progressief Ede,,Ede,Raadslid,male
+120315,Mw.,E.T.M.,,,Out,,GroenLinks/Progressief Ede,,Ede,Raadslid,female
 124508,Dhr.,H.,,,Buikema,,PvdA,,Ede,Raadslid,male
 135548,Mw.,H.M.G.,,,Maliepaard-Janssen,,PvdA,,Ede,Raadslid,female
 133704,Dhr.,A.C.,,,van Wolswinkel,,SGP,,Ede,Raadslid,male
@@ -6250,7 +6251,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124511,Mw.,D.W.,,Willemien,Vreugdenhil,,CDA,,Ede,Wethouder,female
 124512,Dhr.,L.E.,,Leon,Meijer,,ChristenUnie,,Ede,Wethouder,male
 124513,Dhr.,J.,,,Weijland,,D66,,Ede,Wethouder,male
-111334,Mw.,G.,,,Ligtelijn-Bruins,,GemeenteBelangen,,Ede,Wethouder,female
+111334,Mw.,G.,,,Ligtelijn-Bruins,,Gemeentebelangen,,Ede,Wethouder,female
 135549,Dhr.,H.L.M.,,Harry,van Huijstee,,PvdA,,Ede,Wethouder,male
 113074,Dhr. drs.,T.J.,,,Schouten,,PvdA,,Oldenzaal,Burgemeester,male
 133213,Mw.,M.E.A.,,,Rödel-Ouwens,,CDA,,Oldenzaal,Fractievoorzitter,female
@@ -7061,7 +7062,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124586,Dhr.,H.L.,,Harke,Dijksterhuis,,SGP/ChristenUnie,,Nijkerk,Raadslid,male
 124587,Dhr.,J.,,Jaco,van Putten,,SGP/ChristenUnie,,Nijkerk,Raadslid,male
 124588,Dhr.,W.,,Wim,Oosterwijk,,SGP/ChristenUnie,,Nijkerk,Raadslid,male
-85759,Mw.,M.J.,,,Doddema-Kodde,,ChristenUnie/SGP,,Nijkerk,Raadslid,female
+85759,Mw.,M.J.,,,Doddema-Kodde,,SGP/ChristenUnie,,Nijkerk,Raadslid,female
 124589,Dhr.,A.,,Aart,Klompenhouwer,,De Lokale Partij,,Nijkerk,Raadslid,male
 124590,Dhr.,H.D.,,Henk,de Greef,,De Lokale Partij,,Nijkerk,Raadslid,male
 124591,Dhr.,J.W.,,Jan Willem,Wicherink,,De Lokale Partij,,Nijkerk,Raadslid,male
@@ -7305,7 +7306,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 121574,Dhr.,L.A.,,Lennert,Onvlee,,CDA,,Gorinchem,Raadslid,male
 132559,Mw.,N.J.,,Nely,Maris-van Exel,,CDA,,Gorinchem,Raadslid,female
 128772,Dhr.,A.,,Anne,de Jong,,SGP/ChristenUnie,,Gorinchem,Raadslid,male
-91573,Dhr. ing.,F.,,,Barth,,ChristenUnie/SGP,,Gorinchem,Raadslid,male
+91573,Dhr. ing.,F.,,,Barth,,SGP/ChristenUnie,,Gorinchem,Raadslid,male
 91574,Mw.,M.J.,,Marjo,Molengraaf-Vullers,,SGP/ChristenUnie,,Gorinchem,Raadslid,female
 128773,Dhr. ing.,F.A.,,,Alba Heijdenrijk,,D66,,Gorinchem,Raadslid,male
 131437,Mw.,J.T.E.,,,Hoogesteger,,Fractie Hoogesteger,,Gorinchem,Raadslid,female
@@ -7333,7 +7334,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 115361,Dhr.,M.A.J.,,,Doodkorte,,VVD,,Gorinchem,Wethouder,male
 115646,Mw.,A.W.M.,,,Spruit,,PvdA,,Lisse,Burgemeester,female
 124468,Dhr.,C.P.M.,,Kees,van der Zwet,,CDA,,Lisse,Fractievoorzitter,male
-134218,Dhr.,J.R.,,,den Breejen,,ChristenUnie/SGP,,Lisse,Fractievoorzitter,male
+134218,Dhr.,J.R.,,,den Breejen,,SGP/ChristenUnie,,Lisse,Fractievoorzitter,male
 124470,Mw.,J.P.M.,,,van der Laan,,D66,,Lisse,Fractievoorzitter,female
 124471,Dhr.,R.F.J.,,Rob,Veldhoven,,Nieuw Lisse,,Lisse,Fractievoorzitter,male
 127353,Dhr. drs.,A.G.M.,,Guus,Mesman,,PvdA,,Lisse,Fractievoorzitter,male
@@ -7344,8 +7345,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 118530,Dhr.,G.M.J.,,Gerrit,Meiland,,CDA,,Lisse,Raadslid,male
 124475,Dhr.,R.A.M.,,,van Reisen,,CDA,,Lisse,Raadslid,male
 124476,Mw.,M.W.J.,,Marianne,Bergman-Bijlsma,,CDA,,Lisse,Raadslid,female
-134219,Dhr.,B.A.,,,van Santen,,ChristenUnie/SGP,,Lisse,Raadslid,male
-134220,Dhr.,J.R.,,,den Breejen,,ChristenUnie/SGP,,Lisse,Raadslid,male
+134219,Dhr.,B.A.,,,van Santen,,SGP/ChristenUnie,,Lisse,Raadslid,male
+134220,Dhr.,J.R.,,,den Breejen,,SGP/ChristenUnie,,Lisse,Raadslid,male
 124478,Dhr.,E.,,Erik,Prins,,D66,,Lisse,Raadslid,male
 124479,Dhr.,M.J.,,,Magielse,,D66,,Lisse,Raadslid,male
 124480,Mw.,J.P.M.,,,van der Laan,,D66,,Lisse,Raadslid,female
@@ -7440,7 +7441,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 81427,Mw.,D.A.,,Daniëlle,Bondt,,D66,,Renkum,Raadslid,female
 126744,Mw.,F.J.,,Hanneke,Mijnhart,,D66,,Renkum,Raadslid,female
 126745,Dhr.,F.R.,,Frank,Huizinga,,Gemeentebelangen,,Renkum,Raadslid,male
-126746,Dhr.,H.,,,Tiemens,,GemeenteBelangen,,Renkum,Raadslid,male
+126746,Dhr.,H.,,,Tiemens,,Gemeentebelangen,,Renkum,Raadslid,male
 116780,Mw.,C.D.,,Daniëlle,van Bentem,,Gemeentebelangen,,Renkum,Raadslid,female
 126747,Dhr.,H.J.,,Henk,Boon,,GroenLinks,,Renkum,Raadslid,male
 81432,Mw.,C.,,,de Roo,,GroenLinks,,Renkum,Raadslid,female
@@ -7714,10 +7715,10 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 30399,Dhr. drs.,J.T.H.M.,,,Penninx,,PvdA,,Voorst,Burgemeester,male
 122344,Dhr.,E.,,,van de Zedde,,CDA,,Voorst,Fractievoorzitter,male
 21860703,Dhr.,P.T.M.,,Paul,Jonkman,,D66,,Voorst,Fractievoorzitter,male
-21860709,Dhr.,E.K.,,,Horstman,,Gemeente Belangen,,Voorst,Fractievoorzitter,male
+21860709,Dhr.,E.K.,,,Horstman,,Gemeentebelangen,,Voorst,Fractievoorzitter,male
 126429,Dhr.,G.H.,,Erik,Nobel,,PvdA/GroenLinks,,Voorst,Fractievoorzitter,male
 131041,Dhr.,R.W.,,Ruud,Kooij,,VVD-Liberaal 2000,,Voorst,Fractievoorzitter,male
-127878,Dhr.,H.,,,van der Sleen,,Gemeente Belangen,,Voorst,Locoburgemeester,male
+127878,Dhr.,H.,,,van der Sleen,,Gemeentebelangen,,Voorst,Locoburgemeester,male
 20261804,Mw. drs.,B.J.M.,,,Jansen,,,,Voorst,Raadsgriffier,female
 52362,Dhr.,A.A.,,,Jansen,,CDA,,Voorst,Raadslid,male
 30412,Dhr.,C.B.,,Cees,Booster,,CDA,,Voorst,Raadslid,male
@@ -7725,15 +7726,15 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 30414,Mw.,J.B.H.,,Joke,Boerkamp-Leisink,,CDA,,Voorst,Raadslid,female
 133872,Dhr.,P.T.M.,,Paul,Jonkman,,D66,,Voorst,Raadslid,male
 133000,Mw. drs.,A.M.,,Annetta,Lasance,,D66,,Voorst,Raadslid,female
-72977,Dhr.,A.,,,Bannink,,Gemeente Belangen,,Voorst,Raadslid,male
-126430,Dhr.,E.K.,,,Horstman,,Gemeente Belangen,,Voorst,Raadslid,male
-131505,Dhr.,J.I.H.M.,,,Lubberink,,Gemeente Belangen,,Voorst,Raadslid,male
-126431,Dhr.,R.,,,Bosch,,Gemeente Belangen,,Voorst,Raadslid,male
-72980,Dhr.,R.G.H.,,,Hazelaar,,Gemeente Belangen,,Voorst,Raadslid,male
-21860735,Mw.,H.G.M.,,,Jansen-Greiving,,Gemeente Belangen,,Voorst,Raadslid,female
-122349,Mw.,I.W.M.,,,Aarnink-Westerbeek,,Gemeente Belangen,,Voorst,Raadslid,female
+72977,Dhr.,A.,,,Bannink,,Gemeentebelangen,,Voorst,Raadslid,male
+126430,Dhr.,E.K.,,,Horstman,,Gemeentebelangen,,Voorst,Raadslid,male
+131505,Dhr.,J.I.H.M.,,,Lubberink,,Gemeentebelangen,,Voorst,Raadslid,male
+126431,Dhr.,R.,,,Bosch,,Gemeentebelangen,,Voorst,Raadslid,male
+72980,Dhr.,R.G.H.,,,Hazelaar,,Gemeentebelangen,,Voorst,Raadslid,male
+21860735,Mw.,H.G.M.,,,Jansen-Greiving,,Gemeentebelangen,,Voorst,Raadslid,female
+122349,Mw.,I.W.M.,,,Aarnink-Westerbeek,,Gemeentebelangen,,Voorst,Raadslid,female
 126432,Dhr.,G.H.,,Erik,Nobel,,PvdA/GroenLinks,,Voorst,Raadslid,male
-21860743,Dhr.,H.,,,de Graaf,,PvdA-GroenLinks,,Voorst,Raadslid,male
+21860743,Dhr.,H.,,,de Graaf,,PvdA/GroenLinks,,Voorst,Raadslid,male
 134696,Dhr.,E.,,,de Weerd,,VVD,,Voorst,Raadslid,male
 131043,Dhr. mr. ing.,G.,,Gerrit,Schimmel,,VVD-Liberaal 2000,,Voorst,Raadslid,male
 131044,Dhr.,R.W.,,Ruud,Kooij,,VVD-Liberaal 2000,,Voorst,Raadslid,male
@@ -7741,8 +7742,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 20261838,Dhr.,E.J.M.,,,van Leeuwen,,,,Voorst,Secretaris,male
 126505,Dhr.,H.J.,,Harjo,Pinkster,,CDA,,Voorst,Wethouder,male
 126260,Dhr.,W.I.J.M.,,Wim,Vrijhoef,,D66,,Voorst,Wethouder,male
-126506,Dhr.,A.B.,,,Lagerweij,,Gemeente Belangen,,Voorst,Wethouder,male
-126261,Dhr.,H.,,,van der Sleen,,Gemeente Belangen,,Voorst,Wethouder,male
+126506,Dhr.,A.B.,,,Lagerweij,,Gemeentebelangen,,Voorst,Wethouder,male
+126261,Dhr.,H.,,,van der Sleen,,Gemeentebelangen,,Voorst,Wethouder,male
 132361,Dhr. dr.,T.J.,,,Haan,,PvdA,,Maassluis,Burgemeester,male
 113595,Mw.,C.,,Corine,Bronsveld-Snoep,,CDA,,Maassluis,Fractievoorzitter,female
 111095,Dhr.,J.J.M.,,John,Dolstra,,ChristenUnie,,Maassluis,Fractievoorzitter,male
@@ -7812,7 +7813,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 30314,Dhr.,J.C.M.,,Jac,Huijsmans,,Leefbaar Asten,,Asten,Wethouder,male
 112515,Dhr. ir.,H.,,,van der Hoeve,,VVD,,Epe,Burgemeester,male
 124261,Mw.,A.E.H.,,,Looman-Van Breen,,CDA,,Epe,Fractievoorzitter,female
-73087,Dhr.,J.,,,Spijkerboer,,ChristenUnie/SGP,,Epe,Fractievoorzitter,male
+73087,Dhr.,J.,,,Spijkerboer,,SGP/ChristenUnie,,Epe,Fractievoorzitter,male
 73615,Dhr. drs.,L.T.,,,Bestebroer,,D66,,Epe,Fractievoorzitter,male
 73089,Dhr.,F.P.W.J.,,Frank,Surink,,Gemeentebelangen Epe,,Epe,Fractievoorzitter,male
 124262,Dhr.,J.,,Jan,de Graaf,,GroenLinks,,Epe,Fractievoorzitter,male
@@ -7827,7 +7828,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 73098,Mw.,A.E.H.,,,Looman-Van Breen,,CDA,,Epe,Raadslid,female
 124267,Mw. drs.,B.M.,,Bertie,Hendriks,,CDA,,Epe,Raadslid,female
 128095,Dhr.,H.,,Henk,Boon,,SGP/ChristenUnie,,Epe,Raadslid,male
-73100,Dhr.,J.,,,Spijkerboer,,ChristenUnie/SGP,,Epe,Raadslid,male
+73100,Dhr.,J.,,,Spijkerboer,,SGP/ChristenUnie,,Epe,Raadslid,male
 135633,Dhr.,W.,,Wim,van den Berg,,SGP/ChristenUnie,,Epe,Raadslid,male
 73618,Dhr. drs.,L.T.,,,Bestebroer,,D66,,Epe,Raadslid,male
 124268,Dhr.,H.P.,,Hans,de Goede,,D66,,Epe,Raadslid,male
@@ -7895,7 +7896,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 20451616,Dhr.,A.G.C.M.,,Ad,van den Oever,,VVD,,Veldhoven,Wethouder,male
 92561,Dhr.,K.J.G.,,,Kats,,SGP,,Zuidplas,Burgemeester,male
 115158,Dhr.,M.D.,,,Lansink,,CDA,,Zuidplas,Fractievoorzitter,male
-130440,Dhr.,D.J.,,,Bac,,ChristenUnie/SGP,,Zuidplas,Fractievoorzitter,male
+130440,Dhr.,D.J.,,,Bac,,SGP/ChristenUnie,,Zuidplas,Fractievoorzitter,male
 126775,Mw.,K.A.,,,Wolff-Theunisse,,D66,,Zuidplas,Fractievoorzitter,female
 122512,Dhr.,P.A.,,,van Drenth,,Nieuw Elan Zuidplas,,Zuidplas,Fractievoorzitter,male
 122513,Dhr.,J.,,,Helmer,,PvdA/GroenLinks,,Zuidplas,Fractievoorzitter,male
@@ -7907,12 +7908,12 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 122515,Dhr.,J.,,,Hennip,,CDA,,Zuidplas,Raadslid,male
 90762,Dhr.,M.D.,,,Lansink,,CDA,,Zuidplas,Raadslid,male
 122516,Mw.,T.T.E.,,,de Jonge-Ruitenbeek,,CDA,,Zuidplas,Raadslid,female
-115159,Dhr.,A.,,,Doek,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
-30164,Dhr.,A.,,,Slobbe RA,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
-122517,Dhr.,C.D.,,,van der Spek,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
-71138,Dhr.,D.J.,,,Bac,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
-129591,Dhr.,J.W.,,,Schuurman,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
-71141,Dhr.,P.,,,Molenaar,,ChristenUnie/SGP,,Zuidplas,Raadslid,male
+115159,Dhr.,A.,,,Doek,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
+30164,Dhr.,A.,,,Slobbe RA,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
+122517,Dhr.,C.D.,,,van der Spek,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
+71138,Dhr.,D.J.,,,Bac,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
+129591,Dhr.,J.W.,,,Schuurman,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
+71141,Dhr.,P.,,,Molenaar,,SGP/ChristenUnie,,Zuidplas,Raadslid,male
 122518,Dhr.,F.,,,Klovert,,D66,,Zuidplas,Raadslid,male
 126778,Dhr.,J.,,,Huson,,D66,,Zuidplas,Raadslid,male
 122519,Dhr.,M.B.W.,,,Clavaux,,D66,,Zuidplas,Raadslid,male
@@ -8132,7 +8133,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 134912,Dhr.,J.,,,van Wolfswinkel,,SGP/CU,,Barendrecht,Wethouder,male
 21671819,Dhr.,G.J.,,,Bouwmeester,,D66,,Leusden,Burgemeester,male
 89075,Dhr.,B.A.,,Barto,Piersma,,CDA,,Leusden,Fractievoorzitter,male
-127434,Mw.,K.E.,,,Pouwels-Koopman,,ChristenUnie/SGP,,Leusden,Fractievoorzitter,female
+127434,Mw.,K.E.,,,Pouwels-Koopman,,SGP/ChristenUnie,,Leusden,Fractievoorzitter,female
 89077,Dhr.,J.R.,,Roel,Madiol,,D66,,Leusden,Fractievoorzitter,male
 127435,Dhr.,J.P.O.M.,,,van Herpen,,PvdA/ GroenLinks,,Leusden,Fractievoorzitter,male
 115587,Dhr.,C.P.W.J.,,Carlos,Genders,,VVD,,Leusden,Fractievoorzitter,male
@@ -8145,7 +8146,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 122335,Mw.,M.G.,,,van Eijden-Smits,,CDA,,Leusden,Raadslid,female
 131657,Dhr.,W.,,Wim,van Hell,,SGP/ChristenUnie,,Leusden,Raadslid,male
 127288,Dhr.,W.H.,,Wout,van den Brink,,SGP/ChristenUnie,,Leusden,Raadslid,male
-127436,Mw.,K.E.,,,Pouwels-Koopman,,ChristenUnie/SGP,,Leusden,Raadslid,female
+127436,Mw.,K.E.,,,Pouwels-Koopman,,SGP/ChristenUnie,,Leusden,Raadslid,female
 127112,Dhr.,J.,,Jan,Mülder,,D66,,Leusden,Raadslid,male
 122338,Dhr.,J.G.,,John,van Halderen,,D66,,Leusden,Raadslid,male
 85981,Dhr.,J.R.,,Roel,Madiol,,D66,,Leusden,Raadslid,male
@@ -8312,10 +8313,10 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 126905,Dhr.,C.N.,,Nico,de Jager,,SGP/ChristenUnie,,Sliedrecht,Raadslid,male
 126906,Dhr.,J.C.,,Cees,Paas,,SGP/ChristenUnie,,Sliedrecht,Raadslid,male
 126907,Dhr.,J.H.,,Jan,Visser,,SGP/ChristenUnie,,Sliedrecht,Raadslid,male
-126908,Dhr.,M.,,,Visser,,ChristenUnie/SGP,,Sliedrecht,Raadslid,male
+126908,Dhr.,M.,,,Visser,,SGP/ChristenUnie,,Sliedrecht,Raadslid,male
 129573,Dhr.,P.H.G.,,Hugo,van Meeuwen,,SGP/ChristenUnie,,Sliedrecht,Raadslid,male
 131857,Mw.,A.W.,,Ria,de Mul-Donker,,SGP/ChristenUnie,,Sliedrecht,Raadslid,female
-130414,Mw.,H.M.,,,Baars-Mulder,,ChristenUnie/SGP,,Sliedrecht,Raadslid,female
+130414,Mw.,H.M.,,,Baars-Mulder,,SGP/ChristenUnie,,Sliedrecht,Raadslid,female
 126340,Dhr.,G.P.,,Gerrit,Venis,,PRO Sliedrecht,,Sliedrecht,Raadslid,male
 126341,Dhr.,P.,,,de Borst,,PRO Sliedrecht,,Sliedrecht,Raadslid,male
 126342,Dhr.,R.C.,,Rob,Penning,,PRO Sliedrecht,,Sliedrecht,Raadslid,male
@@ -9095,7 +9096,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 134939,Dhr.,N.,,Noureddine,El Mansouri,,CDA,,Zeist,Raadslid,male
 125171,Mw.,A.W.,,,Pastoor,,CDA,,Zeist,Raadslid,female
 134593,Mw.,L.M.,,Marlies,Welschen-van der Hoek,,CDA,,Zeist,Raadslid,female
-119897,Dhr.,P.,,,Verolme,,ChristenUnie/SGP,,Zeist,Raadslid,male
+119897,Dhr.,P.,,,Verolme,,SGP/ChristenUnie,,Zeist,Raadslid,male
 118292,Dhr.,W.D.,,Wouter,Catsburg,,SGP/ChristenUnie,,Zeist,Raadslid,male
 127575,Dhr.,D.,,,van Ginkel,,D66,,Zeist,Raadslid,male
 119898,Dhr.,F.,,,André de la Porte,,D66,,Zeist,Raadslid,male
@@ -9131,7 +9132,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 131127,Dhr.,S.,,Sander,Jansen,,VVD,,Zeist,Wethouder,male
 113623,Dhr.,Ch.B.,,,Aptroot,,VVD,,Zoetermeer,Burgemeester,male
 20733823,Mw.,I.,,,ter Laak,,CDA,,Zoetermeer,Fractievoorzitter,female
-127487,Dhr.,A.A.L.,,,Bos,,ChristenUnie/SGP,,Zoetermeer,Fractievoorzitter,male
+127487,Dhr.,A.A.L.,,,Bos,,SGP/ChristenUnie,,Zoetermeer,Fractievoorzitter,male
 127488,Mw.,C.A.M.,,,Huijbens,,D66,,Zoetermeer,Fractievoorzitter,female
 133381,Dhr.,M.W.M.,,,van der Tol,,GroenLinks,,Zoetermeer,Fractievoorzitter,male
 127490,Dhr. mr.,H.P.A.,,,Nawijn,,Lijst Hilbrand Nawijn,,Zoetermeer,Fractievoorzitter,male
@@ -9146,8 +9147,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124203,Dhr.,K.J.W.,,,de Jong,,CDA,,Zoetermeer,Raadslid,male
 88214,Dhr.,R.,,,Wessels,,CDA,,Zoetermeer,Raadslid,male
 124204,Mw.,I.,,,ter Laak,,CDA,,Zoetermeer,Raadslid,female
-110952,Dhr.,A.A.L.,,,Bos,,ChristenUnie/SGP,,Zoetermeer,Raadslid,male
-78509,Dhr. ir.,K.,,,Schra,,ChristenUnie/SGP,,Zoetermeer,Raadslid,male
+110952,Dhr.,A.A.L.,,,Bos,,SGP/ChristenUnie,,Zoetermeer,Raadslid,male
+78509,Dhr. ir.,K.,,,Schra,,SGP/ChristenUnie,,Zoetermeer,Raadslid,male
 78513,Dhr. ir.,C.W.J.,,,Bos,,D66,,Zoetermeer,Raadslid,male
 124205,Dhr.,P.J.M.,,,Diederen,,D66,,Zoetermeer,Raadslid,male
 127498,Dhr.,P.L.,,,Vergers,,D66,,Zoetermeer,Raadslid,male
@@ -9480,7 +9481,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 22024000,Dhr.,D.J.,,,Gutlich,,D66,,Noordwijk,Fractievoorzitter,male
 126467,Dhr.,P.,,,van Bockhove,,Lijst Salman Noordwijk,,Noordwijk,Fractievoorzitter,male
 21584932,Mw.,T.T.,,,Visser-Danser,,PUUR NOORDWIJK,,Noordwijk,Fractievoorzitter,female
-22024008,Dhr.,L.,,,Koppel,,PvdA-GroenLinks,,Noordwijk,Fractievoorzitter,male
+22024008,Dhr.,L.,,,Koppel,,PvdA/GroenLinks,,Noordwijk,Fractievoorzitter,male
 121882,Dhr.,R.,,,ter Hark,,VVD,,Noordwijk,Fractievoorzitter,male
 88943,Dhr.,G.,,,van Duin,,Puur Noordwijk,,Noordwijk,Locoburgemeester,male
 20258778,,VACANT,,,,,,,Noordwijk,Raadsgriffier,unknown
@@ -9500,8 +9501,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 121889,Mw.,D.H.M.,,,Brink-Musters,,PUUR NOORDWIJK,,Noordwijk,Raadslid,female
 126471,Mw.,J.,,,van der Zanden-Molenaar,,PUUR NOORDWIJK,,Noordwijk,Raadslid,female
 79410,Mw.,T.T.,,,Visser-Danser,,PUUR NOORDWIJK,,Noordwijk,Raadslid,female
-131889,Dhr.,L.,,,Koppel,,PvdA-GroenLinks,,Noordwijk,Raadslid,male
-131890,Mw.,C.M.,,,Cramer,,PvdA-GroenLinks,,Noordwijk,Raadslid,female
+131889,Dhr.,L.,,,Koppel,,PvdA/GroenLinks,,Noordwijk,Raadslid,male
+131890,Mw.,C.M.,,,Cramer,,PvdA/GroenLinks,,Noordwijk,Raadslid,female
 121892,Dhr.,G.C.,,,Duijndam,,VVD,,Noordwijk,Raadslid,male
 22024046,Dhr.,H.G.L.,,,Hoogervorst,,VVD,,Noordwijk,Raadslid,male
 121893,Dhr.,R.,,,ter Hark,,VVD,,Noordwijk,Raadslid,male
@@ -9758,7 +9759,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 125500,Dhr.,R.,,Ruben,Minkjan,,ChristenUnie,,Hellendoorn,Fractievoorzitter,male
 91602,Dhr.,H.E.,,Henk,Daggert,,D66,,Hellendoorn,Fractievoorzitter,male
 135360,Mw.,A.,,,ter Harmsel,,Fractie ter Harmsel,,Hellendoorn,Fractievoorzitter,female
-91603,Dhr.,J.,,,Veneman,,GemeenteBelangen,,Hellendoorn,Fractievoorzitter,male
+91603,Dhr.,J.,,,Veneman,,Gemeentebelangen,,Hellendoorn,Fractievoorzitter,male
 135359,Dhr.,D.R.J.,,,op den Dries,,GroenLinks,,Hellendoorn,Fractievoorzitter,male
 127869,Dhr.,J.G.,,,Stuut,,HOP,,Hellendoorn,Fractievoorzitter,male
 21419246,Dhr.,J.,,Jos,van den Born,,PvdA,,Hellendoorn,Fractievoorzitter,male
@@ -9783,8 +9784,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 135364,Dhr.,A.,,Bert,Mostert,,D66,,Hellendoorn,Raadslid,male
 83751,Dhr.,H.E.,,Henk,Daggert,,D66,,Hellendoorn,Raadslid,male
 83753,Mw.,A.,,,ter Harmsel,,Fractie ter Harmsel,,Hellendoorn,Raadslid,female
-79132,Dhr.,J.,,,Veneman,,GemeenteBelangen,,Hellendoorn,Raadslid,male
-79133,Mw.,M.M.T.,,,Knobben-Tijhaar,,GemeenteBelangen,,Hellendoorn,Raadslid,female
+79132,Dhr.,J.,,,Veneman,,Gemeentebelangen,,Hellendoorn,Raadslid,male
+79133,Mw.,M.M.T.,,,Knobben-Tijhaar,,Gemeentebelangen,,Hellendoorn,Raadslid,female
 135365,Dhr.,D.R.J.,,,op den Dries,,GroenLinks,,Hellendoorn,Raadslid,male
 125513,Dhr.,D.G.,,,Goossen,,HOP,,Hellendoorn,Raadslid,male
 83752,Dhr.,J.G.,,,Stuut,,HOP,,Hellendoorn,Raadslid,male
@@ -9866,7 +9867,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 132014,Mw.,K.,,,Hagen,,D66,,De Ronde Venen,Fractievoorzitter,female
 133006,Dhr.,J.,,,van Diemen,,Lijst 30-11,,De Ronde Venen,Fractievoorzitter,male
 132015,Mw.,L.,,,Minnee,,Lijst 8,,De Ronde Venen,Fractievoorzitter,female
-95601,Dhr.,E.R.,,,Schreurs,,PvdA - GroenLinks - Lokaal Sociaal,,De Ronde Venen,Fractievoorzitter,male
+95601,Dhr.,E.R.,,,Schreurs,,PvdA/GroenLinks/Lokaal Sociaal,,De Ronde Venen,Fractievoorzitter,male
 132016,Dhr.,R.,,,Bultena,,Ronde Venen Belang,,De Ronde Venen,Fractievoorzitter,male
 113128,Dhr.,D.L.,,,Moolenburgh,MBA,CDA,,De Ronde Venen,Locoburgemeester,male
 20258078,Dhr.,M.,,,de Graaf,,,,De Ronde Venen,Raadsgriffier,male
@@ -9876,7 +9877,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 119277,Dhr.,R.J.H.,,Robert,Seisener,,CDA,,De Ronde Venen,Raadslid,male
 125765,Mw.,R.,,,de Korte-Verhoef,,CDA,,De Ronde Venen,Raadslid,female
 125766,Mw.,S.,,Simone,Borgstede,,CDA,,De Ronde Venen,Raadslid,female
-132017,Dhr.,T.,,,Sligtenhorst,,ChristenUnie/SGP,,De Ronde Venen,Raadslid,male
+132017,Dhr.,T.,,,Sligtenhorst,,SGP/ChristenUnie,,De Ronde Venen,Raadslid,male
 95609,Dhr.,W.H.P.,,Wim,Stam,,SGP/ChristenUnie,,De Ronde Venen,Raadslid,male
 95857,Dhr.,C.A.J.,,,Houmes,,D66,,De Ronde Venen,Raadslid,male
 95610,Dhr.,E.,,Eelco,Doorn,,D66,,De Ronde Venen,Raadslid,male
@@ -9886,8 +9887,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 133007,Dhr.,J.,,,van Diemen,,Lijst 30-11,,De Ronde Venen,Raadslid,male
 95611,Dhr.,J.J.,,,Kneppers,,Lijst 8,,De Ronde Venen,Raadslid,male
 125771,Mw.,L.,,,Minnee,,Lijst 8,,De Ronde Venen,Raadslid,female
-95612,Dhr.,E.R.,,,Schreurs,,PvdA - GroenLinks - Lokaal Sociaal,,De Ronde Venen,Raadslid,male
-133984,Dhr.,P.C.,,,Kroon,,PvdA - GroenLinks - Lokaal Sociaal,,De Ronde Venen,Raadslid,male
+95612,Dhr.,E.R.,,,Schreurs,,PvdA/GroenLinks/Lokaal Sociaal,,De Ronde Venen,Raadslid,male
+133984,Dhr.,P.C.,,,Kroon,,PvdA/GroenLinks/Lokaal Sociaal,,De Ronde Venen,Raadslid,male
 125773,Dhr.,J.,,,de Ree,,Ronde Venen Belang,,De Ronde Venen,Raadslid,male
 125774,Dhr.,K.,,,Klein,,Ronde Venen Belang,,De Ronde Venen,Raadslid,male
 125777,Dhr.,M.,,,van der Greft,,Ronde Venen Belang,,De Ronde Venen,Raadslid,male
@@ -10118,7 +10119,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 133199,Dhr.,I.G.,,Gerard ,Mostert,,ChristenUnie,,Katwijk,Fractievoorzitter,male
 130443,Dhr.,G.H.A.,,,Bol,,De Lokalen,,Katwijk,Fractievoorzitter,male
 120537,Dhr.,R.,,Ralf ,Boland,,D66,,Katwijk,Fractievoorzitter,male
-130444,Dhr.,R.P.,,,Slootweg,,GemeenteBelangen,,Katwijk,Fractievoorzitter,male
+130444,Dhr.,R.P.,,,Slootweg,,Gemeentebelangen,,Katwijk,Fractievoorzitter,male
 118583,Mw.,A.H.,,Anita ,van Ginkel-Lanting,,Hart Voor Katwijk,,Katwijk,Fractievoorzitter,female
 120538,Dhr.,J.H.,,Jaap ,Haasnoot,,KiesKatwijk,,Katwijk,Fractievoorzitter,male
 134129,Dhr.,M.,,,van Tuijl MSc,,PvdA,,Katwijk,Fractievoorzitter,male
@@ -10142,8 +10143,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 130445,Dhr.,G.H.A.,,,Bol,,De Lokalen,,Katwijk,Raadslid,male
 130446,Dhr.,M.,,,van Tol,,De Lokalen,,Katwijk,Raadslid,male
 120546,Dhr.,R.,,Ralf ,Boland,,D66,,Katwijk,Raadslid,male
-120547,Dhr. dr.,G.,,,Diemer,,GemeenteBelangen,,Katwijk,Raadslid,male
-93004,Dhr.,R.P.,,,Slootweg,,GemeenteBelangen,,Katwijk,Raadslid,male
+120547,Dhr. dr.,G.,,,Diemer,,Gemeentebelangen,,Katwijk,Raadslid,male
+93004,Dhr.,R.P.,,,Slootweg,,Gemeentebelangen,,Katwijk,Raadslid,male
 120548,Dhr.,A.,,,Oosterlee,,Hart Voor Katwijk,,Katwijk,Raadslid,male
 120549,Dhr.,G.A.F.,,Gijsbert ,Schrijvers,,Hart Voor Katwijk,,Katwijk,Raadslid,male
 118584,Mw.,A.H.,,Anita ,van Ginkel-Lanting,,Hart Voor Katwijk,,Katwijk,Raadslid,female
@@ -10165,7 +10166,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 92867,Dhr.,I.G.,,,Mostert,,1945,,Katwijk,Wethouder,male
 124070,Dhr. drs.,J.F.M.,,,Janssen,,CDA,,Oisterwijk,Burgemeester,male
 23265835,Dhr.,J.J.A.,,,Jonkers,,Algemeen Belang,,Oisterwijk,Fractievoorzitter,male
-128189,Dhr. mr.,C.M.J.M.,,,van Esch,,Partij Gemeente Belangen,,Oisterwijk,Fractievoorzitter,male
+128189,Dhr. mr.,C.M.J.M.,,,van Esch,,Gemeentebelangen,,Oisterwijk,Fractievoorzitter,male
 23265842,Dhr.,J.M.A.W.,,Jan,de Laat,,PrO,,Oisterwijk,Fractievoorzitter,male
 133306,Mw. mr.,A.C.,,,Speklé-Hooghart,,VVD,,Oisterwijk,Fractievoorzitter,female
 131427,Mw.,W.S.,,,Batenburg-van Veen,,VVD,,Oisterwijk,Locoburgemeester,female
@@ -10176,10 +10177,10 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 73772,Dhr.,M.F.J.M.,,,Mathijssen,,Algemeen Belang,,Oisterwijk,Raadslid,male
 73773,Dhr.,R.C.M.,,,van de Ven,,Algemeen Belang,,Oisterwijk,Raadslid,male
 73774,Mw. mr.,E,,,Roborgh-Jansen,,Algemeen Belang,,Oisterwijk,Raadslid,female
-120501,Dhr.,D.,,,Dankers,,Partij Gemeente Belangen,,Oisterwijk,Raadslid,male
-134053,Dhr. drs.,R.W.A.,,,van Seters,,Partij Gemeente Belangen,,Oisterwijk,Raadslid,male
-120502,Dhr. mr.,C.M.J.M.,,,van Esch,,Partij Gemeente Belangen,,Oisterwijk,Raadslid,male
-120503,Dhr.,S.J.E.,,,Arkesteijn,,Partij Gemeente Belangen,,Oisterwijk,Raadslid,male
+120501,Dhr.,D.,,,Dankers,,Gemeentebelangen,,Oisterwijk,Raadslid,male
+134053,Dhr. drs.,R.W.A.,,,van Seters,,Gemeentebelangen,,Oisterwijk,Raadslid,male
+120502,Dhr. mr.,C.M.J.M.,,,van Esch,,Gemeentebelangen,,Oisterwijk,Raadslid,male
+120503,Dhr.,S.J.E.,,,Arkesteijn,,Gemeentebelangen,,Oisterwijk,Raadslid,male
 120504,Dhr.,J.,,,Coumans,,PrO,,Oisterwijk,Raadslid,male
 120505,Dhr.,J.M.A.W.,,Jan,de Laat,,PrO,,Oisterwijk,Raadslid,male
 82587,Dhr.,R.,,,van der Star,,PrO,,Oisterwijk,Raadslid,male
@@ -10277,7 +10278,6 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 20937491,Dhr.,R.,,Remco,de Maaijer,,VVD,,Dronten,Raadslid,male
 129257,Mw.,G.M.M.,,Trudy,Stoker-Dol,,VVD,,Dronten,Raadslid,female
 81649,Mw.,I.A.,,Irene,Korting,,VVD,,Dronten,Raadslid,female
-23867820,Dhr.,D.N.T.,,,van der Weerd,,,,Dronten,Secretaris,male
 125473,Dhr.,P.,,,van Bergen,,LeefbaarDronten,,Dronten,Wethouder,male
 87673,Dhr.,A.,,Ton,van Amerongen,,VVD,,Dronten,Wethouder,male
 134575,Mw.,P.,,,Doornenbal-van der Vlist,,CDA,,Renswoude,Burgemeester,female
@@ -10578,7 +10578,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 122205,Dhr.,J.,,Joop,Brink,,PvdA,,Coevorden,Wethouder,male
 85439,Dhr.,A.,,,van der Werff,,CDA,,Noordoostpolder,Burgemeester,male
 124539,Mw.,M.B.W.,,,Uitdewilligen,,CDA,,Noordoostpolder,Fractievoorzitter,female
-125067,Mw.,H.,,,van Keulen-Nentjes,,ChristenUnie/SGP,,Noordoostpolder,Fractievoorzitter,female
+125067,Mw.,H.,,,van Keulen-Nentjes,,SGP/ChristenUnie,,Noordoostpolder,Fractievoorzitter,female
 125068,Dhr.,G.P.F.,,,Vile,,D66,,Noordoostpolder,Fractievoorzitter,male
 86142,Dhr.,L.H.M.,,,Lammers,,ONS,,Noordoostpolder,Fractievoorzitter,male
 125069,Dhr.,T.,,,Tuinenga,,Politieke Unie,,Noordoostpolder,Fractievoorzitter,male
@@ -10599,7 +10599,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 135285,Dhr.,J.,,,Simonse,,SGP/ChristenUnie,,Noordoostpolder,Raadslid,male
 125071,Dhr.,J.W.,,,Simonse,,SGP/ChristenUnie,,Noordoostpolder,Raadslid,male
 121507,Dhr.,T.J.,,,van Dijk,,SGP/ChristenUnie,,Noordoostpolder,Raadslid,male
-114604,Mw.,H.,,,van Keulen-Nentjes,,ChristenUnie/SGP,,Noordoostpolder,Raadslid,female
+114604,Mw.,H.,,,van Keulen-Nentjes,,SGP/ChristenUnie,,Noordoostpolder,Raadslid,female
 86146,Dhr.,G.P.F.,,,Vile,,D66,,Noordoostpolder,Raadslid,male
 121508,Mw.,J.M.,,,van de Velde,,D66,,Noordoostpolder,Raadslid,female
 121509,Dhr.,A.D.,,,van de Beek,,ONS,,Noordoostpolder,Raadslid,male
@@ -11032,7 +11032,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 22591329,Dhr.,O.,,,Hoes,,VVD,,Haarlemmermeer,Burgemeester waarnemend,male
 124544,Mw.,M.L.,,,Sedee-Schuitemaker,,CDA,,Haarlemmermeer,Fractievoorzitter,female
 20256044,Mw.,M.P.,,,van der Helm - Chandansingh,,CDVP,,Haarlemmermeer,Fractievoorzitter,female
-117847,Dhr.,A.J.,,,van Bezooijen,,ChristenUnie/SGP,,Haarlemmermeer,Fractievoorzitter,male
+117847,Dhr.,A.J.,,,van Bezooijen,,SGP/ChristenUnie,,Haarlemmermeer,Fractievoorzitter,male
 20947040,Dhr.,J.C.,,,Koomen,,D66,,Haarlemmermeer,Fractievoorzitter,male
 114850,Dhr.,H.P.,,,Spijker,,EEN Haarlemmermeer,,Haarlemmermeer,Fractievoorzitter,male
 20256053,Dhr.,P.C.I.,,,Meijer,,Forza! Haarlemmermeer,,Haarlemmermeer,Fractievoorzitter,male
@@ -11051,7 +11051,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 124550,Dhr.,T.M.,,,Blom,,CDA,,Haarlemmermeer,Raadslid,male
 82656,Mw.,M.L.,,,Sedee-Schuitemaker,,CDA,,Haarlemmermeer,Raadslid,female
 20256083,Mw.,M.P.,,,van der Helm - Chandansingh,,CDVP,,Haarlemmermeer,Raadslid,female
-117848,Dhr.,A.J.,,,van Bezooijen,,ChristenUnie/SGP,,Haarlemmermeer,Raadslid,male
+117848,Dhr.,A.J.,,,van Bezooijen,,SGP/ChristenUnie,,Haarlemmermeer,Raadslid,male
 124551,Dhr.,J.C.,,,Koomen,,D66,,Haarlemmermeer,Raadslid,male
 124552,Dhr.,J.J.J.,,,Jhinnoe,,D66,,Haarlemmermeer,Raadslid,male
 124553,Dhr.,J.P.,,,Meegdes,,D66,,Haarlemmermeer,Raadslid,male
@@ -11271,7 +11271,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 59534,Dhr.,J.H.C.M.,,,Briels,,Werkgroep Laarbeek,,Laarbeek,Wethouder,male
 22482949,Mw.,J.,,,van Aart,,VVD,,Loon op Zand,Burgemeester,female
 131134,Dhr. mr.,M.,,Marten,Krikken,,CDA,,Loon op Zand,Fractievoorzitter,male
-84365,Dhr.,A.J.M.,,,van Laarhoven,,GemeenteBelangen,,Loon op Zand,Fractievoorzitter,male
+84365,Dhr.,A.J.M.,,,van Laarhoven,,Gemeentebelangen,,Loon op Zand,Fractievoorzitter,male
 76909,Dhr. drs.,P.J.M.,,Peter,Flohr,,PRO3,,Loon op Zand,Fractievoorzitter,male
 125439,Dhr.,J.C.G.M.,,,Brekelmans,,"""VOOR LOON""",,Loon op Zand,Fractievoorzitter,male
 132007,Dhr.,A.W.J.,,Frank,van Wel,,VVD,,Loon op Zand,Fractievoorzitter,male
@@ -11281,7 +11281,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 76913,Dhr. ir.,G.J.T.J.,,Gert-Jan,van den Dries,,CDA,,Loon op Zand,Raadslid,male
 120198,Dhr. mr.,M.,,Marten,Krikken,,CDA,,Loon op Zand,Raadslid,male
 76914,Mw.,H.M.I.A.,,Mieke,Broeders-Habraken,,CDA,,Loon op Zand,Raadslid,female
-76915,Dhr.,A.J.M.,,,van Laarhoven,,GemeenteBelangen,,Loon op Zand,Raadslid,male
+76915,Dhr.,A.J.M.,,,van Laarhoven,,Gemeentebelangen,,Loon op Zand,Raadslid,male
 120199,Dhr.,A.P.M.,,Jos,Groenendaal,,Gemeentebelangen,,Loon op Zand,Raadslid,male
 76916,Dhr.,E.J.,,Bertus,Kemmeren,,Gemeentebelangen,,Loon op Zand,Raadslid,male
 120201,Dhr.,H.J.,,Henk,van Komen,,Gemeentebelangen,,Loon op Zand,Raadslid,male
@@ -12970,7 +12970,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 21732363,Dhr. mr.,G.J.,,,de Graaf,,VVD,,Heerde,Burgemeester waarnemend,male
 122311,Mw.,J.,,,Grotenhuis-van der Horst,,CDA,,Heerde,Fractievoorzitter,female
 135323,Dhr.,J.,,Jan,Tuinman,,SGP/ChristenUnie,,Heerde,Fractievoorzitter,male
-122312,Mw.,S.I.,,,van Amerongen,,D66/GROENLINKS,,Heerde,Fractievoorzitter,female
+122312,Mw.,S.I.,,,van Amerongen,,D66/GroenLinks,,Heerde,Fractievoorzitter,female
 77394,Dhr.,W.,,,de Weerdt,,Gemeentebelang Boerenpartij,,Heerde,Fractievoorzitter,male
 75868,Dhr.,S.,,Siebren,Buist,,PvdA,,Heerde,Fractievoorzitter,male
 128461,Mw.,I.T.M.S.,,,Bunnik-van Loon,,VVD,,Heerde,Fractievoorzitter,female
@@ -12984,9 +12984,9 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 119676,Dhr.,G.,,Gert,van der Rhee,,SGP/ChristenUnie,,Heerde,Raadslid,male
 119677,Dhr.,H.,,Hendrik,Sellies,,SGP/ChristenUnie,,Heerde,Raadslid,male
 128463,Dhr.,J.,,Jan,Tuinman,,SGP/ChristenUnie,,Heerde,Raadslid,male
-135324,Mw.,D.J.,,,Landman,,D66/GROENLINKS,,Heerde,Raadslid,female
-135325,Mw.,D.J.,,,Landman-Kok,,D66/GROENLINKS,,Heerde,Raadslid,female
-122314,Mw.,S.I.,,,van Amerongen,,D66/GROENLINKS,,Heerde,Raadslid,female
+135324,Mw.,D.J.,,,Landman,,D66/GroenLinks,,Heerde,Raadslid,female
+135325,Mw.,D.J.,,,Landman-Kok,,D66/GroenLinks,,Heerde,Raadslid,female
+122314,Mw.,S.I.,,,van Amerongen,,D66/GroenLinks,,Heerde,Raadslid,female
 83052,Dhr.,J.,,,Bijsterbosch,,Gemeentebelang Boerenpartij,,Heerde,Raadslid,male
 119679,Dhr.,J.W.J.,,,van Ommen,,Gemeentebelang Boerenpartij,,Heerde,Raadslid,male
 77399,Dhr.,W.,,,de Weerdt,,Gemeentebelang Boerenpartij,,Heerde,Raadslid,male
@@ -12996,7 +12996,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 75208,Mw.,I.T.M.S.,,,Bunnik-van Loon,,VVD,,Heerde,Raadslid,female
 20252997,Dhr.,B.,,,van Zuthem,,,,Heerde,Secretaris,male
 132741,Dhr.,H.J.,,,Berkhoff,,CDA,,Heerde,Wethouder,male
-134750,Dhr.,W.I.,,,Meijer,,ChristenUnie-SGP,,Heerde,Wethouder,male
+134750,Dhr.,W.I.,,,Meijer,,SGP/ChristenUnie,,Heerde,Wethouder,male
 127278,Dhr.,G.J.,,Gerrit,van Dijk,,VVD,,Heerde,Wethouder,male
 117494,Mw. drs.,A.E.H.,,,Baltus,,CDA,,Heemskerk,Burgemeester,female
 123503,Dhr.,J.H.J.,,John,van Nimwegen,,CDA,,Heemskerk,Fractievoorzitter,male
@@ -13080,7 +13080,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 23262095,Dhr.,J.,,,Zwaan,,,,Medemblik,Secretaris,male
 127409,Dhr.,H.,,,Nederpelt,,CDA,,Medemblik,Wethouder,male
 128828,Dhr.,J.J.,,,Tigges,,D66,,Medemblik,Wethouder,male
-130239,Mw.,J.,,,Fit,,GemeenteBelangen,,Medemblik,Wethouder,female
+130239,Mw.,J.,,,Fit,,Gemeentebelangen,,Medemblik,Wethouder,female
 129631,Dhr.,M.L.J.,,,Out,,VVD,,Assen,Burgemeester,male
 115390,Dhr.,G.G.J.,,Eddy,de Korte,,CDA,,Assen,Fractievoorzitter,male
 127140,Dhr.,A.W.,,Bert,Wienen,,ChristenUnie,,Assen,Fractievoorzitter,male
@@ -13298,7 +13298,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 125796,Dhr.,H.,,,Westerbroek,,SGP,,Oldebroek,Wethouder,male
 134632,Dhr. drs.,J.B.,,,Waaijer,,CDA,,Strijen,Burgemeester waarnemend,male
 91542,Dhr.,A.,,,Steenbergen,,CDA,,Strijen,Fractievoorzitter,male
-126921,Dhr.,J.,,,van Westen,,ChristenUnie/SGP,,Strijen,Fractievoorzitter,male
+126921,Dhr.,J.,,,van Westen,,SGP/ChristenUnie,,Strijen,Fractievoorzitter,male
 133441,Mw.,C.R.J.,,,Smeets,,GroenLinks,,Strijen,Fractievoorzitter,female
 91545,Dhr.,J.A.M.,,,Lagendijk,,PvdA,,Strijen,Fractievoorzitter,male
 130738,Mw.,P.,,,Rijsdijk-Mudde,,Strijens Belang,,Strijen,Fractievoorzitter,female
@@ -13308,8 +13308,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 85447,Dhr.,A.,,,Steenbergen,,CDA,,Strijen,Raadslid,male
 123870,Dhr.,H.,,,van de Graaf,,CDA,,Strijen,Raadslid,male
 85449,Dhr.,W.N.,,,Moret,,CDA,,Strijen,Raadslid,male
-126922,Dhr.,A.P.,,,van Steenselen,,ChristenUnie/SGP,,Strijen,Raadslid,male
-126923,Dhr.,J.,,,van Westen,,ChristenUnie/SGP,,Strijen,Raadslid,male
+126922,Dhr.,A.P.,,,van Steenselen,,SGP/ChristenUnie,,Strijen,Raadslid,male
+126923,Dhr.,J.,,,van Westen,,SGP/ChristenUnie,,Strijen,Raadslid,male
 133442,Mw.,A,,,Butter,,GroenLinks,,Strijen,Raadslid,female
 130860,Mw.,C.R.J.,,,Smeets,,GroenLinks,,Strijen,Raadslid,female
 85453,Dhr.,J.A.M.,,,Lagendijk,,PvdA,,Strijen,Raadslid,male
@@ -13549,7 +13549,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 95100,Dhr.,H.A.,,,Verwoert,,VVD,,Neerijnen,Wethouder,male
 22604,Dhr. drs.,R.J.,,,van der Zwaag,,CDA,,Veere,Burgemeester,male
 132771,Dhr.,P.A.C.,,Pieter,Wisse,,CDA,,Veere,Fractievoorzitter,male
-128039,Dhr.,J.M.,,,Wisse,,ChristenUnie/SGP,,Veere,Fractievoorzitter,male
+128039,Dhr.,J.M.,,,Wisse,,SGP/ChristenUnie,,Veere,Fractievoorzitter,male
 132772,Dhr.,L.A.,,,Roelse,,DTV,,Veere,Fractievoorzitter,male
 91841,Mw.,M.F.,,,Stiphout,,D66,,Veere,Fractievoorzitter,female
 91842,Dhr.,P.,,Peter,Holtring,,PvdA/GroenLinks,,Veere,Fractievoorzitter,male
@@ -13563,8 +13563,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 126992,Dhr.,A.,,Albert,Maljaars,,SGP/ChristenUnie,,Veere,Raadslid,male
 126993,Dhr.,A.,,Arie,Schot,,SGP/ChristenUnie,,Veere,Raadslid,male
 126994,Dhr.,A.W.,,Ad,Maris,,SGP/ChristenUnie,,Veere,Raadslid,male
-126995,Dhr.,J.M.,,,Wisse,,ChristenUnie/SGP,,Veere,Raadslid,male
-126996,Dhr.,M.,,,van de Bosse,,ChristenUnie/SGP,,Veere,Raadslid,male
+126995,Dhr.,J.M.,,,Wisse,,SGP/ChristenUnie,,Veere,Raadslid,male
+126996,Dhr.,M.,,,van de Bosse,,SGP/ChristenUnie,,Veere,Raadslid,male
 133237,Dhr.,J.,,,de Buck,,DTV,,Veere,Raadslid,male
 85944,Dhr.,L.A.,,,Roelse,,DTV,,Veere,Raadslid,male
 121647,Mw.,S.,,,Sparreboom,,DTV,,Veere,Raadslid,female
@@ -13848,8 +13848,8 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 123712,Dhr. mr.,I.,,Ivo,Berghuis,,Gemeentebelangen,,Aa en Hunze,Raadslid,male
 76434,Dhr.,N.,,Nanno,Pul,,Gemeentebelangen,,Aa en Hunze,Raadslid,male
 76435,Dhr.,R.,,Roelof,Brands,,Gemeentebelangen,,Aa en Hunze,Raadslid,male
-123713,Mw.,C.,,,Kuiper,,Combinatie Gemeentebelangen,,Aa en Hunze,Raadslid,female
-123714,Mw.,K.A.,,,Brands,,Combinatie Gemeentebelangen,,Aa en Hunze,Raadslid,female
+123713,Mw.,C.,,,Kuiper,,Gemeentebelangen,,Aa en Hunze,Raadslid,female
+123714,Mw.,K.A.,,,Brands,,Gemeentebelangen,,Aa en Hunze,Raadslid,female
 87630,Dhr.,G.A.W.,,Arie,Fonk,,D66,,Aa en Hunze,Raadslid,male
 126941,Mw. ir.,J.C.M.,,Ans,Jacobs,,D66,,Aa en Hunze,Raadslid,female
 133668,Mw.,G.M.,,,van Dinteren,,GroenLinks,,Aa en Hunze,Raadslid,female
@@ -14519,7 +14519,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 413960,,M.Ö.,Mahir Önder,Mahir,Alkaya,,SP,,,,unknown
 439911,Ing.,M.,Mustafa,Mustafa,Amhaouch,,CDA,,,,unknown
 812733,drs.,K.,Khadija,Khadija,Arib,,PvdA,,,,unknown
-689747,,F.M.,Femke Merel,Femke Merel,Arissen,,PvdD,,,,unknown
+689747,,F.M.,Femke Merel,Femke Merel,Arissen,,Partij voor de Dieren,,,,unknown
 458041,dr.,L.F.,Lodewijk Frans,Lodewijk,Asscher,,PvdA,,,,unknown
 747147,drs.,F.,Farid,Farid,Azarkan,,DENK,,,,unknown
 683064,mr.,M.,Malik,Malik,Azmani,,VVD,,,,unknown
@@ -14538,7 +14538,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 59971,Drs,A.,Achraf,Achraf,Bouali,,D66,,,,unknown
 1024376,Msc.,C.M.,Cornelia Maria,Corrie,van Brenk,,50PLUS,,,,unknown
 164540,drs.,J.H.,Johannes Hermanus,Han,ten Broeke,,VVD,,,,unknown
-789165,dr.,E.E.W.,Eppo Egbert Willem,Eppo,Bruins,,CU,,,,unknown
+789165,dr.,E.E.W.,Eppo Egbert Willem,Eppo,Bruins,,ChristenUnie,,,,unknown
 599661,Mr. drs.,H.G.J.,Hanke Gerdina Johannette,Hanke,Bruins Slot,,CDA,,,,unknown
 547607,dr.,K.M.,Kathalijne,Kathalijne,Buitenweg,,GL,,,,unknown
 953699,mr. MPM,C.J.L.,Christiaan Jan Lodewijk,Chris,van Dam,,CDA,,,,unknown
@@ -14551,7 +14551,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 728457,,S.A.M.,Sharon Alida Maria,Sharon,Dijksma,,PvdA,,,,unknown
 97194,,P.A.,Pietje Aafke,Pia,Dijkstra,,D66,,,,unknown
 56378,,R.J.,Remco Jan,Remco,Dijkstra,,VVD,,,,unknown
-634462,drs.,R.K.,Roelofje Klazina,Carla,Dik-Faber,,CU,,,,unknown
+634462,drs.,R.K.,Roelofje Klazina,Carla,Dik-Faber,,ChristenUnie,,,,unknown
 4882,,L.I.,Lilian Isabella,Isabelle,Diks,,GL,,,,unknown
 466010,ir.,J.M.,Jessica Marie Catherine,Jessica,van Eijs,,D66,,,,unknown
 596494,,Z.,Zohair,Zohair,El Yassini,,VVD,,,,unknown
@@ -14562,7 +14562,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 251571,,K.,Karen,Karen,Gerbrands,,PVV,,,,unknown
 540531,,J.L.,Jacob Lubertus,Jaco,Geurts,,CDA,,,,unknown
 495404,,M.,Machiel,Machiel,de Graaf,,PVV,,,,unknown
-681555,,S.J.F.,Stieneke Jannieta Femmelien,Stieneke,van der Graaf,,CU,,,,unknown
+681555,,S.J.F.,Stieneke Jannieta Femmelien,Stieneke,van der Graaf,,ChristenUnie,,,,unknown
 739112,ir.,H.J.,Hendrik Johannes,Rik,Grashoff,,GL,,,,unknown
 130813,,D.J.G.,Dion Jean Gilbert,Dion,Graus,,PVV,,,,unknown
 794864,,T.C.,Tjeerd Cornelis,Tjeerd,de Groot,,D66,,,,unknown
@@ -14618,7 +14618,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 102228,drs.,A.,Abraham,Bram,van Ojik,,GL,,,,unknown
 427834,dr.,P.H.,Pieter Herman,Pieter,Omtzigt,,CDA,,,,unknown
 967203,mr.,F.,Foort,Foort,van Oosten,,VVD,,,,unknown
-177831,,E.,Esther,Esther,Ouwehand,,PvdD,,,,unknown
+177831,,E.,Esther,Esther,Ouwehand,,Partij voor de Dieren,,,,unknown
 1040870,,Z.,Zihni,Zihni,Özdil,,GL,,,,unknown
 767636,,S.,Selçuk,Selçuk,Öztürk,,GrKÖ,,,,unknown
 320853,drs,N.,Nevin,Nevin,Özütok,,GL,,,,unknown
@@ -14628,7 +14628,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 788876,drs.,E.M.J.,Elisabeth Maria Josepha,Lilianne,Ploumen,,PvdA,,,,unknown
 721300,mr. LLM,G.J.F.,Gabriëlle Johanna Francina,Gabriëlle,Popken,,PVV,,,,unknown
 430980,dr.,A.A.G.M.,Antonius Adrianus Gerardus Maria,Ronald,van Raak,,SP,,,,unknown
-292547,drs.,L.,Lammert,Lammert,van Raan,,PvdD,,,,unknown
+292547,drs.,L.,Lammert,Lammert,van Raan,,Partij voor de Dieren,,,,unknown
 229738,Mr.,R.,Rens,Rens,Raemakers,,D66,,,,unknown
 1037418,,M.R.J.,Michel Richard Joachim,Michel,Rog,,CDA,,,,unknown
 11750,,H.A.G.,Henricus Antonius Gerardus,Erik,Ronnes,,CDA,,,,unknown
@@ -14636,7 +14636,7 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 630070,mr.,R.,Raymond,Raymond,de Roon,,PVV,,,,unknown
 703214,mr.,A.C.L.,Arno Cor Lars,Arno,Rutte,,VVD,,,,unknown
 3923,,L.,Léonie,Léonie,Sazias,,50PLUS,,,,unknown
-733705,,G.J.M.,Gert-Jan Maarten,Gert-Jan,Segers,,CU,,,,unknown
+733705,,G.J.M.,Gert-Jan Maarten,Gert-Jan,Segers,,ChristenUnie,,,,unknown
 375308,,M.F.,Matthijs Franciscus,Matthijs,Sienot,,D66,,,,unknown
 872014,,S.W.,Sjoerd Wiemer,Sjoerd,Sjoerdsma,,D66,,,,unknown
 194122,,E.J.,Evert Jan,Evert Jan,Slootweg,,CDA,,,,unknown
@@ -14644,16 +14644,16 @@ system_id,title,initials,first_name,given_name,last_name,suffix,party,department
 452180,dr.,B.A.W.,Bartholomeus Adrianus Wilhelmus,Bart,Snels,,GL,,,,unknown
 288615,mr.,C.G.,Cornelis Gerrit,Kees,van der Staaij,,SGP,,,,unknown
 218203,,O.C.,Ockje Caroline,Ockje,Tellegen,,VVD,,,,unknown
-251470,mr.,M.L.,Marianne Louise,Marianne,Thieme,,PvdD,,,,unknown
+251470,mr.,M.L.,Marianne Louise,Marianne,Thieme,,Partij voor de Dieren,,,,unknown
 548103,,J.Z.C.M.,Judith Zsuzsanna Cornélie Maria,Judith,Tielen,,VVD,,,,unknown
 160161,drs.,L.,Liesbeth,Liesbeth,van Tongeren,,GL,,,,unknown
 61227,dr. mr.,M.M.,Madeleine Melisande,Madeleine,van Toorenburg,,CDA,,,,unknown
 583940,drs.,H.S.,Habbo Siebold,Hayke,Veldman,,VVD,,,,unknown
 504337,,K.,Kees,Kees,Verhoeven,,D66,,,,unknown
-68377,drs.,J.S.,Joël Stephanus,Joël,Voordewind,,CU,,,,unknown
+68377,drs.,J.S.,Joël Stephanus,Joël,Voordewind,,ChristenUnie,,,,unknown
 203382,,L.G.J.,Linda Geertruida Johanna,Linda,Voortman,,GL,,,,unknown
 100020,,A.,Aukje,Aukje,de Vries,,VVD,,,,unknown
-196204,,F.P.,Frank Peter,Frank,Wassenberg,,PvdD,,,,unknown
+196204,,F.P.,Frank Peter,Frank,Wassenberg,,Partij voor de Dieren,,,,unknown
 133754,mr.,V.D.D.,Vicky Dafne Danai,Danai,van Weerdenburg,,PVV,,,,unknown
 20836,,E.M.,Elisabeth Marij,Lisa,Westerveld,,GL,,,,unknown
 99002,,A.,Arne,Arne,Weverling,,VVD,,,,unknown
