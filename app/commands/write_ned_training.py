@@ -25,13 +25,14 @@ def write_ned_training():
 
     # Fetch only the articles of interest -> those where the initial certainty does not match the updated certainty
     articles = []
-    interesting_linkings = EntityLinking.query.filter(
-        not EntityLinking.initial_certainty == EntityLinking.updated_certainty).all()
+    interesting_linkings = EntityLinking.query.filter(EntityLinking.initial_certainty != EntityLinking.updated_certainty).all()
 
     for linking in interesting_linkings:
         linking_article = linking.entity.article
         if linking_article not in articles:
             articles.append(linking.entity.article)
+
+    logger.info(len(articles))
 
     # Write the feature vectors of the linkings in each article to a training file.
     for article in articles:
