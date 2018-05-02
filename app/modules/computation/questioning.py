@@ -249,9 +249,9 @@ def update_topic_certainty(article_topic: ArticleTopic):
     previous_topic_certainty = article_topic.updated_certainty
 
     if article_topic.initial_certainty != 0:
-        sum_of_verifications += 2
+        sum_of_verifications += 3
 
-    if sum_of_verifications > 0:
+    if sum_of_verifications >= 2:
         article_topic.updated_certainty = 1.0
     else:
         article_topic.updated_certainty = 0.0
