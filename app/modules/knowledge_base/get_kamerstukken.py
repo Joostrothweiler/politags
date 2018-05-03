@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 
+import logging
 import sys
 import re
 import datetime
 import json
-
-from bs4 import BeautifulSoup
+import signal
 import requests
 
-import logging
+from contextlib import contextmanager
+from bs4 import BeautifulSoup
+
+
 
 logger = logging.getLogger('blaat')
 # logger.setLevel(level=logging.INFO)
@@ -19,6 +22,19 @@ suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
+
+class TimeoutException(Exception): pass
+
+@contextmanager
+def time_limit(seconds):
+    def signal_handler(signum, frame):
+        raise TimeoutException("Timed out!")
+    signal.signal(signal.SIGALRM, signal_handler)
+    signal.alarm(seconds)
+    try:
+        yield
+    finally:
+        signal.alarm(0)
 
 
 def remove_unnecessary_spaces(sentence):
@@ -138,11 +154,11 @@ def find_category_and_text_from_kamerstuk_url(kamerstuk_url):
     statuscode, content = fetch_ao_url(kamerstuk_url)
     soup = BeautifulSoup(content, "lxml")
 
-    meta = soup.find('meta', attrs={'name': 'OVERHEID.category'})
+    meta = soup.findAll('meta', attrs={'name': 'OVERHEID.category'})
+    categories = []
     if meta:
-        category = meta['content']
-    else:
-        category = 'NOCAT'
+        for m in meta:
+            categories.append(m['content'])
 
     content = soup.find("div", {"id": "broodtekst"})
     if content:
@@ -153,11 +169,11 @@ def find_category_and_text_from_kamerstuk_url(kamerstuk_url):
     sentences = split_into_sentences(content_html)
     content = ' '.join(sentences)
 
-    return category, content
+    return categories, content
 
 
-def write_results_to_json(result):
-    with open('data_resources/topics/kamerstukken/kamerstukken_topics.json', 'w') as outfile:
+def write_results_to_json(result, start, end):
+    with open('data_resources/topics/kamerstukken/kamerstukken_topics-multi_{}_{}.json'.format(start, end), 'w') as outfile:
         json.dump(result, outfile)
 
 
@@ -194,7 +210,7 @@ def main(args):
         'kamervragen': ''
     }
     all_kamerstukken_urls = []
-    saved_kamerstukken = get_already_saved_kamerstukken()
+    saved_kamerstukken = []
     saved_kamerstukken_urls = [kamerstuk['url'] for kamerstuk in saved_kamerstukken]
 
     # year = int(args[0])
@@ -218,7 +234,8 @@ def main(args):
                 'https://zoek.officielebekendmakingen.nl/zoeken/resultaat/'
                 '?zkt=Uitgebreid&pst=ParlementaireDocumenten&' + zoek +
                 'dpr=AnderePeriode&spd=' + datumstart + '&epd=' + datumeind +
-                '&kmr=TweedeKamerderStatenGeneraal&sdt=KenmerkendeDatum&par=' +
+                '&kmr=EersteKamerderStatenGeneraal%7cTweedeKamerderStatenGeneraal%7cVerenigdeVergaderingderStatenGeneraal&'
+                'sdt=KenmerkendeDatum&par=' +
                 par + '&dst=Opgemaakt%7cOpgemaakt+na+onopgemaakt&isp=true&pnr=1&'
                       'rpp=10&_page=1&sorttype=1&sortorder=4')
         status_code, content = fetch_ao_url(url)
@@ -245,11 +262,15 @@ def main(args):
     all_kamerstukken_urls_clean = list(set(all_kamerstukken_urls))
 
     for kamerstuk_url in all_kamerstukken_urls_clean:
-        category, content = find_category_and_text_from_kamerstuk_url(kamerstuk_url)
-        saved_kamerstukken.append({'url': kamerstuk_url, 'category': category, 'content': content})
+        try:
+            with time_limit(5):
+                categories, content = find_category_and_text_from_kamerstuk_url(kamerstuk_url)
+                saved_kamerstukken.append({'url': kamerstuk_url, 'categories': categories, 'content': content})
+        except TimeoutException as e:
+            print("Timed out!")
 
     print(len(saved_kamerstukken))
-    write_results_to_json(saved_kamerstukken)
+    write_results_to_json(saved_kamerstukken, args[0], args[1])
 
 
 if __name__ == '__main__':
