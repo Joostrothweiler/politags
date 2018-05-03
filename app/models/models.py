@@ -265,6 +265,7 @@ class Politician(db.Model):
             'last_name': self.last_name,
             'full_name' : self.full_name,
             'full_name_long' : self.full_name_long,
+            'full_name_short': self.full_name_short,
             'party': self.party,
             'municipality': self.municipality,
             'role': self.role,

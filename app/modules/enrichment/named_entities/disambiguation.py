@@ -145,8 +145,8 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
         max_party = None
 
         for candidate_party in candidates:
-            candidate_sim = np.maximum(string_similarity(func.lower(candidate_party.abbreviation), func.lower(entity.text)),
-                                       string_similarity(func.lower(candidate_party.name), func.lower(entity.text)))
+            candidate_sim = np.maximum(string_similarity(candidate_party.abbreviation, entity.text),
+                                       string_similarity(candidate_party.name, entity.text))
             if candidate_sim > max_sim:
                 max_sim = candidate_sim
                 max_party = candidate_party

@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 
+import logging
 import sys
 import re
 import datetime
 import json
-
-from bs4 import BeautifulSoup
+import signal
 import requests
 
-import logging
+from contextlib import contextmanager
+from bs4 import BeautifulSoup
+
+
 
 logger = logging.getLogger('blaat')
 # logger.setLevel(level=logging.INFO)
@@ -19,6 +22,19 @@ suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
+
+class TimeoutException(Exception): pass
+
+@contextmanager
+def time_limit(seconds):
+    def signal_handler(signum, frame):
+        raise TimeoutException("Timed out!")
+    signal.signal(signal.SIGALRM, signal_handler)
+    signal.alarm(seconds)
+    try:
+        yield
+    finally:
+        signal.alarm(0)
 
 
 def remove_unnecessary_spaces(sentence):
@@ -246,8 +262,12 @@ def main(args):
     all_kamerstukken_urls_clean = list(set(all_kamerstukken_urls))
 
     for kamerstuk_url in all_kamerstukken_urls_clean:
-        categories, content = find_category_and_text_from_kamerstuk_url(kamerstuk_url)
-        saved_kamerstukken.append({'url': kamerstuk_url, 'categories': categories, 'content': content})
+        try:
+            with time_limit(5):
+                categories, content = find_category_and_text_from_kamerstuk_url(kamerstuk_url)
+                saved_kamerstukken.append({'url': kamerstuk_url, 'categories': categories, 'content': content})
+        except TimeoutException as e:
+            print("Timed out!")
 
     print(len(saved_kamerstukken))
     write_results_to_json(saved_kamerstukken, args[0], args[1])
