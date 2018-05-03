@@ -40,6 +40,7 @@ def init_nlp():
     nlp.remove_pipe('tagger')
     nlp.remove_pipe('parser')
     logger.info('NLP Module : Initialized. Pipelines in use: {}'.format(nlp.pipe_names))
+    return nlp
 
 
 def convert_document_description_to_nlp_doc(document):

@@ -14,21 +14,25 @@ class TrainClfCommand(Command):
         train_clf()
 
 
+def fetch_classifier_data():
+    pass
+
+
 def train_clf():
-    X_train, Y_train = initialize_from_file('features_train.txt')
-    # X_resampled, Y_resampled = X_train, Y_train
-    X_resampled, Y_resampled = SMOTE().fit_sample(X_train, Y_train)
-    X_test, Y_test = initialize_from_file('features_test.txt')
+    # Fetch NED training/test data from database
+    X, y = []
+    # Train a classifier
+    clf = None
+    # Test the classifier
 
-    clf = Perceptron(class_weight="balanced")
-    clf_isotonic = CalibratedClassifierCV(clf, method='isotonic')
-    clf_isotonic.fit(X_resampled, Y_resampled)
+    # Only if it is actually an improvement, store the model,
 
-    print("Training score: {}".format(clf_isotonic.score(X_train, Y_train)))
-    print("Test score: {}".format(clf_isotonic.score(X_test, Y_test)))
+
+
+
 
     filename = 'app/modules/entities/nlp_model/disambiguation_model.sav'
-    pickle.dump(clf_isotonic, open(filename, 'wb'))
+    pickle.dump(clf, open(filename, 'wb'))
 
 
 def initialize_from_file(filename):

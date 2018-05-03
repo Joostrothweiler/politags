@@ -224,6 +224,14 @@ class Politician(db.Model):
         return self.initials + ' ' + self.last_name
 
     @hybrid_property
+    def full_name_short(self):
+        if self.initials:
+            initials = str(self.initials)
+            return initials[0] + '. ' + self.last_name
+        else:
+            return None
+
+    @hybrid_property
     def full_name_long(self):
         if self.title and self.initials and self.first_name:
             return '{} {} ({}) {}'.format(self.title, self.initials, self.first_name, self.last_name)
@@ -233,6 +241,13 @@ class Politician(db.Model):
             return '{} {} {}'.format(self.title, self.initials, self.last_name)
         else:
             return self.full_name
+
+    @hybrid_property
+    def first_last(self):
+        if self.first_name and self.last_name:
+            return self.first_name + ' ' + self.last_name
+        else:
+            return None
 
     @hybrid_property
     def last_name_array(self):

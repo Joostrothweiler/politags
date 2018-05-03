@@ -1,4 +1,5 @@
 import logging
+import pickle
 import numpy as np
 from sqlalchemy import or_, func, and_
 
@@ -7,13 +8,16 @@ from app.models.models import Politician, Party, EntityLinking, Entity, Article
 from app.modules.enrichment.named_entities.disambiguation_features import *
 
 logger = logging.getLogger('disambiguation')
+ned_classifier = None
 
 
-# with open('app/modules/entities/nlp_model/test_tree_clf.pkl', 'rb') as fid:
-#     classifier = pickle.load(fid)
+def init_ned_classifier():
+    global ned_classifier
+    ned_classifier = pickle.load(open('app/modules/enrichment/named_entities/disambiguation_clf.sav', 'rb'))
+    logger.info('NED classifier loaded from disk.')
 
 
-def named_entity_disambiguation(article : Article, document: dict):
+def named_entity_disambiguation(article: Article, document: dict):
     """
     Process entities found in a document using Spacy and store any linkings found.
     :param entities: entities found in document.
@@ -36,6 +40,9 @@ def politician_disambiguation(document: dict, doc_entities: list, entity: Entity
     :param doc_entities: The entities found in the document using Spacy NER.
     :param entity: The entity from the database we are currently evaluating.
     """
+    if ned_classifier == None:
+        init_ned_classifier()
+
     MAX_NUMBER_OF_LINKINGS = 2
     FLOAT_INF = float('inf')
 
@@ -91,9 +98,8 @@ def compute_politician_certainty(candidate_fv: list) -> float:
     :param candidate_feature_vector: A feature vector representing the relation between a entity, document and linking.
     :return: Certainty (float).
     """
-    weights = [1,5,5,2,5,1,10,1,1]
-    certainty_sum = np.sum(np.multiply(weights, candidate_fv))
-    certainty = certainty_sum / np.sum(weights)
+    # Return the maximum probability found by the classifier - this should be the probability found for positive label.
+    certainty = ned_classifier.predict_proba([candidate_fv])[0][1]
     return min(certainty, 0.95)
 
 
@@ -112,12 +118,12 @@ def get_candidate_politicians(entity: Entity) -> list:
         name = ' '.join(name_array)
 
         candidates = Politician.query.filter(or_(
-                                                Politician.last_name == name,
-                                                and_(
-                                                    Politician.last_name.contains('-'),
-                                                    Politician.last_name.contains(name)
-                                                    )
-                                                )).all()
+            Politician.last_name == name,
+            and_(
+                Politician.last_name.contains('-'),
+                Politician.last_name.contains(name)
+            )
+        )).all()
         name_array.pop(0)
 
     return candidates
@@ -139,8 +145,8 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
         max_party = None
 
         for candidate_party in candidates:
-            candidate_sim = np.maximum(string_similarity(candidate_party.abbreviation, entity.text),
-                                       string_similarity(candidate_party.name, entity.text))
+            candidate_sim = np.maximum(string_similarity(func.lower(candidate_party.abbreviation), func.lower(entity.text)),
+                                       string_similarity(func.lower(candidate_party.name), func.lower(entity.text)))
             if candidate_sim > max_sim:
                 max_sim = candidate_sim
                 max_party = candidate_party
