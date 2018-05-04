@@ -60,7 +60,7 @@ def save_unlabeled_articles(labeled_articles):
     for article in labeled_articles:
         labeled_article_ids.append(article.id)
 
-    unlabeled_articles = Article.query.filter(~Article.id.in_(labeled_article_ids)).limit(2500).all()
+    unlabeled_articles = Article.query.filter(~Article.id.in_(labeled_article_ids)).limit(20000).all()
 
     for unlabeled_article in unlabeled_articles:
         doc = fetch_single_document(unlabeled_article.id)
