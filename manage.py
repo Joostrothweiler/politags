@@ -26,7 +26,7 @@ manager.add_command('quick_verify', QuickVerifyCommand)
 manager.add_command('train_topic_clf', TrainTopicClfCommand)
 manager.add_command('test_pm', TestPhraseMatcherCommand)
 manager.add_command('get_topic_eval', GetTopicEvalCommand)
-
+manager.add_command('test_candidates', TestCandidatesCommand)
 
 if __name__ == "__main__":
     manager.run()

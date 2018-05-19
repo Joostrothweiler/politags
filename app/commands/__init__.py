@@ -10,3 +10,4 @@ from .quick_verify import QuickVerifyCommand
 from .train_topic_clf import TrainTopicClfCommand
 from .test_pm import TestPhraseMatcherCommand
 from .get_topic_eval import GetTopicEvalCommand
+from .test_candidates import TestCandidatesCommand

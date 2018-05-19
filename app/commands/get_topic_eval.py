@@ -33,7 +33,7 @@ def get_articles_of_interest():
 
 
 def save_evaluation_articles(articles):
-    CERTAINTY_THRESHOLD = 0.95
+    CERTAINTY_THRESHOLD = 1
 
     result = []
     for article in articles:
@@ -60,7 +60,7 @@ def save_unlabeled_articles(labeled_articles):
     for article in labeled_articles:
         labeled_article_ids.append(article.id)
 
-    unlabeled_articles = Article.query.filter(~Article.id.in_(labeled_article_ids)).limit(20000).all()
+    unlabeled_articles = Article.query.filter(~Article.id.in_(labeled_article_ids)).limit(40000).all()
 
     for unlabeled_article in unlabeled_articles:
         doc = fetch_single_document(unlabeled_article.id)
