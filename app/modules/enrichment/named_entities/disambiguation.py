@@ -137,8 +137,7 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
     :param entity: Entity in db.
     """
     ZERO = 0
-    candidates = Party.query.filter(or_(func.lower(Party.abbreviation) == func.lower(entity.text),
-                                        func.lower(Party.name) == func.lower(entity.text))).all()
+    candidates = get_candidate_parties(entity)
 
     if len(candidates) > ZERO:
         max_sim = ZERO
@@ -152,6 +151,16 @@ def party_disambiguation(document: dict, entities: list, entity: Entity):
                 max_party = candidate_party
 
         store_entity_linking(entity, max_party, max_sim)
+
+
+def get_candidate_parties(entity: Entity):
+    conditions = []
+
+    # conditions.append(Party.abbreviation.ilike('%{}%'.format(entity.text)))
+    # conditions.append(Party.name.ilike('%{}%'.format(entity.text)))
+
+    candidates = Party.query.all()
+    return candidates
 
 
 def store_entity_linking(entity: Entity, linkable_object: object, initial_certainty: float):

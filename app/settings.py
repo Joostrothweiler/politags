@@ -10,7 +10,7 @@ USER_APP_NAME = APP_NAME
 
 # At what threshold do we RETURN a linking in the API. Linkings are always stored.
 # We may want to create a separate persons and parties cutoff.
-NED_CUTOFF_THRESHOLD = 0.3
+NED_CUTOFF_THRESHOLD = 0.8
 NED_QUESTION_CUTOFF_THRESHOLD = 0.2
 NED_ENTITY_LEARNING_RATE = 0.1
 
