@@ -1,3 +1,4 @@
+from app.models.models import EntityLinking, Entity
 from app.modules.common.utils import string_similarity
 from whoswho import who
 from gender_guesser import detector
@@ -5,6 +6,41 @@ import logging
 
 gender_detector = detector.Detector()
 logger = logging.getLogger('disambiguation_features')
+
+
+def f_mention_prior(mention, candidate):
+    # number of times mention is linked to candidate with certainty 1.0 /
+    # number of times mention linked to any candidate with certainty 1.0.
+    certain_candidate_linkings = EntityLinking.query.filter(EntityLinking.linkable_object == candidate) \
+        .filter(EntityLinking.updated_certainty == 1).all()
+    certain_mention_candidate_linkings = 0
+    for entity_linking in certain_candidate_linkings:
+        if entity_linking.entity.text == mention:
+            certain_mention_candidate_linkings += 1
+
+
+    mention_entities = Entity.query.filter(Entity.text == mention).all()
+    mention_entity_ids = [x.id for x in mention_entities]
+
+    certain_mention_linkings = EntityLinking.query.filter(EntityLinking.entity_id.in_(mention_entity_ids)).filter(
+        EntityLinking.updated_certainty == 1).count()
+
+    if certain_mention_linkings  > 0:
+        return certain_mention_candidate_linkings / certain_mention_linkings
+    else:
+        return 0
+
+
+def f_candidate_prior(candidate):
+    candidate_certain_linkings = EntityLinking.query.filter(EntityLinking.linkable_object == candidate).filter(
+        EntityLinking.updated_certainty == 1).count()
+
+    total_certain_linkings = EntityLinking.query.filter(EntityLinking.linkable_type == 'Politician').filter(EntityLinking.updated_certainty == 1).count()
+
+    if total_certain_linkings > 0:
+        return candidate_certain_linkings / total_certain_linkings
+    else:
+        return 0
 
 
 def f_name_similarity(mention, candidate):
@@ -15,7 +51,7 @@ def f_name_similarity(mention, candidate):
         sim_last = string_similarity(last_name, mention)
         sim_first = string_similarity((candidate.first_name + ' ' + last_name), mention)
         sim_full = string_similarity(candidate.full_name, mention)
-        score =  max(sim_first, sim_last, sim_full)
+        score = max(sim_first, sim_last, sim_full)
 
     return score
 
@@ -35,6 +71,7 @@ def f_first_name_similarity(mention, candidate):
         if name in candidate_first_names:
             sim = 1
     return sim
+
 
 def f_initials_similarity(mention, candidate):
     first_letter_mention = mention[0].lower()

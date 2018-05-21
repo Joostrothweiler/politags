@@ -4,7 +4,9 @@ from flask_script import Command
 
 from app.models.models import EntityLinking, Article, Entity
 from app.modules.common.utils import translate_doc
-from app.modules.enrichment.named_entities.disambiguation import compute_politician_feature_vector
+from app.modules.enrichment.named_entities.disambiguation import compute_politician_feature_vector, \
+    get_candidate_politicians
+from app.modules.enrichment.named_entities.disambiguation_features import f_mention_prior, f_candidate_prior
 from app.modules.poliflow.fetch import fetch_single_document
 
 logger = logging.getLogger('write_ned_training')
@@ -25,7 +27,8 @@ def write_ned_training():
 
     # Fetch only the articles of interest -> those where the initial certainty does not match the updated certainty
     articles = []
-    interesting_linkings = EntityLinking.query.filter(EntityLinking.initial_certainty != EntityLinking.updated_certainty).all()
+    interesting_linkings = EntityLinking.query.filter(
+        EntityLinking.initial_certainty != EntityLinking.updated_certainty).all()
 
     for linking in interesting_linkings:
         linking_article = linking.entity.article
@@ -50,14 +53,23 @@ def write_ned_training():
             candidate = linking.linkable_object
             feature_vector = compute_politician_feature_vector(simple_doc, doc_entities, entity, candidate)
 
+            # Add additional (continuous improvement) features to vector
+            f_m = f_mention_prior(entity.text, candidate)
+            f_c = f_candidate_prior(candidate)
+            feature_vector.append(f_m)
+            feature_vector.append(f_c)
+
+            # Insert stress test data
+            candidates_count = str(len(get_candidate_politicians(entity)))
+
             if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
-                result += str(article.id) + ',' + entity.text + ',' + candidate.full_name + ',' + ','.join(
-                    str(x) for x in feature_vector) + '\n'
+                result += '[' + str(article.id) + ',' + entity.text + ',' + candidates_count + ',' + candidate.full_name + \
+                          ',' + ','.join(str(x) for x in feature_vector) + '],\n'
             if linking.updated_certainty > linking.initial_certainty:
                 feature_vector.append(TRUE_LABEL)
-                result += str(article.id) + ',' + entity.text + ',' + candidate.full_name + ',' + ','.join(
-                    str(x) for x in feature_vector) + '\n'
+                result += '[' + str(article.id) + ',' + entity.text + ',' + candidates_count + ',' + candidate.full_name + \
+                          ',' + ','.join(str(x) for x in feature_vector) + '],\n'
 
     # Write data to a training file with the data as identifying string.
     now = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
