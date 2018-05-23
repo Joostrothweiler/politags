@@ -68,10 +68,12 @@ def score_politician_candidates(candidates_per_article, items):
 
                 if p['system_id'] in candidates_per_article[article_id]['politicians']:
                     recall_score += 1
+                else:
+                    print(article_id)
+                    print(p)
 
         if politician_weight > 0:
             recall_scores.append({'weight' : politician_weight, 'recall' : recall_score / politician_weight})
-    print(recall_scores)
 
     total_recall_weight = 0
     final_recall_sum = 0
@@ -105,11 +107,12 @@ def score_party_candidates(candidates_per_article, items):
 
                 if p['abbreviation'] in candidates_per_article[article_id]['parties']:
                     recall_score += 1
+                else:
+                    print(article_id)
+                    print(p)
 
         if party_weight > 0:
-            print([article_id, recall_score, party_weight])
             recall_scores.append({'weight': party_weight, 'recall': recall_score / party_weight})
-    print(recall_scores)
 
     total_recall_weight = 0
     final_recall_sum = 0
@@ -147,6 +150,4 @@ def get_all_candidate_per_article(items):
                     parties.append(candidate.abbreviation)
 
         output[eval_item['article_id']] = {'politicians' : np.unique(politicians), 'parties' : np.unique(parties)}
-
-    print(output)
     return output
