@@ -22,6 +22,7 @@ class WriteNedTraining(Command):
 
 def write_ned_training():
     result = '['
+    result_absolute = '['
     FALSE_LABEL = 0
     TRUE_LABEL = 1
 
@@ -62,6 +63,7 @@ def write_ned_training():
             # Insert stress test data
             candidates_count = str(len(get_candidate_politicians(entity)))
 
+            # Probability result
             if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
                 result += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
@@ -71,13 +73,33 @@ def write_ned_training():
                 result += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
                           '",' + ','.join(str(x) for x in feature_vector) + '],\n'
 
+            # Confirmed and rejected results
+            if linking.updated_certainty == 0:
+                feature_vector.append(FALSE_LABEL)
+                result_absolute += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
+                          '",' + ','.join(str(x) for x in feature_vector) + '],\n'
+            if linking.updated_certainty == 1:
+                feature_vector.append(TRUE_LABEL)
+                result_absolute += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
+                          '",' + ','.join(str(x) for x in feature_vector) + '],\n'
+
     # Remove last \n + comma and add another bracket for json formatting
     result = result[0:-2]
     result += "]"
+
+    result_absolute = result_absolute[0:-2]
+    result_absolute += "]"
 
     # Write data to a training file with the data as identifying string.
     now = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
     file = open('data_resources/ned/training/ned_db_training_file_{}.json'.format(now), 'w')
     file.write(result)
     file.close()
+
+    file = open('data_resources/ned/training/ned_db_training_file_absolute_{}.json'.format(now), 'w')
+    file.write(result_absolute)
+    file.close()
+
     logger.info('Done.')
+
+

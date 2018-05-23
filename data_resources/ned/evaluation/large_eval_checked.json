@@ -1460,66 +1460,6 @@
       "politicians": []
     },
     {
-      "article_id": "376ad3c3adb39d57711d5a12997e31372119630a",
-      "parties": [
-        {
-          "system_id": 3,
-          "name": "Democraten 66",
-          "abbreviation": "D66"
-        },
-        {
-          "system_id": 9,
-          "name": "Socialistische Partij",
-          "abbreviation": "SP"
-        },
-        {
-          "system_id": 4,
-          "name": "GroenLinks",
-          "abbreviation": "GL"
-        }
-      ],
-      "politicians": [
-        {
-          "id": 8190,
-          "system_id": 128161,
-          "title": "Dhr.",
-          "first_name": "R.",
-          "last_name": "Sips",
-          "suffix": "",
-          "party": "PvdA",
-          "municipality": "Gemeente Breda",
-          "role": "Raadslid"
-        },
-        {
-          "id": 3684,
-          "system_id": 122483,
-          "title": "Dhr.",
-          "first_name": "M.J.L.",
-          "last_name": "Scheifes",
-          "suffix": "",
-          "party": "GroenLinks",
-          "municipality": "Gemeente Breda",
-          "role": "Raadslid"
-        },
-        {
-          "id": 7475,
-          "system_id": 128162,
-          "title": "Dhr.",
-          "first_name": "R.H.W.T.M.",
-          "last_name": "Spiegels",
-          "suffix": "",
-          "party": "SP",
-          "municipality": "Gemeente Breda",
-          "role": "Raadslid"
-        },
-        {
-          "id": 5712,
-          "system_id": 112532,
-          "full_name": "Mw. M. van Hemel"
-        }
-      ]
-    },
-    {
       "article_id": "6bad840551136344c049a8ae8b10098c0370615e",
       "parties": [
         {
