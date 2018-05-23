@@ -63,23 +63,24 @@ def write_ned_training():
             # Insert stress test data
             candidates_count = str(len(get_candidate_politicians(entity)))
 
-            # Probability result
             if linking.updated_certainty < linking.initial_certainty:
                 feature_vector.append(FALSE_LABEL)
+            else:
+                feature_vector.append(TRUE_LABEL)
+
+            # Probability result
+            if linking.updated_certainty < linking.initial_certainty:
                 result += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
                           '",' + ','.join(str(x) for x in feature_vector) + '],\n'
             if linking.updated_certainty > linking.initial_certainty:
-                feature_vector.append(TRUE_LABEL)
                 result += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
                           '",' + ','.join(str(x) for x in feature_vector) + '],\n'
 
             # Confirmed and rejected results
             if linking.updated_certainty == 0:
-                feature_vector.append(FALSE_LABEL)
                 result_absolute += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
                           '",' + ','.join(str(x) for x in feature_vector) + '],\n'
             if linking.updated_certainty == 1:
-                feature_vector.append(TRUE_LABEL)
                 result_absolute += '["' + str(article.id) + '","' + entity.text + '",' + candidates_count + ',"' + candidate.full_name + \
                           '",' + ','.join(str(x) for x in feature_vector) + '],\n'
 
